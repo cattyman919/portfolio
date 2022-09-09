@@ -1,8 +1,15 @@
 import { NextPage } from "next";
-import Link from "next/link";
+import { Navbar, Profile, Projects, Skills } from "@app/index";
 
 const IndexPage: NextPage = () => {
-  return <div>Oof</div>;
+  return (
+    <>
+      <Navbar />
+      <Profile />
+      <Projects />
+      <Skills />
+    </>
+  );
 };
 
 export default IndexPage;
