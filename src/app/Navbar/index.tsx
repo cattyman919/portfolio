@@ -1,18 +1,17 @@
 import React from 'react';
-import { Button, Typography } from 'antd';
 const Navbar = () => {
-  const { Title } = Typography;
   return (
-    <div className="flex items-center justify-between w-full bg-blue-400">
+    <div className="flex items-center justify-between w-full p-3 bg-cyberpunk-5">
       <div>
-        <h2 className="text-red-400 text-success">LOGsO</h2>
+        <h2 className="m-0 text-cyberpunk-3">LOGO</h2>
       </div>
-      <div className="">
-        <Title level={4} className="text-red-400">
+      <div className="flex items-center justify-between gap-5 mr-10 ">
+        <h2 className="m-0 border-4 rounded border-cyberpunk-1 text-cyberpunk-3">
           Profile
-        </Title>
-        <Title level={4}>Projects</Title>
-        <Title level={4}>Skills</Title>
+        </h2>
+        <h2 className="m-0 text-cyberpunk-3">Projects</h2>
+        <h2 className="m-0 text-cyberpunk-3">Skills</h2>
+        <h2 className="m-0 text-cyberpunk-3">Posts</h2>
       </div>
     </div>
   );

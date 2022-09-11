@@ -1,5 +1,5 @@
-import { NextPage } from "next";
-import { Navbar, Profile, Projects, Skills } from "@app/index";
+import { NextPage } from 'next';
+import { Navbar, Profile, Projects, Skills } from '@app/index';
 
 const IndexPage: NextPage = () => {
   return (
