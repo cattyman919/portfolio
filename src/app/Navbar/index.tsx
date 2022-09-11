@@ -1,9 +1,11 @@
 import React from 'react';
+import { AntDesignOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
 const Navbar = () => {
   return (
     <div className="flex items-center justify-between w-full p-3 bg-cyberpunk-5 ">
       <div>
-        <h2 className="m-0 text-cyberpunk-3">LOGO</h2>
+        <Avatar size={40} icon={<AntDesignOutlined />} />
       </div>
       <div className="flex items-center justify-between gap-5 mr-10 ">
         <h2 className="m-0 border-0 border-b-4 cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">

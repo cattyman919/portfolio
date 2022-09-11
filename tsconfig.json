@@ -21,7 +21,9 @@
       "@components/*": ["src/shared/components/*"],
       "@interfaces/*": ["src/shared/interfaces/*"],
       "@utils/*": ["src/shared/utils/*"],
-      "@styles/*": ["src/shared/styles/*"]
+      "@styles/*": ["src/shared/styles/*"],
+      "@images/*": ["assets/images/*"],
+      "@icons/*": ["assets/icons/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
