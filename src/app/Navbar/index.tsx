@@ -1,10 +1,31 @@
 import { AntDesignOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
+import { debug } from 'console';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    // just trigger this so that the initial state
+    // is updated as soon as the component is mounted
+    // related: https://stackoverflow.com/a/63408216
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  const router = useRouter();
+  console.log(scrollY);
   return (
-    <div className="flex items-center justify-between w-full p-3 border-0 border-b-2 border-solid border-cyberpunk-1 bg-cyberpunk-5 ">
+    <div className="fixed flex items-center justify-between w-full p-3 z-[1] border-0 border-b-2 border-solid border-cyberpunk-1 bg-cyberpunk-5">
       <div>
         <Avatar size={40} icon={<AntDesignOutlined />} />
       </div>
