@@ -3,17 +3,24 @@ import Image from 'next/image';
 import ProfilePic from '@images/SenoOofProfile.jpeg';
 const Profile = () => {
   return (
-    <div className="flex items-center justify-center w-full h-screen gap-6 bg-cyberpunk-4">
-      <p>
-        Hey my name is Seno Pamungkas Rahman and im a frontend developer and
-        also a game developer
+    <div
+      id="profile-section"
+      className="flex items-center justify-center w-full h-[80vh] bg-cyberpunk-5"
+    >
+      <p className="w-[400px] mr-[15%] text-xl text-justify text-cyberpunk-3">
+        Hey my name is{' '}
+        <span className="text-cyberpunk-1">Seno Pamungkas Rahman</span> and im a
+        frontend developer and also a game developer
       </p>
-      <Image
-        src={ProfilePic}
-        alt="Profile Picture of Seno"
-        width={500}
-        height={500}
-      />
+      <div className="">
+        <Image
+          src={ProfilePic}
+          alt="Profile Picture of Seno"
+          width={400}
+          height={400}
+          className="rounded-[10%] "
+        />
+      </div>
     </div>
   );
 };
