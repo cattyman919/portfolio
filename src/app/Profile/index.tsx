@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import ProfilePic from '@images/SenoOofProfile.jpeg';
 const Profile = () => {
