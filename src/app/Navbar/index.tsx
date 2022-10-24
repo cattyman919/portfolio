@@ -1,50 +1,77 @@
 import { AntDesignOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
-import { debug } from 'console';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const [clientWindowHeight, setClientWindowHeight] = useState<number>();
+  const [navBorderColor, setNavBorderColor] = useState(false);
+
+  const handleScroll = () => {
+    setClientWindowHeight(window.scrollY);
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    // just trigger this so that the initial state
-    // is updated as soon as the component is mounted
-    // related: https://stackoverflow.com/a/63408216
-    handleScroll();
-
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  const router = useRouter();
-  console.log(scrollY);
+
+  useEffect(() => {
+    if (clientWindowHeight > 100) {
+      setNavBorderColor(true);
+    } else {
+      setNavBorderColor(false);
+    }
+  }, [clientWindowHeight]);
+
   return (
-    <div className="fixed flex items-center justify-between w-full p-3 z-[1] border-0 border-b-2 border-solid border-cyberpunk-1 bg-cyberpunk-5">
+    <div
+      className={`fixed flex items-center justify-between w-full p-3 z-[1] transition-all before:content-[""] before:absolute before:left-0 before:bottom-0  before:border-b before:border-solid before:bg-cyberpunk-1 ${
+        navBorderColor
+          ? 'before:w-0 before:animate-border_nav_anim'
+          : 'before:w-full before:animate-border_nav_anim_reverse'
+      } bg-cyberpunk-5`}
+    >
       <div>
         <Avatar size={40} icon={<AntDesignOutlined />} />
       </div>
       <div className="flex items-center justify-between gap-5 mr-10 ">
-        <Link href="#profile-section">
-          <h2 className="m-0 border-0 border-b-4 cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+        <a
+          href="/"
+          onClick={(e) => {
+            let profile = document.getElementById('profile-section');
+            e.preventDefault();
+            profile && profile.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
             Profile
           </h2>
-        </Link>
-        <Link href="#projects-section">
-          <h2 className="m-0 border-0 border-b-4 cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+        </a>
+        <a
+          href="/"
+          onClick={(e) => {
+            let projects = document.getElementById('projects-section');
+            e.preventDefault();
+            console.log(projects);
+            projects && projects.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
             Projects
           </h2>
-        </Link>
-        <Link href="#skills-section">
-          <h2 className="m-0 border-0 border-b-4 cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
-            Skills
-          </h2>
-        </Link>
+        </a>
+        <a
+          href="/"
+          onClick={(e) => {
+            let skills = document.getElementById('skills-section');
+            e.preventDefault();
+            skills && skills.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          <h2 className="m-0 text-cyberpunk-3">Skills</h2>
+        </a>
 
         <h2 className="px-3 m-0 transition-all rounded cursor-pointer text-cyberpunk-5 bg-cyberpunk-3 hover:bg-cyberpunk-1">
           Posts

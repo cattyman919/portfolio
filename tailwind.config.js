@@ -14,6 +14,24 @@ module.exports = {
         4: '#005678',
         5: '#01012b',
       },
+      transparent: 'transparent',
+    },
+    extend: {
+      animation: {
+        border_nav_anim: 'border_bottom_anim .4s linear forwards',
+        border_nav_anim_reverse:
+          'border_bottom_anim_reverse .4s linear reverse forwards ',
+      },
+      keyframes: {
+        border_bottom_anim: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
+        border_bottom_anim_reverse: {
+          '100%': { width: '100%' },
+          '0%': { width: '0%' },
+        },
+      },
     },
   },
   plugins: [],
