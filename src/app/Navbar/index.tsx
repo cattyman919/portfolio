@@ -7,10 +7,6 @@ const Navbar = () => {
   const [clientWindowHeight, setClientWindowHeight] = useState<number>();
   const [navBorderColor, setNavBorderColor] = useState(false);
 
-  const handleScroll = () => {
-    setClientWindowHeight(window.scrollY);
-  };
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
@@ -24,6 +20,16 @@ const Navbar = () => {
       setNavBorderColor(false);
     }
   }, [clientWindowHeight]);
+
+  const handleScroll = () => {
+    setClientWindowHeight(window.scrollY);
+  };
+
+  const ScrollToSection = (e, section_name: string) => {
+    let section = document.getElementById(section_name);
+    e.preventDefault();
+    section && section.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div
@@ -40,9 +46,7 @@ const Navbar = () => {
         <a
           href="/"
           onClick={(e) => {
-            let profile = document.getElementById('profile-section');
-            e.preventDefault();
-            profile && profile.scrollIntoView({ behavior: 'smooth' });
+            ScrollToSection(e, 'profile-section');
           }}
         >
           <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
@@ -52,10 +56,7 @@ const Navbar = () => {
         <a
           href="/"
           onClick={(e) => {
-            let projects = document.getElementById('projects-section');
-            e.preventDefault();
-            console.log(projects);
-            projects && projects.scrollIntoView({ behavior: 'smooth' });
+            ScrollToSection(e, 'projects-section');
           }}
         >
           <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
@@ -65,12 +66,12 @@ const Navbar = () => {
         <a
           href="/"
           onClick={(e) => {
-            let skills = document.getElementById('skills-section');
-            e.preventDefault();
-            skills && skills.scrollIntoView({ behavior: 'smooth' });
+            ScrollToSection(e, 'skills-section');
           }}
         >
-          <h2 className="m-0 text-cyberpunk-3">Skills</h2>
+          <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+            Skills
+          </h2>
         </a>
 
         <h2 className="px-3 m-0 transition-all rounded cursor-pointer text-cyberpunk-5 bg-cyberpunk-3 hover:bg-cyberpunk-1">
