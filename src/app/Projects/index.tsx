@@ -12,6 +12,7 @@ const Projects = () => {
           title="Portfolio"
           description="Project about this portfolio website"
           status="In Development"
+          repo="https://github.com/cattyman919/portfolio"
         />
         <ProjectModal
           title="Unity"
@@ -25,17 +26,17 @@ const Projects = () => {
         />
         <ProjectModal
           title="C#"
-          description="Project made with C++"
+          description="Project made with C#"
           status="In Development"
         />
         <ProjectModal
           title="JavaScript"
-          description="Project made with C++"
+          description="Project made with Javascript"
           status="In Development"
         />
         <ProjectModal
           title="oof"
-          description="Project made with C++"
+          description="Project made with oof"
           status="In Development"
         />
       </div>
