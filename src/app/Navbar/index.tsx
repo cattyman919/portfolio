@@ -3,7 +3,7 @@ import { Avatar } from 'antd';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [clientWindowHeight, setClientWindowHeight] = useState<number>();
   const [navBorderColor, setNavBorderColor] = useState(false);
 
@@ -32,53 +32,56 @@ const Navbar = () => {
   };
 
   return (
-    <div
-      className={`fixed flex items-center justify-between w-full p-3 z-[1] transition-all before:content-[""] before:absolute before:left-0 before:bottom-0  before:border-b before:border-solid before:bg-cyberpunk-1 ${
-        navBorderColor
-          ? 'before:w-0 before:animate-border_nav_anim'
-          : 'before:w-full before:animate-border_nav_anim_reverse'
-      } bg-cyberpunk-5`}
-    >
-      <div>
-        <Avatar size={40} icon={<AntDesignOutlined />} />
-      </div>
-      <div className="flex items-center justify-between gap-5 mr-10 ">
-        <a
-          href="/"
-          onClick={(e) => {
-            ScrollToSection(e, 'profile-section');
-          }}
-        >
-          <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
-            Profile
-          </h2>
-        </a>
-        <a
-          href="/"
-          onClick={(e) => {
-            ScrollToSection(e, 'projects-section');
-          }}
-        >
-          <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
-            Projects
-          </h2>
-        </a>
-        <a
-          href="/"
-          onClick={(e) => {
-            ScrollToSection(e, 'skills-section');
-          }}
-        >
-          <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
-            Skills
-          </h2>
-        </a>
+    <>
+      <div
+        className={`fixed flex items-center justify-between w-full p-3 z-[1] transition-all before:content-[""] before:absolute before:left-0 before:bottom-0  before:border-b before:border-solid before:bg-cyberpunk-1 ${
+          navBorderColor
+            ? 'before:w-0 before:animate-border_nav_anim'
+            : 'before:w-full before:animate-border_nav_anim_reverse'
+        } bg-cyberpunk-5`}
+      >
+        <div>
+          <Avatar size={40} icon={<AntDesignOutlined />} />
+        </div>
+        <div className="flex items-center justify-between gap-5 mr-10 ">
+          <a
+            href="/"
+            onClick={(e) => {
+              ScrollToSection(e, 'profile-section');
+            }}
+          >
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+              Profile
+            </h2>
+          </a>
+          <a
+            href="/"
+            onClick={(e) => {
+              ScrollToSection(e, 'projects-section');
+            }}
+          >
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+              Projects
+            </h2>
+          </a>
+          <a
+            href="/"
+            onClick={(e) => {
+              ScrollToSection(e, 'skills-section');
+            }}
+          >
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+              Skills
+            </h2>
+          </a>
 
-        <h2 className="px-3 m-0 transition-all rounded cursor-pointer text-cyberpunk-5 bg-cyberpunk-3 hover:bg-cyberpunk-1">
-          Posts
-        </h2>
+          <h2 className="px-3 m-0 transition-all rounded cursor-pointer text-cyberpunk-5 bg-cyberpunk-3 hover:bg-cyberpunk-1">
+            Posts
+          </h2>
+        </div>
       </div>
-    </div>
+      {props.children}
+    </>
   );
 };
 
