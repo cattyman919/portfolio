@@ -34,16 +34,16 @@ const Navbar = (props) => {
   return (
     <>
       <div
-        className={`fixed flex items-center justify-between w-full p-3 z-[1] transition-all before:content-[""] before:absolute before:left-0 before:bottom-0  before:border-b before:border-solid before:bg-cyberpunk-1 ${
+        className={`fixed flex items-center justify-center sm:justify-between w-full px-[8.5vw] py-3  z-[1] transition-all before:content-[""] before:absolute before:left-0 before:bottom-0  before:border-b before:border-solid before:bg-cyberpunk-1 ${
           navBorderColor
             ? 'before:w-0 before:animate-border_nav_anim'
             : 'before:w-full before:animate-border_nav_anim_reverse'
         } bg-cyberpunk-5`}
       >
-        <div>
+        <div className="hidden sm:block">
           <Avatar size={40} icon={<AntDesignOutlined />} />
         </div>
-        <div className="flex items-center justify-between gap-5 mr-10 ">
+        <div className="flex gap-5">
           <a
             href="/"
             onClick={(e) => {
