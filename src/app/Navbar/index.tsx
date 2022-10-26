@@ -1,6 +1,5 @@
 import { AntDesignOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 const Navbar = (props) => {
