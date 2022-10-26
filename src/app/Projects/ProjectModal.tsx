@@ -7,22 +7,8 @@ import {
   faReact,
 } from '@fortawesome/free-brands-svg-icons';
 
-enum LanguangesIcons {
-  C,
-  UNITY,
-  HTML,
-  CSS,
-  JAVASCRIPT,
-  REACT,
-  TAILWIND,
-}
-interface IProjectModal {
-  title: string;
-  description: string;
-  status: string;
-  languages: LanguangesIcons[];
-  repo?: string;
-}
+import { LanguangesIcons } from '@enums/LanguangesIcons';
+import { IProjectModal } from '@interfaces/Projects';
 
 export const ProjectModal = ({
   title,

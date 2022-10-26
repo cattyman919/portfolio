@@ -1,23 +1,7 @@
-enum LanguangesIcons {
-  C,
-  UNITY,
-  HTML,
-  CSS,
-  JAVASCRIPT,
-  REACT,
-  TAILWIND,
-}
+import { LanguangesIcons } from '@enums/LanguangesIcons';
+import { IProjectModal } from '@interfaces/Projects';
 
-interface ProjectModal {
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-  languages: LanguangesIcons[];
-  repo?: string;
-}
-
-export const ProjectModalData: ProjectModal[] = [
+export const ProjectModalData: IProjectModal[] = [
   {
     id: 1,
     title: 'Portfolio',

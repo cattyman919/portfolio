@@ -21,6 +21,7 @@
       "@data/*": ["src/data/*"],
       "@components/*": ["src/shared/components/*"],
       "@interfaces/*": ["src/shared/interfaces/*"],
+      "@enums/*": ["src/shared/enums/*"],
       "@utils/*": ["src/shared/utils/*"],
       "@styles/*": ["src/shared/styles/*"],
       "@images/*": ["assets/images/*"],
