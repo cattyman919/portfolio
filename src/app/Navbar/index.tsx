@@ -26,8 +26,8 @@ const Navbar = (props) => {
   };
 
   const ScrollToSection = (e, section_name: string) => {
-    let section = document.getElementById(section_name);
     e.preventDefault();
+    let section = document.getElementById(section_name);
     section && section.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -50,7 +50,7 @@ const Navbar = (props) => {
               ScrollToSection(e, 'profile-section');
             }}
           >
-            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-solid cursor-pointer border-cyberpunk-5 hover:border-cyberpunk-1 text-cyberpunk-3">
               Profile
             </h2>
           </a>
@@ -60,7 +60,7 @@ const Navbar = (props) => {
               ScrollToSection(e, 'projects-section');
             }}
           >
-            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-solid cursor-pointer border-cyberpunk-5 hover:border-cyberpunk-1 text-cyberpunk-3">
               Projects
             </h2>
           </a>
@@ -70,12 +70,12 @@ const Navbar = (props) => {
               ScrollToSection(e, 'skills-section');
             }}
           >
-            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-none cursor-pointer hover:border-solid border-cyberpunk-1 text-cyberpunk-3">
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-solid cursor-pointer border-cyberpunk-5 hover:border-cyberpunk-1 text-cyberpunk-3">
               Skills
             </h2>
           </a>
 
-          <h2 className="px-3 m-0 transition-all rounded cursor-pointer text-cyberpunk-5 bg-cyberpunk-3 hover:bg-cyberpunk-1">
+          <h2 className="px-3 m-0 transition-all rounded cursor-pointer text-cyberpunk-5 bg-cyberpunk-3 hover:bg-cyberpunk-1 hover:text-cyberpunk-2 ">
             Posts
           </h2>
         </div>

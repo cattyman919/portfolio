@@ -8,8 +8,8 @@ const Profile = () => {
     >
       <p className=" md:w-[40%] mt-[2rem] md:mt-0  text-xl text-justify text-cyberpunk-3">
         Hey my name is
-        <span className="text-cyberpunk-1 "> Seno Pamungkas Rahman</span> and im
-        a frontend developer and also a game developer
+        <span className="text-cyberpunk-1 "> Seno Pamungkas Rahman</span> and
+        i'm a frontend developer and also a game developer
       </p>
       <div className="order-first md:order-last">
         <Image

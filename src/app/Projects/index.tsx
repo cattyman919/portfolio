@@ -1,5 +1,5 @@
 import { ProjectModal } from './ProjectModal';
-
+import { ProjectModalData } from '@data/projects';
 const Projects = () => {
   return (
     <div
@@ -8,37 +8,17 @@ const Projects = () => {
     >
       <h1 className="mb-10 text-cyberpunk-3">Projects</h1>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 ">
-        <ProjectModal
-          title="Portfolio"
-          description="Project about this portfolio website"
-          status="In Development"
-          repo="https://github.com/cattyman919/portfolio"
-        />
-        <ProjectModal
-          title="Unity"
-          description="Projects about my game development with Unity game engine"
-          status="In Development"
-        />
-        <ProjectModal
-          title="C++"
-          description="Project made with C++"
-          status="In Development"
-        />
-        <ProjectModal
-          title="C#"
-          description="Project made with C#"
-          status="In Development"
-        />
-        <ProjectModal
-          title="JavaScript"
-          description="Project made with Javascript"
-          status="In Development"
-        />
-        <ProjectModal
-          title="oof"
-          description="Project made with oof"
-          status="In Development"
-        />
+        {ProjectModalData.map(({ id, title, description, status, repo }) => {
+          return (
+            <ProjectModal
+              key={id}
+              title={title}
+              description={description}
+              status={status}
+              repo={repo}
+            />
+          );
+        })}
       </div>
     </div>
   );

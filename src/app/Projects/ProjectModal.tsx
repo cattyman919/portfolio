@@ -18,7 +18,7 @@ export const ProjectModal = ({
       <h2>{title}</h2>
       <p>{description}</p>
       <p>Languange used in the projects (with icons)</p>
-      <p>{status}</p>
+      <p className="italic">{status}</p>
       {repo && (
         <a href={repo} target="_blank">
           Link to repo
