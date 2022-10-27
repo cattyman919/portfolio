@@ -33,11 +33,14 @@ const Navbar = (props) => {
   return (
     <>
       <div
-        className={`fixed flex items-center justify-center sm:justify-between w-full px-[8.5vw] py-3  z-[1] transition-all before:content-[""] before:absolute before:left-0 before:bottom-0  before:border-b before:border-solid before:bg-cyberpunk-1 ${
+        className={`
+        fixed flex items-center justify-center transition-all duration-500 bg-navbar_gradient bg-200%_100%  
+        sm:justify-between w-full px-[8.5vw] py-3  z-[1]  before:content-[""] before:absolute before:left-0 before:bottom-0  
+        before:border-b before:border-solid before:bg-cyberpunk-1 ${
           navBorderColor
-            ? 'before:w-0 before:animate-border_nav_anim'
-            : 'before:w-full before:animate-border_nav_anim_reverse'
-        } bg-cyberpunk-5`}
+            ? 'before:w-0 before:animate-border_nav_anim bg-left-bottom'
+            : 'before:w-full before:animate-border_nav_anim_reverse bg-right-bottom'
+        } `}
       >
         <div className="hidden sm:block">
           <Avatar size={40} icon={<AntDesignOutlined />} />
@@ -49,7 +52,7 @@ const Navbar = (props) => {
               ScrollToSection(e, 'profile-section');
             }}
           >
-            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-solid cursor-pointer border-cyberpunk-5 hover:border-cyberpunk-1 text-cyberpunk-3">
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-transparent border-solid cursor-pointer hover:border-cyberpunk-1 text-cyberpunk-3">
               Profile
             </h2>
           </a>
@@ -59,7 +62,7 @@ const Navbar = (props) => {
               ScrollToSection(e, 'projects-section');
             }}
           >
-            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-solid cursor-pointer border-cyberpunk-5 hover:border-cyberpunk-1 text-cyberpunk-3">
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-transparent border-solid cursor-pointer hover:border-cyberpunk-1 text-cyberpunk-3">
               Projects
             </h2>
           </a>
@@ -69,7 +72,7 @@ const Navbar = (props) => {
               ScrollToSection(e, 'skills-section');
             }}
           >
-            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-solid cursor-pointer border-cyberpunk-5 hover:border-cyberpunk-1 text-cyberpunk-3">
+            <h2 className="m-0 transition-all bg-transparent border-0 border-b-4 border-transparent border-solid cursor-pointer hover:border-cyberpunk-1 text-cyberpunk-3">
               Skills
             </h2>
           </a>

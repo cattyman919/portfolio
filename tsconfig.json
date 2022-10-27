@@ -24,8 +24,8 @@
       "@enums/*": ["src/shared/enums/*"],
       "@utils/*": ["src/shared/utils/*"],
       "@styles/*": ["src/shared/styles/*"],
-      "@images/*": ["assets/images/*"],
-      "@icons/*": ["assets/icons/*"]
+      "@images/*": ["public/images/*"],
+      "@icons/*": ["public/icons/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

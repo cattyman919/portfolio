@@ -18,7 +18,7 @@ export const ProjectModal = ({
   repo,
 }: IProjectModal) => {
   return (
-    <div className=" flex flex-col gap-2 h-[400px] bg-gradient-to-b from-cyberpunk-3 to-cyberpunk-4 border-[1px] border-solid  border-cyberpunk-1  transition-all rounded p-5 text-cyberpunk-5 my-[1rem] sm:hover:my-[-.2rem]  ">
+    <div className=" flex flex-col gap-2 h-[400px] bg-gradient-to-b from-cyberpunk-3 to-cyberpunk-4 border-[1px] border-solid  border-cyberpunk-1  transition-all rounded p-5 text-cyberpunk-5 my-[1rem] sm:hover:mt-[-.2rem] ">
       <h2>{title}</h2>
       <p>{description}</p>
       <div className="flex gap-5">

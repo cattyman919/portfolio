@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import ProfilePic from '@images/SenoOofProfile.jpeg';
+
 const Profile = () => {
   return (
     <div
       id="profile-section"
-      className="flex flex-col items-center justify-between md:flex-row w-full pt-[8rem] pb-[3rem] px-[8.5vw] bg-cyberpunk-5"
+      className="flex flex-col items-center bg-polygon_pattern bg-no-repeat bg-cover animate-polygon_anim  justify-between md:flex-row w-full pt-[8rem] pb-[3rem] px-[8.5vw] "
     >
-      <p className=" md:w-[40%] mt-[2rem] md:mt-0  text-xl text-justify text-cyberpunk-3">
+      <p className="text-cyberpunk-4 md:w-[40%] mt-[2rem] md:mt-0  text-xl text-justify ">
         Hey my name is
         <span className="text-cyberpunk-1 "> Seno Pamungkas Rahman</span> and
         i'm a frontend developer and also a game developer
