@@ -1,5 +1,4 @@
 import { ProjectModal } from './ProjectModal';
-import { ProjectModalData } from '@data/projects';
 import { IProjects } from '@interfaces/Projects';
 
 const Projects = ({ projectsData }: IProjects) => {
