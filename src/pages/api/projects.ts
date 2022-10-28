@@ -16,13 +16,10 @@ export default async function getAllProjects(
     const response = await forward.json();
 
     const projectsData: IProjectModal[] = response.map((project) => {
+      const { languages, ...restProject } = project;
       const newProject: IProjectModal = {
-        id: project.id,
-        title: project.title,
-        description: project.description,
-        status: project.status,
-        languages: [LanguagesIcons[project.languages]],
-        repo: project.repo,
+        languages: [LanguagesIcons[languages]],
+        ...restProject,
       };
 
       return newProject;
