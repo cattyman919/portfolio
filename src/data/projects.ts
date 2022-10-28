@@ -1,4 +1,4 @@
-import { LanguangesIcons } from '@enums/LanguangesIcons';
+import { LanguagesIcons } from '@enums/LanguagesIcons';
 import { IProjectModal } from '@interfaces/Projects';
 
 export const ProjectModalData: IProjectModal[] = [
@@ -8,10 +8,10 @@ export const ProjectModalData: IProjectModal[] = [
     description: 'Project about this portfolio website',
     status: 'In Development',
     languages: [
-      LanguangesIcons.HTML,
-      LanguangesIcons.CSS,
-      LanguangesIcons.JAVASCRIPT,
-      LanguangesIcons.REACT,
+      LanguagesIcons.HTML,
+      LanguagesIcons.CSS,
+      LanguagesIcons.JAVASCRIPT,
+      LanguagesIcons.REACT,
     ],
     repo: 'https://github.com/cattyman919/portfolio',
   },
@@ -19,7 +19,7 @@ export const ProjectModalData: IProjectModal[] = [
     id: 2,
     title: 'Unity',
     description: 'Projects about my game development with Unity game engine',
-    languages: [LanguangesIcons.UNITY],
+    languages: [LanguagesIcons.UNITY],
     status: 'In Development',
   },
   {
@@ -27,9 +27,9 @@ export const ProjectModalData: IProjectModal[] = [
     title: 'C++',
     description: 'Project made with C++',
     languages: [
-      LanguangesIcons.HTML,
-      LanguangesIcons.CSS,
-      LanguangesIcons.JAVASCRIPT,
+      LanguagesIcons.HTML,
+      LanguagesIcons.CSS,
+      LanguagesIcons.JAVASCRIPT,
     ],
     status: 'In Development',
   },
@@ -38,9 +38,9 @@ export const ProjectModalData: IProjectModal[] = [
     title: 'C#',
     description: 'Project made with C#',
     languages: [
-      LanguangesIcons.HTML,
-      LanguangesIcons.CSS,
-      LanguangesIcons.JAVASCRIPT,
+      LanguagesIcons.HTML,
+      LanguagesIcons.CSS,
+      LanguagesIcons.JAVASCRIPT,
     ],
     status: 'In Development',
   },
@@ -49,9 +49,9 @@ export const ProjectModalData: IProjectModal[] = [
     title: 'JavaScript',
     description: 'Project made with Javascript',
     languages: [
-      LanguangesIcons.HTML,
-      LanguangesIcons.CSS,
-      LanguangesIcons.JAVASCRIPT,
+      LanguagesIcons.HTML,
+      LanguagesIcons.CSS,
+      LanguagesIcons.JAVASCRIPT,
     ],
     status: 'In Development',
   },

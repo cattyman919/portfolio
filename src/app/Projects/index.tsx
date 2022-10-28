@@ -1,7 +1,8 @@
 import { ProjectModal } from './ProjectModal';
-
 import { ProjectModalData } from '@data/projects';
-const Projects = () => {
+import { IProjects } from '@interfaces/Projects';
+
+const Projects = ({ projectsData }: IProjects) => {
   return (
     <div
       id="projects-section"
@@ -10,7 +11,7 @@ const Projects = () => {
       <h1 className="mb-10 text-cyberpunk-3">Projects</h1>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 ">
-        {ProjectModalData.map(
+        {projectsData.map(
           ({ id, title, description, status, languages, repo }) => {
             return (
               <ProjectModal

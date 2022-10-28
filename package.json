@@ -1,5 +1,6 @@
 {
   "name": "portfolio-seno",
+  "proxy": "http://localhost:5000",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -16,7 +17,6 @@
     "@headlessui/react": "^1.7.0",
     "antd": "^4.23.1",
     "dotenv": "^16.0.2",
-    "mysql": "^2.18.1",
     "next": "latest",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",

@@ -7,7 +7,7 @@ import {
   faReact,
 } from '@fortawesome/free-brands-svg-icons';
 
-import { LanguangesIcons } from '@enums/LanguangesIcons';
+import { LanguagesIcons } from '@enums/LanguagesIcons';
 import { IProjectModal } from '@interfaces/Projects';
 
 export const ProjectModal = ({
@@ -24,19 +24,49 @@ export const ProjectModal = ({
       <div className="flex gap-5">
         {languages.map((language) => {
           switch (language) {
-            case LanguangesIcons.UNITY:
-              return <FontAwesomeIcon size="xl" icon={faUnity} />;
-            case LanguangesIcons.C:
+            case LanguagesIcons.UNITY:
+              return (
+                <FontAwesomeIcon
+                  key={language.toString()}
+                  size="xl"
+                  icon={faUnity}
+                />
+              );
+            case LanguagesIcons.C:
               return <p>No Icons Yet</p>;
-            case LanguangesIcons.HTML:
-              return <FontAwesomeIcon size="xl" icon={faHtml5} />;
-            case LanguangesIcons.CSS:
-              return <FontAwesomeIcon size="xl" icon={faCss3Alt} />;
-            case LanguangesIcons.JAVASCRIPT:
-              return <FontAwesomeIcon size="xl" icon={faSquareJs} />;
-            case LanguangesIcons.REACT:
-              return <FontAwesomeIcon size="xl" icon={faReact} />;
-            case LanguangesIcons.TAILWIND:
+            case LanguagesIcons.HTML:
+              return (
+                <FontAwesomeIcon
+                  key={language.toString()}
+                  size="xl"
+                  icon={faHtml5}
+                />
+              );
+            case LanguagesIcons.CSS:
+              return (
+                <FontAwesomeIcon
+                  key={language.toString()}
+                  size="xl"
+                  icon={faCss3Alt}
+                />
+              );
+            case LanguagesIcons.JAVASCRIPT:
+              return (
+                <FontAwesomeIcon
+                  key={language.toString()}
+                  size="xl"
+                  icon={faSquareJs}
+                />
+              );
+            case LanguagesIcons.REACT:
+              return (
+                <FontAwesomeIcon
+                  key={language.toString()}
+                  size="xl"
+                  icon={faReact}
+                />
+              );
+            case LanguagesIcons.TAILWIND:
               return <p>No Icons Yet</p>;
           }
         })}
