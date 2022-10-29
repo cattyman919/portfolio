@@ -7,7 +7,7 @@ const Profile = () => {
       id="profile-section"
       className="flex flex-col items-center bg-polygon_pattern bg-no-repeat bg-cover animate-polygon_anim  justify-between md:flex-row w-full pt-[8rem] pb-[3rem] px-[8.5vw] "
     >
-      <p className="text-cyberpunk-4 md:w-[40%] mt-[2rem] md:mt-0  text-xl text-justify ">
+      <p className="text-cyberpunk-5 md:w-[40%] mt-[2rem] md:mt-0  text-xl text-justify ">
         Hey my name is
         <span className="text-cyberpunk-1 "> Seno Pamungkas Rahman</span> and
         i'm a frontend developer and also a game developer

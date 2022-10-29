@@ -17,11 +17,14 @@ export default async function getAllProjects(
 
     const projectsData: IProjectModal[] = response.map((project) => {
       const { languages, ...restProject } = project;
+      const enumLanguages: LanguagesIcons[] = languages.map((language) => {
+        return LanguagesIcons[language];
+      });
+
       const newProject: IProjectModal = {
-        languages: [LanguagesIcons[languages]],
+        languages: enumLanguages,
         ...restProject,
       };
-
       return newProject;
     });
 
