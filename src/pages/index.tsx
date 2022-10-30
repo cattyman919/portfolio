@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { Navbar, Profile, Projects, Skills } from '@app/index';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { IProjectModal } from '@interfaces/Projects';
+import { ProjectModalData } from '@data/projects';
 
 export const getStaticProps: GetStaticProps = async () => {
   let projectsData;
@@ -13,7 +13,7 @@ export const getStaticProps: GetStaticProps = async () => {
   if (res.status === 200) {
     projectsData = await res.json();
   } else if (res.status === 500) {
-    projectsData = [];
+    projectsData = ProjectModalData;
   }
 
   return {
