@@ -1,9 +1,13 @@
-import { NextPage } from 'next';
+import {
+  GetServerSideProps,
+  NextPage,
+  GetStaticProps,
+  InferGetServerSidePropsType,
+} from 'next';
 import { Navbar, Profile, Projects, Skills } from '@app/index';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ProjectModalData } from '@data/projects';
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   let projectsData;
   let httpStatus: number;
 
@@ -27,7 +31,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const IndexPage: NextPage = ({
   projectsData,
   httpCode,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Navbar>
       <Profile />
