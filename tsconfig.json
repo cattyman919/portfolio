@@ -26,7 +26,8 @@
       "@styles/*": ["src/shared/styles/*"],
       "@images/*": ["public/images/*"],
       "@icons/*": ["public/icons/*"]
-    }
+    },
+    "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
