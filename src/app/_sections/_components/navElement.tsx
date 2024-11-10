@@ -1,8 +1,3 @@
-import { IoMdHome } from "react-icons/io";
-import { MdHandyman } from "react-icons/md";
-import { FaCode } from "react-icons/fa6";
-import { BsFillBuildingsFill } from "react-icons/bs";
-import { MdContacts } from "react-icons/md";
 import { IconType } from "react-icons";
 
 type Props = {

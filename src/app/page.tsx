@@ -6,12 +6,12 @@ import Contacts from "./_sections/contacts";
 
 export default function FullPage() {
   return (
-    <>
+    <section className="flex flex-col gap-10">
       <Home />
       <Skills />
       <Projects />
       <Experience />
       <Contacts />
-    </>
+    </section>
   );
 }

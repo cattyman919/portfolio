@@ -3,7 +3,7 @@ import SenoImage from "@/public/images/seno.png";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-svh">
+    <section className="flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-svh">
       <div className=" flex items-center lg:items-start flex-col gap-4 lg:gap-8 order-last lg:order-first">
         <div className="flex w-fit flex-col gap-4">
           <div className=" text-6xl text-center lg:text-start lg:text-7xl xl:text-8xl text-primary-accent font-bold">
@@ -29,6 +29,6 @@ export default function Home() {
         />
         <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]   rounded-full" />
       </div>
-    </div>
+    </section>
   );
 }

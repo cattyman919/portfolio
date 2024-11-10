@@ -1,3 +1,3 @@
 export default function Experience() {
-  return <div></div>;
+  return <section></section>;
 }
