@@ -24,10 +24,10 @@ export type SkillCardProps = {
 export default function Skills() {
   return (
     <section className="w-full ">
-      <h1 className=" w-full mb-10 text-4xl text-center lg:text-7xl  text-primary-accent font-bold">
+      <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold">
         Skills
       </h1>
-      <div className="flex flex-col justify-center gap-12 ">
+      <div className="flex flex-col justify-center lg:gap-12 ">
         <SkillLine title="Mobile" icon={FaMobileAlt} data={MobileSkills} />
         <SkillLine title="Website" icon={CgWebsite} data={WebsiteSkills} />
         <SkillLine

@@ -3,7 +3,7 @@ import SenoImage from "@/public/images/seno.png";
 
 export default function Home() {
   return (
-    <section className="flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-svh">
+    <section className="flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-dvh">
       <div className=" flex items-center lg:items-start flex-col gap-4 lg:gap-8 order-last lg:order-first">
         <div className="flex w-fit flex-col gap-4">
           <div className=" text-6xl text-center lg:text-start lg:text-7xl xl:text-8xl text-primary-accent font-bold">
@@ -21,7 +21,7 @@ export default function Home() {
           in every project, pushing the boundaries of software innovation
         </p>
       </div>
-      <div className="relative hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
+      <div className="relative  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
         <Image
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-full object-contain"
           src={SenoImage}
