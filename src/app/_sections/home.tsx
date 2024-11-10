@@ -10,11 +10,11 @@ export default function Home() {
             <h1>Seno</h1>
             <h1>Pamungkas</h1>
           </div>
-          <h4 className="text-[#3CFF00] text-center lg:text-start text-xl">
+          <h4 className="text-[#3CFF00] font-bold text-center lg:text-start text-xl">
             {"<Developer>"}
           </h4>
         </div>
-        <p className="text-justify w-[90%]  leading-8">
+        <p className="text-justify text-lg/10  w-[90%]  xl:text-xl/[50px]  ">
           Hello! I'm an avid software engineer with a zest for game development,
           front-end, back-end, AI, and cloud technologies. Passionate about
           exploring new tech frontiers, I blend creativity with technical skill
