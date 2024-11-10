@@ -19,14 +19,13 @@ export default function Home() {
           in every project, pushing the boundaries of software innovation
         </p>
       </div>
-      <div className="relative  rounded-b-full overflow-hidden   w-[500px] h-[500px] grid aspect-[1/.16] place-content-center">
+      <div className="relative  rounded-b-full overflow-hidden shrink-0 w-[700px] aspect-[1/1] ">
         <Image
-          className="z-10"
-          height={500}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-full object-contain"
           src={SenoImage}
           alt="Seno Pamungkas"
         />
-        <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]  overflow-hidden   rounded-full"></div>
+        <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]   rounded-full" />
       </div>
     </div>
   );

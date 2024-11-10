@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import localFont from "next/font/local";
 import { JetBrains_Mono, Fira_Code } from "next/font/google";
 import "./globals.css";
+import Navbar from "./_sections/_components/navbar";
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${jetbrains.className} bg-primary-bg antialiased px-36`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
