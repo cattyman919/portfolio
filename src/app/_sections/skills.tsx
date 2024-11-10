@@ -5,7 +5,7 @@ import { FaServer } from "react-icons/fa";
 import { FaMicrochip } from "react-icons/fa6";
 import { MdMiscellaneousServices } from "react-icons/md";
 
-import SkillLine from "./_components/skillLine";
+import SkillLine from "./_components/skill/skillLine";
 import {
   MobileSkills,
   WebsiteSkills,
@@ -13,13 +13,7 @@ import {
   BackendSkills,
   IoTSkills,
   MiscSkills,
-} from "./_components/skillData";
-
-export type SkillCardProps = {
-  logo: string;
-  title: string;
-  rating: number;
-};
+} from "./_data/skillData";
 
 export default function Skills() {
   return (

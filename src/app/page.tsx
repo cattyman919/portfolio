@@ -6,7 +6,7 @@ import Contacts from "./_sections/contacts";
 
 export default function FullPage() {
   return (
-    <section className="flex flex-col gap-10">
+    <section className="flex flex-col gap-32">
       <Home />
       <Skills />
       <Projects />

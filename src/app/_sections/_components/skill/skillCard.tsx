@@ -1,8 +1,8 @@
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 
-import { SkillCardProps } from "../skills";
 import Image from "next/image";
+import { SkillCardProps } from "../../types/skillType";
 
 export default function SkillCard({ logo, rating, title }: SkillCardProps) {
   return (

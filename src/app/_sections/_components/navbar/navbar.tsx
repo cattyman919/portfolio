@@ -25,7 +25,6 @@ export default function Navbar() {
         className={` ${
           isOpen ? "opacity-100 h-[240px] md:h-[260px]" : "opacity-0 h-0"
         } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-8 lg:bg-transparent lg:static   `}
-        // className={` opacity-0 hover:opacity-100 h-0 hover:h-[240px] flex absolute top-[100%] left-0 pt-2 gap-5 transition-all duration-500  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-8 lg:bg-transparent lg:static  flex-col `}
       >
         <NavElement icon={IoMdHome} text="Home" />
         <NavElement icon={MdHandyman} text="Skills" />

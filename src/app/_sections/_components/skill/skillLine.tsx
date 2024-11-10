@@ -1,6 +1,6 @@
 import { IconType } from "react-icons";
-import { SkillCardProps } from "../skills";
 import SkillCard from "./skillCard";
+import { SkillCardProps } from "../../types/skillType";
 
 type Props = {
   icon: IconType;

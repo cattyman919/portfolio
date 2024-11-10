@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Fira_Code } from "next/font/google";
 import "./globals.css";
-import Navbar from "./_sections/_components/navbar";
+import Navbar from "@/app/_sections/_components/navbar/navbar";
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
