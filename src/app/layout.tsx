@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 // import localFont from "next/font/local";
+import { JetBrains_Mono, Fira_Code } from "next/font/google";
 import "./globals.css";
 
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+});
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
 //   variable: "--font-geist-sans",
@@ -25,7 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` antialiased`}>{children}</body>
+      <body
+        className={`${jetbrains.className} bg-primary-bg antialiased px-36`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
