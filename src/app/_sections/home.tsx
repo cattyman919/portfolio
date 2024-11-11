@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import SenoImage from "@/public/images/seno.png";
-import { useTypewriter } from "./_components/typewriter";
+import { useTypewriter } from "./_components/hooks/typewriter";
+import { forwardRef, LegacyRef } from "react";
 
-export default function Home() {
+const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
   const diplayText = useTypewriter(
     [
       "Software Developer",
@@ -17,6 +18,7 @@ export default function Home() {
   );
   return (
     <section
+      ref={ref}
       id="home"
       className="flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-dvh"
     >
@@ -50,4 +52,6 @@ export default function Home() {
       </div>
     </section>
   );
-}
+});
+
+export default Home;

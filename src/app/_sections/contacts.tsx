@@ -5,8 +5,12 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaPaperPlane } from "react-icons/fa";
+import { forwardRef, LegacyRef } from "react";
 
-export default function Contact() {
+const Contact = forwardRef(function Contact(
+  props,
+  ref: LegacyRef<HTMLElement>
+) {
   const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget as HTMLFormElement);
@@ -17,7 +21,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contacts" className="pb-10">
+    <section ref={ref} id="contact" className="pb-10">
       <h1 className=" w-full mb-32 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Contact
       </h1>
@@ -114,4 +118,6 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+});
+
+export default Contact;

@@ -1,9 +1,13 @@
+import { forwardRef, LegacyRef } from "react";
 import ProjectCard from "./_components/project/projectCard";
 import { ProjectData } from "./_data/projectData";
 
-export default function Projects() {
+const Projects = forwardRef(function Projects(
+  props,
+  ref: LegacyRef<HTMLElement>
+) {
   return (
-    <section id="projects" className="w-full ">
+    <section ref={ref} id="projects" className="w-full ">
       <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Project
       </h1>
@@ -14,4 +18,6 @@ export default function Projects() {
       </div>
     </section>
   );
-}
+});
+
+export default Projects;

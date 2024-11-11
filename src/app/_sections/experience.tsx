@@ -1,9 +1,13 @@
+import { forwardRef, LegacyRef } from "react";
 import ExperienceCard from "./_components/experience/experienceCard";
 import { ExperienceData } from "./_data/experienceData";
 
-export default function Experience() {
+const Experience = forwardRef(function Experience(
+  props,
+  ref: LegacyRef<HTMLElement>
+) {
   return (
-    <section id="experience">
+    <section id="experience" ref={ref}>
       <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-wiggle animate-infinite animate-alternate">
         Experience
       </h1>
@@ -14,4 +18,6 @@ export default function Experience() {
       </div>
     </section>
   );
-}
+});
+
+export default Experience;

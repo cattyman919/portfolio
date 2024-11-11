@@ -14,10 +14,11 @@ import {
   IoTSkills,
   MiscSkills,
 } from "./_data/skillData";
+import { forwardRef, LegacyRef } from "react";
 
-export default function Skills() {
+const Skills = forwardRef(function Skills(props, ref: LegacyRef<HTMLElement>) {
   return (
-    <section id="skills" className="w-full ">
+    <section id="skill" className="w-full " ref={ref}>
       <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Skill
       </h1>
@@ -39,4 +40,6 @@ export default function Skills() {
       </div>
     </section>
   );
-}
+});
+
+export default Skills;
