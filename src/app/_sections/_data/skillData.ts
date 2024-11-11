@@ -80,7 +80,7 @@ export const BackendSkills: SkillCardProps[] = [
   {
     logo: nestJsLogo,
     title: "NestJS",
-    rating: 4,
+    rating: 3,
   },
 ];
 export const IoTSkills: SkillCardProps[] = [

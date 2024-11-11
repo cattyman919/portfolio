@@ -37,7 +37,9 @@ export default function ExperienceCard({ ...props }: experienceCardProps) {
             ))}
           </div>
         </div>
-        <p className="text-base text-justify xl:text-lg">{props.description}</p>
+        <p className="text-base text-justify xl:text-lg/10 ">
+          {props.description}
+        </p>
       </div>
     </div>
   );

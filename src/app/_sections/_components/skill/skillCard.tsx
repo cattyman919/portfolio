@@ -6,7 +6,7 @@ import { SkillCardProps } from "../../types/skillType";
 
 export default function SkillCard({ logo, rating, title }: SkillCardProps) {
   return (
-    <div className=" flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl">
+    <div className=" flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl hover:-translate-y-5 transition-transform">
       <Image
         src={logo}
         className="object-contain w-[64px] h-[64px]"

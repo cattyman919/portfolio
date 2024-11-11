@@ -14,7 +14,7 @@ export default function ProjectCard({
   website,
 }: ProjectCardProps) {
   return (
-    <div className=" flex flex-col gap-3  bg-secondary-bg text-black overflow-hidden  rounded-xl">
+    <div className=" flex flex-col gap-3  bg-secondary-bg text-black overflow-hidden  rounded-xl hover:-translate-y-5 transition-transform">
       <Image
         src={image}
         className="object-cover w-full h-[200px] cursor-pointer"
@@ -70,7 +70,7 @@ export default function ProjectCard({
               />
             )}
           </div>
-          <p>{date}</p>
+          <p className="font-bold text-lg">{date}</p>
         </div>
       </div>
     </div>
