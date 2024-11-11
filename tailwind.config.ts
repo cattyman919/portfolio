@@ -18,8 +18,19 @@ export default {
       },
       animation: {
         caret: "blink 1s steps(1) infinite",
+        "appear-left": "leftAppear .5s ease-in-out",
       },
       keyframes: {
+        leftAppear: {
+          "0%": {
+            opacity: "0%",
+            transform: "translateX(-50%)",
+          },
+          "100%": {
+            opacity: "100%",
+            transform: "translateX(0)",
+          },
+        },
         blink: {
           "0%": {
             opacity: "0",
@@ -40,5 +51,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animated")],
 } satisfies Config;

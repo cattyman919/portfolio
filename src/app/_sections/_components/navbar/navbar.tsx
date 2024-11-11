@@ -34,10 +34,10 @@ export default function Navbar() {
         } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-8 lg:bg-transparent lg:static   `}
       >
         <NavElement icon={IoMdHome} text="Home" />
-        <NavElement icon={MdHandyman} text="Skills" />
-        <NavElement icon={FaCode} text="Projects" />
+        <NavElement icon={MdHandyman} text="Skill" />
+        <NavElement icon={FaCode} text="Project" />
         <NavElement icon={BsFillBuildingsFill} text="Experience" />
-        <NavElement icon={MdContacts} text="Contacts" />
+        <NavElement icon={MdContacts} text="Contact" />
       </div>
       {isOpen ? (
         <ImCross

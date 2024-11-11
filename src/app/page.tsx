@@ -2,7 +2,7 @@ import Home from "./_sections/home";
 import Skills from "./_sections/skills";
 import Projects from "./_sections/projects";
 import Experience from "./_sections/experience";
-import Contacts from "./_sections/contacts";
+import Contact from "./_sections/contacts";
 
 export default function FullPage() {
   return (
@@ -11,7 +11,7 @@ export default function FullPage() {
       <Skills />
       <Projects />
       <Experience />
-      <Contacts />
+      <Contact />
     </section>
   );
 }

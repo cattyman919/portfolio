@@ -17,9 +17,9 @@ import {
 
 export default function Skills() {
   return (
-    <section className="w-full ">
-      <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold">
-        Skills
+    <section id="skills" className="w-full ">
+      <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
+        Skill
       </h1>
       <div className="flex flex-col justify-center lg:gap-12 ">
         <SkillLine title="Mobile" icon={FaMobileAlt} data={MobileSkills} />
