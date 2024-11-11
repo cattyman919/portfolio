@@ -1,3 +1,4 @@
+import { Url } from "next/dist/shared/lib/router/router";
 import { StaticImageData } from "next/image";
 
 export type ProjectCardProps = {
