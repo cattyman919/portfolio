@@ -1,11 +1,11 @@
 import { StaticImageData } from "next/image";
 
-export type ProjectCardProps = {
+export type experienceCardProps = {
   image: StaticImageData;
-  title: string;
+  position: string;
+  company: string;
   description: string;
-  date: string;
+  start_date: string;
+  end_date: string;
   languages: string[];
-  github_repo?: string;
-  website?: string;
 };

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { ProjectCardProps } from "../../types/projectType";
 import { FaGithub } from "react-icons/fa";
-import { TbWorld } from "react-icons/tb";
 import { TbWorldCode } from "react-icons/tb";
 import Link from "next/link";
 

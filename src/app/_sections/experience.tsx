@@ -1,4 +1,5 @@
-import ExperienceCard from "./_components/experience/ExperienceCard";
+import ExperienceCard from "./_components/experience/experienceCard";
+import { ExperienceData } from "./_data/experienceData";
 
 export default function Experience() {
   return (
@@ -7,8 +8,12 @@ export default function Experience() {
         Experience
       </h1>
       {/* <div className="w-[64px] h-[64px] bg-white"></div> */}
-      <ExperienceCard />
-      <div className="flex flex-col h-full gap-10"></div>
+
+      <div className="flex flex-col w-full items-center justify-center text-black  h-full gap-6">
+        {ExperienceData.map((item, index) => (
+          <ExperienceCard key={index} {...item} />
+        ))}
+      </div>
     </section>
   );
 }
