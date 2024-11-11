@@ -15,7 +15,7 @@ export default function ExperienceCard({ ...props }: experienceCardProps) {
           <h3 className="text-2xl font-bold">
             {props.position} @ {props.company}
           </h3>
-          <p className="font-bold">
+          <p className="font-bold md:text-lg">
             {props.start_date} - {props.end_date}
           </p>
           <div className="flex gap-2 relative">

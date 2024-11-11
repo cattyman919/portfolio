@@ -15,7 +15,7 @@ export default function SkillLine({ icon, title, data }: Props) {
         {icon({ size: 64, color: "#00D4FF" })}
         <p className="text-3xl font-bold">{title}</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 place-items-center gap-4 lg:flex lg:flex-wrap lg:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 place-items-center gap-4 lg:flex lg:flex-wrap lg:gap-6">
         {data?.map((item, index) => (
           <SkillCard
             key={index}
