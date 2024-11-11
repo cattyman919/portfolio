@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jetbrains.className} bg-primary-bg antialiased pt-16 lg:pt-0 lg:pl-36 lg:pr-8 xl:pr-16`}
+        className={`${jetbrains.className} bg-primary-bg antialiased pt-36 lg:pt-0 lg:pl-36 lg:pr-8 xl:pr-16`}
       >
         <Navbar />
         {children}

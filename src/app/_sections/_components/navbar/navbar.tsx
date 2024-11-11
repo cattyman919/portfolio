@@ -1,14 +1,18 @@
 "use client";
 
+import senoLogoImage from "@/public/images/Logo-Seno.png";
+
 import { IoMdHome } from "react-icons/io";
 import { MdHandyman } from "react-icons/md";
 import { FaCode } from "react-icons/fa6";
 import { BsFillBuildingsFill } from "react-icons/bs";
 import { MdContacts } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
 
 import NavElement from "./navElement";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -17,10 +21,13 @@ export default function Navbar() {
     setIsOpen(!isOpen);
   };
   return (
-    <nav className=" fixed lg:left-0 z-20  top-0  group/card w-full lg:h-svh  lg:w-[64px] lg:hover:w-[220px]   transition-all duration-300  p-4 lg:border-r bg-primary-bg border-white border-b  flex items-center justify-between lg:justify-start ">
-      <div className="static lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2">
-        Logo
-      </div>
+    <nav className=" fixed lg:left-0 z-20  top-0  group/card w-full lg:h-svh  lg:w-[64px] lg:hover:w-[220px]   transition-all duration-300  py-1 px-4 lg:border-r bg-primary-bg border-white border-b  flex items-center justify-between lg:justify-start ">
+      <Image
+        src={senoLogoImage}
+        alt="Logo"
+        className="static w-[80px] h-[80px] lg:w-full lg:h-fit  lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2"
+      />
+
       <div
         className={` ${
           isOpen ? "opacity-100 h-[240px] md:h-[260px]" : "opacity-0 h-0"
@@ -32,11 +39,19 @@ export default function Navbar() {
         <NavElement icon={BsFillBuildingsFill} text="Experience" />
         <NavElement icon={MdContacts} text="Contacts" />
       </div>
-      <GiHamburgerMenu
-        onClick={handleNavButton}
-        size={24}
-        className="lg:hidden cursor-pointer"
-      />
+      {isOpen ? (
+        <ImCross
+          onClick={handleNavButton}
+          size={24}
+          className="lg:hidden cursor-pointer"
+        />
+      ) : (
+        <GiHamburgerMenu
+          onClick={handleNavButton}
+          size={24}
+          className="lg:hidden cursor-pointer"
+        />
+      )}
     </nav>
   );
 }

@@ -13,7 +13,7 @@ export default function Contacts() {
     const emailData = formData.get("email");
     const subjectData = formData.get("subject");
     const messsageData = formData.get("message");
-    console.log(emailData, subjectData, messsageData);
+    //console.log(emailData, subjectData, messsageData);
   };
 
   return (
@@ -54,9 +54,13 @@ export default function Contacts() {
             <p className="text-primary-accent font-bold">
               Access my Resume Here
             </p>
-            <button className="bg-primary-accent p-2 rounded-lg hover:scale-110 transition-transform text-white font-bold">
+            <Link
+              href="https://seno-portfolio.s3.ap-southeast-1.amazonaws.com/Seno+Pamungkas+Rahman+-+CV.pdf"
+              target="_blank"
+              className="bg-primary-accent p-2 rounded-lg hover:scale-110 transition-transform text-white font-bold"
+            >
               Resume
-            </button>
+            </Link>
           </div>
         </div>
         <form onSubmit={onSubmit} className="flex flex-col gap-8 px-10 lg:px-0">
