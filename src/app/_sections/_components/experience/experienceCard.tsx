@@ -1,16 +1,22 @@
 import Image from "next/image";
-import skibidiImage from "@/public/images/skibidi-toilet.jpeg";
 import { experienceCardProps } from "../../types/experienceType";
+import Link from "next/link";
 
 export default function ExperienceCard({ ...props }: experienceCardProps) {
   return (
-    <div className=" w-[90%] lg:w-[80%] h-full lg:h-[300px] bg-secondary-bg p-4 flex items-center flex-col  md:flex-row gap-5 rounded-lg">
-      <Image
-        src={skibidiImage}
-        className="object-contain w-[85%] md:w-[200px]"
-        alt="company logo"
-      />
-      <div className="flex flex-col justify-start gap-5">
+    <div className=" w-[90%] lg:w-[80%] h-full lg:h-[300px] bg-secondary-bg p-4 flex items-center flex-col  md:flex-row gap-5 rounded-3xl">
+      <Link
+        href={props.company_url}
+        className="w-full h-[100px] md:w-[150px] md:h-fit  shrink-0 "
+        target="_blank"
+      >
+        <Image
+          src={props.image}
+          className="rounded-lg object-contain w-full h-full lg:object-contain    "
+          alt="company logo"
+        />
+      </Link>
+      <div className="flex flex-col   justify-start gap-5">
         <div className="flex flex-col gap-3">
           <h3 className="text-2xl font-bold">
             {props.position} @ {props.company}

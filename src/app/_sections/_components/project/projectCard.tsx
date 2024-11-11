@@ -17,7 +17,7 @@ export default function ProjectCard({
     <div className=" flex flex-col gap-3  bg-secondary-bg text-black overflow-hidden  rounded-xl">
       <Image
         src={image}
-        className="object-cover w-full cursor-pointer"
+        className="object-cover w-full h-[200px] cursor-pointer"
         alt="project"
       />
       <div className="flex flex-col justify-between px-4 pb-4 h-[250px]">
@@ -30,8 +30,8 @@ export default function ProjectCard({
                   key={index}
                   src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item}/${item}-original.svg`}
                   alt="logo"
-                  width={32}
-                  height={32}
+                  width={24}
+                  height={24}
                 />
               ))}
             </div>
