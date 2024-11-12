@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Fira_Code } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const jetbrains = JetBrains_Mono({
@@ -8,7 +8,8 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Seno Pamungkas - Personal Portfolio",
+
   description: "Giga Chad Portfolio",
 };
 

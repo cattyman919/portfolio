@@ -1,3 +1,5 @@
+"use client";
+
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { Observer } from "tailwindcss-intersect";

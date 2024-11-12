@@ -10,7 +10,7 @@ export const useTypewriter = (
   const i = useRef(0);
   const j = useRef(0);
   useEffect(() => {
-    let currentWord = text[i.current];
+    const currentWord = text[i.current];
 
     const typingInterval = setInterval(() => {
       if (isDeleting) {

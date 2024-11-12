@@ -1,4 +1,4 @@
-import { forwardRef, LegacyRef, useRef } from "react";
+import { forwardRef, LegacyRef } from "react";
 import ExperienceCard from "./_components/experience/experienceCard";
 import { ExperienceData } from "./_data/experienceData";
 

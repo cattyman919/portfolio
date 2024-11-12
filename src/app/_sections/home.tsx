@@ -1,8 +1,7 @@
-"use client";
 import Image from "next/image";
 import SenoImage from "@/public/images/seno.png";
 import { useTypewriter } from "./_components/hooks/typewriter";
-import { forwardRef, LegacyRef, useRef } from "react";
+import { forwardRef, LegacyRef } from "react";
 
 const DiplayText = () => (
   <span>
@@ -57,7 +56,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
           </h4>
         </div>
         <p className="text-justify text-lg/10 animate-flip-up animate-delay-300  w-[90%]  xl:text-xl/[50px]  ">
-          Hello! I'm an avid software engineer with a zest for game development,
+          Hello! Im an avid software engineer with a zest for game development,
           front-end, back-end, AI, and cloud technologies. Passionate about
           exploring new tech frontiers, I blend creativity with technical skill
           in every project, pushing the boundaries of software innovation
@@ -65,6 +64,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
       </div>
       <div className="relative animate-jump-in animate-once animate-delay-500 animate-normal animate-fill-forwards  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
         <Image
+          priority
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-full object-contain"
           src={SenoImage}
           alt="Seno Pamungkas"

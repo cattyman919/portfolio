@@ -1,4 +1,4 @@
-import { forwardRef, LegacyRef, useRef } from "react";
+import { forwardRef, LegacyRef } from "react";
 import ProjectCard from "./_components/project/projectCard";
 import { ProjectData } from "./_data/projectData";
 

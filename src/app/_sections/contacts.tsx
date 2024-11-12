@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaPaperPlane } from "react-icons/fa";
-import { forwardRef, LegacyRef, useRef } from "react";
+import { forwardRef, LegacyRef } from "react";
 
 const Contact = forwardRef(function Contact(
   props,
@@ -13,10 +13,10 @@ const Contact = forwardRef(function Contact(
 ) {
   const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget as HTMLFormElement);
-    const emailData = formData.get("email");
-    const subjectData = formData.get("subject");
-    const messsageData = formData.get("message");
+    // const formData = new FormData(event.currentTarget as HTMLFormElement);
+    // const emailData = formData.get("email");
+    // const subjectData = formData.get("subject");
+    // const messsageData = formData.get("message");
     //console.log(emailData, subjectData, messsageData);
   };
 
