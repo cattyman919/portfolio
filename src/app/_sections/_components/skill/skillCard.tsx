@@ -1,12 +1,17 @@
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { Observer } from "tailwindcss-intersect";
 
 import Image from "next/image";
 import { SkillCardProps } from "../../types/skillType";
+import { useEffect } from "react";
 
 export default function SkillCard({ logo, rating, title }: SkillCardProps) {
+  useEffect(() => {
+    Observer.start();
+  }, []);
   return (
-    <div className=" flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl hover:-translate-y-5 transition-transform">
+    <div className=" intersect:animate-fade-up intersect flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl hover:-translate-y-5 transition-transform">
       <Image
         src={logo}
         className="object-contain w-[64px] h-[64px]"

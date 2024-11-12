@@ -10,12 +10,64 @@ import { MdContacts } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 
-import NavElement from "./navElement";
-import { useState } from "react";
+import NavElement, { NavElementProps } from "./navElement";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import Image from "next/image";
+import { ScriptProps } from "next/script";
 
-export default function Navbar({ active }: { active: number }) {
+const dict_section: { [name: string]: number } = {
+  home: 0,
+  skill: 1,
+  projects: 2,
+  experience: 3,
+  contact: 4,
+};
+
+export type NavigationRef = {
+  set_active: (section_active: string) => void;
+};
+
+const NavElements: NavElementProps[] = [
+  {
+    icon: IoMdHome,
+    title: "Home",
+    link_section: "#home",
+  },
+  {
+    icon: MdHandyman,
+    title: "Skill",
+    link_section: "#skill",
+  },
+  {
+    icon: FaCode,
+    title: "Project",
+    link_section: "#projects",
+  },
+  {
+    icon: BsFillBuildingsFill,
+    title: "Experience",
+    link_section: "#experience",
+  },
+  {
+    icon: MdContacts,
+    title: "Contact",
+    link_section: "#contact",
+  },
+];
+
+const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
+  props,
+  ref
+) {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  useImperativeHandle(ref, () => ({
+    set_active: (section_active: string) => {
+      setActiveIndex(dict_section[section_active]);
+    },
+  }));
 
   const handleNavButton = () => {
     setIsOpen(!isOpen);
@@ -30,39 +82,18 @@ export default function Navbar({ active }: { active: number }) {
 
       <div
         className={` ${
-          isOpen ? "opacity-100 h-[240px] md:h-[260px]" : "opacity-0 h-0"
+          isOpen
+            ? "opacity-100 h-[240px] md:h-[260px] visible"
+            : "invisible opacity-0 h-0"
         } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-8 lg:bg-transparent lg:static   `}
       >
-        <NavElement
-          active={active === 0}
-          icon={IoMdHome}
-          text="Home"
-          link_section="#home"
-        />
-        <NavElement
-          active={active === 1}
-          icon={MdHandyman}
-          text="Skill"
-          link_section="#skill"
-        />
-        <NavElement
-          active={active === 2}
-          icon={FaCode}
-          text="Project"
-          link_section="#projects"
-        />
-        <NavElement
-          active={active === 3}
-          icon={BsFillBuildingsFill}
-          text="Experience"
-          link_section="#experience"
-        />
-        <NavElement
-          active={active === 4}
-          icon={MdContacts}
-          text="Contact"
-          link_section="#contact"
-        />
+        {NavElements.map((element, index) => (
+          <NavElement
+            key={element.title}
+            isActive={index === activeIndex}
+            {...element}
+          />
+        ))}
       </div>
       {isOpen ? (
         <ImCross
@@ -79,4 +110,6 @@ export default function Navbar({ active }: { active: number }) {
       )}
     </nav>
   );
-}
+});
+
+export default Navbar;

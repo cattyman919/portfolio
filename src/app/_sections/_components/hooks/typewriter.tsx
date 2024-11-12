@@ -37,7 +37,7 @@ export const useTypewriter = (
     return () => {
       clearInterval(typingInterval);
     };
-  }, [text, speed]);
+  }, [isDeleting]);
 
   return displayText;
 };

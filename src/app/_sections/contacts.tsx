@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaPaperPlane } from "react-icons/fa";
-import { forwardRef, LegacyRef } from "react";
+import { forwardRef, LegacyRef, useRef } from "react";
 
 const Contact = forwardRef(function Contact(
   props,

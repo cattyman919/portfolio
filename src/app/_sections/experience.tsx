@@ -1,4 +1,4 @@
-import { forwardRef, LegacyRef } from "react";
+import { forwardRef, LegacyRef, useRef } from "react";
 import ExperienceCard from "./_components/experience/experienceCard";
 import { ExperienceData } from "./_data/experienceData";
 
@@ -8,7 +8,7 @@ const Experience = forwardRef(function Experience(
 ) {
   return (
     <section id="experience" ref={ref}>
-      <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-wiggle animate-infinite animate-alternate">
+      <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce animate-infinite animate-alternate">
         Experience
       </h1>
       <div className="flex flex-col w-full items-center justify-center text-black  h-full gap-6">

@@ -30,6 +30,7 @@ export default function ProjectCard({
                   key={index}
                   src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item}/${item}-original.svg`}
                   alt="logo"
+                  className="w-[24px] h-[24px]"
                   width={24}
                   height={24}
                 />
