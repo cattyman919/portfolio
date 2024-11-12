@@ -66,6 +66,7 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
   useImperativeHandle(ref, () => ({
     set_active: (section_active: string) => {
       setActiveIndex(dict_section[section_active]);
+      if (isOpen) setIsOpen(false);
     },
   }));
 
