@@ -2,9 +2,9 @@
 
 import senoLogoImage from "@/public/images/Logo-Seno.png";
 
-import { IoMdHome } from "react-icons/io";
+import { IoMdHome, IoMdMail } from "react-icons/io";
 import { MdHandyman } from "react-icons/md";
-import { FaCode } from "react-icons/fa6";
+import { FaCode, FaGithub, FaLinkedin } from "react-icons/fa6";
 import { BsFillBuildingsFill } from "react-icons/bs";
 import { MdContacts } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -14,6 +14,7 @@ import NavElement, { NavElementProps } from "./navElement";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import Image from "next/image";
 import { ScriptProps } from "next/script";
+import Link from "next/link";
 
 const dict_section: { [name: string]: number } = {
   home: 0,
@@ -79,7 +80,7 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
         priority
         src={senoLogoImage}
         alt="Logo"
-        className="static w-[80px] h-[80px] lg:w-full lg:h-fit  lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2"
+        className="static w-[80px] h-[80px] lg:w-full lg:h-fit  lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2 lg:group-hover/card:-translate-x-[53%]"
       />
 
       <div
@@ -96,6 +97,39 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
             {...element}
           />
         ))}
+      </div>
+
+      <div className="hidden absolute bottom-[3%] self-end lg:flex lg:flex-col gap-3 ">
+        <Link
+          href="https://github.com/cattyman919"
+          target="_blank"
+          className="flex items-center gap-2 hover:text-primary-accent hover:scale-110 transition-transform origin-left"
+        >
+          <FaGithub className=" w-[24px]  h-[24px] " />
+          <p className="font-bold text-lg lg:invisible lg:opacity-0 lg:group-hover/card:visible lg:group-hover/card:opacity-100 transition-all  lg:w-0 group-hover:w-fit">
+            Github
+          </p>
+        </Link>
+        <Link
+          href="https://www.linkedin.com/in/seno-pamungkas-rahman-714341192"
+          target="_blank"
+          className="flex gap-2 hover:text-primary-accent hover:scale-110 transition-transform origin-left"
+        >
+          <FaLinkedin className="w-[24px] h-[24px] " />
+          <p className="  font-bold text-lg lg:invisible lg:opacity-0 lg:group-hover/card:visible lg:group-hover/card:opacity-100 transition-all  lg:w-0 group-hover:w-fit">
+            LinkedIn
+          </p>
+        </Link>
+        <Link
+          href="mailto:senopamungkasraehman@gmail.com"
+          target="_blank"
+          className="flex gap-2 hover:text-primary-accent hover:scale-110 transition-transform origin-left"
+        >
+          <IoMdMail className="w-[24px] h-[24px] " />
+          <p className="  font-bold text-lg  lg:invisible lg:opacity-0 lg:group-hover/card:visible lg:group-hover/card:opacity-100 transition-all  lg:w-0 group-hover:w-fit">
+            Mail
+          </p>
+        </Link>
       </div>
       {isOpen ? (
         <ImCross

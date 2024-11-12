@@ -20,7 +20,7 @@ const Skills = forwardRef(function Skills(props, ref: LegacyRef<HTMLElement>) {
   return (
     <section id="skill" className="w-full " ref={ref}>
       <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
-        Skill
+        Skill Set
       </h1>
       <div className="flex flex-col justify-center lg:gap-12 ">
         <SkillLine title="Mobile" icon={FaMobileAlt} data={MobileSkills} />

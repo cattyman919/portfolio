@@ -22,7 +22,7 @@ export default function ProjectCard({
       />
       <div className="flex flex-col justify-between px-4 pb-4 h-[250px]">
         <div className="flex flex-col gap-4">
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <h3 className="text-2xl font-bold">{title}</h3>
             <div className="flex gap-2">
               {languages.map((item, index) => (
