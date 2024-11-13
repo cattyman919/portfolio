@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ProjectCardProps } from "../../types/projectType";
+import { ProjectCardProps } from "../../_types/projectType";
 import { FaGithub } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
 import Link from "next/link";

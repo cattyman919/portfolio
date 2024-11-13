@@ -1,4 +1,4 @@
-import { ProjectCardProps } from "../types/projectType";
+import { ProjectCardProps } from "../_types/projectType";
 import RestomaticImage from "@/public/images/projects/restomatic.png";
 import DanceRTOSImage from "@/public/images/projects/Attendance.png";
 import JagaImage from "@/public/images/projects/jaga.png";

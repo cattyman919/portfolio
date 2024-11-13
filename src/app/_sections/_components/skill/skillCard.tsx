@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { Observer } from "tailwindcss-intersect";
 
 import Image from "next/image";
-import { SkillCardProps } from "../../types/skillType";
+import { SkillCardProps } from "../../_types/skillType";
 import { useEffect } from "react";
 
 export default function SkillCard({ logo, rating, title }: SkillCardProps) {

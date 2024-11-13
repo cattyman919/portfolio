@@ -17,7 +17,7 @@ import pythonLogo from "@/public/skills/icons8-python.svg";
 import aiLogo from "@/public/skills/reshot-icon-artificial-intelligence-J42YA8NQ6T.svg";
 import dataScienceLogo from "@/public/skills/reshot-icon-data-storage-94X8DWLHMC.svg";
 import electronicsLogo from "@/public/skills/reshot-icon-voltmeter-GXLPQBKY5T.svg";
-import { SkillCardProps } from "../types/skillType";
+import { SkillCardProps } from "../_types/skillType";
 
 export const MobileSkills: SkillCardProps[] = [
   {
