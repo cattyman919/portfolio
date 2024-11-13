@@ -88,7 +88,7 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
           isOpen
             ? "opacity-100 h-[240px] md:h-[260px] visible"
             : "invisible opacity-0 h-0"
-        } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-8 lg:bg-transparent lg:static   `}
+        } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-6 lg:bg-transparent lg:static   `}
       >
         {NavElements.map((element, index) => (
           <NavElement
