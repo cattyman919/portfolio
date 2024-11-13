@@ -6,6 +6,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaPaperPlane } from "react-icons/fa";
 import { forwardRef, LegacyRef } from "react";
+import { FaInstagram } from "react-icons/fa";
 
 const Contact = forwardRef(function Contact(
   props,
@@ -27,7 +28,7 @@ const Contact = forwardRef(function Contact(
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 text-2xl">
         <div className="flex flex-col gap-8 lg:gap-0  lg:justify-between px-10 lg:px-0 lg:pr-8">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             <h4 className="text-primary-accent font-bold text-4xl">
               {"Let's connect"}
             </h4>
@@ -45,6 +46,9 @@ const Contact = forwardRef(function Contact(
                 target="_blank"
               >
                 <FaLinkedin className="w-[48px] h-[48px] hover:scale-110 transition-transform" />
+              </Link>
+              <Link href="https://www.instagram.com/senohebat/" target="_blank">
+                <FaInstagram className="w-[48px] h-[48px] hover:scale-110 transition-transform" />
               </Link>
               <Link
                 href="mailto:senopamungkasraehman@gmail.com"

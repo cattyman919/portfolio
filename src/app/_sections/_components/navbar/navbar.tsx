@@ -2,13 +2,14 @@
 
 import senoLogoImage from "@/public/images/Logo-Seno.png";
 
-import { IoMdHome, IoMdMail } from "react-icons/io";
+import { IoMdHome } from "react-icons/io";
 import { MdHandyman } from "react-icons/md";
 import { FaCode, FaGithub, FaLinkedin } from "react-icons/fa6";
 import { BsFillBuildingsFill } from "react-icons/bs";
 import { MdContacts } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { FaInstagram } from "react-icons/fa";
 
 import NavElement, { NavElementProps } from "./navElement";
 import { forwardRef, useImperativeHandle, useState } from "react";
@@ -121,13 +122,13 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
           </p>
         </Link>
         <Link
-          href="mailto:senopamungkasraehman@gmail.com"
+          href="https://www.instagram.com/senohebat/"
           target="_blank"
           className="flex gap-2 hover:text-primary-accent hover:scale-110 transition-transform origin-left"
         >
-          <IoMdMail className="w-[24px] h-[24px] " />
+          <FaInstagram className="w-[24px] h-[24px] " />
           <p className="  font-bold text-lg  lg:invisible lg:opacity-0 lg:group-hover/card:visible lg:group-hover/card:opacity-100 transition-all  lg:w-0 group-hover:w-fit">
-            Mail
+            Instagram
           </p>
         </Link>
       </div>
