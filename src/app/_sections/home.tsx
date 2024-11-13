@@ -32,7 +32,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
             <h1>Seno</h1>
             <h1>Pamungkas</h1>
           </div>
-          <h4 className="text-[#3CFF00] animate-fade-left animate-delay-100 font-bold text-center lg:text-start text-3xl">
+          <h4 className="text-[#3CFF00] animate-fade-left animate-delay-100 font-bold text-center lg:text-start text-xl md:text-2xl  lg:text-3xl">
             <span>{"< "}</span>
             <span className="  blink">
               <DiplayText />
