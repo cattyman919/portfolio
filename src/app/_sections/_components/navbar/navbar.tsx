@@ -11,11 +11,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { FaInstagram } from "react-icons/fa";
 
-import NavElement, { NavElementProps } from "./navElement";
-import { forwardRef, useImperativeHandle, useState } from "react";
+import NavElement, from "./navElement";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import Image from "next/image";
-import { ScriptProps } from "next/script";
 import Link from "next/link";
+import { IconType } from "react-icons";
+import { ScriptProps } from "next/script";
 
 const dict_section: { [name: string]: number } = {
   home: 0,
@@ -25,35 +26,32 @@ const dict_section: { [name: string]: number } = {
   contact: 4,
 };
 
+
 export type NavigationRef = {
   set_active: (section_active: string) => void;
+  set_sections: (sections: HTMLElement[]) => void;
 };
 
-const NavElements: NavElementProps[] = [
+const NavElementsData: { icon: IconType; title: string }[] = [
   {
     icon: IoMdHome,
     title: "Home",
-    link_section: "#home",
   },
   {
     icon: MdHandyman,
     title: "Skill",
-    link_section: "#skill",
   },
   {
     icon: FaCode,
     title: "Project",
-    link_section: "#projects",
   },
   {
     icon: BsFillBuildingsFill,
     title: "Experience",
-    link_section: "#experience",
   },
   {
     icon: MdContacts,
     title: "Contact",
-    link_section: "#contact",
   },
 ];
 
@@ -61,6 +59,8 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
   props,
   ref
 ) {
+  
+  const [sectionsRef, setSectionsRef] = useState<HTMLElement[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -70,6 +70,10 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
       setActiveIndex(dict_section[section_active]);
       if (isOpen) setIsOpen(false);
     },
+    set_sections: (sections: HTMLElement[]) => {
+      setSectionsRef(sections);
+    },
+    
   }));
 
   const handleNavButton = () => {
@@ -91,10 +95,11 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
             : "invisible opacity-0 h-0"
         } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-6 lg:bg-transparent lg:static   `}
       >
-        {NavElements.map((element, index) => (
+        {NavElementsData.map((element, index) => (
           <NavElement
             key={element.title}
             isActive={index === activeIndex}
+            html_section={sectionsRef[index]}
             {...element}
           />
         ))}

@@ -5,18 +5,22 @@ export type NavElementProps = {
   isActive?: boolean;
   icon: IconType;
   title: string;
-  link_section: string;
+  html_section: HTMLElement | null;
 };
 
 export default function NavElement({
   icon,
   title,
-  link_section = "#",
+  html_section = null,
   isActive = false,
 }: NavElementProps) {
   return (
-    <Link
-      href={link_section}
+    <button
+      onClick={() => {
+        html_section?.scrollIntoView({
+          behavior: "smooth",
+        });
+      }}
       className={`flex group/item transition-transform gap-2 origin-left ${
         isActive ? "text-primary-accent" : "text-white"
       } hover:scale-110  hover:text-primary-accent w-full items-center cursor-pointer`}
@@ -36,6 +40,6 @@ export default function NavElement({
       <p className="  font-bold text-lg md:text-xl  lg:text-2xl lg:invisible lg:opacity-0 lg:group-hover/card:visible lg:group-hover/card:opacity-100 transition-all  lg:w-0 group-hover:w-fit">
         {title}
       </p>
-    </Link>
+    </button>
   );
 }

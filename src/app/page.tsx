@@ -35,6 +35,7 @@ export default function FullPage() {
     containerRef.current.map((element) => {
       observer.observe(element);
     });
+    navRef.current?.set_sections(containerRef.current);
     return () => observer.disconnect();
   }, []);
 
