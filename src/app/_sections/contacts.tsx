@@ -22,11 +22,11 @@ const Contact = forwardRef(function Contact(
   };
 
   return (
-    <section ref={ref} id="contact" className="pb-10">
-      <h1 className=" w-full mb-32 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
+    <section ref={ref} id="contact" className="pb-10 overflow-x-hidden">
+      <h1 className=" w-full mb-12 lg:mb-32 pt-4 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Contact
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 text-2xl">
+      <div className="grid grid-cols-1 gap-16  lg:gap-12 lg:grid-cols-2 text-2xl">
         <div className="flex flex-col gap-8 lg:gap-0  lg:justify-between px-10 lg:px-0 lg:pr-8">
           <div className="flex flex-col gap-6">
             <h4 className="text-primary-accent font-bold text-4xl">

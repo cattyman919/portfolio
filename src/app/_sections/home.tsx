@@ -24,7 +24,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
     <section
       ref={ref}
       id="home"
-      className="flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-full lg:h-dvh"
+      className="flex flex-col overflow-x-hidden gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-full lg:h-dvh"
     >
       <div className=" flex items-center lg:items-start flex-col gap-4 lg:gap-8 order-last lg:order-first">
         <div className="flex w-fit flex-col gap-6">

@@ -45,8 +45,8 @@ const Experience = forwardRef(function Experience(
   }, []);
 
   return (
-    <section id="experience" ref={ref} className="w-full">
-      <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce animate-infinite animate-alternate">
+    <section id="experience" ref={ref} className="w-full overflow-x-hidden">
+      <h1 className=" w-full pt-3 mb-12 text-5xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce animate-infinite animate-alternate">
         Experiences
       </h1>
       <div className="flex  overflow-hidden flex-col items-center justify-center text-black  h-full gap-6">

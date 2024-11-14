@@ -42,8 +42,8 @@ const Projects = forwardRef(function Projects(
   }, []);
 
   return (
-    <section ref={ref} id="projects" className="w-full ">
-      <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
+    <section ref={ref} id="projects" className="w-full overflow-x-hidden">
+      <h1 className=" w-full mb-12 text-6xl pt-4 text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Projects
       </h1>
       <div className="grid grid-cols-1 px-5  md:grid-cols-2 lg:px-0 lg:grid-cols-3 gap-6">

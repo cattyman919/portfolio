@@ -41,7 +41,7 @@ export default function FullPage() {
   return (
     <>
       <Navbar ref={navRef} />
-      <section className="flex flex-col gap-32">
+      <section className="flex flex-col gap-32 overflow-x-hidden">
         {sections.map((Component, index) => (
           <Component
             key={index}

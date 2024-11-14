@@ -18,8 +18,8 @@ import { forwardRef, LegacyRef } from "react";
 
 const Skills = forwardRef(function Skills(props, ref: LegacyRef<HTMLElement>) {
   return (
-    <section id="skill" className="w-full " ref={ref}>
-      <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
+    <section id="skill" className="w-full overflow-x-hidden" ref={ref}>
+      <h1 className=" w-full mb-10 pt-4 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Skill Set
       </h1>
       <div className="flex flex-col justify-center lg:gap-4 ">
