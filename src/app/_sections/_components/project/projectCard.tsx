@@ -3,18 +3,25 @@ import { ProjectCardProps } from "../../_types/projectType";
 import { FaGithub } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
 import Link from "next/link";
+import { forwardRef, LegacyRef } from "react";
 
-export default function ProjectCard({
-  image,
-  title,
-  description,
-  date,
-  languages,
-  github_repo,
-  website,
-}: ProjectCardProps) {
+const ProjectCard = forwardRef(function ProjectCard(
+  {
+    image,
+    title,
+    description,
+    date,
+    languages,
+    github_repo,
+    website,
+  }: ProjectCardProps,
+  ref: LegacyRef<HTMLDivElement>
+) {
   return (
-    <div className=" flex flex-col gap-3  bg-secondary-bg text-black overflow-hidden  rounded-xl hover:-translate-y-5 transition-transform">
+    <div
+      ref={ref}
+      className="translate-y-20 opacity-0 transition-all duration-1000  flex flex-col gap-3   bg-secondary-bg text-black overflow-hidden  rounded-xl hover:duration-150 hover:-translate-y-5"
+    >
       <Image
         src={image}
         className="object-cover w-full h-[200px] cursor-pointer"
@@ -76,4 +83,6 @@ export default function ProjectCard({
       </div>
     </div>
   );
-}
+});
+
+export default ProjectCard;

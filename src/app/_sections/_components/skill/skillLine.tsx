@@ -1,14 +1,43 @@
 import { IconType } from "react-icons";
 import SkillCard from "./skillCard";
 import { SkillCardProps } from "../../_types/skillType";
+import { useEffect, useRef } from "react";
 
-type Props = {
+type SkillLineProps = {
   icon: IconType;
   title: string;
   data?: SkillCardProps[];
 };
 
-export default function SkillLine({ icon, title, data }: Props) {
+const options = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.5,
+};
+
+const fadeUpAnimation: string[] = "translate-x-0 opacity-100".split(" ");
+
+export default function SkillLine({ icon, title, data }: SkillLineProps) {
+  const containerRef = useRef<HTMLElement[]>([]);
+
+  const callbackFunction: IntersectionObserverCallback = (
+    entries: IntersectionObserverEntry[]
+  ) => {
+    entries.forEach((el) => {
+      fadeUpAnimation.forEach((className) => {
+        el.target.classList.toggle(className, el.isIntersecting);
+      });
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callbackFunction, options);
+    containerRef.current.map((element) => {
+      observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className=" flex flex-col border-b-2 py-6  first:border-t-2 lg:first:border-t-0 lg:py-0  border-white lg:border-0 lg:flex-row items-center  gap-6">
       <div className="flex min-w-[150px] flex-col items-center gap-4">
@@ -22,6 +51,9 @@ export default function SkillLine({ icon, title, data }: Props) {
             logo={item.logo}
             title={item.title}
             rating={item.rating}
+            ref={(element) => {
+              containerRef.current.push(element!);
+            }}
           />
         ))}
       </div>

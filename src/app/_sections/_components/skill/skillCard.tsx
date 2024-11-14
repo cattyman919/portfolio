@@ -1,19 +1,19 @@
-"use client";
-
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
-import { Observer } from "tailwindcss-intersect";
 
 import Image from "next/image";
 import { SkillCardProps } from "../../_types/skillType";
-import { useEffect } from "react";
+import { forwardRef, LegacyRef } from "react";
 
-export default function SkillCard({ logo, rating, title }: SkillCardProps) {
-  useEffect(() => {
-    Observer.start();
-  }, []);
+const SkillCard = forwardRef(function SkillCard(
+  { logo, rating, title }: SkillCardProps,
+  ref: LegacyRef<HTMLDivElement>
+) {
   return (
-    <div className=" intersect:animate-fade-up intersect flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl hover:-translate-y-5 transition-transform">
+    <div
+      ref={ref}
+      className=" translate-x-20 opacity-0 transition-all duration-500	flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl hover:duration-150 hover:-translate-y-5 "
+    >
       <Image
         src={logo}
         className="object-contain w-[64px] h-[64px]"
@@ -32,4 +32,6 @@ export default function SkillCard({ logo, rating, title }: SkillCardProps) {
       <p className="text-xl text-center font-extrabold">{title}</p>
     </div>
   );
-}
+});
+
+export default SkillCard;

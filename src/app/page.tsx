@@ -13,7 +13,7 @@ const sections = [Home, Skills, Projects, Experience, Contact];
 
 const options = {
   root: null,
-  rootMargin: "0px",
+  rootMargin: "100px",
   threshold: 0.3,
 };
 
@@ -41,7 +41,7 @@ export default function FullPage() {
   return (
     <>
       <Navbar ref={navRef} />
-      <section className="flex flex-col gap-32">
+      <section className="flex flex-col gap-32 x">
         {sections.map((Component, index) => (
           <Component
             key={index}
