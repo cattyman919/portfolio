@@ -1,5 +1,7 @@
-import Link from "next/link";
 import { IconType } from "react-icons";
+import { createContext } from "react";
+
+export const LevelContext = createContext(0);
 
 export type NavElementProps = {
   isActive?: boolean;

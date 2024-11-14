@@ -11,7 +11,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { FaInstagram } from "react-icons/fa";
 
-import NavElement, from "./navElement";
+import NavElement from "./navElement";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,7 +25,6 @@ const dict_section: { [name: string]: number } = {
   experience: 3,
   contact: 4,
 };
-
 
 export type NavigationRef = {
   set_active: (section_active: string) => void;
@@ -59,26 +58,23 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
   props,
   ref
 ) {
-  
-  const [sectionsRef, setSectionsRef] = useState<HTMLElement[]>([]);
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-
+  const navElementsRef = useRef<NavigationRef>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useImperativeHandle(ref, () => ({
     set_active: (section_active: string) => {
-      setActiveIndex(dict_section[section_active]);
+      navElementsRef.current?.set_active(section_active);
       if (isOpen) setIsOpen(false);
     },
     set_sections: (sections: HTMLElement[]) => {
-      setSectionsRef(sections);
+      navElementsRef.current?.set_sections(sections);
     },
-    
   }));
 
   const handleNavButton = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <nav className=" fixed lg:left-0 z-20  top-0  group/card w-full lg:h-svh  lg:w-[64px] lg:hover:w-[220px]   transition-all duration-300  py-1 px-4 lg:border-r bg-primary-bg border-white border-b  flex items-center justify-between lg:justify-start ">
       <Image
@@ -95,14 +91,7 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
             : "invisible opacity-0 h-0"
         } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-6 lg:bg-transparent lg:static   `}
       >
-        {NavElementsData.map((element, index) => (
-          <NavElement
-            key={element.title}
-            isActive={index === activeIndex}
-            html_section={sectionsRef[index]}
-            {...element}
-          />
-        ))}
+        <NavElements ref={navElementsRef} />
       </div>
 
       <div className="hidden absolute bottom-[3%] self-end lg:flex lg:flex-col gap-3 ">
@@ -154,4 +143,34 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
   );
 });
 
+const NavElements = forwardRef<NavigationRef, ScriptProps>(function NavElements(
+  props,
+  ref
+) {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [sectionsRef, setSectionsRef] = useState<HTMLElement[]>([]);
+
+  useImperativeHandle(ref, () => ({
+    set_active: (section_active: string) => {
+      setActiveIndex(dict_section[section_active]);
+    },
+
+    set_sections: (sections: HTMLElement[]) => {
+      setSectionsRef(sections);
+    },
+  }));
+
+  return (
+    <>
+      {NavElementsData.map((element, index) => (
+        <NavElement
+          key={element.title}
+          isActive={index === activeIndex}
+          html_section={sectionsRef[index]}
+          {...element}
+        />
+      ))}
+    </>
+  );
+});
 export default Navbar;
