@@ -10,7 +10,6 @@ import Navbar, {
 } from "@/app/_sections/_components/navbar/navbar";
 
 const sections = [Home, Skills, Projects, Experience, Contact];
-const test = [Skills];
 
 const options = {
   root: null,
