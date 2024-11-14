@@ -9,6 +9,9 @@ const options = {
 };
 
 const fadeRightAnimation: string[] = "translate-x-0 opacity-100".split(" ");
+const BeforefadeRightAnimation: string[] = "translate-x-20 opacity-0".split(
+  " "
+);
 
 const Experience = forwardRef(function Experience(
   props,
@@ -21,15 +24,15 @@ const Experience = forwardRef(function Experience(
     observer: IntersectionObserver
   ) => {
     entries.forEach((el) => {
-      if (el.isIntersecting) {
-        el.target.classList.remove("translate-x-20");
+      BeforefadeRightAnimation.forEach((className) => {
+        el.target.classList.toggle(className, !el.isIntersecting);
+      });
 
-        fadeRightAnimation.forEach((className) => {
-          el.target.classList.add(className);
-        });
+      fadeRightAnimation.forEach((className) => {
+        el.target.classList.toggle(className, el.isIntersecting);
+      });
 
-        observer.unobserve(el.target);
-      }
+      if (el.isIntersecting) observer.unobserve(el.target);
     });
   };
 
@@ -42,11 +45,11 @@ const Experience = forwardRef(function Experience(
   }, []);
 
   return (
-    <section id="experience" ref={ref}>
+    <section id="experience" ref={ref} className="w-full">
       <h1 className=" w-full mb-16 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce animate-infinite animate-alternate">
         Experiences
       </h1>
-      <div className="flex flex-col w-full items-center justify-center text-black  h-full gap-6">
+      <div className="flex  overflow-hidden flex-col items-center justify-center text-black  h-full gap-6">
         {ExperienceData.map((item, index) => (
           <ExperienceCard
             ref={(element) => {

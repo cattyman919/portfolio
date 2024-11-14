@@ -10,6 +10,7 @@ import Navbar, {
 } from "@/app/_sections/_components/navbar/navbar";
 
 const sections = [Home, Skills, Projects, Experience, Contact];
+const test = [Skills];
 
 const options = {
   root: null,
@@ -41,7 +42,7 @@ export default function FullPage() {
   return (
     <>
       <Navbar ref={navRef} />
-      <section className="flex flex-col gap-32 x">
+      <section className="flex flex-col gap-32">
         {sections.map((Component, index) => (
           <Component
             key={index}

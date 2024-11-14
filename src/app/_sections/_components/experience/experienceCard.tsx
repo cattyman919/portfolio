@@ -10,7 +10,7 @@ const ExperienceCard = forwardRef(function ExperienceCard(
   return (
     <div
       ref={ref}
-      className=" opacity-0 translate-x-20 transition-all duration-1000 w-[90%] lg:w-[85%] h-full lg:min-h-[300px] bg-secondary-bg p-4 flex items-center flex-col  md:flex-row gap-5 rounded-3xl"
+      className="  transition-all duration-1000 w-[90%] lg:w-[85%] h-full lg:min-h-[300px] bg-secondary-bg p-4 flex items-center flex-col  md:flex-row gap-5 rounded-3xl"
     >
       <Link
         href={props.company_url}
