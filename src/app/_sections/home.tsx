@@ -18,7 +18,7 @@ const DiplayText = () => {
   return <>{text}</>;
 };
 
-const MemoizedSenoImage = memo(() => {
+const MemoizedSenoImage = memo(function MemoizedSenoImage() {
   return (
     <div className="relative animate-jump-in animate-once animate-delay-500 animate-normal animate-fill-forwards  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
       <Image
