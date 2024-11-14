@@ -1,23 +1,36 @@
 import Image from "next/image";
 import SenoImage from "@/public/images/seno.png";
 import { useTypewriter } from "./_components/hooks/typewriter";
-import { forwardRef, LegacyRef } from "react";
+import { forwardRef, LegacyRef, memo } from "react";
 
-const DiplayText = () => (
-  <span>
-    {useTypewriter(
-      [
-        "Software Developer",
-        "Computer Networks",
-        "System Design",
-        "Tech Enthusiast",
-        "Computer Engineer",
-      ],
-      50,
-      1000
-    )}
-  </span>
-);
+const DiplayText = () => {
+  const text = useTypewriter(
+    [
+      "Software Developer",
+      "Computer Networks",
+      "System Design",
+      "Tech Enthusiast",
+      "Computer Engineer",
+    ],
+    50,
+    1000
+  );
+  return <>{text}</>;
+};
+
+const MemoizedSenoImage = memo(() => {
+  return (
+    <div className="relative animate-jump-in animate-once animate-delay-500 animate-normal animate-fill-forwards  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
+      <Image
+        priority
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-full object-contain"
+        src={SenoImage}
+        alt="Seno Pamungkas"
+      />
+      <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]   rounded-full" />
+    </div>
+  );
+});
 
 const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
   return (
@@ -48,15 +61,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
           in every project, pushing the boundaries of software innovation
         </p>
       </div>
-      <div className="relative animate-jump-in animate-once animate-delay-500 animate-normal animate-fill-forwards  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
-        <Image
-          priority
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-full object-contain"
-          src={SenoImage}
-          alt="Seno Pamungkas"
-        />
-        <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]   rounded-full" />
-      </div>
+      <MemoizedSenoImage />
     </section>
   );
 });
