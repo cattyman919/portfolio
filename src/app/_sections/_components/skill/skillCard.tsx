@@ -12,7 +12,7 @@ const SkillCard = forwardRef(function SkillCard(
   return (
     <div
       ref={ref}
-      className=" translate-x-20 opacity-0 transition-all duration-500	flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl hover:duration-150 hover:-translate-y-5 "
+      className="  transition-all duration-500	flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl hover:duration-150 hover:-translate-y-5 "
     >
       <Image
         src={logo}
