@@ -10,6 +10,7 @@ import { MdContacts } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { FaInstagram } from "react-icons/fa";
+import { IoPlay } from "react-icons/io5";
 
 import NavElement from "./navElement";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
@@ -47,6 +48,10 @@ const NavElementsData: { icon: IconType; title: string }[] = [
   {
     icon: BsFillBuildingsFill,
     title: "Experience",
+  },
+  {
+    icon: IoPlay,
+    title: "Playground",
   },
   {
     icon: MdContacts,

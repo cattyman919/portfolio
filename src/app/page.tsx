@@ -1,12 +1,17 @@
 "use client";
 import Home from "./_sections/home";
 import Skills from "./_sections/skills";
+import Projects from "./_sections/projects";
+import Experience from "./_sections/experience";
+import Playground from "./_sections/playground";
+import Contact from "./_sections/contacts";
 import { useEffect, useRef } from "react";
 import Navbar, {
   NavigationRef,
 } from "@/app/_sections/_components/navbar/navbar";
 
-const sections = [Home, Skills];
+const sections = [Home, Skills, Projects, Experience, Playground, Contact];
+const test = [Playground];
 
 const options = {
   root: null,
@@ -40,7 +45,7 @@ export default function FullPage() {
     <>
       <Navbar ref={navRef} />
       <section className="flex flex-col gap-32 overflow-x-hidden">
-        {sections.map((Component, index) => (
+        {test.map((Component, index) => (
           <Component
             key={index}
             ref={(element) => {
