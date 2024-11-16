@@ -37,7 +37,6 @@ export const ProjectData: ProjectCardProps[] = [
     description:
       "A secure 4-digit combination lock for protecting items, offering a simple and reliable locking mechanism.",
     date: "Nov 2022",
-    languages: ["javascript"],
     image: VaultLockImage,
     github_repo: "https://github.com/rroiii/Electronic-Vault-Lock",
   },

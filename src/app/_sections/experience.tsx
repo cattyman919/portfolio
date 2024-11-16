@@ -17,7 +17,7 @@ const Experience = forwardRef(function Experience(
   props,
   ref: LegacyRef<HTMLElement>
 ) {
-  const containerRef = useRef<HTMLElement[]>([]);
+  const containerRef = useRef<HTMLDetailsElement[]>([]);
 
   const callbackFunction: IntersectionObserverCallback = (
     entries: IntersectionObserverEntry[],
@@ -47,9 +47,9 @@ const Experience = forwardRef(function Experience(
   return (
     <section id="experience" ref={ref} className="w-full overflow-x-hidden">
       <h1 className=" w-full pt-3 mb-12 text-5xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce animate-infinite animate-alternate">
-        Experiences
+        Work Experience
       </h1>
-      <div className="flex  overflow-hidden flex-col items-center justify-center text-black  h-full gap-6">
+      <div className="flex  overflow-hidden flex-col items-center py-3 justify-center text-black  h-full gap-6">
         {ExperienceData.map((item, index) => (
           <ExperienceCard
             ref={(element) => {

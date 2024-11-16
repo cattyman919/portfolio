@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 
 type SkillLineProps = {
   icon: IconType;
+
   title: string;
   data?: SkillCardProps[];
 };
@@ -18,7 +19,12 @@ const options = {
 const fadeUpAnimation: string[] = "translate-x-0 opacity-100".split(" ");
 const BeforefadeUpAnimation: string[] = "translate-x-20 opacity-0".split(" ");
 
-export default function SkillLine({ icon, title, data }: SkillLineProps) {
+export default function SkillLine({
+  icon,
+
+  title,
+  data,
+}: SkillLineProps) {
   const containerRef = useRef<HTMLElement[]>([]);
 
   const callbackFunction: IntersectionObserverCallback = (
@@ -44,13 +50,11 @@ export default function SkillLine({ icon, title, data }: SkillLineProps) {
   }, []);
 
   return (
-    <div className=" flex flex-col border-b-2 py-6  first:border-t-2 lg:first:border-t-0 lg:py-0  border-white lg:border-0 lg:flex-row items-center  gap-6">
-      <div className="flex min-w-[150px] flex-col items-center gap-4">
+    <div className=" flex flex-col border-b-2 py-6  first:border-t-2 lg:first:border-t-0 lg:py-0  border-white  lg:border-0 lg:flex-row items-center  gap-6">
+      <div className="flex min-w-[150px] animate-path flex-col items-center gap-4">
         {icon({
           size: 64,
-          fill: "#00D4FF",
-          className:
-            " [&_path]:stroke-[10] [&_path]:[stroke-dasharray:2000] [&_path]:[stroke-dashoffset:2000] [&_path]:animate-path",
+          color: "#00D4FF",
         })}
         <p className="text-3xl font-bold">{title}</p>
       </div>

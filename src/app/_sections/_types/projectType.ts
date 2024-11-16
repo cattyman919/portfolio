@@ -5,7 +5,7 @@ export type ProjectCardProps = {
   title: string;
   description: string;
   date: string;
-  languages: string[];
+  languages?: string[];
   github_repo?: string;
   website?: string;
 };

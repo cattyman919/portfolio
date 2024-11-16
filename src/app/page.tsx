@@ -8,10 +8,10 @@ import { useEffect, useRef } from "react";
 import Navbar, {
   NavigationRef,
 } from "@/app/_sections/_components/navbar/navbar";
-import Intro from "./_sections/intro";
+// import Intro from "./_sections/intro";
 
 const sections = [Home, Skills, Projects, Experience, Contact];
-const test = [Intro];
+// const test = [Intro];
 
 const options = {
   root: null,
