@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        "xl-seno":
+          "0 15px 20px -6px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -18,6 +22,7 @@ export default {
       },
       animation: {
         caret: "blink 1s steps(1) infinite",
+        path: "dash 2s ease-in-out infinite alternate",
       },
       keyframes: {
         blink: {
@@ -35,6 +40,17 @@ export default {
           },
           "100%": {
             opacity: "0",
+          },
+        },
+        dash: {
+          from: {
+            "fill-opacity": "0",
+            "stroke-opacity": "1",
+          },
+          to: {
+            "stroke-dashoffset": "0",
+            "fill-opacity": "1",
+            "stroke-opacity": "0",
           },
         },
       },

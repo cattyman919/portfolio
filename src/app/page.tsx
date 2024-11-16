@@ -1,12 +1,17 @@
 "use client";
 import Home from "./_sections/home";
 import Skills from "./_sections/skills";
+import Projects from "./_sections/projects";
+import Experience from "./_sections/experience";
+import Contact from "./_sections/contacts";
 import { useEffect, useRef } from "react";
 import Navbar, {
   NavigationRef,
 } from "@/app/_sections/_components/navbar/navbar";
+import Intro from "./_sections/intro";
 
-const sections = [Home, Skills];
+const sections = [Home, Skills, Projects, Experience, Contact];
+const test = [Intro];
 
 const options = {
   root: null,
