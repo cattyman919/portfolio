@@ -1,11 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
+import { forwardRef, LegacyRef } from "react";
 import { ProjectCardProps } from "../../_types/projectType";
 import { FaGithub } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
-import Link from "next/link";
-import { forwardRef, LegacyRef } from "react";
 
-const ProjectCard = forwardRef(function ProjectCard(
+const ProjectDialog = forwardRef(function ProjectDialog(
   {
     image,
     title,
@@ -15,17 +15,13 @@ const ProjectCard = forwardRef(function ProjectCard(
     github_repo,
     website,
   }: ProjectCardProps,
-  ref: LegacyRef<HTMLDivElement>
+  ref: LegacyRef<HTMLDialogElement>
 ) {
   return (
-    <div
-      ref={ref}
-      className="shine-card translate-y-20 border-2 shadow-lg shadow-primary-accent border-primary-accent  opacity-0 transition-all duration-1000  flex flex-col gap-3   bg-secondary-bg text-black overflow-hidden  rounded-xl hover:duration-150 hover:-translate-y-5"
-    >
+    <dialog ref={ref} className="flex flex-col gap-5 items-center rounded-xl">
       <Image
-        key={title}
         src={image}
-        className="object-cover w-full h-[200px] cursor-pointer"
+        className="object-fill w-full h-[300px] cursor-pointer"
         alt="project"
       />
       <div className="flex flex-col justify-between px-4 pb-4 h-[250px]">
@@ -82,8 +78,7 @@ const ProjectCard = forwardRef(function ProjectCard(
           <p className="font-bold text-lg">{date}</p>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 });
-
-export default ProjectCard;
+export default ProjectDialog;

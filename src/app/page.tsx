@@ -1,13 +1,22 @@
 "use client";
-import Home from "./_sections/home";
-import Skills from "./_sections/skills";
-import Projects from "./_sections/projects";
-import Experience from "./_sections/experience";
-import Contact from "./_sections/contacts";
+// import Home from "./_sections/home";
+// import Skills from "./_sections/skills";
+// import Projects from "./_sections/projects";
+// import Experience from "./_sections/experience";
+// import Contact from "./_sections/contacts";
+
+const Home = dynamic(() => import("./_sections/home"));
+const Skills = dynamic(() => import("./_sections/skills"));
+const Projects = dynamic(() => import("./_sections/projects"));
+const Experience = dynamic(() => import("./_sections/experience"));
+const Contact = dynamic(() => import("./_sections/contacts"));
+
 import { useEffect, useRef } from "react";
 import Navbar, {
   NavigationRef,
 } from "@/app/_sections/_components/navbar/navbar";
+import dynamic from "next/dynamic";
+
 // import Intro from "./_sections/intro";
 
 const sections = [Home, Skills, Projects, Experience, Contact];
