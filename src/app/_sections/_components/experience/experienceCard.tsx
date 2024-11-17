@@ -54,9 +54,13 @@ const ExperienceCard = forwardRef(function ExperienceCard(
           color="#000000"
         />
       </summary>
-      <p className="text-base/10 text-justify xl:text-lg/10 mt-5 ">
-        {props.description}
-      </p>
+      <ul className=" list-disc list-inside  text-base/10 text-justify xl:text-lg/10 mt-5 ">
+        {props.descriptions.map((item, index) => (
+          <li key={index} className="mt-4">
+            {item}
+          </li>
+        ))}
+      </ul>
     </details>
   );
 });

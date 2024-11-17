@@ -6,8 +6,11 @@ import FurahaSystemLogo from "@/public/images/experiences/furaha_system.png";
 export const ExperienceData: experienceCardProps[] = [
   {
     position: "Fixed Connectivity, ICT & Cloud",
-    description:
-      "Contributed to strategic telecommunications expansion projects, focusing on Starlink feasibility analysis for remote internet access and utilizing Python-based web scraping to map ISP distribution in Indonesia. Developed data visualizations and impact reports to support network expansion strategies and optimize project outcomes.",
+    descriptions: [
+      "Conducted comprehensive market research and data scraping using Python, BeautifulSoup, and Pandas to analyze the competitive landscape and identify growth opportunities for satellite products in Indonesia.",
+      "Delivered strategic recommendations to senior management through detailed presentations, effectively combining technical insights and business acumen.",
+      "Coordinated cross-functional team activities to ensure timely completion of market analysis and project deliverables.",
+    ],
     company: "PT XL Axiata Tbk",
     company_url: "https://www.linkedin.com/company/pt-xl-axiata-tbk",
     start_date: "February 2024",
@@ -20,8 +23,11 @@ export const ExperienceData: experienceCardProps[] = [
     company: "Bank Victoria International",
     company_url: "https://www.linkedin.com/company/bankvictoria/",
     image: VictoriaLogo,
-    description:
-      "Developed and maintained web applications using Flutter (frontend) and NestJS (backend). Balanced internship responsibilities with academic coursework, attending the office weekly.  Collaborated with the supervisory team to meet project requirements.",
+    descriptions: [
+      "Developed and maintained Victoria’s web application, integrating frontend (Flutter) and backend (NestJS) technologies to deliver seamless user experiences.",
+      "Effectively managed responsibilities by balancing internship tasks with academic commitments, maintaining high productivity and timely deliverables.",
+      "Communicated consistently with the supervisory team to clarify requirements and align development priorities with business objectives.",
+    ],
     languages: ["flutter", "nestjs", "typescript"],
     start_date: "November 2023",
     end_date: "September 2023",
@@ -31,8 +37,11 @@ export const ExperienceData: experienceCardProps[] = [
     company: "Mileapp",
     company_url: "https://www.linkedin.com/company/mileapp/",
     image: MileAppLogo,
-    description:
-      "Redesigned key user interface pages, including landing and login, to enhance user experience.  Collaborated with the supervisor on development planning and execution.",
+    descriptions: [
+      "Redesigned critical user interface pages, improving performance and user experience, with a focus on modernizing the landing and login pages.",
+      "Maintained consistent and effective remote collaboration with supervisors, ensuring project milestones were met on schedule.",
+      "Demonstrated strong time management by successfully completing project tasks alongside academic responsibilities.",
+    ],
     languages: ["react", "typescript"],
     start_date: "September 2022",
     end_date: "October 2022",
@@ -42,8 +51,11 @@ export const ExperienceData: experienceCardProps[] = [
     company: "Furaha System",
     company_url: "https://www.linkedin.com/company/furaha-systems/",
     image: FurahaSystemLogo,
-    description:
-      "Developed core pages (exam and listing features) using Next.js and Typescript. Contributed to team discussions and page development within a collaborative project environment.",
+    descriptions: [
+      "Developed advanced web functionalities using Next.js, including dynamic navigation bars, sidebars for question navigation, and real-time answer tracking.",
+      "Acquired and applied expertise in React, HTML, CSS, and JavaScript to create and enhance web applications.",
+      "Delivered project updates regularly, ensuring alignment with goals and maintaining effective communication with the team.",
+    ],
     languages: ["nextjs", "typescript"],
     start_date: "February 2021",
     end_date: "October 2022",
