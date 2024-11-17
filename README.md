@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# Seno Pamungkas Rahman - Portfolio Website  
+**Domain:** [seno-dev.com](https://seno-dev.com)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Welcome to the repository for my personal portfolio website! This project showcases my skills, experiences, and projects as a developer, providing a window into my professional journey.
+
+---
+
+## 🌟 **About Me**  
+Hi! I’m **Seno Pamungkas Rahman**, a passionate developer with expertise in full-stack web development, frontend design, and data analysis. My portfolio reflects my dedication to crafting innovative solutions and my ability to balance technical excellence with creative flair.
+
+---
+
+## 🚀 **Features of the Website**  
+- **Dynamic Portfolio Showcase:** Highlights key projects like **RestoMatic**, **DanceRTOS**, and **Jaga**, complete with detailed descriptions and visuals.  
+- **Professional Timeline:** Displays my career milestones, including my experiences at PT XL Axiata Tbk, P.T Bank Victoria International, MileApp, and Furaha System.  
+- **Interactive Design:** A modern and responsive interface using technologies like **React**, **Next.js**, and **Tailwind CSS**, ensuring seamless user experience across devices.  
+- **Contact Integration:** Visitors can easily connect with me via email or social media for collaboration opportunities.  
+
+---
+
+## 🛠️ **Tech Stack**  
+- **Frontend:** React, Next.js, Tailwind CSS  
+
+---
+
+## 📂 **Repository Structure**  
+```plaintext
+├── public/           # Static files (images, favicon, etc.)
+├── src/              # Source code
+│   ├── _sections/    # Section Components
+│   |   ├──  _components/   # Reusable React components
+│   |   ├──  _data/         # Data components
+│   |   ├──  _types/        # Types for data components
+├── package.json      # Dependencies and scripts
+└── README.md         # This file
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌍 **How to Run the Project Locally**  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites:  
+- Node.js (v14+)
+- Yarn or npm  
 
-## Learn More
+### Steps:  
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/cattyman919/portfolio.git
+   cd portfolio
+   ```  
 
-To learn more about Next.js, take a look at the following resources:
+2. Install dependencies:  
+   ```bash
+   yarn install  
+   # or  
+   npm install  
+   ```  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Start the development server:  
+   ```bash
+   yarn dev  
+   # or  
+   npm run dev  
+   ```  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Open `http://localhost:3000` in your browser to view the site.  
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👏 **Contributions and Feedback**  
+Feel free to open issues or submit pull requests if you’d like to contribute. Feedback is highly appreciated to keep the site aligned with my professional journey.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### 📧 **Contact Me**  
+- Email: [senopamungkasraehman@gmail.com](mailto:senopamungkasraehman@gmail.com)
+- Instagram: [senohebat](https://www.instagram.com/senohebat/)
+- LinkedIn: [seno-pamungkas-rahman](https://www.linkedin.com/in/seno-pamungkas-rahman-714341192)
+- Portfolio: [seno-dev.com](https://seno-dev.com)  
+
+---
+
+Crafted with 💻 and ☕ by Seno Pamungkas Rahman  
