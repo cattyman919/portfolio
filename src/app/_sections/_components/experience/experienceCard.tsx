@@ -10,6 +10,7 @@ const ExperienceCard = forwardRef(function ExperienceCard(
 ) {
   return (
     <details
+      name="experienceCard"
       ref={ref}
       className="border-2 border-primary-accent [&_svg]:open:rotate-180  open:shadow-lg open:shadow-primary-accent transition-all  w-[90%] lg:w-[85%] h-full   bg-secondary-bg p-4 rounded-3xl"
     >
