@@ -22,7 +22,7 @@ const Skills = forwardRef(function Skills(props, ref: LegacyRef<HTMLElement>) {
       <h1 className=" w-full mb-10 pt-4 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Skill Set
       </h1>
-      <div className="flex flex-col justify-center lg:gap-4 ">
+      <div className="flex flex-col justify-center  ">
         <SkillLine title="Mobile" icon={FaMobileAlt} data={MobileSkills} />
         <SkillLine title="Website" icon={CgWebsite} data={WebsiteSkills} />
         <SkillLine
