@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 
-export type ProjectCardProps = {
+export interface ProjectCardProps {
   image: StaticImageData;
   title: string;
   description: string;
@@ -8,4 +8,17 @@ export type ProjectCardProps = {
   languages?: string[];
   github_repo?: string;
   website?: string;
-};
+}
+
+export interface CreditPersonProps {
+  name: string;
+  github?: string;
+  linkedIn?: string;
+}
+
+export interface ProjectModalProps {
+  title: string;
+  detailed_description: string;
+  contribution: string[];
+  credits: CreditPersonProps[];
+}

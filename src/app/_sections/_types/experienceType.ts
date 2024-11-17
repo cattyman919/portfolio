@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 
-export type experienceCardProps = {
+export interface experienceCardProps {
   image: StaticImageData;
   position: string;
   company: string;
@@ -9,4 +9,4 @@ export type experienceCardProps = {
   start_date: string;
   end_date: string;
   languages: string[];
-};
+}

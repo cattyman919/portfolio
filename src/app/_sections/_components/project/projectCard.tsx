@@ -3,7 +3,8 @@ import { ProjectCardProps } from "../../_types/projectType";
 import { FaGithub } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
 import Link from "next/link";
-import { forwardRef, LegacyRef } from "react";
+import { forwardRef, LegacyRef, useEffect, useRef, useState } from "react";
+import ProjectModal from "./projectModal";
 
 const ProjectCard = forwardRef(function ProjectCard(
   {
@@ -17,12 +18,43 @@ const ProjectCard = forwardRef(function ProjectCard(
   }: ProjectCardProps,
   ref: LegacyRef<HTMLDivElement>
 ) {
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (openModal) {
+      modalRef.current!.inert = true;
+      modalRef.current?.showModal();
+      modalRef.current!.inert = false;
+    }
+  }, [openModal]);
+
+  const closeModal = () => {
+    setOpenModal(false);
+    modalRef.current?.close();
+  };
   return (
     <div
       ref={ref}
       className="shine-card translate-y-20 border-2 shadow-lg shadow-primary-accent border-primary-accent  opacity-0 transition-all duration-1000  flex flex-col gap-3   bg-secondary-bg text-black overflow-hidden  rounded-xl hover:duration-150 hover:-translate-y-5"
     >
+      {openModal && (
+        <ProjectModal
+          onClose={closeModal}
+          image={image}
+          title={title}
+          date={date}
+          languages={languages}
+          github_repo={github_repo}
+          website={website}
+          ref={modalRef}
+        />
+      )}
       <Image
+        onClick={() => {
+          setOpenModal(true);
+          modalRef.current?.showModal();
+        }}
         key={title}
         src={image}
         className="object-cover w-full h-[200px] cursor-pointer"

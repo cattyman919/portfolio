@@ -24,6 +24,7 @@ export default function RootLayout({
         className={`${jetbrains.className} bg-primary-bg antialiased pt-36 lg:pt-0 lg:pl-36 lg:pr-8 xl:pr-16`}
       >
         {children}
+        <div id="modal"></div>
       </body>
     </html>
   );
