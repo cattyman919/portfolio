@@ -2,6 +2,8 @@ import Image from "next/image";
 import SenoImage from "@/public/images/seno.png";
 import { useTypewriter } from "./_components/hooks/typewriter";
 import { forwardRef, LegacyRef, memo } from "react";
+import { IoIosArrowForward } from "react-icons/io";
+import Link from "next/link";
 
 const DiplayText = () => {
   const text = useTypewriter(
@@ -55,11 +57,34 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
           </h4>
         </div>
         <p className="text-justify text-lg/10 animate-flip-up animate-delay-300  w-[90%]  xl:text-xl/[50px]  ">
-          Hello! Im an avid software engineer with a zest for game development,
-          front-end, back-end, AI, and cloud technologies. Passionate about
-          exploring new tech frontiers, I blend creativity with technical skill
-          in every project, pushing the boundaries of software innovation
+          Hello! Im an avid software engineer with a zest for front-end,
+          back-end, AI, and cloud technologies. Passionate about exploring new
+          tech frontiers, I blend creativity with technical skill in every
+          project, pushing the boundaries of software innovation
         </p>
+        <div className="flex flex-col gap-4 lg:flex-row items-center lg:gap-10 h-full text-2xl">
+          <p className="text-primary-accent font-bold animate-fade-right">
+            Access my Resume Here
+          </p>
+          <div className="grid grid-cols-3 rotate-90 lg:rotate-0 w-[30px]  ">
+            <IoIosArrowForward
+              size={32}
+              className="animate-arrow animate-delay-[2s]"
+            />
+            <IoIosArrowForward
+              size={32}
+              className="animate-arrow animate-delay-[1s] "
+            />
+            <IoIosArrowForward size={32} className="animate-arrow " />
+          </div>
+          <Link
+            href="https://seno-portfolio.s3.ap-southeast-1.amazonaws.com/Seno+Pamungkas+Rahman+-+CV.pdf"
+            target="_blank"
+            className=" mt-5 lg:mt-0 bg-primary-accent p-2 rounded-lg hover:scale-110 transition-transform text-white font-bold"
+          >
+            Resume
+          </Link>
+        </div>
       </div>
       <MemoizedSenoImage />
     </section>

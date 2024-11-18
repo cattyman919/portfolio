@@ -26,7 +26,7 @@ const Contact = forwardRef(function Contact(
       <h1 className=" w-full mb-12 lg:mb-32 pt-4 text-6xl text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Contact
       </h1>
-      <div className="grid grid-cols-1 gap-16  lg:gap-12 lg:grid-cols-2 text-2xl">
+      <div className="grid grid-cols-1 gap-16 items-center  lg:gap-12 lg:grid-cols-2 text-2xl">
         <div className="flex flex-col gap-8 lg:gap-0  lg:justify-between px-10 lg:px-0 lg:pr-8">
           <div className="flex flex-col gap-6">
             <h4 className="text-primary-accent font-bold text-4xl">
@@ -57,18 +57,6 @@ const Contact = forwardRef(function Contact(
                 <IoMdMail className="w-[48px] h-[48px] hover:scale-110 transition-transform" />
               </Link>
             </div>
-          </div>
-          <div className="flex items-center gap-4 h-full">
-            <p className="text-primary-accent font-bold">
-              Access my Resume Here
-            </p>
-            <Link
-              href="https://seno-portfolio.s3.ap-southeast-1.amazonaws.com/Seno+Pamungkas+Rahman+-+CV.pdf"
-              target="_blank"
-              className="bg-primary-accent p-2 rounded-lg hover:scale-110 transition-transform text-white font-bold"
-            >
-              Resume
-            </Link>
           </div>
         </div>
         <form onSubmit={onSubmit} className="flex flex-col gap-8 px-10 lg:px-0">

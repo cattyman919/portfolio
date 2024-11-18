@@ -23,6 +23,7 @@ export default {
       animation: {
         caret: "blink 1s steps(1) infinite",
         path: "dash 2s ease-in-out infinite alternate",
+        arrow: "arrow_animation 2s linear infinite",
       },
       keyframes: {
         blink: {
@@ -51,6 +52,24 @@ export default {
             "stroke-dashoffset": "0",
             "fill-opacity": "1",
             "stroke-opacity": "0",
+          },
+        },
+        arrow_animation: {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(-30px)",
+          },
+          "20%": {
+            opacity: "1",
+            transform: "translateX(-10px)",
+          },
+          "80%": {
+            opacity: "1",
+            transform: "translateX(10px)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translateX(30px)",
           },
         },
       },
