@@ -50,16 +50,23 @@ const ProjectCard = forwardRef(function ProjectCard(
           ref={modalRef}
         />
       )}
-      <Image
+      <div
+        className="relative group cursor-pointer"
         onClick={() => {
           setOpenModal(true);
           modalRef.current?.showModal();
         }}
-        key={title}
-        src={image}
-        className="object-cover w-full h-[200px] cursor-pointer"
-        alt="project"
-      />
+      >
+        <Image
+          key={title}
+          src={image}
+          className="object-cover w-full h-[200px] cursor-pointer group-hover:blur-sm"
+          alt="project"
+        />
+        <p className="opacity-0 group-hover:opacity-100 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-white w-full text-center">
+          Click for more info
+        </p>
+      </div>
       <div className="flex flex-col justify-between px-4 pb-4 h-[250px]">
         <div className="flex flex-col gap-4">
           <div className="flex gap-4 items-center">
