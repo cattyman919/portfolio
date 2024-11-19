@@ -5,7 +5,7 @@ import CoolSenoImage from "@/public/images/Cool Seno.png";
 import JasHitamSenoImage from "@/public/images/Jas Hitam Seno 2.png";
 
 import { useTypewriter } from "./_components/hooks/typewriter";
-import { forwardRef, LegacyRef, memo, useEffect, useRef } from "react";
+import { forwardRef, LegacyRef, useEffect, useRef, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
 import { SiReaddotcv } from "react-icons/si";
@@ -26,17 +26,22 @@ const DiplayText = () => {
   return <>{text}</>;
 };
 
-const MemoizedSenoImage = memo(function MemoizedSenoImage() {
+const MemoizedSenoImage = () => {
   const images = [SenoImage, UiSenoImage, CoolSenoImage, JasHitamSenoImage];
   const imageRefs = useRef<HTMLElement[]>([]);
 
   useEffect(() => {
     let index = 0;
+    imageRefs.current[index].classList.remove("animate-seno_images");
+    void imageRefs.current[index].offsetWidth;
+    imageRefs.current[index].classList.add("animate-seno_images");
+
     const intervalImages = setInterval(() => {
+      index = (index + 1) % images.length;
+
       imageRefs.current[index].classList.remove("animate-seno_images");
       void imageRefs.current[index].offsetWidth;
       imageRefs.current[index].classList.add("animate-seno_images");
-      index = (index + 1) % images.length;
     }, 2000);
 
     return () => {
@@ -45,7 +50,7 @@ const MemoizedSenoImage = memo(function MemoizedSenoImage() {
   }, []);
 
   return (
-    <div className="relative animate-jump-in animate-once animate-delay-500 animate-normal animate-fill-forwards  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
+    <div className="relative  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
       {images.map((image, index) => (
         <Image
           key={index}
@@ -62,9 +67,14 @@ const MemoizedSenoImage = memo(function MemoizedSenoImage() {
       <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]   rounded-full" />
     </div>
   );
-});
+};
 
 const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
   return (
     <section
       ref={ref}
@@ -127,7 +137,19 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
           </div>
         </div>
       </div>
-      <MemoizedSenoImage />
+      {!loading && <MemoizedSenoImage />}
+      {loading && (
+        <div className="relative animate-jump-in animate-once animate-delay-500 animate-normal animate-fill-forwards  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
+          <Image
+            className={`absolute left-1/2 top-1/2 w-[500px] -translate-x-1/2 -translate-y-1/2  z-10 h-full object-contain  `}
+            src={SenoImage}
+            loading="eager"
+            width={500}
+            alt="Seno Pamungkas"
+          />
+          <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]   rounded-full" />
+        </div>
+      )}
     </section>
   );
 });
