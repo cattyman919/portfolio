@@ -3,6 +3,7 @@ import { experienceCardProps } from "../../_types/experienceType";
 import Link from "next/link";
 import { forwardRef, LegacyRef } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { FaLinkedin } from "react-icons/fa6";
 
 const ExperienceCard = forwardRef(function ExperienceCard(
   { ...props }: experienceCardProps,
@@ -18,13 +19,17 @@ const ExperienceCard = forwardRef(function ExperienceCard(
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-5">
           <Link
             href={props.company_url}
-            className="w-[100px] md:w-[150px] h-fit  shrink-0 "
+            className="w-[100px] md:w-[150px] h-fit  shrink-0  relative group"
             target="_blank"
           >
             <Image
               src={props.image}
-              className="rounded-lg object-contain w-full h-full lg:object-contain    "
+              className="rounded-lg object-contain w-full h-full lg:object-contain transition-all duration-200 ease-in-out  group-hover:blur-sm  "
               alt="company logo"
+            />
+            <FaLinkedin
+              size={64}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-accent opacity-0 group-hover:opacity-100 transition-all duration-200 ease-in-out"
             />
           </Link>
           <div className="flex flex-col gap-3">

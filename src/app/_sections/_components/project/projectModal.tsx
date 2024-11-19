@@ -42,7 +42,7 @@ const ProjectModal = forwardRef(function ProjectModal(
       <div className="relative group/card w-fit">
         <Image
           src={image!}
-          className="object-contain w-full group-hover/card:blur-sm transition-all duration-200  md:h-[200px]  rounded-lg border-2 border-primary-bg shadow-md shadow-primary-bg"
+          className="object-contain w-full group-hover/card:blur-sm transition-all duration-500  md:h-[200px]  rounded-lg border-2 border-primary-bg shadow-md shadow-primary-bg"
           alt="project"
         />
         <div className="w-full h-full absolute top-[50%] left-[50%] -translate-x-1/2 transition-opacity duration-500 -translate-y-1/2 flex items-center gap-5 justify-center opacity-0 group-hover/card:opacity-100">
