@@ -1,7 +1,11 @@
 import Image from "next/image";
 import SenoImage from "@/public/images/seno.png";
+import UiSenoImage from "@/public/images/UI Seno.png";
+import CoolSenoImage from "@/public/images/Cool Seno.png";
+import JasHitamSenoImage from "@/public/images/Jas Hitam Seno 2.png";
+
 import { useTypewriter } from "./_components/hooks/typewriter";
-import { forwardRef, LegacyRef, memo } from "react";
+import { forwardRef, LegacyRef, memo, useEffect, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
 import { SiReaddotcv } from "react-icons/si";
@@ -23,14 +27,38 @@ const DiplayText = () => {
 };
 
 const MemoizedSenoImage = memo(function MemoizedSenoImage() {
+  const images = [SenoImage, UiSenoImage, CoolSenoImage, JasHitamSenoImage];
+  const imageRefs = useRef<HTMLElement[]>([]);
+
+  useEffect(() => {
+    let index = 0;
+    const intervalImages = setInterval(() => {
+      imageRefs.current[index].classList.remove("animate-seno_images");
+      void imageRefs.current[index].offsetWidth;
+      imageRefs.current[index].classList.add("animate-seno_images");
+      index = (index + 1) % images.length;
+    }, 2000);
+
+    return () => {
+      clearInterval(intervalImages);
+    };
+  }, []);
+
   return (
     <div className="relative animate-jump-in animate-once animate-delay-500 animate-normal animate-fill-forwards  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
-      <Image
-        priority
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-full object-contain"
-        src={SenoImage}
-        alt="Seno Pamungkas"
-      />
+      {images.map((image, index) => (
+        <Image
+          key={index}
+          className={`absolute left-1/2 top-1/2 w-[500px] opacity-0  z-10 h-full object-contain  `}
+          ref={(element) => {
+            imageRefs.current.push(element!);
+          }}
+          src={image}
+          loading="eager"
+          width={500}
+          alt="Seno Pamungkas"
+        />
+      ))}
       <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]   rounded-full" />
     </div>
   );

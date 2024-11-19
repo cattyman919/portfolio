@@ -25,6 +25,7 @@ export default {
         caret: "blink 1s steps(1) infinite",
         path: "dash 2s ease-in-out infinite alternate",
         arrow: "arrow_animation 2s linear infinite",
+        seno_images: "seno_images 2s ease-in-out",
       },
       keyframes: {
         blink: {
@@ -53,6 +54,24 @@ export default {
             "stroke-dashoffset": "0",
             "fill-opacity": "1",
             "stroke-opacity": "0",
+          },
+        },
+        seno_images: {
+          "0%": {
+            opacity: "0",
+            transform: "translate(0, -50%)",
+          },
+          "20%": {
+            opacity: "1",
+            transform: "translate(-40%,-50%)",
+          },
+          "80%": {
+            opacity: "1",
+            transform: "translate(-50%,-50%)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translate(-100%,-50%)",
           },
         },
         arrow_animation: {

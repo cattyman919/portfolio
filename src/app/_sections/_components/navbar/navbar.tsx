@@ -81,7 +81,7 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
         priority
         src={senoLogoImage}
         alt="Logo"
-        className=" static w-[40px]  lg:w-[80%]   lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2 lg:group-hover/card:-translate-x-[52%]"
+        className=" static w-[40px]  lg:w-[80%]   lg:absolute lg:top-3 lg:left-1/2 lg:-translate-x-1/2 lg:group-hover/card:-translate-x-[52%]"
       />
 
       <div

@@ -19,12 +19,7 @@ const options = {
 const fadeUpAnimation: string[] = "translate-x-0 opacity-100".split(" ");
 const BeforefadeUpAnimation: string[] = "translate-x-20 opacity-0".split(" ");
 
-export default function SkillLine({
-  icon,
-
-  title,
-  data,
-}: SkillLineProps) {
+export default function SkillLine({ icon, title, data }: SkillLineProps) {
   const containerRef = useRef<HTMLElement[]>([]);
 
   const callbackFunction: IntersectionObserverCallback = (
