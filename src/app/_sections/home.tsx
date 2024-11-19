@@ -4,6 +4,8 @@ import { useTypewriter } from "./_components/hooks/typewriter";
 import { forwardRef, LegacyRef, memo } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
+import { SiReaddotcv } from "react-icons/si";
+import { GrArticle } from "react-icons/gr";
 
 const DiplayText = () => {
   const text = useTypewriter(
@@ -64,7 +66,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
         </p>
         <div className="flex flex-col gap-4 lg:flex-row items-center lg:gap-10 h-full text-2xl">
           <p className="text-primary-accent font-bold animate-fade-right">
-            Access my Resume Here
+            Check out my Resume & Blog
           </p>
           <div className="grid grid-cols-3 rotate-90 lg:rotate-0 w-[30px]  ">
             <IoIosArrowForward
@@ -77,13 +79,24 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
             />
             <IoIosArrowForward size={32} className="animate-arrow " />
           </div>
-          <Link
-            href="https://seno-portfolio.s3.ap-southeast-1.amazonaws.com/Seno+Pamungkas+Rahman+-+CV.pdf"
-            target="_blank"
-            className=" mt-5 lg:mt-0 bg-primary-accent p-2 rounded-lg hover:scale-110 transition-transform text-white font-bold"
-          >
-            Resume
-          </Link>
+          <div className="flex gap-6">
+            <Link
+              href="https://seno-portfolio.s3.ap-southeast-1.amazonaws.com/Seno+Pamungkas+Rahman+-+CV.pdf"
+              target="_blank"
+              className=" min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all "
+            >
+              <SiReaddotcv size={32} />
+              <p>Resume</p>
+            </Link>
+            <Link
+              href="https://blog.seno-dev.com"
+              target="_blank"
+              className="min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all "
+            >
+              <GrArticle size={32} />
+              <p>Blog</p>
+            </Link>
+          </div>
         </div>
       </div>
       <MemoizedSenoImage />

@@ -36,7 +36,7 @@ const ProjectCard = forwardRef(function ProjectCard(
   return (
     <div
       ref={ref}
-      className="shine-card translate-y-20 border-2 shadow-lg shadow-primary-accent border-primary-accent  opacity-0 transition-all duration-1000  flex flex-col gap-3   bg-secondary-bg text-black overflow-hidden  rounded-xl hover:duration-150 hover:-translate-y-5"
+      className="shine-card translate-y-20 border-2 shadow-lg shadow-primary-accent border-primary-accent  opacity-0 transition-all duration-1000  flex flex-col gap-3   bg-secondary-bg text-black overflow-hidden  rounded-xl hover:duration-150 hover:-translate-y-8"
     >
       {openModal && (
         <ProjectModal
