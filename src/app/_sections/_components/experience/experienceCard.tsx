@@ -13,23 +13,23 @@ const ExperienceCard = forwardRef(function ExperienceCard(
     <details
       name="experienceCard"
       ref={ref}
-      className="border-2 border-primary-accent [&_svg]:open:rotate-180  open:shadow-lg open:shadow-primary-accent transition-all  w-[90%] lg:w-[85%] h-full   bg-secondary-bg p-4 rounded-3xl"
+      className="border-2 border-primary-accent group open:shadow-lg open:shadow-primary-accent transition-all  w-[90%] lg:w-[85%] h-full   bg-secondary-bg p-4 rounded-3xl"
     >
       <summary className="flex flex-row justify-between items-center  cursor-pointer  gap-3   rounded-3xl lg:min-h-[150px]">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-5">
           <Link
             href={props.company_url}
-            className="w-[100px] md:w-[150px] h-fit  shrink-0  relative group"
+            className="w-[100px] md:w-[150px] h-fit  shrink-0  relative group/card"
             target="_blank"
           >
             <Image
               src={props.image}
-              className="rounded-lg object-contain w-full h-full lg:object-contain transition-all duration-200 ease-in-out  group-hover:blur-sm  "
+              className="rounded-lg object-contain w-full h-full lg:object-contain transition-all duration-200 ease-in-out  group-hover/card:blur-sm  "
               alt="company logo"
             />
             <FaLinkedin
               size={64}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-accent opacity-0 group-hover:opacity-100 transition-all duration-200 ease-in-out"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-accent opacity-0 group-hover/card:opacity-100 transition-all duration-200 ease-in-out"
             />
           </Link>
           <div className="flex flex-col gap-3">
@@ -55,7 +55,7 @@ const ExperienceCard = forwardRef(function ExperienceCard(
         </div>
 
         <MdKeyboardArrowDown
-          className="md:ml-auto w-[32px] h-[32px] md:w-[64px] md:h-[64px] md:mr-5 transition-transform"
+          className="md:ml-auto w-[32px] h-[32px] group-open:rotate-180 md:w-[64px] md:h-[64px] md:mr-5 transition-transform"
           size={64}
           color="#000000"
         />
