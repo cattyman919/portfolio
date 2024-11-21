@@ -1,12 +1,15 @@
-import { forwardRef, LegacyRef, useEffect, useRef } from "react";
+import { forwardRef, LegacyRef, useEffect, useState } from "react";
 import ExperienceCard from "./_components/experience/experienceCard";
 import { ExperienceData } from "./_data/experienceData";
+import ExperienceSkeletonCard from "./_components/experience/experienceSkeletonCard";
 
 const options = {
   root: null,
   rootMargin: "0px",
   threshold: 0.3,
 };
+
+let observer: IntersectionObserver;
 
 const fadeRightAnimation: string[] = "translate-x-0 opacity-100".split(" ");
 const BeforefadeRightAnimation: string[] = "translate-x-20 opacity-0".split(
@@ -17,7 +20,7 @@ const Experience = forwardRef(function Experience(
   props,
   ref: LegacyRef<HTMLElement>
 ) {
-  const containerRef = useRef<HTMLDetailsElement[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const callbackFunction: IntersectionObserverCallback = (
     entries: IntersectionObserverEntry[],
@@ -37,10 +40,8 @@ const Experience = forwardRef(function Experience(
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(callbackFunction, options);
-    containerRef.current.map((element) => {
-      observer.observe(element);
-    });
+    setLoading(false);
+    observer = new IntersectionObserver(callbackFunction, options);
     return () => observer.disconnect();
   }, []);
 
@@ -50,15 +51,19 @@ const Experience = forwardRef(function Experience(
         Work Experience
       </h1>
       <div className="flex  overflow-hidden flex-col items-center py-3 justify-center text-black  h-full gap-6">
-        {ExperienceData.map((item, index) => (
-          <ExperienceCard
-            ref={(element) => {
-              if (element) containerRef.current.push(element);
-            }}
-            key={index}
-            {...item}
-          />
-        ))}
+        {loading
+          ? Array.from({ length: ExperienceData.length }).map((_, index) => (
+              <ExperienceSkeletonCard key={index} />
+            ))
+          : ExperienceData.map((item, index) => (
+              <ExperienceCard
+                ref={(element) => {
+                  if (element) observer.observe(element);
+                }}
+                key={index}
+                {...item}
+              />
+            ))}
       </div>
     </section>
   );

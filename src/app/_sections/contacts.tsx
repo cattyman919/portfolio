@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-// import { FaPaperPlane } from "react-icons/fa";
+import { FaPaperPlane } from "react-icons/fa";
 import { forwardRef, LegacyRef } from "react";
 import { FaInstagram } from "react-icons/fa";
 
@@ -12,14 +12,14 @@ const Contact = forwardRef(function Contact(
   props,
   ref: LegacyRef<HTMLElement>
 ) {
-  // const onSubmit = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   // const formData = new FormData(event.currentTarget as HTMLFormElement);
-  //   // const emailData = formData.get("email");
-  //   // const subjectData = formData.get("subject");
-  //   // const messsageData = formData.get("message");
-  //   //console.log(emailData, subjectData, messsageData);
-  // };
+  const onSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    // const formData = new FormData(event.currentTarget as HTMLFormElement);
+    // const emailData = formData.get("email");
+    // const subjectData = formData.get("subject");
+    // const messsageData = formData.get("message");
+    //console.log(emailData, subjectData, messsageData);
+  };
 
   return (
     <section ref={ref} id="contact" className="pb-10 overflow-x-hidden">
@@ -59,7 +59,7 @@ const Contact = forwardRef(function Contact(
             </div>
           </div>
         </div>
-        {/* <form onSubmit={onSubmit} className="flex flex-col gap-8 px-10 lg:px-0">
+        <form onSubmit={onSubmit} className="flex flex-col gap-8 px-10 lg:px-0">
           <h3 className="text-4xl text-center text-primary-accent font-bold">
             {"Send me a message :)"}
           </h3>
@@ -106,7 +106,7 @@ const Contact = forwardRef(function Contact(
               </div>
             </button>
           </div>
-        </form> */}
+        </form>
       </div>
     </section>
   );
