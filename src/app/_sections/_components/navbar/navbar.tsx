@@ -31,24 +31,29 @@ export type NavigationRef = {
   set_sections: (sections: HTMLElement[]) => void;
 };
 
-const NavElementsData: { icon: IconType; title: string }[] = [
+const NavElementsData: { id: string; icon: IconType; title: string }[] = [
   {
+    id: "home",
     icon: IoMdHome,
     title: "Home",
   },
   {
+    id: "skill",
     icon: MdHandyman,
     title: "Skill",
   },
   {
+    id: "projects",
     icon: FaCode,
     title: "Project",
   },
   {
+    id: "experience",
     icon: BsFillBuildingsFill,
     title: "Experience",
   },
   {
+    id: "contact",
     icon: MdContacts,
     title: "Contact",
   },
@@ -166,7 +171,7 @@ const NavElements = forwardRef<NavigationRef, ScriptProps>(function NavElements(
         <NavElement
           key={element.title}
           isActive={index === activeIndex}
-          html_section={sectionsRef[index]}
+          scroll_to={sectionsRef.find((el) => el.id === element.id)!}
           {...element}
         />
       ))}

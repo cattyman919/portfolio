@@ -8,6 +8,7 @@ const options = {
   threshold: 0.3,
 };
 
+const BeforefadeUpAnimation: string[] = "translate-y-20 opacity-0".split(" ");
 const fadeUpAnimation: string[] = "translate-y-0 opacity-100".split(" ");
 
 const Projects = forwardRef(function Projects(
@@ -21,21 +22,22 @@ const Projects = forwardRef(function Projects(
     observer: IntersectionObserver
   ) => {
     entries.forEach((el) => {
-      if (el.isIntersecting) {
-        el.target.classList.remove("translate-y-20");
+      BeforefadeUpAnimation.forEach((className) => {
+        el.target.classList.toggle(className, !el.isIntersecting);
+      });
 
-        fadeUpAnimation.forEach((className) => {
-          el.target.classList.add(className);
-        });
+      fadeUpAnimation.forEach((className) => {
+        el.target.classList.toggle(className, el.isIntersecting);
+      });
 
-        observer.unobserve(el.target);
-      }
+      if (el.isIntersecting) observer.unobserve(el.target);
     });
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, options);
     containerRef.current.map((element) => {
+      console.log(element);
       observer.observe(element);
     });
     return () => observer.disconnect();
@@ -50,7 +52,7 @@ const Projects = forwardRef(function Projects(
         {ProjectData.map((project) => (
           <ProjectCard
             ref={(element) => {
-              containerRef.current.push(element!);
+              if (element) containerRef.current.push(element);
             }}
             key={project.title}
             {...project}

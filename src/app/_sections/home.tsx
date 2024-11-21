@@ -70,10 +70,10 @@ const MemoizedSenoImage = () => {
 };
 
 const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
-  const [loading, setLoading] = useState(true);
+  const [loadingImage, setLoadinImage] = useState(true);
 
   useEffect(() => {
-    setLoading(false);
+    setLoadinImage(false);
   }, []);
   return (
     <section
@@ -137,8 +137,8 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
           </div>
         </div>
       </div>
-      {!loading && <MemoizedSenoImage />}
-      {loading && (
+      {!loadingImage && <MemoizedSenoImage />}
+      {loadingImage && (
         <div className="relative animate-jump-in animate-once animate-delay-500 animate-normal animate-fill-forwards  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">
           <Image
             className={`absolute left-1/2 top-1/2 w-[500px] -translate-x-1/2 -translate-y-1/2  z-10 h-full object-contain  `}

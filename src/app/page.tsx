@@ -1,10 +1,4 @@
 "use client";
-// import Home from "./_sections/home";
-// import Skills from "./_sections/skills";
-// import Projects from "./_sections/projects";
-// import Experience from "./_sections/experience";
-// import Contact from "./_sections/contacts";
-
 const Home = dynamic(() => import("./_sections/home"));
 const Skills = dynamic(() => import("./_sections/skills"));
 const Projects = dynamic(() => import("./_sections/projects"));
@@ -58,7 +52,7 @@ export default function FullPage() {
           <Component
             key={index}
             ref={(element) => {
-              containerRef.current.push(element!);
+              if (element) containerRef.current.push(element);
             }}
           />
         ))}

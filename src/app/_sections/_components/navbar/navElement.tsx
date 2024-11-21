@@ -7,19 +7,19 @@ export type NavElementProps = {
   isActive?: boolean;
   icon: IconType;
   title: string;
-  html_section: HTMLElement | null;
+  scroll_to: HTMLElement | null;
 };
 
 export default function NavElement({
   icon,
   title,
-  html_section = null,
+  scroll_to = null,
   isActive = false,
 }: NavElementProps) {
   return (
     <button
       onClick={() => {
-        html_section?.scrollIntoView({
+        scroll_to?.scrollIntoView({
           behavior: "smooth",
         });
       }}

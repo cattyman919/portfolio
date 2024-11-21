@@ -61,7 +61,7 @@ export default function SkillLine({ icon, title, data }: SkillLineProps) {
             title={item.title}
             rating={item.rating}
             ref={(element) => {
-              containerRef.current.push(element!);
+              if (element) containerRef.current.push(element);
             }}
           />
         ))}

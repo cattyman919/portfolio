@@ -53,7 +53,7 @@ const Experience = forwardRef(function Experience(
         {ExperienceData.map((item, index) => (
           <ExperienceCard
             ref={(element) => {
-              containerRef.current.push(element!);
+              if (element) containerRef.current.push(element);
             }}
             key={index}
             {...item}
