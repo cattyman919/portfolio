@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
         className={`${jetbrains.className} bg-primary-bg antialiased pt-36 lg:pt-0 lg:pl-36 lg:pr-8 xl:pr-16`}
       >
         {children}
+        <SpeedInsights />
         <div id="modal"></div>
       </body>
     </html>
