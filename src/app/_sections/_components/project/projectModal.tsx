@@ -27,7 +27,7 @@ const ProjectModal = forwardRef(function ProjectModal(
       id={`modal-${title}`}
       ref={ref}
       onCancel={onClose}
-      className="flex flex-col animate-jump-in md:w-[70%] lg:w-[75%] p-6 h-[80%] gap-4 items-center rounded-xl  fixed border shadow-xl shadow-primary-bg border-primary-accent"
+      className="flex flex-col backdrop-blur-md  bg-white/85 animate-jump-in md:w-[70%] lg:w-[75%] p-6 h-[80%] gap-4 items-center rounded-xl  fixed border-2 shadow-xl shadow-primary-bg border-primary-accent"
     >
       <ImCross
         className="absolute w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] top-5 right-3 lg:right-8 cursor-pointer hover:scale-125 transition-transform"
