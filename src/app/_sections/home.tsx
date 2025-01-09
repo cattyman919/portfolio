@@ -119,7 +119,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
           </div>
           <div className="flex gap-6">
             <Link
-              href="https://seno-portfolio.s3.ap-southeast-1.amazonaws.com/Seno+Pamungkas+Rahman+-+CV.pdf"
+              href="https://shorturl.at/LCKlv"
               target="_blank"
               className=" min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all "
             >
@@ -127,7 +127,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
               <p>Resume</p>
             </Link>
             <Link
-              href="https://blog.seno-dev.com/blog"
+              href="https://shorturl.at/3FwAD"
               target="_blank"
               className="min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all "
             >
