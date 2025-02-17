@@ -119,7 +119,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
           </div>
           <div className="flex gap-6">
             <Link
-              href="https://shorturl.at/LCKlv"
+              href="https://gxkzxcukeylfshbcbbkq.supabase.co/storage/v1/object/sign/portfolio/Seno%20Pamungkas%20Rahman%20-%20CV.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwb3J0Zm9saW8vU2VubyBQYW11bmdrYXMgUmFobWFuIC0gQ1YucGRmIiwiaWF0IjoxNzM5Nzg4NDQ2LCJleHAiOjE3NzEzMjQ0NDZ9.4XGCcARFdRFdoktMQKimq2vV1P3KFw_ckAf03831Tnw"
               target="_blank"
               className=" min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all "
             >
@@ -127,7 +127,7 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
               <p>Resume</p>
             </Link>
             <Link
-              href="https://shorturl.at/3FwAD"
+              href="https://blog.senop.dev"
               target="_blank"
               className="min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all "
             >
