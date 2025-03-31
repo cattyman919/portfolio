@@ -16,7 +16,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/images/*": ["./public/images"],
-      "@/public/*": ["./public/*"]
+      "@/public/*": ["./public/*"],
+      "@/lib/*": ["./lib/*"]
     },
     "plugins": [
       {

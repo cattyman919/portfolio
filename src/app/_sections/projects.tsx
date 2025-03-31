@@ -2,6 +2,24 @@ import { forwardRef, LegacyRef, useEffect, useState } from "react";
 import ProjectCard from "./_components/project/projectCard";
 import { ProjectData } from "./_data/projectData";
 import ProjectSkeletonCard from "./_components/project/projectSkeletonCard";
+import { useQuery } from "@apollo/client";
+import { gql } from "../../__generated__/gql"
+
+const newFetch = gql(
+  `
+query oof{
+  fetchProjects{
+    title
+  }
+}
+`);
+//const FETCH_PROJECTS = gql`
+//query oof {
+//  fetchProjects {
+//    title
+//  }
+//}
+//`;
 
 const options = {
   root: null,
@@ -18,7 +36,13 @@ const Projects = forwardRef(function Projects(
   props,
   ref: LegacyRef<HTMLElement>
 ) {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [_, setLoading] = useState<boolean>(true);
+
+  const { data, loading } = useQuery(newFetch);
+
+  if (!loading)
+    console.log(data?.fetchProjects)
+
   const callbackFunction: IntersectionObserverCallback = (
     entries: IntersectionObserverEntry[],
     observer: IntersectionObserver
@@ -51,17 +75,17 @@ const Projects = forwardRef(function Projects(
       <div className="grid grid-cols-1 px-[10%] gap-8 py-4  md:grid-cols-2 lg:px-0 lg:grid-cols-3 lg:gap-10">
         {loading
           ? Array.from({ length: ProjectData.length }).map((_, index) => (
-              <ProjectSkeletonCard key={index} />
-            ))
+            <ProjectSkeletonCard key={index} />
+          ))
           : ProjectData.map((project) => (
-              <ProjectCard
-                ref={(element) => {
-                  if (element) observer.observe(element);
-                }}
-                key={project.title}
-                {...project}
-              />
-            ))}
+            <ProjectCard
+              ref={(element) => {
+                if (element) observer.observe(element);
+              }}
+              key={project.title}
+              {...project}
+            />
+          ))}
       </div>
     </section>
   );

@@ -1,4 +1,7 @@
 "use client";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "@/lib/apollo-client"
+
 const Home = dynamic(() => import("./_sections/home"));
 const Skills = dynamic(() => import("./_sections/skills"));
 const Projects = dynamic(() => import("./_sections/projects"));
@@ -11,10 +14,7 @@ import Navbar, {
 } from "@/app/_sections/_components/navbar/navbar";
 import dynamic from "next/dynamic";
 
-// import Intro from "./_sections/intro";
-
 const sections = [Home, Skills, Projects, Experience, Contact];
-// const test = [Intro];
 
 const options = {
   root: null,
@@ -45,7 +45,7 @@ export default function FullPage() {
   }, []);
 
   return (
-    <>
+    <ApolloProvider client={client}>
       <Navbar ref={navRef} />
       <section className="flex flex-col gap-32 overflow-x-hidden">
         {sections.map((Component, index) => (
@@ -57,6 +57,6 @@ export default function FullPage() {
           />
         ))}
       </section>
-    </>
+    </ApolloProvider >
   );
 }
