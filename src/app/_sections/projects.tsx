@@ -1,25 +1,23 @@
 import { forwardRef, LegacyRef, useEffect, useState } from "react";
 import ProjectCard from "./_components/project/projectCard";
-import { ProjectData } from "./_data/projectData";
 import ProjectSkeletonCard from "./_components/project/projectSkeletonCard";
-import { useQuery } from "@apollo/client";
-import { gql } from "../../__generated__/gql"
+import { useQuery, gql } from "@apollo/client";
+import { ProjectCardProps } from "./_types/projectType";
 
-const newFetch = gql(
-  `
-query oof{
-  fetchProjects{
+const FETCH_PROJECTS = gql
+  `query fetch_projects {
+  fetchProjects {
+    id
     title
+    image
+    short_description
+    languages
+    github_repo
+    website
+    date
   }
-}
-`);
-//const FETCH_PROJECTS = gql`
-//query oof {
-//  fetchProjects {
-//    title
-//  }
-//}
-//`;
+}`
+
 
 const options = {
   root: null,
@@ -36,12 +34,8 @@ const Projects = forwardRef(function Projects(
   props,
   ref: LegacyRef<HTMLElement>
 ) {
-  const [_, setLoading] = useState<boolean>(true);
 
-  const { data, loading } = useQuery(newFetch);
-
-  if (!loading)
-    console.log(data?.fetchProjects)
+  const { data, loading } = useQuery(FETCH_PROJECTS);
 
   const callbackFunction: IntersectionObserverCallback = (
     entries: IntersectionObserverEntry[],
@@ -61,7 +55,6 @@ const Projects = forwardRef(function Projects(
   };
 
   useEffect(() => {
-    setLoading(false);
     observer = new IntersectionObserver(callbackFunction, options);
     return () => observer.disconnect();
   }, []);
@@ -74,18 +67,18 @@ const Projects = forwardRef(function Projects(
 
       <div className="grid grid-cols-1 px-[10%] gap-8 py-4  md:grid-cols-2 lg:px-0 lg:grid-cols-3 lg:gap-10">
         {loading
-          ? Array.from({ length: ProjectData.length }).map((_, index) => (
+          ? Array.from({ length: 4 }).map((_, index) => (
             <ProjectSkeletonCard key={index} />
           ))
-          : ProjectData.map((project) => (
+          : data ? (data?.fetchProjects as ProjectCardProps[]).map((project) => (
             <ProjectCard
               ref={(element) => {
                 if (element) observer.observe(element);
               }}
-              key={project.title}
+              key={project.id}
               {...project}
             />
-          ))}
+          )) : <h1>No Data Found</h1>}
       </div>
     </section>
   );

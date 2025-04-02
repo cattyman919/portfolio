@@ -8,11 +8,12 @@ import ProjectModal from "./projectModal";
 
 const ProjectCard = forwardRef(function ProjectCard(
   {
-    image,
+    id,
     title,
-    description,
+    short_description,
     date,
     languages,
+    image,
     github_repo,
     website,
   }: ProjectCardProps,
@@ -40,9 +41,10 @@ const ProjectCard = forwardRef(function ProjectCard(
     >
       {openModal && (
         <ProjectModal
+          id={id}
           onClose={closeModal}
-          image={image}
           title={title}
+          image={image}
           date={date}
           languages={languages}
           github_repo={github_repo}
@@ -60,6 +62,8 @@ const ProjectCard = forwardRef(function ProjectCard(
         <Image
           key={title}
           src={image}
+          width={200}
+          height={200}
           className="object-cover w-full h-[200px] cursor-pointer group-hover:blur-sm"
           alt="project"
         />
@@ -85,7 +89,7 @@ const ProjectCard = forwardRef(function ProjectCard(
             </div>
           </div>
           <p className="text-justify md:text-lg lg:text-base xl:text-lg">
-            {description}
+            {short_description}
           </p>
         </div>
         <div className="flex justify-between">

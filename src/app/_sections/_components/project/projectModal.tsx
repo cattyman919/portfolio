@@ -1,17 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { forwardRef, LegacyRef } from "react";
-import { ProjectCardProps } from "../../_types/projectType";
+import { ProjectCardProps, ProjectDetailedCardProps } from "../../_types/projectType";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
 import ReactDOM from "react-dom";
 import { ImCross } from "react-icons/im";
-import { DetailedProjectData } from "../../_data/projectData";
+import { gql, useQuery } from "@apollo/client";
+
+const PROJECT = gql
+  `query  ($projectId: Int!){
+  project(id: $projectId) {
+    detailed_description
+    contributions
+    credits{
+      name
+      github
+      linkedin
+    }
+  }
+}`
 
 const ProjectModal = forwardRef(function ProjectModal(
   {
-    image,
+    id,
     title,
+    image,
     date,
     languages,
     github_repo,
@@ -20,8 +34,16 @@ const ProjectModal = forwardRef(function ProjectModal(
   }: Partial<ProjectCardProps> & { onClose: () => void },
   ref: LegacyRef<HTMLDialogElement>
 ) {
-  const { detailed_description, contribution, credits } =
-    DetailedProjectData.find((item) => item.title === title)!;
+  const { data, loading } = useQuery(PROJECT, {
+    variables: { projectId: id }
+  });
+
+  var project: ProjectDetailedCardProps | undefined = undefined;
+
+  if (!loading) {
+    project = data?.project
+  }
+
   return ReactDOM.createPortal(
     <dialog
       id={`modal-${title}`}
@@ -42,6 +64,8 @@ const ProjectModal = forwardRef(function ProjectModal(
       <div className="relative group/card w-fit">
         <Image
           src={image!}
+          width={200}
+          height={200}
           className="object-contain w-full group-hover/card:blur-sm transition-all duration-500  md:h-[200px]  rounded-lg border-2 border-primary-bg shadow-md shadow-primary-bg"
           alt="project"
         />
@@ -88,10 +112,10 @@ const ProjectModal = forwardRef(function ProjectModal(
         ))}
       </div>
 
-      <p className="text-justify text-base/9 ">{detailed_description}</p>
+      <p className="text-justify text-base/9 ">{project && project.detailed_description}</p>
       <h3 className="text-2xl text-start w-full font-bold">My Contribution</h3>
       <ul className=" list-disc list-inside  text-base/9 w-full   ">
-        {contribution.map((item, index) => (
+        {project && project.contributions.map((item, index) => (
           <li key={index} className="mt-4">
             {item}
           </li>
@@ -99,7 +123,7 @@ const ProjectModal = forwardRef(function ProjectModal(
       </ul>
       <h3 className="text-2xl text-start w-full font-bold">Credits</h3>
       <ul className=" text-base/9 w-full  ">
-        {credits.map((item, index) => (
+        {project && project.credits.map((item, index) => (
           <li key={index} className="flex gap-5  items-center ">
             <p>{item.name}</p>
             {item.github && (
@@ -110,8 +134,8 @@ const ProjectModal = forwardRef(function ProjectModal(
                 />
               </Link>
             )}
-            {item.linkedIn && (
-              <Link href={item.linkedIn} target="_blank">
+            {item.linkedin && (
+              <Link href={item.linkedin} target="_blank">
                 <FaLinkedinIn
                   size={24}
                   className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
