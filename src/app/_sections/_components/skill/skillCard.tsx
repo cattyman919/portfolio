@@ -15,8 +15,10 @@ const SkillCard = forwardRef(function SkillCard(
       className="  transition-all duration-500 hover:shadow-xl-seno hover:shadow-primary-accent	flex flex-col gap-3 bg-[#FEF9F2] text-black p-4 items-center justify-center rounded-xl hover:duration-150 hover:-translate-y-5 "
     >
       <Image
+        width={64}
+        height={64}
         src={logo}
-        className="object-contain w-[64px] h-[64px]"
+        className=""
         alt="logo"
       />
       <div className="flex gap-1 hover:duration-150 ">

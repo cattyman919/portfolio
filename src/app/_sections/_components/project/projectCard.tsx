@@ -87,7 +87,7 @@ const ProjectCard = forwardRef(function ProjectCard(
               ))}
             </div>
           </div>
-          <p className="text-justify md:text-lg lg:text-base xl:text-lg">
+          <p className="text-justify text-xl md:text-lg lg:text-base xl:text-lg">
             {short_description}
           </p>
         </div>

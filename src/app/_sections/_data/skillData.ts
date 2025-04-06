@@ -82,6 +82,16 @@ export const BackendSkills: SkillCardProps[] = [
     title: "NestJS",
     rating: 3,
   },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg",
+    title: "SQL",
+    rating: 3,
+  },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg",
+    title: "GrapQL",
+    rating: 2
+  }
 ];
 export const IoTSkills: SkillCardProps[] = [
   {
@@ -114,6 +124,11 @@ export const MiscSkills: SkillCardProps[] = [
   {
     logo: pythonLogo,
     title: "Python",
+    rating: 3,
+  },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+    title: "Docker",
     rating: 3,
   },
   {

@@ -33,7 +33,7 @@ const ExperienceCard = forwardRef(function ExperienceCard(
             />
           </Link>
           <div className="flex flex-col gap-3">
-            <h3 className=" text-sm md:text-xl lg:text-2xl font-bold">
+            <h3 className=" text-xl md:text-xl lg:text-2xl font-bold">
               {props.position} @ {props.company}
             </h3>
             <p className="text-sm font-bold md:text-lg">
