@@ -63,7 +63,7 @@ export const UIUXSkills: SkillCardProps[] = [
   {
     logo: figmaLogo,
     title: "Figma",
-    rating: 3,
+    rating: 2,
   },
 ];
 export const BackendSkills: SkillCardProps[] = [
