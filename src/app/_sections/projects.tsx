@@ -35,7 +35,7 @@ const Projects = forwardRef(function Projects(
   ref: LegacyRef<HTMLElement>
 ) {
 
-  const { data, loading } = useQuery(FETCH_PROJECTS);
+  const { data, error, loading } = useQuery(FETCH_PROJECTS);
 
   const callbackFunction: IntersectionObserverCallback = (
     entries: IntersectionObserverEntry[],
@@ -64,7 +64,7 @@ const Projects = forwardRef(function Projects(
       <h1 className=" w-full mb-12 text-6xl pt-4 text-center lg:text-7xl  text-primary-accent font-bold animate-bounce">
         Projects
       </h1>
-
+      {error && <h1>Error : {error.message}</h1>}
       <div className="grid grid-cols-1 px-[10%] gap-8 py-4  md:grid-cols-2 lg:px-0 lg:grid-cols-3 lg:gap-10">
         {loading
           ? Array.from({ length: 4 }).map((_, index) => (
