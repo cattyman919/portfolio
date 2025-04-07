@@ -4,10 +4,10 @@ import ProjectSkeletonCard from "./_components/project/projectSkeletonCard";
 import { useQuery, gql } from "@apollo/client";
 import { ProjectCardProps } from "./_types/projectType";
 
-const PROJECT_COUNT = gql
-  `query project_count {
-  projectCount
-}`
+//const PROJECT_COUNT = gql
+//  `query project_count {
+//  projectCount
+//}`
 
 const FETCH_PROJECTS = gql
   `query fetch_projects {
