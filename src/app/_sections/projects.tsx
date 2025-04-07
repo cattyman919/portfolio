@@ -1,4 +1,4 @@
-import { forwardRef, LegacyRef, useEffect, useState } from "react";
+import { forwardRef, LegacyRef, useEffect } from "react";
 import ProjectCard from "./_components/project/projectCard";
 import ProjectSkeletonCard from "./_components/project/projectSkeletonCard";
 import { useQuery, gql } from "@apollo/client";

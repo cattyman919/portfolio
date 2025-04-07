@@ -47,7 +47,7 @@ const MemoizedSenoImage = () => {
     return () => {
       clearInterval(intervalImages);
     };
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="relative  hover:scale-110 transition-transform  rounded-b-full overflow-hidden shrink-0 w-[300px]   lg:w-[480px] xl:w-[600px] aspect-[1/1] ">

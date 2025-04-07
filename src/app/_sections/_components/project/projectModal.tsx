@@ -38,7 +38,7 @@ const ProjectModal = forwardRef(function ProjectModal(
     variables: { projectId: id }
   });
 
-  var project: ProjectDetailedCardProps | undefined = undefined;
+  let project: ProjectDetailedCardProps | undefined = undefined;
 
   if (!loading) {
     project = data?.project
