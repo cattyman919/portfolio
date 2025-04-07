@@ -4,6 +4,11 @@ import ProjectSkeletonCard from "./_components/project/projectSkeletonCard";
 import { useQuery, gql } from "@apollo/client";
 import { ProjectCardProps } from "./_types/projectType";
 
+const PROJECT_COUNT = gql
+  `query project_count {
+  projectCount
+}`
+
 const FETCH_PROJECTS = gql
   `query fetch_projects {
   fetchProjects {
@@ -17,7 +22,6 @@ const FETCH_PROJECTS = gql
     date
   }
 }`
-
 
 const options = {
   root: null,
@@ -67,7 +71,7 @@ const Projects = forwardRef(function Projects(
       {error && <h1>Error : {error.message}</h1>}
       <div className="grid grid-cols-1 px-[10%] gap-8 py-4  md:grid-cols-2 lg:px-0 lg:grid-cols-3 lg:gap-10">
         {loading
-          ? Array.from({ length: 4 }).map((_, index) => (
+          ? Array.from({ length: 6 }).map((_, index) => (
             <ProjectSkeletonCard key={index} />
           ))
           : data ? (data?.fetchProjects as ProjectCardProps[]).map((project) => (

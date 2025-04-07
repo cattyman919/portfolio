@@ -61,14 +61,15 @@ const ProjectModal = forwardRef(function ProjectModal(
         <h3 className="text-4xl w-full text-center font-bold">{title}</h3>
         <p className="font-bold text-lg text-center  w-full">{date}</p>
       </div>
-      <div className="relative group/card w-fit">
-        <Image
-          src={image!}
-          width={200}
-          height={200}
-          className="object-contain w-full group-hover/card:blur-sm transition-all duration-500  md:h-[200px]  rounded-lg border-2 border-primary-bg shadow-md shadow-primary-bg"
-          alt="project"
-        />
+      <div className="relative group/card w-[80%] lg:w-[60%]">
+        <div className="relative w-full h-[300px]">
+          <Image
+            src={image!}
+            fill
+            className="object-cover group-hover/card:blur-sm transition-all duration-500  rounded-lg border-2 border-primary-bg shadow-md shadow-primary-bg"
+            alt="project"
+          />
+        </div>
         <div className="w-full h-full absolute top-[50%] left-[50%] -translate-x-1/2 transition-opacity duration-500 -translate-y-1/2 flex items-center gap-5 justify-center opacity-0 group-hover/card:opacity-100">
           <Link
             href={github_repo ? github_repo : "#"}
@@ -106,45 +107,48 @@ const ProjectModal = forwardRef(function ProjectModal(
             key={index}
             src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item}/${item}-original.svg`}
             alt="logo"
-            width={32}
-            height={32}
+            width={48}
+            height={48}
           />
         ))}
       </div>
 
+      <h3 className="text-2xl text-start w-full font-bold">Project Description</h3>
       <p className="text-justify text-base/9 ">{project && project.detailed_description}</p>
-      <h3 className="text-2xl text-start w-full font-bold">My Contribution</h3>
+      <h3 className="text-2xl text-start w-full font-bold">{project?.credits.length == 0 ? "Features" : "Contribution"}</h3>
       <ul className=" list-disc list-inside  text-base/9 w-full   ">
         {project && project.contributions.map((item, index) => (
-          <li key={index} className="mt-4">
+          <li key={index} className="mt-4 first:mt-0">
             {item}
           </li>
         ))}
       </ul>
-      <h3 className="text-2xl text-start w-full font-bold">Credits</h3>
-      <ul className=" text-base/9 w-full  ">
-        {project && project.credits.map((item, index) => (
-          <li key={index} className="flex gap-5  items-center ">
-            <p>{item.name}</p>
-            {item.github && (
-              <Link href={item.github} target="_blank">
-                <FaGithub
-                  size={24}
-                  className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
-                />
-              </Link>
-            )}
-            {item.linkedin && (
-              <Link href={item.linkedin} target="_blank">
-                <FaLinkedinIn
-                  size={24}
-                  className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
-                />
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
+      {project?.credits.length != 0 && <>
+        <h3 className="text-2xl text-start w-full font-bold">Credits</h3>
+        <ul className=" text-base/9 w-full  ">
+          {project && project.credits.map((item, index) => (
+            <li key={index} className="flex gap-5  items-center ">
+              <p>{item.name}</p>
+              {item.github && (
+                <Link href={item.github} target="_blank">
+                  <FaGithub
+                    size={24}
+                    className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
+                  />
+                </Link>
+              )}
+              {item.linkedin && (
+                <Link href={item.linkedin} target="_blank">
+                  <FaLinkedinIn
+                    size={24}
+                    className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
+                  />
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
+      </>}
     </dialog>,
     document.getElementById("modal")!
   );

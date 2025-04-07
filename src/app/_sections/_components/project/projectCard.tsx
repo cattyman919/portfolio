@@ -70,7 +70,7 @@ const ProjectCard = forwardRef(function ProjectCard(
           Click for more info
         </p>
       </div>
-      <div className="flex flex-col justify-between px-4 pb-4 h-[300px]">
+      <div className="flex flex-col gap-4 justify-between px-4 pb-4 min-h-[300px]">
         <div className="flex flex-col gap-4">
           <div className="flex gap-4 items-center">
             <h3 className="text-2xl font-bold">{title}</h3>
@@ -80,9 +80,8 @@ const ProjectCard = forwardRef(function ProjectCard(
                   key={index}
                   src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item}/${item}-original.svg`}
                   alt="logo"
-                  className="w-[24px] h-[24px]"
-                  width={24}
-                  height={24}
+                  width={32}
+                  height={32}
                 />
               ))}
             </div>
