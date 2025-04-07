@@ -58,6 +58,11 @@ export const WebsiteSkills: SkillCardProps[] = [
     title: "Javascript",
     rating: 4,
   },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+    title: "Typescript",
+    rating: 3,
+  },
 ];
 export const UIUXSkills: SkillCardProps[] = [
   {
