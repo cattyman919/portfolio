@@ -18,12 +18,19 @@ const FETCH_PROJECTS = gql
 }`
 // Pre-fetch data on server if possible
 async function getInitialProjects() {
-  // Server-side data fetching if possible
-  // You could use Apollo's SSR features here or direct fetch
   try {
+    const cached_data = client.readQuery({
+      query: FETCH_PROJECTS
+    })
+
+    if (cached_data !== null) {
+      return cached_data
+    }
+
     const { data } = await client.query({
       query: FETCH_PROJECTS
     })
+
     return data;
   } catch (error) {
     console.error('Failed to fetch projects:', error);
