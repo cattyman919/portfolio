@@ -83,18 +83,16 @@ const Navbar = forwardRef<NavigationRef, ScriptProps>(function Navbar(
   return (
     <nav className=" fixed lg:left-0 z-20  top-0  group/card w-full lg:h-svh  lg:w-[64px] lg:hover:w-[220px]   transition-all duration-300  py-1 px-4 lg:border-r bg-primary-bg border-white border-b  flex items-center justify-between lg:justify-start ">
       <Image
-        priority
         src={senoLogoImage}
         alt="Logo"
         className=" static w-[40px]  lg:w-[80%]   lg:absolute lg:top-3 lg:left-1/2 lg:-translate-x-1/2 lg:group-hover/card:-translate-x-[52%]"
       />
 
       <div
-        className={` ${
-          isOpen
+        className={` ${isOpen
             ? "opacity-100 h-[240px] md:h-[260px] visible"
             : "invisible opacity-0 h-0"
-        } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-6 lg:bg-transparent lg:static   `}
+          } flex absolute flex-col  top-[100%] left-0 lg:h-fit  pt-2 gap-5 transition-all duration-500 lg:opacity-100  bg-primary-bg border-b border-white w-full pl-4 pb-4 lg:pl-0 lg:pb-0 lg:border-b-0 lg:gap-6 lg:bg-transparent lg:static   `}
       >
         <NavElements ref={navElementsRef} />
       </div>

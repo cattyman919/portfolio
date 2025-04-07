@@ -59,9 +59,9 @@ const MemoizedSenoImage = () => {
             imageRefs.current.push(element!);
           }}
           src={image}
-          loading="eager"
-          width={500}
-          alt="Seno Pamungkas"
+          alt="Seno"
+          sizes="(max-width: 768px) 100vw, 480px"
+          priority
         />
       ))}
       <div className="absolute  w-[90%]  bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87]   rounded-full" />
