@@ -58,12 +58,17 @@ export const WebsiteSkills: SkillCardProps[] = [
     title: "Javascript",
     rating: 4,
   },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+    title: "Typescript",
+    rating: 3,
+  },
 ];
 export const UIUXSkills: SkillCardProps[] = [
   {
     logo: figmaLogo,
     title: "Figma",
-    rating: 3,
+    rating: 2,
   },
 ];
 export const BackendSkills: SkillCardProps[] = [
@@ -82,6 +87,16 @@ export const BackendSkills: SkillCardProps[] = [
     title: "NestJS",
     rating: 3,
   },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg",
+    title: "SQL",
+    rating: 3,
+  },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg",
+    title: "GrapQL",
+    rating: 2
+  }
 ];
 export const IoTSkills: SkillCardProps[] = [
   {
@@ -114,6 +129,11 @@ export const MiscSkills: SkillCardProps[] = [
   {
     logo: pythonLogo,
     title: "Python",
+    rating: 3,
+  },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+    title: "Docker",
     rating: 3,
   },
   {

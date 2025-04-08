@@ -1,24 +1,23 @@
-import { StaticImageData } from "next/image";
 
 export interface ProjectCardProps {
-  image: StaticImageData;
+  id: number
   title: string;
-  description: string;
+  short_description: string;
+  image: string;
   date: string;
   languages?: string[];
   github_repo?: string;
   website?: string;
 }
 
+export interface ProjectDetailedCardProps {
+  detailed_description: string;
+  contributions: string[];
+  credits: CreditPersonProps[];
+}
+
 export interface CreditPersonProps {
   name: string;
   github?: string;
-  linkedIn?: string;
-}
-
-export interface ProjectModalProps {
-  title: string;
-  detailed_description: string;
-  contribution: string[];
-  credits: CreditPersonProps[];
+  linkedin?: string;
 }

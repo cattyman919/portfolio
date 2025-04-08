@@ -70,18 +70,6 @@ export default function SkillLine({ icon, title, data }: SkillLineProps) {
                 }}
               />
             ))}
-
-        {/* {data!.map((item, index) => (
-          <SkillCard
-            key={index}
-            logo={item.logo}
-            title={item.title}
-            rating={item.rating}
-            ref={(element) => {
-              if (element) containerRef.current.push(element);
-            }}
-          />
-        ))} */}
       </div>
     </div>
   );

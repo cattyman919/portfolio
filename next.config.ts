@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/gh/devicons/devicon@latest/icons/**",
       },
+      {
+        protocol: "https",
+        hostname: process.env.STORAGE_HOSTNAME!,
+        pathname: "/portfolio/**",
+      }
     ],
   },
   experimental: {

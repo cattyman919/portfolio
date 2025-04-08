@@ -1,17 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
 import { forwardRef, LegacyRef } from "react";
-import { ProjectCardProps } from "../../_types/projectType";
+import { ProjectCardProps, ProjectDetailedCardProps } from "../../_types/projectType";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
 import ReactDOM from "react-dom";
 import { ImCross } from "react-icons/im";
-import { DetailedProjectData } from "../../_data/projectData";
+import { gql, useQuery } from "@apollo/client";
+
+const PROJECT = gql
+  `query  ($projectId: Int!){
+  project(id: $projectId) {
+    detailed_description
+    contributions
+    credits{
+      name
+      github
+      linkedin
+    }
+  }
+}`
+
+const ModalSkeleton = <div className="w-full animate-pulse flex flex-col gap-4">
+  {Array.from({ length: 3 }).map((_, index) => (
+    <div key={index} className="h-3 bg-gray-200 rounded-full dark:bg-gray-700" />
+  ))
+  }
+</div>;
 
 const ProjectModal = forwardRef(function ProjectModal(
   {
-    image,
+    id,
     title,
+    image,
     date,
     languages,
     github_repo,
@@ -20,8 +41,16 @@ const ProjectModal = forwardRef(function ProjectModal(
   }: Partial<ProjectCardProps> & { onClose: () => void },
   ref: LegacyRef<HTMLDialogElement>
 ) {
-  const { detailed_description, contribution, credits } =
-    DetailedProjectData.find((item) => item.title === title)!;
+  const { data, loading } = useQuery(PROJECT, {
+    variables: { projectId: id }
+  });
+
+  let project: ProjectDetailedCardProps | undefined = undefined;
+
+  if (!loading) {
+    project = data?.project
+  }
+
   return ReactDOM.createPortal(
     <dialog
       id={`modal-${title}`}
@@ -39,12 +68,15 @@ const ProjectModal = forwardRef(function ProjectModal(
         <h3 className="text-4xl w-full text-center font-bold">{title}</h3>
         <p className="font-bold text-lg text-center  w-full">{date}</p>
       </div>
-      <div className="relative group/card w-fit">
-        <Image
-          src={image!}
-          className="object-contain w-full group-hover/card:blur-sm transition-all duration-500  md:h-[200px]  rounded-lg border-2 border-primary-bg shadow-md shadow-primary-bg"
-          alt="project"
-        />
+      <div className="relative group/card w-[80%] lg:w-[60%]">
+        <div className="relative w-full h-[300px]">
+          <Image
+            src={image!}
+            fill
+            className="object-cover group-hover/card:blur-sm transition-all duration-500  rounded-lg border-2 border-primary-bg shadow-md shadow-primary-bg"
+            alt="project"
+          />
+        </div>
         <div className="w-full h-full absolute top-[50%] left-[50%] -translate-x-1/2 transition-opacity duration-500 -translate-y-1/2 flex items-center gap-5 justify-center opacity-0 group-hover/card:opacity-100">
           <Link
             href={github_repo ? github_repo : "#"}
@@ -82,45 +114,50 @@ const ProjectModal = forwardRef(function ProjectModal(
             key={index}
             src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item}/${item}-original.svg`}
             alt="logo"
-            width={32}
-            height={32}
+            width={48}
+            height={48}
           />
         ))}
       </div>
 
-      <p className="text-justify text-base/9 ">{detailed_description}</p>
-      <h3 className="text-2xl text-start w-full font-bold">My Contribution</h3>
+      <h3 className="text-2xl text-start w-full font-bold">Project Description</h3>
+      {
+        project ? <p className="text-justify text-base/9 ">{project.detailed_description}</p> : ModalSkeleton
+      }
+      <h3 className="text-2xl text-start w-full font-bold">{project?.credits.length == 0 ? "Features" : "Contribution"}</h3>
       <ul className=" list-disc list-inside  text-base/9 w-full   ">
-        {contribution.map((item, index) => (
-          <li key={index} className="mt-4">
+        {project ? project.contributions.map((item, index) => (
+          <li key={index} className="mt-4 first:mt-0">
             {item}
           </li>
-        ))}
+        )) : ModalSkeleton}
       </ul>
-      <h3 className="text-2xl text-start w-full font-bold">Credits</h3>
-      <ul className=" text-base/9 w-full  ">
-        {credits.map((item, index) => (
-          <li key={index} className="flex gap-5  items-center ">
-            <p>{item.name}</p>
-            {item.github && (
-              <Link href={item.github} target="_blank">
-                <FaGithub
-                  size={24}
-                  className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
-                />
-              </Link>
-            )}
-            {item.linkedIn && (
-              <Link href={item.linkedIn} target="_blank">
-                <FaLinkedinIn
-                  size={24}
-                  className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
-                />
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
+      {project ? (project?.credits.length != 0 && <>
+        <h3 className="text-2xl text-start w-full font-bold">Credits</h3>
+        <ul className=" text-base/9 w-full  ">
+          {project && project.credits.map((item, index) => (
+            <li key={index} className="flex gap-5  items-center ">
+              <p>{item.name}</p>
+              {item.github && (
+                <Link href={item.github} target="_blank">
+                  <FaGithub
+                    size={24}
+                    className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
+                  />
+                </Link>
+              )}
+              {item.linkedin && (
+                <Link href={item.linkedin} target="_blank">
+                  <FaLinkedinIn
+                    size={24}
+                    className={` cursor-pointer hover:fill-primary-accent hover:scale-110 transition-all  `}
+                  />
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
+      </>) : ModalSkeleton}
     </dialog>,
     document.getElementById("modal")!
   );

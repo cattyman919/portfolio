@@ -1,7 +1,7 @@
 
 
 # Seno Pamungkas Rahman - Portfolio Website  
-**Domain:** [seno-dev.com](https://seno-dev.com)
+**Domain:** [seno-dev.com](https://senop.dev)
 
 Welcome to the repository for my personal portfolio website! This project showcases my skills, experiences, and projects as a developer, providing a window into my professional journey.
 
