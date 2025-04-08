@@ -17,7 +17,8 @@
       "@/*": ["./src/*"],
       "@/images/*": ["./public/images"],
       "@/public/*": ["./public/*"],
-      "@/lib/*": ["./lib/*"]
+      "@/lib/*": ["./lib/*"],
+      "@/types/*": ["./src/app/_sections/_types/*"]
     },
     "plugins": [
       {
