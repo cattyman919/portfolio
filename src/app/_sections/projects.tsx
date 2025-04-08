@@ -43,7 +43,7 @@ const Projects = forwardRef(function Projects(
 
   // Only fetch if we don't have initialData
   const { data, error, loading } = useQuery(FETCH_PROJECTS, {
-    skip: !initialData,
+    skip: !!initialData,
   });
 
   // Use initialData if available, otherwise use data from query

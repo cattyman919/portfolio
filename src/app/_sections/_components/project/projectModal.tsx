@@ -21,6 +21,13 @@ const PROJECT = gql
   }
 }`
 
+const ModalSkeleton = <div className="w-full animate-pulse flex flex-col gap-4">
+  {Array.from({ length: 3 }).map((_, index) => (
+    <div key={index} className="h-3 bg-gray-200 rounded-full dark:bg-gray-700" />
+  ))
+  }
+</div>;
+
 const ProjectModal = forwardRef(function ProjectModal(
   {
     id,
@@ -114,16 +121,18 @@ const ProjectModal = forwardRef(function ProjectModal(
       </div>
 
       <h3 className="text-2xl text-start w-full font-bold">Project Description</h3>
-      <p className="text-justify text-base/9 ">{project && project.detailed_description}</p>
+      {
+        project ? <p className="text-justify text-base/9 ">{project.detailed_description}</p> : ModalSkeleton
+      }
       <h3 className="text-2xl text-start w-full font-bold">{project?.credits.length == 0 ? "Features" : "Contribution"}</h3>
       <ul className=" list-disc list-inside  text-base/9 w-full   ">
-        {project && project.contributions.map((item, index) => (
+        {project ? project.contributions.map((item, index) => (
           <li key={index} className="mt-4 first:mt-0">
             {item}
           </li>
-        ))}
+        )) : ModalSkeleton}
       </ul>
-      {project?.credits.length != 0 && <>
+      {project ? (project?.credits.length != 0 && <>
         <h3 className="text-2xl text-start w-full font-bold">Credits</h3>
         <ul className=" text-base/9 w-full  ">
           {project && project.credits.map((item, index) => (
@@ -148,7 +157,7 @@ const ProjectModal = forwardRef(function ProjectModal(
             </li>
           ))}
         </ul>
-      </>}
+      </>) : ModalSkeleton}
     </dialog>,
     document.getElementById("modal")!
   );
