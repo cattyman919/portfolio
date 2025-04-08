@@ -14,6 +14,17 @@ export interface ProjectDetailedCardProps {
   detailed_description: string;
   contributions: string[];
   credits: CreditPersonProps[];
+  gallery: string[];
+}
+
+export interface GalleryItemProps {
+  imageUrl: string;
+  caption?: string;
+}
+
+export interface ImageGalleryProps {
+  gallery: GalleryItemProps[];
+  projectName: string; // For alt text
 }
 
 export interface CreditPersonProps {
