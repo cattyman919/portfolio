@@ -52,7 +52,7 @@ const ProjectCard = forwardRef(function ProjectCard(
       )}
       <div
         ref={ref}
-        className="shine-card border-2 shadow-lg shadow-primary-accent border-primary-accent transition-all duration-1000  flex flex-col gap-3   bg-secondary-bg text-black overflow-hidden  rounded-xl hover:duration-150 hover:-translate-y-6 hover:border-secondary-accent hover:shadow-primary-accent/60"
+        className="shine-card border-2 shadow-lg  shadow-primary-accent border-primary-accent transition-all duration-1000  flex flex-col gap-3 bg-secondary-bg text-black overflow-hidden  rounded-xl hover:duration-150 hover:-translate-y-6 hover:border-secondary-accent hover:shadow-primary-accent/60"
       >
         <div
           className="relative w-full h-[200px] group cursor-pointer overflow-hidden"
@@ -75,7 +75,7 @@ const ProjectCard = forwardRef(function ProjectCard(
             </p>
           </div>
         </div>
-        <div className="flex flex-col gap-6 p-5 flex-grow">
+        <div className="flex flex-col gap-6 p-5 flex-grow min-h-[300px]">
           <div className="flex flex-col gap-4">
             <div className="flex gap-4 items-center">
               <h3 className="text-2xl font-bold">{title}</h3>

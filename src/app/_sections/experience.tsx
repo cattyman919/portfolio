@@ -12,7 +12,7 @@ const options = {
 let observer: IntersectionObserver;
 
 const fadeRightAnimation: string[] = "translate-x-0 opacity-100".split(" ");
-const BeforefadeRightAnimation: string[] = "translate-x-20 opacity-0".split(
+const BeforefadeRightAnimation: string[] = "-translate-x-20 opacity-0".split(
   " "
 );
 

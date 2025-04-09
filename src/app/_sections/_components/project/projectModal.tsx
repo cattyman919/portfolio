@@ -84,12 +84,28 @@ const ProjectModal = forwardRef(function ProjectModal(
 
       {/* Modal Content - Scrollable */}
       <div className="flex-grow overflow-y-auto p-6 lg:p-8">
-        {/* Layout: Example 2-column on large screens */}
         <div className="grid grid-cols-1 gap-6 lg:gap-8">
-          {/* Left Column: Gallery */}
           <div className="flex flex-col gap-4">
+            {/* Tech Stack Icons (can also be here or in right column) */}
+
             <ImageGallery gallery={project_gallery!} projectName={title!} />
             {/* Tech Stack Icons (can also be here or in right column) */}
+            <div className="flex flex-col gap-2">
+              <p className="font-semibold text-gray-600 text-xl mb-2">{date}</p>
+              {/* External Links */}
+              <div className="flex gap-4 mb-4">
+                {github_repo && (
+                  <Link href={github_repo} target="_blank" rel="noopener noreferrer" className="text-primary-bg hover:text-primary-accent transition-colors flex items-center gap-1.5 text-md font-medium">
+                    <FaGithub size={24} /> GitHub Repo
+                  </Link>
+                )}
+                {website && (
+                  <Link href={website} target="_blank" rel="noopener noreferrer" className="text-primary-bg hover:text-primary-accent transition-colors flex items-center gap-1.5 text-sm font-medium">
+                    <TbWorldCode size={24} /> Live Site
+                  </Link>
+                )}
+              </div>
+            </div>
             <div className="mt-4">
               <h4 className="text-lg font-semibold mb-2 text-primary-bg">Technologies Used:</h4>
               <div className="flex flex-wrap gap-2">
@@ -110,27 +126,11 @@ const ProjectModal = forwardRef(function ProjectModal(
 
           {/* Right Column: Details */}
           <div className="flex flex-col gap-5">
-            <div>
-              <p className="font-semibold text-gray-600 mb-2">Date: {date}</p>
-              {/* External Links */}
-              <div className="flex gap-4 mb-4">
-                {github_repo && (
-                  <Link href={github_repo} target="_blank" rel="noopener noreferrer" className="text-primary-bg hover:text-primary-accent transition-colors flex items-center gap-1.5 text-md font-medium">
-                    <FaGithub size={24} /> GitHub Repo
-                  </Link>
-                )}
-                {website && (
-                  <Link href={website} target="_blank" rel="noopener noreferrer" className="text-primary-bg hover:text-primary-accent transition-colors flex items-center gap-1.5 text-sm font-medium">
-                    <TbWorldCode size={24} /> Live Site
-                  </Link>
-                )}
-              </div>
-            </div>
+
 
             <div>
               <h4 className="text-xl font-semibold mb-2 text-primary-bg">Description</h4>
               {project ? <p className="text-base/9 text-gray-700 text-justify">{project?.detailed_description}</p> : ModalSkeleton}
-
             </div>
 
             <div>
