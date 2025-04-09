@@ -7,7 +7,7 @@ import { TbWorldCode } from "react-icons/tb";
 import ReactDOM from "react-dom";
 import { ImCross } from "react-icons/im";
 import { gql, useQuery } from "@apollo/client";
-import ImageGallery from "./imageGallery";
+import Gallery from "./gallery";
 
 const PROJECT = gql
   `query  ($projectId: Int!){
@@ -49,7 +49,7 @@ const ProjectModal = forwardRef(function ProjectModal(
 
   const project_gallery: GalleryItemProps[] = [
     {
-      imageUrl: image!,
+      sourceUrl: image!,
     }
   ]
 
@@ -57,7 +57,7 @@ const ProjectModal = forwardRef(function ProjectModal(
 
   if (!loading) {
     project = data?.project
-    project?.gallery.map((img) => project_gallery.push({ imageUrl: img }))
+    project?.gallery.map((img) => project_gallery.push({ sourceUrl: img }))
   }
 
   return ReactDOM.createPortal(
@@ -86,9 +86,9 @@ const ProjectModal = forwardRef(function ProjectModal(
       <div className="flex-grow overflow-y-auto p-6 lg:p-8">
         <div className="grid grid-cols-1 gap-6 lg:gap-8">
           <div className="flex flex-col gap-4">
-            {/* Tech Stack Icons (can also be here or in right column) */}
 
-            <ImageGallery gallery={project_gallery!} projectName={title!} />
+            <Gallery gallery={project_gallery!} projectName={title!} />
+
             {/* Tech Stack Icons (can also be here or in right column) */}
             <div className="flex flex-col gap-2">
               <p className="font-semibold text-gray-600 text-xl mb-2">{date}</p>
@@ -126,8 +126,6 @@ const ProjectModal = forwardRef(function ProjectModal(
 
           {/* Right Column: Details */}
           <div className="flex flex-col gap-5">
-
-
             <div>
               <h4 className="text-xl font-semibold mb-2 text-primary-bg">Description</h4>
               {project ? <p className="text-base/9 text-gray-700 text-justify">{project?.detailed_description}</p> : ModalSkeleton}

@@ -18,11 +18,11 @@ export interface ProjectDetailedCardProps {
 }
 
 export interface GalleryItemProps {
-  imageUrl: string;
+  sourceUrl: string;
   caption?: string;
 }
 
-export interface ImageGalleryProps {
+export interface GalleryProps {
   gallery: GalleryItemProps[];
   projectName: string; // For alt text
 }
