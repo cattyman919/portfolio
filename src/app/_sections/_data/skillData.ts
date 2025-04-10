@@ -117,9 +117,9 @@ export const IoTSkills: SkillCardProps[] = [
 ];
 export const MiscSkills: SkillCardProps[] = [
   {
-    logo: computerNetworksLogo,
-    title: "Networks",
-    rating: 4,
+    logo: pythonLogo,
+    title: "Python",
+    rating: 3,
   },
   {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
@@ -127,18 +127,23 @@ export const MiscSkills: SkillCardProps[] = [
     rating: 3,
   },
   {
-    logo: awsLogo,
-    title: "AWS",
-    rating: 3,
-  },
-  {
-    logo: pythonLogo,
-    title: "Python",
-    rating: 3,
-  },
-  {
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
     title: "Docker",
+    rating: 3,
+  },
+  {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
+    title: "Linux",
+    rating: 4,
+  },
+  {
+    logo: computerNetworksLogo,
+    title: "Networks",
+    rating: 4,
+  },
+  {
+    logo: awsLogo,
+    title: "AWS",
     rating: 3,
   },
   {
