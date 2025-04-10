@@ -122,6 +122,11 @@ export const MiscSkills: SkillCardProps[] = [
     rating: 4,
   },
   {
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+    title: "Java",
+    rating: 3,
+  },
+  {
     logo: awsLogo,
     title: "AWS",
     rating: 3,
