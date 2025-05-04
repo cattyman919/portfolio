@@ -102,11 +102,11 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
           tech frontiers, I blend creativity with technical skill in every
           project, pushing the boundaries of software innovation
         </p>
-        <div className="flex flex-col gap-4 lg:flex-row items-center lg:gap-10 h-full text-2xl">
-          <p className="text-primary-accent font-bold animate-fade-right">
+        <div className="flex flex-col gap-6  items-center pl-2 lg:gap-10 h-full text-2xl">
+          <p className="text-primary-accent text-3xl font-bold animate-fade-right">
             Check out my Resume & Blog
           </p>
-          <div className="grid grid-cols-3 rotate-90 lg:rotate-0 w-[30px]  ">
+          <div className="grid grid-cols-3 rotate-90  w-[30px]">
             <IoIosArrowForward
               size={32}
               className="animate-arrow animate-delay-[2s]"
@@ -125,6 +125,14 @@ const Home = forwardRef(function Home(props, ref: LegacyRef<HTMLElement>) {
             >
               <SiReaddotcv size={32} />
               <p>Resume</p>
+            </Link>
+            <Link
+              href={process.env.NEXT_PUBLIC_CV_BW_LINK!}
+              target="_blank"
+              className=" min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all "
+            >
+              <SiReaddotcv size={32} />
+              <p>B&W Resume</p>
             </Link>
             <Link
               href="https://blog.senop.dev"
