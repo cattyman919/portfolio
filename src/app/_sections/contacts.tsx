@@ -10,7 +10,7 @@ import { FaInstagram } from "react-icons/fa";
 
 const Contact = forwardRef(function Contact(
   props,
-  ref: LegacyRef<HTMLElement>
+  ref: LegacyRef<HTMLElement>,
 ) {
   const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -50,10 +50,7 @@ const Contact = forwardRef(function Contact(
               <Link href="https://www.instagram.com/senohebat/" target="_blank">
                 <FaInstagram className="w-[48px] h-[48px] hover:scale-110 transition-transform" />
               </Link>
-              <Link
-                href="mailto:senopamungkasraehman@gmail.com"
-                target="_blank"
-              >
+              <Link href="mailto:senop.rahman@gmail.com" target="_blank">
                 <IoMdMail className="w-[48px] h-[48px] hover:scale-110 transition-transform" />
               </Link>
             </div>
