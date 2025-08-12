@@ -1,31 +1,38 @@
 {
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "verbatimModuleSyntax": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@/images/*": ["./public/images"],
-      "@/public/*": ["./public/*"],
-      "@/lib/*": ["./lib/*"],
-      "@/types/*": ["./src/app/_sections/_types/*"]
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@types/*": [
+        "src/types/*"
+      ],
+      "@sections/*": [
+        "src/sections/*"
+      ],
+      "@data/*": [
+        "src/data/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
 }
