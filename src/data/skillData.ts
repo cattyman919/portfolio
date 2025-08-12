@@ -19,142 +19,182 @@ import dataScienceLogo from "@assets/skills/reshot-icon-data-storage-94X8DWLHMC.
 import electronicsLogo from "@assets/skills/reshot-icon-voltmeter-GXLPQBKY5T.svg";
 
 import type { SkillCardProp } from "../types/skill";
+import mobileIcon from "@assets/skills/icons8-flutter.svg";
+import websiteIcon from "@assets/skills/icons8-react.svg";
+import uiuxIcon from "@assets/skills/icons8-figma.svg";
+import backendIcon from "@assets/skills/icons8-nodejs.svg";
+import iotIcon from "@assets/skills/1666364456Esp32_devkitc_v4 rotated-cropped (1).svg";
+import miscIcon from "@assets/skills/reshot-icon-computer-network-HUALQ4PR8J.svg";
 
-export const MobileSkills: SkillCardProp[] = [
-  {
-    logo: flutterLogo,
-    title: "Flutter",
-    rating: 3,
-  },
-  {
-    logo: androidStudiLogo,
-    title: "Android Studio",
-    rating: 2,
-  },
-];
-export const WebsiteSkills: SkillCardProp[] = [
-  {
-    logo: reactLogo,
-    title: "React",
-    rating: 3,
-  },
-  {
-    logo: nextJsLogo,
-    title: "NextJS",
-    rating: 3,
-  },
+export type SkillCategory = {
+  title: string;
+  icon: ImageMetadata;
+  data: SkillCardProp[];
+};
 
+
+export const SkillData: SkillCategory[] = [
   {
-    logo: htmlLogo,
-    title: "HTML",
-    rating: 4,
+    title: "Mobile",
+    icon: mobileIcon,
+    data: [
+      {
+        logo: flutterLogo,
+        title: "Flutter",
+        rating: 3,
+      },
+      {
+        logo: androidStudiLogo,
+        title: "Android Studio",
+        rating: 2,
+      },
+    ],
   },
   {
-    logo: cssLogo,
-    title: "CSS",
-    rating: 4,
+    title: "Website",
+    icon: websiteIcon,
+    data: [
+      {
+        logo: reactLogo,
+        title: "React",
+        rating: 3,
+      },
+      {
+        logo: nextJsLogo,
+        title: "NextJS",
+        rating: 3,
+      },
+
+      {
+        logo: htmlLogo,
+        title: "HTML",
+        rating: 4,
+      },
+      {
+        logo: cssLogo,
+        title: "CSS",
+        rating: 4,
+      },
+      {
+        logo: javascriptLogo,
+        title: "Javascript",
+        rating: 4,
+      },
+      {
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+        title: "Typescript",
+        rating: 3,
+      },
+    ],
   },
   {
-    logo: javascriptLogo,
-    title: "Javascript",
-    rating: 4,
+    title: "UI/UX",
+    icon: uiuxIcon,
+    data: [
+      {
+        logo: figmaLogo,
+        title: "Figma",
+        rating: 2,
+      },
+    ],
   },
   {
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-    title: "Typescript",
-    rating: 3,
+    title: "Backend",
+    icon: backendIcon,
+    data: [
+      {
+        logo: nodeJsLogo,
+        title: "NodeJS",
+        rating: 3,
+      },
+      {
+        logo: expressLogo,
+        title: "ExpressJS",
+        rating: 3,
+      },
+      {
+        logo: nestJsLogo,
+        title: "NestJS",
+        rating: 3,
+      },
+      {
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg",
+        title: "SQL",
+        rating: 3,
+      },
+      {
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg",
+        title: "GrapQL",
+        rating: 2,
+      },
+    ],
+  },
+  {
+    title: "IoT",
+    icon: iotIcon,
+    data: [
+      {
+        logo: cLogo,
+        title: "C / C++",
+        rating: 4,
+      },
+      {
+        logo: esp32Logo,
+        title: "ESP32",
+        rating: 4,
+      },
+      {
+        logo: electronicsLogo,
+        title: "Electronics",
+        rating: 3,
+      },
+    ],
+  },
+  {
+    title: "Misc",
+    icon: miscIcon,
+    data: [
+      {
+        logo: pythonLogo,
+        title: "Python",
+        rating: 3,
+      },
+      {
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+        title: "Java",
+        rating: 3,
+      },
+      {
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+        title: "Docker",
+        rating: 3,
+      },
+      {
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
+        title: "Linux",
+        rating: 4,
+      },
+      {
+        logo: computerNetworksLogo,
+        title: "Networks",
+        rating: 4,
+      },
+      {
+        logo: awsLogo,
+        title: "AWS",
+        rating: 3,
+      },
+      {
+        logo: dataScienceLogo,
+        title: "Data Science",
+        rating: 2,
+      },
+      {
+        logo: aiLogo,
+        title: "ML / AI",
+        rating: 2,
+      },
+    ],
   },
 ];
-export const UIUXSkills: SkillCardProp[] = [
-  {
-    logo: figmaLogo,
-    title: "Figma",
-    rating: 2,
-  },
-];
-export const BackendSkills: SkillCardProp[] = [
-  {
-    logo: nodeJsLogo,
-    title: "NodeJS",
-    rating: 3,
-  },
-  {
-    logo: expressLogo,
-    title: "ExpressJS",
-    rating: 3,
-  },
-  {
-    logo: nestJsLogo,
-    title: "NestJS",
-    rating: 3,
-  },
-  {
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg",
-    title: "SQL",
-    rating: 3,
-  },
-  {
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg",
-    title: "GrapQL",
-    rating: 2,
-  },
-];
-export const IoTSkills: SkillCardProp[] = [
-  {
-    logo: cLogo,
-    title: "C / C++",
-    rating: 4,
-  },
-  {
-    logo: esp32Logo,
-    title: "ESP32",
-    rating: 4,
-  },
-  {
-    logo: electronicsLogo,
-    title: "Electronics",
-    rating: 3,
-  },
-];
-export const MiscSkills: SkillCardProp[] = [
-  {
-    logo: pythonLogo,
-    title: "Python",
-    rating: 3,
-  },
-  {
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
-    title: "Java",
-    rating: 3,
-  },
-  {
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
-    title: "Docker",
-    rating: 3,
-  },
-  {
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
-    title: "Linux",
-    rating: 4,
-  },
-  {
-    logo: computerNetworksLogo,
-    title: "Networks",
-    rating: 4,
-  },
-  {
-    logo: awsLogo,
-    title: "AWS",
-    rating: 3,
-  },
-  {
-    logo: dataScienceLogo,
-    title: "Data Science",
-    rating: 2,
-  },
-  {
-    logo: aiLogo,
-    title: "ML / AI",
-    rating: 2,
-  },
-];
+
