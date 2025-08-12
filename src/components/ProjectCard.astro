@@ -14,19 +14,19 @@ const {
 ---
 
 <div
-  class="flex flex-col gap-4 p-4 rounded-lg border-2 border-transparent hover:border-primary-accent transition-colors"
+  class="flex flex-col gap-4 p-4 rounded-lg border-2 bg-secondary-bg text-black border-primary-accent shadow-lg shadow-primary-accent hover:border-secondary-accent transition-colors"
 >
   <img src={image} alt={title} class="rounded-lg" />
-  <h3 class="text-2xl font-bold text-primary-accent">{title}</h3>
+  <h3 class="text-2xl font-bold text-primary-bg">{title}</h3>
   <p>{short_description}</p>
   <div class="flex gap-4">
-    <a href={website} target="_blank" class="hover:underline">View Project</a>
-    <a href={github_repo} target="_blank" class="hover:underline">GitHub</a>
+    <a href={website} target="_blank">View Project</a>
+    <a href={github_repo} target="_blank">GitHub</a>
   </div>
   <div class="flex gap-2 mt-2">
     {
       languages.map((tech) => (
-        <span class="bg-gray-700 text-white px-2 py-1 rounded-md text-sm">
+        <span class="bg-primary-accent text-white px-2 py-1 rounded-md text-sm">
           {tech}
         </span>
       ))

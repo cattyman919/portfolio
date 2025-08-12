@@ -26,6 +26,13 @@ import RustLogo from "@assets/skills/dev_icons/rust.svg";
 import PosgreSQLLogo from "@assets/skills/dev_icons/postgreSQL.svg";
 import GraphQLLogo from "@assets/skills/dev_icons/graphQL.svg";
 import TypescriptLogo from "@assets/skills/dev_icons/typescript.svg";
+import GoLogo from "@assets/skills/dev_icons/go.svg";
+import GitLogo from "@assets/skills/dev_icons/git.svg";
+import GithubLogo from "@assets/skills/dev_icons/github.svg";
+import PhpLogo from "@assets/skills/dev_icons/php.svg";
+import SpringBootLogo from "@assets/skills/dev_icons/springboot.svg";
+import LaravelLogo from "@assets/skills/dev_icons/laravel.svg";
+import TailwindLogo from "@assets/skills/dev_icons/tailwind.svg";
 
 import type { SkillCardProp } from "../types/skill";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
@@ -61,7 +68,7 @@ export const SkillData: SkillCategory[] = [
     ],
   },
   {
-    title: "Website",
+    title: "Frontend",
     icon: WebsiteIcon,
     data: [
       {
@@ -74,7 +81,16 @@ export const SkillData: SkillCategory[] = [
         title: "NextJS",
         rating: 3,
       },
-
+      {
+        logo: SpringBootLogo,
+        title: "Spring Boot",
+        rating: 3,
+      },
+      {
+        logo: LaravelLogo,
+        title: "Laravel",
+        rating: 2,
+      },
       {
         logo: HtmlLogo,
         title: "HTML",
@@ -95,10 +111,15 @@ export const SkillData: SkillCategory[] = [
         title: "Typescript",
         rating: 3,
       },
+      {
+        logo: TailwindLogo,
+        title: "TailwindCSS",
+        rating: 4,
+      },
     ],
   },
   {
-    title: "UI/UX",
+    title: "UI / UX",
     icon: UiuxIcon,
     data: [
       {
@@ -140,6 +161,42 @@ export const SkillData: SkillCategory[] = [
     ],
   },
   {
+    title: "Programming Languages",
+    icon: ProgrammingIcon,
+    data: [
+      {
+        logo: CLogo,
+        title: "C / C++",
+        rating: 4,
+      },
+      {
+        logo: GoLogo,
+        title: "Go",
+        rating: 4,
+      },
+      {
+        logo: PhpLogo,
+        title: "PHP",
+        rating: 3,
+      },
+      {
+        logo: JavaLogo,
+        title: "Java",
+        rating: 3,
+      },
+      {
+        logo: RustLogo,
+        title: "Rust",
+        rating: 3,
+      },
+      {
+        logo: PythonLogo,
+        title: "Python",
+        rating: 3,
+      },
+    ],
+  },
+  {
     title: "IoT",
     icon: IotIcon,
     data: [
@@ -155,32 +212,7 @@ export const SkillData: SkillCategory[] = [
       },
     ],
   },
-  {
-    title: "Programming Languages",
-    icon: ProgrammingIcon,
-    data: [
-      {
-        logo: CLogo,
-        title: "C / C++",
-        rating: 4,
-      },
-      {
-        logo: JavaLogo,
-        title: "Java",
-        rating: 3,
-      },
-      {
-        logo: PythonLogo,
-        title: "Python",
-        rating: 3,
-      },
-      {
-        logo: RustLogo,
-        title: "Rust",
-        rating: 3,
-      },
-    ],
-  },
+
   {
     title: "Misc",
     icon: MiscIcon,
@@ -190,7 +222,16 @@ export const SkillData: SkillCategory[] = [
         title: "Docker",
         rating: 3,
       },
-
+      {
+        logo: GitLogo,
+        title: "Git",
+        rating: 3,
+      },
+      {
+        logo: GithubLogo,
+        title: "Github",
+        rating: 3,
+      },
       {
         logo: LinuxLogo,
         title: "Linux",
