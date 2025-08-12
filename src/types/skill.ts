@@ -1,5 +1,6 @@
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 export interface SkillCardProp {
-  logo: any;
+  logo: AstroComponentFactory;
   title: string;
   rating: number;
 }
