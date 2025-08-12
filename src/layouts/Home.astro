@@ -51,11 +51,17 @@ const images = [seno, uiSeno, coolSeno, jasHitamSeno];
       <p class="text-primary-accent text-3xl font-bold animate-fade-right">
         Check out my Resume & Blog
       </p>
-      <div class="grid grid-cols-3 rotate-90 w-[30px]">
+      <div class="flex gap-4">
         <!-- Arrow Icons Placeholder -->
-        <span>&rarr;</span>
-        <span>&rarr;</span>
-        <span>&rarr;</span>
+        <span class="animate-[point-down_1.5s_ease-in-out_infinite]"
+          >&darr;</span
+        >
+        <span class="animate-[point-down_1.5s_ease-in-out_infinite_100ms]"
+          >&darr;</span
+        >
+        <span class="animate-[point-down_1.5s_ease-in-out_infinite_200ms]"
+          >&darr;</span
+        >
       </div>
       <div class="flex gap-6">
         <a
@@ -96,9 +102,10 @@ const images = [seno, uiSeno, coolSeno, jasHitamSeno];
         <Image
           src={image}
           alt="Seno"
+          priority
           width={500}
           height={500}
-          class={`absolute left-1/2 top-1/2 w-[500px] opacity-0 z-10 h-full object-contain seno-image`}
+          class={`absolute left-1/2 top-1/2 h-[450px] opacity-0 z-10 w-full object-contain seno-image`}
         />
       ))
     }
@@ -110,47 +117,6 @@ const images = [seno, uiSeno, coolSeno, jasHitamSeno];
 </section>
 
 <script>
-  const words = [
-    "Software Developer",
-    "Computer Networks",
-    "System Design",
-    "Tech Enthusiast",
-    "Computer Engineer",
-  ];
-  const speed = 50;
-  const delay = 1000;
-
-  const typewriterElement = document.getElementById("typewriter");
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function type() {
-    const currentWord = words[wordIndex];
-
-    if (isDeleting) {
-      typewriterElement!.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-      if (charIndex == 0) {
-        isDeleting = false;
-        wordIndex++;
-        if (wordIndex === words.length) {
-          wordIndex = 0;
-        }
-      }
-    } else {
-      typewriterElement!.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-      if (charIndex === currentWord.length) {
-        setTimeout(() => {
-          isDeleting = true;
-        }, delay);
-      }
-    }
-  }
-
-  setInterval(type, speed);
-
   const images = document.querySelectorAll(".seno-image");
   let imageIndex = 0;
 
