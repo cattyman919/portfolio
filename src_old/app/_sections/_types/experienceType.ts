@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/image";
+
 
 export interface experienceCardProps {
   image: StaticImageData;

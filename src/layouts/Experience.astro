@@ -1,3 +1,24 @@
-<section>
-  <h1>Experience</h1>
+---
+import ExperienceCard from "@components/ExperienceCard.astro";
+import { ExperienceData } from "@data/experienceData";
+---
+
+<section id="experience" class="py-20">
+  <h2 class="text-4xl font-bold text-center mb-10">Experience</h2>
+  <div class="flex flex-col gap-8">
+    {
+      ExperienceData.map((exp) => (
+        <ExperienceCard
+          position={exp.position}
+          descriptions={exp.descriptions}
+          company={exp.company}
+          company_url={exp.company_url}
+          start_date={exp.start_date}
+          end_date={exp.end_date}
+          languages={exp.languages}
+          image={exp.image}
+        />
+      ))
+    }
+  </div>
 </section>

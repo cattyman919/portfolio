@@ -1,0 +1,38 @@
+---
+import type { SkillCardProp } from "../types/skill";
+import { Image } from "astro:assets";
+
+interface Props extends SkillCardProp {}
+
+const { logo, title, rating } = Astro.props;
+---
+
+<div
+  class="flex items-center gap-4 p-4 rounded-lg border-2 border-transparent hover:border-primary-accent transition-colors"
+>
+  {
+    (
+      <Image src={logo} alt={title} width={40} height={40} />
+      // logo.startsWith("src") ? (
+      // ) : (
+      //   <img src={logo} alt={title} width={40} height={40} />
+      // )
+    )
+  }
+  <div class="flex-grow">
+    <h4 class="text-lg font-bold">{title}</h4>
+    <div class="flex">
+      {
+        Array(5)
+          .fill(0)
+          .map((_, i) => (
+            <span
+              class={`text-2xl ${i < rating ? "text-yellow-400" : "text-gray-600"}`}
+            >
+              &#9733;
+            </span>
+          ))
+      }
+    </div>
+  </div>
+</div>

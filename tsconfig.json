@@ -7,6 +7,9 @@
   "exclude": [
     "dist"
   ],
+
+  "baseUrl": "./",
+
   "compilerOptions": {
     "verbatimModuleSyntax": true,
     "paths": {

@@ -1,42 +1,61 @@
-import type { SkillCardProp } from "@types/skill";
+import flutterLogo from "@assets/skills/icons8-flutter.svg";
+import androidStudiLogo from "@assets/skills/icons8-android-studio.svg";
+import cssLogo from "@assets/skills/icons8-css.svg";
+import cLogo from "@assets/skills/icons8-c.svg";
+import expressLogo from "@assets/skills/icons8-express-js.svg";
+import figmaLogo from "@assets/skills/icons8-figma.svg";
+import htmlLogo from "@assets/skills/icons8-html.svg";
+import javascriptLogo from "@assets/skills/icons8-javascript.svg";
+import nestJsLogo from "@assets/skills/icons8-nestjs.svg";
+import nextJsLogo from "@assets/skills/icons8-nextjs.svg";
+import nodeJsLogo from "@assets/skills/icons8-nodejs.svg";
+import reactLogo from "@assets/skills/icons8-react.svg";
+import esp32Logo from "@assets/skills/1666364456Esp32_devkitc_v4 rotated-cropped (1).svg";
+import computerNetworksLogo from "@assets/skills/reshot-icon-computer-network-HUALQ4PR8J.svg";
+import awsLogo from "@assets/skills/icons8-aws.svg";
+import pythonLogo from "@assets/skills/icons8-python.svg";
+import aiLogo from "@assets/skills/reshot-icon-artificial-intelligence-J42YA8NQ6T.svg";
+import dataScienceLogo from "@assets/skills/reshot-icon-data-storage-94X8DWLHMC.svg";
+import electronicsLogo from "@assets/skills/reshot-icon-voltmeter-GXLPQBKY5T.svg";
+
+import type { SkillCardProp } from "../types/skill";
 
 export const MobileSkills: SkillCardProp[] = [
   {
-    logo: "",
+    logo: flutterLogo,
     title: "Flutter",
     rating: 3,
   },
   {
-    logo: "",
+    logo: androidStudiLogo,
     title: "Android Studio",
     rating: 2,
   },
 ];
-
 export const WebsiteSkills: SkillCardProp[] = [
   {
-    logo: "",
+    logo: reactLogo,
     title: "React",
     rating: 3,
   },
   {
-    logo: "",
+    logo: nextJsLogo,
     title: "NextJS",
     rating: 3,
   },
 
   {
-    logo: "",
+    logo: htmlLogo,
     title: "HTML",
     rating: 4,
   },
   {
-    logo: "",
+    logo: cssLogo,
     title: "CSS",
     rating: 4,
   },
   {
-    logo: "",
+    logo: javascriptLogo,
     title: "Javascript",
     rating: 4,
   },
@@ -48,24 +67,24 @@ export const WebsiteSkills: SkillCardProp[] = [
 ];
 export const UIUXSkills: SkillCardProp[] = [
   {
-    logo: "",
+    logo: figmaLogo,
     title: "Figma",
     rating: 2,
   },
 ];
 export const BackendSkills: SkillCardProp[] = [
   {
-    logo: "",
+    logo: nodeJsLogo,
     title: "NodeJS",
     rating: 3,
   },
   {
-    logo: "",
+    logo: expressLogo,
     title: "ExpressJS",
     rating: 3,
   },
   {
-    logo: "",
+    logo: nestJsLogo,
     title: "NestJS",
     rating: 3,
   },
@@ -82,24 +101,24 @@ export const BackendSkills: SkillCardProp[] = [
 ];
 export const IoTSkills: SkillCardProp[] = [
   {
-    logo: "",
+    logo: cLogo,
     title: "C / C++",
     rating: 4,
   },
   {
-    logo: "",
+    logo: esp32Logo,
     title: "ESP32",
     rating: 4,
   },
   {
-    logo: "",
+    logo: electronicsLogo,
     title: "Electronics",
     rating: 3,
   },
 ];
 export const MiscSkills: SkillCardProp[] = [
   {
-    logo: "",
+    logo: pythonLogo,
     title: "Python",
     rating: 3,
   },
@@ -119,22 +138,22 @@ export const MiscSkills: SkillCardProp[] = [
     rating: 4,
   },
   {
-    logo: "",
+    logo: computerNetworksLogo,
     title: "Networks",
     rating: 4,
   },
   {
-    logo: "",
+    logo: awsLogo,
     title: "AWS",
     rating: 3,
   },
   {
-    logo: "",
+    logo: dataScienceLogo,
     title: "Data Science",
     rating: 2,
   },
   {
-    logo: "",
+    logo: aiLogo,
     title: "ML / AI",
     rating: 2,
   },

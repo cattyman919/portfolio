@@ -1,5 +1,5 @@
 export interface SkillCardProp {
-  logo: string;
+  logo: any;
   title: string;
   rating: number;
 }

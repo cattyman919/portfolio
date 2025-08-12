@@ -1,3 +1,24 @@
-<section>
-  <h1>Projects</h1>
+---
+import ProjectCard from "@components/ProjectCard.astro";
+import { ProjectData } from "@data/projectData";
+---
+
+<section id="projects" class="py-20">
+  <h2 class="text-4xl font-bold text-center mb-10">Projects</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {
+      ProjectData.map((project) => (
+        <ProjectCard
+          id={project.id}
+          title={project.title}
+          short_description={project.short_description}
+          image={project.image}
+          date={project.date}
+          github_repo={project.github_repo}
+          website={project.website}
+          languages={project.languages}
+        />
+      ))
+    }
+  </div>
 </section>

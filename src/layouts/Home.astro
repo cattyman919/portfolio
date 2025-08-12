@@ -1,14 +1,169 @@
-<section>
-  <div>
-    <div></div>
-    <div>
-      <h1>Seno</h1>
-      <h1>Pamungkas</h1>
+---
+import { Image } from "astro:assets";
+import seno from "@assets/images/seno.png";
+import uiSeno from "@assets/images/UI Seno.png";
+import coolSeno from "@assets/images/Cool Seno.png";
+import jasHitamSeno from "@assets/images/Jas Hitam Seno 2.png";
+
+import { DisplayText } from "@components/typewriter_component";
+
+const images = [seno, uiSeno, coolSeno, jasHitamSeno];
+---
+
+<section
+  id="home"
+  class="flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-full lg:h-dvh"
+>
+  <div
+    class="flex items-center lg:items-start flex-col gap-4 lg:gap-8 order-last lg:order-first"
+  >
+    <div class="flex w-fit flex-col gap-6">
+      <div
+        class="animate-fade-right text-6xl text-center lg:text-start lg:text-7xl xl:text-8xl text-primary-accent font-bold"
+      >
+        <h1>Seno</h1>
+        <h1>Pamungkas</h1>
+      </div>
+      <h4
+        class="text-[#3CFF00] animate-fade-left animate-delay-100 font-bold text-center lg:text-start text-xl md:text-2xl lg:text-3xl"
+      >
+        <span>{"< "}</span>
+        <span class="blink">
+          <DisplayText client:load />
+        </span>
+        <span
+          class="relative before:absolute before:inset-0 before:w-[0.125em] before:bg-[#3CFF00] animate-caret"
+        ></span>
+        <span class="tracking-wider">{" />"}</span>
+      </h4>
     </div>
-      <span>{"< "}</span>
-      <span>
-        <!-- <DisplayText/> -->
-      </span>
-    </h4>
+    <p
+      class="text-justify text-lg/10 animate-flip-up animate-delay-300 w-[90%] xl:text-xl/[50px]"
+    >
+      Hello! Im an avid software engineer with a zest for front-end, back-end,
+      AI, and cloud technologies. Passionate about exploring new tech frontiers,
+      I blend creativity with technical skill in every project, pushing the
+      boundaries of software innovation
+    </p>
+    <div
+      class="flex flex-col gap-6 items-center pl-2 lg:gap-10 h-full text-2xl"
+    >
+      <p class="text-primary-accent text-3xl font-bold animate-fade-right">
+        Check out my Resume & Blog
+      </p>
+      <div class="grid grid-cols-3 rotate-90 w-[30px]">
+        <!-- Arrow Icons Placeholder -->
+        <span>&rarr;</span>
+        <span>&rarr;</span>
+        <span>&rarr;</span>
+      </div>
+      <div class="flex gap-6">
+        <a
+          href="#"
+          target="_blank"
+          class="min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all"
+        >
+          <!-- Resume Icon Placeholder -->
+          <span>[R]</span>
+          <p>Resume</p>
+        </a>
+        <a
+          href="#"
+          target="_blank"
+          class="min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all"
+        >
+          <!-- Resume Icon Placeholder -->
+          <span>[BW]</span>
+          <p>B&W Resume</p>
+        </a>
+        <a
+          href="#"
+          target="_blank"
+          class="min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all"
+        >
+          <!-- Blog Icon Placeholder -->
+          <span>[B]</span>
+          <p>Blog</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="relative hover:scale-110 transition-transform rounded-b-full overflow-hidden shrink-0 w-[300px] lg:w-[480px] xl:w-[600px] aspect-[1/1]"
+  >
+    {
+      images.map((image, index) => (
+        <Image
+          src={image}
+          alt="Seno"
+          width={500}
+          height={500}
+          class={`absolute left-1/2 top-1/2 w-[500px] opacity-0 z-10 h-full object-contain seno-image`}
+        />
+      ))
+    }
+    <div
+      class="absolute w-[90%] bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87] rounded-full"
+    >
+    </div>
   </div>
 </section>
+
+<script>
+  const words = [
+    "Software Developer",
+    "Computer Networks",
+    "System Design",
+    "Tech Enthusiast",
+    "Computer Engineer",
+  ];
+  const speed = 50;
+  const delay = 1000;
+
+  const typewriterElement = document.getElementById("typewriter");
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    const currentWord = words[wordIndex];
+
+    if (isDeleting) {
+      typewriterElement!.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex == 0) {
+        isDeleting = false;
+        wordIndex++;
+        if (wordIndex === words.length) {
+          wordIndex = 0;
+        }
+      }
+    } else {
+      typewriterElement!.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === currentWord.length) {
+        setTimeout(() => {
+          isDeleting = true;
+        }, delay);
+      }
+    }
+  }
+
+  setInterval(type, speed);
+
+  const images = document.querySelectorAll(".seno-image");
+  let imageIndex = 0;
+
+  function showNextImage() {
+    images.forEach((img) => {
+      img.classList.remove("animate-seno_images");
+      // @ts-ignore
+      void img.offsetWidth;
+    });
+    images[imageIndex].classList.add("animate-seno_images");
+    imageIndex = (imageIndex + 1) % images.length;
+  }
+
+  setInterval(showNextImage, 2000);
+  showNextImage();
+</script>

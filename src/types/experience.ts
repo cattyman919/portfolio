@@ -1,5 +1,5 @@
 export interface experienceCardProp {
-  image: string;
+  image: ImageMetadata;
   position: string;
   company: string;
   company_url: string;
