@@ -7,10 +7,7 @@
   "exclude": [
     "dist"
   ],
-
-
   "baseUrl": "./",
-
   "compilerOptions": {
     "verbatimModuleSyntax": true,
     "paths": {
@@ -40,6 +37,6 @@
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "react"
   }
 }

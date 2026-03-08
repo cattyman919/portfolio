@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+
+import { SidebarLayout } from "@components/SidebarLayout";
 ---
 
 <!doctype html>
@@ -12,6 +14,8 @@ import "../styles/global.css";
     <title>Seno Pamungkas Rahman - Portfolio</title>
   </head>
   <body class="bg-primary-bg">
-    <slot />
+    <SidebarLayout client:load>
+      <slot />
+    </SidebarLayout>
   </body>
 </html>
