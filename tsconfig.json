@@ -23,8 +23,11 @@
       "@layouts/*": [
         "src/layouts/*"
       ],
-      "@types/*": [
+      "@typings/*": [
         "src/types/*"
+      ],
+      "@src/*": [
+        "src/*"
       ],
       "@sections/*": [
         "src/sections/*"

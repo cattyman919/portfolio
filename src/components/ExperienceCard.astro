@@ -1,5 +1,5 @@
 ---
-import type { experienceCardProp } from "src/types/experience";
+import type { experienceCardProp } from "@typings/experience";
 import { Image } from "astro:assets";
 
 interface Props extends experienceCardProp {}
@@ -20,13 +20,17 @@ const {
   class="flex flex-col lg:flex-row gap-4 lg:gap-10 p-4 rounded-lg border-2 bg-secondary-bg text-black border-primary-accent shadow-md shadow-primary-accent transition-colors"
 >
   <div class="flex-shrink-0">
-    <Image src={image} alt={company} width={100} height={100} class="rounded-lg" />
+    <Image
+      src={image}
+      alt={company}
+      width={100}
+      height={100}
+      class="rounded-lg"
+    />
   </div>
   <div class="flex flex-col gap-2">
     <h3 class="text-2xl font-bold text-primary-bg">{position}</h3>
-    <a href={company_url} target="_blank" class="text-lg"
-      >{company}</a
-    >
+    <a href={company_url} target="_blank" class="text-lg">{company}</a>
     <p class="text-sm text-gray-600">
       {start_date} - {end_date}
     </p>
@@ -34,11 +38,13 @@ const {
       {descriptions.map((desc) => <li>{desc}</li>)}
     </ul>
     <div class="flex gap-2 mt-2">
-      {languages.map((lang) => (
-        <span class="bg-primary-accent text-white px-2 py-1 rounded-md text-sm">
-          {lang}
-        </span>
-      ))}
+      {
+        languages.map((lang) => (
+          <span class="bg-primary-accent text-white px-2 py-1 rounded-md text-sm">
+            {lang}
+          </span>
+        ))
+      }
     </div>
   </div>
 </div>
