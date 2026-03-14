@@ -1,11 +1,10 @@
 ---
 import "../styles/global.css";
-
-import { SidebarLayout } from "@components/SidebarLayout";
+import Sidebar from "@components/Sidebar.astro";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -14,8 +13,7 @@ import { SidebarLayout } from "@components/SidebarLayout";
     <title>Seno Pamungkas Rahman - Portfolio</title>
   </head>
   <body class="bg-primary-bg">
-    <SidebarLayout client:load>
-      <slot />
-    </SidebarLayout>
+    <Sidebar />
+    <slot />
   </body>
 </html>

@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+import LogoImage from "@assets/images/logo.png";
+
+import SidebarItem from "./SidebarItem.astro";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
+import { FaInstagram } from "react-icons/fa";
+---
+
+<nav
+  class="fixed flex flex-col justify-between h-full border-r w-[40px] border-white"
+>
+  <Image src={LogoImage} alt="logo image" />
+  <div class="flex flex-col">
+    <SidebarItem icon={GiHamburgerMenu} title="Github" />
+    <a>Home</a>
+    <a>Skill</a>
+    <a>Project</a>
+    <a>Experiences</a>
+    <a>Contact</a>
+  </div>
+  <div class="flex flex-col">Contact Information</div>
+</nav>

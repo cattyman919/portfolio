@@ -1,0 +1,18 @@
+---
+import type { IconType } from "react-icons";
+import { Image } from "astro:assets";
+
+interface SidebarItemProp {
+  icon: IconType;
+  title: string;
+}
+
+interface Props extends SidebarItemProp {}
+
+const { icon: Icon, title } = Astro.props;
+---
+
+<div>
+  <Icon />
+  <p>{title}</p>
+</div>

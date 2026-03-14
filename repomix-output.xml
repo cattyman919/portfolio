@@ -47,6 +47,7 @@ src/
     nav-projects.tsx
     nav-user.tsx
     ProjectCard.astro
+    SidebarLayout.tsx
     SkillCard.astro
     SkillLine.astro
     team-switcher.tsx
@@ -80,7 +81,15 @@ components.json
 package.json
 README.md
 tsconfig.json
-vercel.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="src/components/hooks/use-mobile.ts">import * as React from &quot;react&quot;;
+vercel.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="public/favicon.svg">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 128 128&quot;&gt;
+    &lt;path d=&quot;M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z&quot; /&gt;
+    &lt;style&gt;
+        path { fill: #000; }
+        @media (prefers-color-scheme: dark) {
+            path { fill: #FFF; }
+        }
+    &lt;/style&gt;
+&lt;/svg&gt;</file><file path="src/components/hooks/use-mobile.ts">import * as React from &quot;react&quot;;
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -2186,6 +2195,21 @@ export function NavUser({
       &lt;/SidebarMenuItem&gt;
     &lt;/SidebarMenu&gt;
   );
+}</file><file path="src/components/SidebarLayout.tsx">import * as React from &quot;react&quot;;
+import { SidebarProvider, SidebarInset } from &quot;@components/ui/sidebar&quot;;
+import { AppSidebar } from &quot;@components/app-sidebar&quot;;
+import { TooltipProvider } from &quot;@components/ui/tooltip&quot;;
+
+export function SidebarLayout({ children }: { children: React.ReactNode }) {
+  return (
+
+    &lt;TooltipProvider&gt;
+      &lt;SidebarProvider&gt;
+        &lt;AppSidebar /&gt;
+        &lt;SidebarInset&gt;{children}&lt;/SidebarInset&gt;
+      &lt;/SidebarProvider&gt;
+    &lt;/TooltipProvider&gt;
+  );
 }</file><file path="src/components/team-switcher.tsx">&quot;use client&quot;;
 
 import * as React from &quot;react&quot;;
@@ -2276,57 +2300,7 @@ export function TeamSwitcher({
       &lt;/SidebarMenuItem&gt;
     &lt;/SidebarMenu&gt;
   );
-}</file><file path="public/favicon.svg">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 128 128&quot;&gt;
-    &lt;path d=&quot;M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z&quot; /&gt;
-    &lt;style&gt;
-        path { fill: #000; }
-        @media (prefers-color-scheme: dark) {
-            path { fill: #FFF; }
-        }
-    &lt;/style&gt;
-&lt;/svg&gt;</file><file path="src/components/hooks/typewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
-
-export const useTypewriter = (
-  text: string[],
-  speed: number = 100,
-  delay: number = 1000,
-): string =&gt; {
-  const [displayText, setDisplayText] = useState(&quot;&quot;);
-  const [isDeleting, setIsDeleting] = useState&lt;boolean&gt;(false);
-  const i = useRef(0);
-  const j = useRef(0);
-  useEffect(() =&gt; {
-    const currentWord = text[i.current];
-
-    const typingInterval = setInterval(() =&gt; {
-      if (isDeleting) {
-        setDisplayText(currentWord.substring(0, j.current - 1));
-        j.current--;
-        if (j.current == 0) {
-          setIsDeleting(false);
-          i.current++;
-          if (i.current === text.length) {
-            i.current = 0;
-          }
-        }
-      } else {
-        setDisplayText(currentWord.substring(0, j.current + 1));
-        j.current++;
-        if (j.current === currentWord.length) {
-          setTimeout(() =&gt; {
-            setIsDeleting(true);
-          }, delay);
-        }
-      }
-    }, speed);
-
-    return () =&gt; {
-      clearInterval(typingInterval);
-    };
-  }, [isDeleting]);
-
-  return displayText;
-};</file><file path="src/components/typewriter_component.tsx">import { useTypewriter } from &quot;./hooks/typewriter&quot;;
+}</file><file path="src/components/typewriter_component.tsx">import { useTypewriter } from &quot;./hooks/typewriter&quot;;
 
 export const DisplayText = () =&gt; {
   const text = useTypewriter(
@@ -2635,21 +2609,7 @@ export interface CreditPersonProps {
       }
     }
   ]
-}</file><file path="astro.config.mjs">// @ts-check
-import { defineConfig } from &quot;astro/config&quot;;
-
-import tailwindcss from &quot;@tailwindcss/vite&quot;;
-
-import react from &quot;@astrojs/react&quot;;
-
-// https://astro.build/config
-export default defineConfig({
-  integrations: [react()],
-
-  vite: {
-    plugins: [tailwindcss()],
-  },
-});</file><file path="components.json">{
+}</file><file path="components.json">{
   &quot;$schema&quot;: &quot;https://ui.shadcn.com/schema.json&quot;,
   &quot;style&quot;: &quot;radix-nova&quot;,
   &quot;rsc&quot;: false,
@@ -2681,7 +2641,49 @@ export default defineConfig({
       &quot;main&quot;: false
     }
   }
-}</file><file path="src/components/ProjectCard.astro">---
+}</file><file path="src/components/hooks/typewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+
+export const useTypewriter = (
+  text: string[],
+  speed: number = 100,
+  delay: number = 1000,
+): string =&gt; {
+  const [displayText, setDisplayText] = useState(&quot;&quot;);
+  const [isDeleting, setIsDeleting] = useState&lt;boolean&gt;(false);
+  const i = useRef(0);
+  const j = useRef(0);
+  useEffect(() =&gt; {
+    const currentWord = text[i.current];
+
+    const typingInterval = setInterval(() =&gt; {
+      if (isDeleting) {
+        setDisplayText(currentWord.substring(0, j.current - 1));
+        j.current--;
+        if (j.current == 0) {
+          setIsDeleting(false);
+          i.current++;
+          if (i.current === text.length) {
+            i.current = 0;
+          }
+        }
+      } else {
+        setDisplayText(currentWord.substring(0, j.current + 1));
+        j.current++;
+        if (j.current === currentWord.length) {
+          setTimeout(() =&gt; {
+            setIsDeleting(true);
+          }, delay);
+        }
+      }
+    }, speed);
+
+    return () =&gt; {
+      clearInterval(typingInterval);
+    };
+  }, [isDeleting]);
+
+  return displayText;
+};</file><file path="src/components/ProjectCard.astro">---
 import type { ProjectCardProps } from &quot;src/types/project&quot;;
 
 interface Props extends ProjectCardProps {}
@@ -2779,35 +2781,7 @@ export const ExperienceData: experienceCardProp[] = [
     start_date: &quot;February 2021&quot;,
     end_date: &quot;October 2022&quot;,
   },
-];</file><file path="src/layouts/BaseLayout.astro">---
-import &quot;../styles/global.css&quot;;
-
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from &quot;@components/ui/sidebar&quot;;
-import { AppSidebar } from &quot;@components/app-sidebar&quot;;
----
-
-&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
-    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/favicon.svg&quot; /&gt;
-    &lt;meta name=&quot;generator&quot; content={Astro.generator} /&gt;
-    &lt;title&gt;Seno Pamungkas Rahman - Portfolio&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body class=&quot;bg-primary-bg&quot;&gt;
-    &lt;SidebarProvider&gt;
-      &lt;AppSidebar /&gt;
-      &lt;SidebarInset&gt;
-        &lt;slot /&gt;
-      &lt;/SidebarInset&gt;
-    &lt;/SidebarProvider&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</file><file path="src/layouts/Contacts.astro">---
+];</file><file path="src/layouts/Contacts.astro">---
 ---
 
 &lt;section id=&quot;contacts&quot; class=&quot;py-20 text-center&quot;&gt;
@@ -2836,7 +2810,21 @@ import { AppSidebar } from &quot;@components/app-sidebar&quot;;
   start_date: string;
   end_date: string;
   languages: string[];
-}</file><file path="src/components/ExperienceCard.astro">---
+}</file><file path="astro.config.mjs">// @ts-check
+import { defineConfig } from &quot;astro/config&quot;;
+
+import tailwindcss from &quot;@tailwindcss/vite&quot;;
+
+import react from &quot;@astrojs/react&quot;;
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [react()],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});</file><file path="src/components/ExperienceCard.astro">---
 import type { experienceCardProp } from &quot;@typings/experience&quot;;
 import { Image } from &quot;astro:assets&quot;;
 
@@ -2911,7 +2899,27 @@ const { title, icon: Icon, data } = Astro.props;
   &gt;
     {data.map((item) =&gt; &lt;SkillCard {...item} /&gt;)}
   &lt;/div&gt;
-&lt;/div&gt;</file><file path="src/layouts/Experience.astro">---
+&lt;/div&gt;</file><file path="src/layouts/BaseLayout.astro">---
+import &quot;../styles/global.css&quot;;
+
+import { SidebarLayout } from &quot;@components/SidebarLayout&quot;;
+---
+
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/favicon.svg&quot; /&gt;
+    &lt;meta name=&quot;generator&quot; content={Astro.generator} /&gt;
+    &lt;title&gt;Seno Pamungkas Rahman - Portfolio&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body class=&quot;bg-primary-bg&quot;&gt;
+    &lt;SidebarLayout client:load&gt;
+      &lt;slot /&gt;
+    &lt;/SidebarLayout&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</file><file path="src/layouts/Experience.astro">---
 import ExperienceCard from &quot;@components/ExperienceCard.astro&quot;;
 import { ExperienceData } from &quot;@data/experienceData&quot;;
 ---
@@ -3003,141 +3011,7 @@ const { logo: Logo, title, rating } = Astro.props;
     })}
   &lt;/div&gt;
   &lt;p class=&quot;text-xl text-center font-extrabold&quot;&gt;{title}&lt;/p&gt;
-&lt;/div&gt;</file><file path="src/layouts/Home.astro">---
-import { Image } from &quot;astro:assets&quot;;
-import seno from &quot;@assets/images/seno.png&quot;;
-import uiSeno from &quot;@assets/images/UI Seno.png&quot;;
-import coolSeno from &quot;@assets/images/Cool Seno.png&quot;;
-import jasHitamSeno from &quot;@assets/images/Jas Hitam Seno 2.png&quot;;
-
-import { DisplayText } from &quot;@components/typewriter_component&quot;;
-
-const images = [seno, uiSeno, coolSeno, jasHitamSeno];
----
-
-&lt;section
-  id=&quot;home&quot;
-  class=&quot;flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-full lg:h-dvh&quot;
-&gt;
-  &lt;div
-    class=&quot;flex items-center lg:items-start flex-col gap-4 lg:gap-8 order-last lg:order-first&quot;
-  &gt;
-    &lt;div class=&quot;flex w-fit flex-col gap-6&quot;&gt;
-      &lt;div
-        class=&quot;animate-fade-right text-6xl text-center lg:text-start lg:text-7xl xl:text-8xl text-primary-accent font-bold&quot;
-      &gt;
-        &lt;h1 class=&quot;text-[#00d4ff]&quot;&gt;Seno&lt;/h1&gt;
-        &lt;h1 class=&quot;text-primary-accent&quot;&gt;Pamungkas Rahman&lt;/h1&gt;
-      &lt;/div&gt;
-      &lt;h4
-        class=&quot;text-[#3CFF00] animate-fade-left animate-delay-100 font-bold text-center lg:text-start text-xl md:text-2xl lg:text-3xl&quot;
-      &gt;
-        &lt;span&gt;{&quot;&lt; &quot;}&lt;/span&gt;
-        &lt;span class=&quot;blink&quot;&gt;
-          &lt;DisplayText client:load /&gt;
-        &lt;/span&gt;
-        &lt;span
-          class=&quot;relative before:absolute before:inset-0 before:w-[0.125em] before:bg-[#3CFF00] animate-caret&quot;
-        &gt;&lt;/span&gt;
-        &lt;span class=&quot;tracking-wider&quot;&gt;{&quot; /&gt;&quot;}&lt;/span&gt;
-      &lt;/h4&gt;
-    &lt;/div&gt;
-    &lt;p
-      class=&quot;text-justify text-lg/10 animate-flip-up animate-delay-300 w-[90%] xl:text-xl/[50px]&quot;
-    &gt;
-      Hello! Im an avid software engineer with a zest for front-end, back-end,
-      AI, and cloud technologies. Passionate about exploring new tech frontiers,
-      I blend creativity with technical skill in every project, pushing the
-      boundaries of software innovation
-    &lt;/p&gt;
-    &lt;div
-      class=&quot;flex flex-col gap-6 items-center pl-2 lg:gap-10 h-full text-2xl&quot;
-    &gt;
-      &lt;p class=&quot;text-primary-accent text-3xl font-bold animate-fade-right&quot;&gt;
-        Check out my Resume &amp; Blog
-      &lt;/p&gt;
-      &lt;div class=&quot;flex gap-4&quot;&gt;
-        &lt;!-- Arrow Icons Placeholder --&gt;
-        &lt;span class=&quot;animate-[point-down_1.5s_ease-in-out_infinite]&quot;
-          &gt;&amp;darr;&lt;/span
-        &gt;
-        &lt;span class=&quot;animate-[point-down_1.5s_ease-in-out_infinite_100ms]&quot;
-          &gt;&amp;darr;&lt;/span
-        &gt;
-        &lt;span class=&quot;animate-[point-down_1.5s_ease-in-out_infinite_200ms]&quot;
-          &gt;&amp;darr;&lt;/span
-        &gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;flex gap-6&quot;&gt;
-        &lt;a
-          href=&quot;#&quot;
-          target=&quot;_blank&quot;
-          class=&quot;min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all&quot;
-        &gt;
-          &lt;!-- Resume Icon Placeholder --&gt;
-          &lt;span&gt;[R]&lt;/span&gt;
-          &lt;p&gt;Resume&lt;/p&gt;
-        &lt;/a&gt;
-        &lt;a
-          href=&quot;#&quot;
-          target=&quot;_blank&quot;
-          class=&quot;min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all&quot;
-        &gt;
-          &lt;!-- Resume Icon Placeholder --&gt;
-          &lt;span&gt;[BW]&lt;/span&gt;
-          &lt;p&gt;B&amp;W Resume&lt;/p&gt;
-        &lt;/a&gt;
-        &lt;a
-          href=&quot;#&quot;
-          target=&quot;_blank&quot;
-          class=&quot;min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all&quot;
-        &gt;
-          &lt;!-- Blog Icon Placeholder --&gt;
-          &lt;span&gt;[B]&lt;/span&gt;
-          &lt;p&gt;Blog&lt;/p&gt;
-        &lt;/a&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div
-    class=&quot;relative hover:scale-110 transition-transform rounded-b-full overflow-hidden shrink-0 w-[300px] lg:w-[480px] xl:w-[600px] aspect-[1/1]&quot;
-  &gt;
-    {
-      images.map((image, index) =&gt; (
-        &lt;Image
-          src={image}
-          alt=&quot;Seno&quot;
-          priority
-          width={500}
-          height={500}
-          class={`absolute left-1/2 top-1/2 h-[450px] opacity-0 z-10 w-full object-contain seno-image`}
-        /&gt;
-      ))
-    }
-    &lt;div
-      class=&quot;absolute w-[90%] bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87] rounded-full&quot;
-    &gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-
-&lt;script&gt;
-  const images = document.querySelectorAll(&quot;.seno-image&quot;);
-  let imageIndex = 0;
-
-  function showNextImage() {
-    images.forEach((img) =&gt; {
-      img.classList.remove(&quot;animate-seno_images&quot;);
-      // @ts-ignore
-      void img.offsetWidth;
-    });
-    images[imageIndex].classList.add(&quot;animate-seno_images&quot;);
-    imageIndex = (imageIndex + 1) % images.length;
-  }
-
-  setInterval(showNextImage, 2000);
-  showNextImage();
-&lt;/script&gt;</file><file path="src/data/skillData.ts">import FlutterLogo from &quot;@assets/skills/icons8-flutter.svg&quot;;
+&lt;/div&gt;</file><file path="src/data/skillData.ts">import FlutterLogo from &quot;@assets/skills/icons8-flutter.svg&quot;;
 import AndroidStudiLogo from &quot;@assets/skills/icons8-android-studio.svg&quot;;
 import CssLogo from &quot;@assets/skills/icons8-css.svg&quot;;
 import CLogo from &quot;@assets/skills/icons8-c.svg&quot;;
@@ -3398,7 +3272,141 @@ export const SkillData: SkillCategory[] = [
       },
     ],
   },
-];</file><file path=".gitignore"># build output
+];</file><file path="src/layouts/Home.astro">---
+import { Image } from &quot;astro:assets&quot;;
+import seno from &quot;@assets/images/seno.png&quot;;
+import uiSeno from &quot;@assets/images/UI Seno.png&quot;;
+import coolSeno from &quot;@assets/images/Cool Seno.png&quot;;
+import jasHitamSeno from &quot;@assets/images/Jas Hitam Seno 2.png&quot;;
+
+import { DisplayText } from &quot;@components/typewriter_component&quot;;
+
+const images = [seno, uiSeno, coolSeno, jasHitamSeno];
+---
+
+&lt;section
+  id=&quot;home&quot;
+  class=&quot;flex flex-col gap-5 lg:gap-0 lg:flex-row l items-center justify-start lg:justify-between h-full lg:h-dvh&quot;
+&gt;
+  &lt;div
+    class=&quot;flex items-center lg:items-start flex-col gap-4 lg:gap-8 order-last lg:order-first&quot;
+  &gt;
+    &lt;div class=&quot;flex w-fit flex-col gap-6&quot;&gt;
+      &lt;div
+        class=&quot;animate-fade-right text-6xl text-center lg:text-start lg:text-7xl xl:text-8xl text-primary-accent font-bold&quot;
+      &gt;
+        &lt;h1 class=&quot;text-[#00d4ff]&quot;&gt;Seno&lt;/h1&gt;
+        &lt;h1 class=&quot;text-primary-accent&quot;&gt;Pamungkas Rahman&lt;/h1&gt;
+      &lt;/div&gt;
+      &lt;h4
+        class=&quot;text-[#3CFF00] animate-fade-left animate-delay-100 font-bold text-center lg:text-start text-xl md:text-2xl lg:text-3xl&quot;
+      &gt;
+        &lt;span&gt;{&quot;&lt; &quot;}&lt;/span&gt;
+        &lt;span class=&quot;blink&quot;&gt;
+          &lt;DisplayText client:load /&gt;
+        &lt;/span&gt;
+        &lt;span
+          class=&quot;relative before:absolute before:inset-0 before:w-[0.125em] before:bg-[#3CFF00] animate-caret&quot;
+        &gt;&lt;/span&gt;
+        &lt;span class=&quot;tracking-wider&quot;&gt;{&quot; /&gt;&quot;}&lt;/span&gt;
+      &lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;p
+      class=&quot;text-justify text-lg/10 animate-flip-up animate-delay-300 w-[90%] xl:text-xl/[50px]&quot;
+    &gt;
+      Hello! Im an avid software engineer with a zest for front-end, back-end,
+      AI, and cloud technologies. Passionate about exploring new tech frontiers,
+      I blend creativity with technical skill in every project, pushing the
+      boundaries of software innovation
+    &lt;/p&gt;
+    &lt;div
+      class=&quot;flex flex-col gap-6 items-center pl-2 lg:gap-10 h-full text-2xl&quot;
+    &gt;
+      &lt;p class=&quot;text-primary-accent text-3xl font-bold animate-fade-right&quot;&gt;
+        Check out my Resume &amp; Blog
+      &lt;/p&gt;
+      &lt;div class=&quot;flex gap-4&quot;&gt;
+        &lt;!-- Arrow Icons Placeholder --&gt;
+        &lt;span class=&quot;animate-[point-down_1.5s_ease-in-out_infinite]&quot;
+          &gt;&amp;darr;&lt;/span
+        &gt;
+        &lt;span class=&quot;animate-[point-down_1.5s_ease-in-out_infinite_100ms]&quot;
+          &gt;&amp;darr;&lt;/span
+        &gt;
+        &lt;span class=&quot;animate-[point-down_1.5s_ease-in-out_infinite_200ms]&quot;
+          &gt;&amp;darr;&lt;/span
+        &gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;flex gap-6&quot;&gt;
+        &lt;a
+          href=&quot;#&quot;
+          target=&quot;_blank&quot;
+          class=&quot;min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all&quot;
+        &gt;
+          &lt;!-- Resume Icon Placeholder --&gt;
+          &lt;span&gt;[R]&lt;/span&gt;
+          &lt;p&gt;Resume&lt;/p&gt;
+        &lt;/a&gt;
+        &lt;a
+          href=&quot;#&quot;
+          target=&quot;_blank&quot;
+          class=&quot;min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all&quot;
+        &gt;
+          &lt;!-- Resume Icon Placeholder --&gt;
+          &lt;span&gt;[BW]&lt;/span&gt;
+          &lt;p&gt;B&amp;W Resume&lt;/p&gt;
+        &lt;/a&gt;
+        &lt;a
+          href=&quot;#&quot;
+          target=&quot;_blank&quot;
+          class=&quot;min-w-[100px] flex flex-col items-center text-center mt-5 lg:mt-0 bg-primary-accent text-white font-bold p-2 rounded-lg hover:scale-110 hover:bg-white hover:border-2 hover:border-primary-accent hover:text-primary-accent transition-all&quot;
+        &gt;
+          &lt;!-- Blog Icon Placeholder --&gt;
+          &lt;span&gt;[B]&lt;/span&gt;
+          &lt;p&gt;Blog&lt;/p&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div
+    class=&quot;relative hover:scale-110 transition-transform rounded-b-full overflow-hidden shrink-0 w-[300px] lg:w-[480px] xl:w-[600px] aspect-[1/1]&quot;
+  &gt;
+    {
+      images.map((image, index) =&gt; (
+        &lt;Image
+          src={image}
+          alt=&quot;Seno&quot;
+          priority
+          width={500}
+          height={500}
+          class={`absolute left-1/2 top-1/2 h-[450px] opacity-0 z-10 w-full object-contain seno-image`}
+        /&gt;
+      ))
+    }
+    &lt;div
+      class=&quot;absolute w-[90%] bottom-0 right-1/2 translate-x-1/2 aspect-square bg-gradient-to-b from-[#1E2021] to-[#005F87] rounded-full&quot;
+    &gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+  const images = document.querySelectorAll(&quot;.seno-image&quot;);
+  let imageIndex = 0;
+
+  function showNextImage() {
+    images.forEach((img) =&gt; {
+      img.classList.remove(&quot;animate-seno_images&quot;);
+      // @ts-ignore
+      void img.offsetWidth;
+    });
+    images[imageIndex].classList.add(&quot;animate-seno_images&quot;);
+    imageIndex = (imageIndex + 1) % images.length;
+  }
+
+  setInterval(showNextImage, 2000);
+  showNextImage();
+&lt;/script&gt;</file><file path=".gitignore"># build output
 dist/
 
 # generated types
