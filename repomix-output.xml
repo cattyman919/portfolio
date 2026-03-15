@@ -1,0 +1,197 @@
+<repomix><file_summary>This file is a merged representation of a subset of the codebase, containing specifically included files and files not matching ignore patterns, combined into a single document by Repomix.
+The content has been processed where comments have been removed, content has been formatted for parsing in xml style.<purpose>This file contains a packed representation of a subset of the repository&apos;s contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.</purpose><file_format>The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file</file_format><usage_guidelines>- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.</usage_guidelines><notes>- Some files may have been excluded based on .gitignore rules and Repomix&apos;s configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Only files matching these patterns are included: **/*
+- Files matching these patterns are excluded: tmp/, **/.vscode/**, *.log, Glove_Code/lib/speech_recognition_inferencing/, Glove_Code/lib/MPU6050/, src/assets
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Code comments have been removed from supported file types
+- Content has been formatted for parsing in xml style
+- Files are sorted by Git change count (files with more changes are at the bottom)</notes></file_summary><directory_structure>public/
+  favicon.svg
+src/
+  components/
+    Welcome.astro
+  layouts/
+    Layout.astro
+  pages/
+    index.astro
+  styles/
+    global.css
+.gitignore
+astro.config.mjs
+package.json
+README.md
+tsconfig.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="public/favicon.svg">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 128 128&quot;&gt;
+    &lt;path d=&quot;M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z&quot; /&gt;
+    &lt;style&gt;
+        path { fill: #000; }
+        @media (prefers-color-scheme: dark) {
+            path { fill: #FFF; }
+        }
+    &lt;/style&gt;
+&lt;/svg&gt;</file><file path="src/layouts/Layout.astro">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+	&lt;head&gt;
+		&lt;meta charset=&quot;UTF-8&quot; /&gt;
+		&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+		&lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/favicon.svg&quot; /&gt;
+		&lt;link rel=&quot;icon&quot; href=&quot;/favicon.ico&quot; /&gt;
+		&lt;meta name=&quot;generator&quot; content={Astro.generator} /&gt;
+		&lt;title&gt;Seno Pamungkas Rahman - Portfolio&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;slot /&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</file><file path="src/components/Welcome.astro">---
+import astroLogo from &apos;../assets/astro.svg&apos;;
+import background from &apos;../assets/background.svg&apos;;
+---
+
+&lt;div id=&quot;container&quot;&gt;
+	&lt;!-- &lt;img id=&quot;background&quot; src={background.src} alt=&quot;&quot; fetchpriority=&quot;high&quot; /&gt; --&gt;
+	&lt;main&gt;
+    &lt;h1 class=&quot;text-red-400&quot;&gt;Hello&lt;/h1&gt;
+	&lt;/main&gt;
+&lt;/div&gt;</file><file path="src/pages/index.astro">---
+import Welcome from &apos;../components/Welcome.astro&apos;;
+import Layout from &apos;../layouts/Layout.astro&apos;;
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don&apos;t want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+&lt;Layout&gt;
+	&lt;Welcome /&gt;
+&lt;/Layout&gt;</file><file path="astro.config.mjs">// @ts-check
+import { defineConfig } from &apos;astro/config&apos;;
+
+import react from &apos;@astrojs/react&apos;;
+import tailwindcss from &apos;@tailwindcss/vite&apos;;
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [react()],
+
+  vite: {
+    plugins: [tailwindcss()]
+  }
+});</file><file path=".gitignore"># build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/</file><file path="README.md"># Astro Starter Kit: Basics
+
+```sh
+pnpm create astro@latest -- --template basics
+```
+
+&gt; 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you&apos;ll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src
+│   ├── assets
+│   │   └── astro.svg
+│   ├── components
+│   │   └── Welcome.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   └── pages
+│       └── index.astro
+└── package.json
+```
+
+To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).</file><file path="src/styles/global.css">@import &quot;tailwindcss&quot;;</file><file path="tsconfig.json">{
+  &quot;extends&quot;: &quot;astro/tsconfigs/strict&quot;,
+  &quot;include&quot;: [
+    &quot;.astro/types.d.ts&quot;,
+    &quot;**/*&quot;
+  ],
+  &quot;exclude&quot;: [
+    &quot;dist&quot;
+  ],
+  &quot;compilerOptions&quot;: {
+    &quot;jsx&quot;: &quot;react-jsx&quot;,
+    &quot;jsxImportSource&quot;: &quot;react&quot;
+  }
+}</file><file path="package.json">{
+  &quot;name&quot;: &quot;portfolio&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=22.12.0&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;astro dev&quot;,
+    &quot;build&quot;: &quot;astro build&quot;,
+    &quot;preview&quot;: &quot;astro preview&quot;,
+    &quot;astro&quot;: &quot;astro&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@astrojs/react&quot;: &quot;^5.0.0&quot;,
+    &quot;@tailwindcss/vite&quot;: &quot;^4.2.1&quot;,
+    &quot;@types/react&quot;: &quot;^19.2.14&quot;,
+    &quot;@types/react-dom&quot;: &quot;^19.2.3&quot;,
+    &quot;astro&quot;: &quot;^6.0.4&quot;,
+    &quot;react&quot;: &quot;^19.2.4&quot;,
+    &quot;react-dom&quot;: &quot;^19.2.4&quot;,
+    &quot;tailwindcss&quot;: &quot;^4.2.1&quot;
+  }
+}</file></files></repomix>
