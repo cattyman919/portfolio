@@ -8,6 +8,41 @@
   --color-driftwood: oklch(0.79 0.06 74.59);
   --color-tide: oklch(0.49 0.08 205.88);
   --color-dusk: oklch(0.82 0.15 72.09);
+
+  --animate-caret: blink 1s steps(1) infinite;
+  /* Fades from your base green to a slightly brighter, punchier green */
+  --background-image-name-gradient: linear-gradient(
+    to right,
+    var(--color-primary),
+    oklch(0.95 0.22 145)
+  );
+
+  --color-glow-green: oklch(0.9 0.28 150);
+}
+
+@utility text-gradient {
+  background-image: var(--background-image-name-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  0.1% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.1% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @layer base {
@@ -46,6 +81,21 @@
     /* Optional: change the text color on hover too */
     &:hover {
       color: var(--color-coral);
+    }
+  }
+
+  button {
+    border-width: 1px;
+    border-radius: var(--radius-xl);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    font-weight: 700;
+
+    &:hover {
+      background-color: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
     }
   }
 }
