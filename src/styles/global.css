@@ -1,1 +1,51 @@
 @import "tailwindcss";
+
+@theme static {
+  --color-primary: oklch(0.8751 0.2375 150.21);
+  --color-bg: oklch(0.1288 0.029 151.71);
+  --color-lagoon: oklch(0.72 0.11 221.19);
+  --color-coral: oklch(0.74 0.17 40.24);
+  --color-driftwood: oklch(0.79 0.06 74.59);
+  --color-tide: oklch(0.49 0.08 205.88);
+  --color-dusk: oklch(0.82 0.15 72.09);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    /* font-family: var(--font-body); */
+  }
+
+  a {
+    text-underline-offset: 4px;
+    text-decoration: none; /* Remove default underline */
+    position: relative;
+    /* The invisible underline */
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px; /* Thickness of the underline */
+      bottom: -2px; /* Position it just below the text */
+      left: 0;
+      background-color: var(--color-coral); /* Using your OKLCH variable! */
+
+      /* Start collapsed, scale out from the bottom right */
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    /* On hover, expand the line and change origin to make it "swipe" */
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    /* Optional: change the text color on hover too */
+    &:hover {
+      color: var(--color-coral);
+    }
+  }
+}
