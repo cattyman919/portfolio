@@ -46,7 +46,15 @@ src/
 astro.config.mjs
 package.json
 README.md
-tsconfig.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="src/components/home/TypewriterText.tsx">import { useTypewriter } from &quot;@/hooks/UseTypewriter&quot;;
+tsconfig.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="public/favicon.svg">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 128 128&quot;&gt;
+    &lt;path d=&quot;M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z&quot; /&gt;
+    &lt;style&gt;
+        path { fill: #000; }
+        @media (prefers-color-scheme: dark) {
+            path { fill: #FFF; }
+        }
+    &lt;/style&gt;
+&lt;/svg&gt;</file><file path="src/components/home/TypewriterText.tsx">import { useTypewriter } from &quot;@/hooks/UseTypewriter&quot;;
 
 export default function TypewriterText() {
   const text = useTypewriter(
@@ -60,8 +68,23 @@ export default function TypewriterText() {
     50,
     1000,
   );
-  return &lt;span className=&quot;animate-caret&quot;&gt;{text}&lt;/span&gt;;
-}</file><file path="src/hooks/UseTypewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+  return (
+    &lt;p&gt;
+      &lt;span&gt;{text || &quot;\u00A0&quot;}&lt;/span&gt;
+      &lt;span className=&quot;relative before:absolute before:inset-1 before:w-[0.125em] before:bg-primary animate-caret&quot;&gt;&lt;/span&gt;
+    &lt;/p&gt;
+  );
+}</file><file path="src/components/About.astro">&lt;section id=&quot;about&quot; class=&quot;h-dvh&quot;&gt;
+  &lt;h1&gt;About&lt;/h1&gt;
+&lt;/section&gt;</file><file path="src/components/Contact.astro">&lt;section id=&quot;contact&quot; class=&quot;h-dvh&quot;&gt;
+  &lt;h1&gt;Contact&lt;/h1&gt;
+&lt;/section&gt;</file><file path="src/components/Experience.astro">&lt;section id=&quot;experience&quot; class=&quot;h-dvh&quot;&gt;
+  &lt;h1&gt;Experience&lt;/h1&gt;
+&lt;/section&gt;</file><file path="src/components/Projects.astro">&lt;section id=&quot;projects&quot; class=&quot;h-dvh&quot;&gt;
+  &lt;h1&gt;Projects&lt;/h1&gt;
+&lt;/section&gt;</file><file path="src/components/Skills.astro">&lt;section id=&quot;skills&quot; class=&quot;h-dvh&quot;&gt;
+  &lt;h1&gt;Skills&lt;/h1&gt;
+&lt;/section&gt;</file><file path="src/hooks/UseTypewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
 
 export const useTypewriter = (
   text: string[],
@@ -103,33 +126,36 @@ export const useTypewriter = (
   }, [isDeleting]);
 
   return displayText;
-};</file><file path="public/favicon.svg">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 128 128&quot;&gt;
-    &lt;path d=&quot;M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z&quot; /&gt;
-    &lt;style&gt;
-        path { fill: #000; }
-        @media (prefers-color-scheme: dark) {
-            path { fill: #FFF; }
-        }
-    &lt;/style&gt;
-&lt;/svg&gt;</file><file path="src/components/About.astro">&lt;section id=&quot;about&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;About&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/components/Contact.astro">&lt;section id=&quot;contact&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;Contact&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/components/Experience.astro">&lt;section id=&quot;experience&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;Experience&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/components/Home.astro">---
+};</file><file path="src/components/Home.astro">---
 import TypewriterText from &quot;@/components/home/TypewriterText&quot;
 ---
 &lt;section id=&quot;home&quot; class=&quot;h-dvh flex flex-col justify-center items-center text-center&quot;&gt;
-  &lt;div class=&quot;w-[50%] flex flex-col gap-9&quot;&gt;
-  &lt;div class=&quot;flex flex-col gap-4 text-4xl font-bold text-center pb-4&quot;&gt;
-    &lt;h1 class=&quot;text-white&quot;&gt;Hi, I&apos;m &lt;span class=&quot;text-primary&quot;&gt;Seno Pamungkas Rahman&lt;/span&gt;&lt;/h1&gt;
-    &lt;h2 class=&quot;text-white&quot;&gt;
-      &lt;TypewriterText client:load/&gt;
-    &lt;/h1&gt;
+  &lt;div class=&quot;w-[50%] max-w-5xl flex flex-col gap-9&quot;&gt;
+
+  {/* Main Title Section */}
+&lt;div class=&quot;relative flex flex-col gap-10 text-center pb-4&quot;&gt;
+  
+  &lt;div class=&quot;relative inline-block mx-auto p-8&quot;&gt;
+    
+    &lt;div class=&quot;absolute -inset-4 bg-glow-green/20 blur-[80px] rounded-full z-0 pointer-events-none&quot;&gt;&lt;/div&gt;
+    
+    &lt;div class=&quot;relative z-10 font-bold&quot;&gt;
+      &lt;h1 class=&quot;text-gray-300 text-6xl mb-12&quot;&gt;Hi, I&apos;m &lt;span class=&quot;text-gradient&quot;&gt;Seno Pamungkas Rahman&lt;/span&gt;&lt;/h1&gt;
+      &lt;h2 class=&quot;text-5xl text-gray-300/90 mt-4&quot;&gt;
+        &lt;TypewriterText client:load/&gt;
+      &lt;/h2&gt;
+    &lt;/div&gt;
+    
   &lt;/div&gt;
-  &lt;div class=&quot;&quot;&gt;Seperator&lt;/div&gt;
-  &lt;p class=&quot;text-white text-xl&quot;&gt;An avid software engineer with a zest for front-end, back-end, AI, and cloud technologies. Passionate about exploring new tech frontiers, I blend creativity with technical skill in every project, pushing the boundaries of software innovation&lt;/p&gt;
+  
+&lt;/div&gt;
+
+  &lt;div class=&quot;w-80 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto&quot;&gt;&lt;/div&gt;
+
+  {/* Description Section */}
+  &lt;p class=&quot; text-light-gray/70 text-white text-2xl tracking-wider leading-relaxed&quot;&gt;An avid software engineer with a zest for front-end, back-end, AI, and cloud technologies. Passionate about exploring new tech frontiers, I blend creativity with technical skill in every project, pushing the boundaries of software innovation&lt;/p&gt;
+
+  {/* Buttons Section */}
   &lt;div class=&quot;flex  gap-4 items-center justify-center&quot;&gt;
   &lt;button&gt;CV&lt;/button&gt;
   &lt;button&gt;Blog&lt;/button&gt;
@@ -185,9 +211,10 @@ export default function Navbar() {
   return (
     &lt;header
       id=&quot;navigation-bar&quot;
-      className=&quot;w-full h-[50px] flex  justify-between items-center px-20 border-b sticky bg-white/20
+      className=&quot;w-full h-[50px] z-20 flex  justify-between items-center px-20 border-b sticky
   backdrop-blur-md top-0 border-slate-200/50&quot;
     &gt;
+      &lt;div className=&quot;absolute inset-0 blur-[100px] rounded-full z-0 pointer-events-none transform scale-110&quot;&gt;&lt;/div&gt;
       &lt;div&gt;Logo&lt;/div&gt;
       &lt;nav className=&quot;flex gap-10 font-bold&quot;&gt;
         &lt;a href=&quot;#home&quot; className={getLinkClass(&quot;home&quot;)}&gt;
@@ -203,11 +230,7 @@ export default function Navbar() {
       &lt;/nav&gt;
     &lt;/header&gt;
   );
-}</file><file path="src/components/Projects.astro">&lt;section id=&quot;projects&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;Projects&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/components/Skills.astro">&lt;section id=&quot;skills&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;Skills&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/layouts/Layout.astro">---
+}</file><file path="src/layouts/Layout.astro">---
 import &apos;../styles/global.css&apos;;
 ---
 
@@ -336,6 +359,21 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
   --color-dusk: oklch(0.82 0.15 72.09);
 
   --animate-caret: blink 1s steps(1) infinite;
+
+  --background-image-name-gradient: linear-gradient(
+    to right,
+    var(--color-primary),
+    oklch(0.95 0.22 145)
+  );
+
+  --color-glow-green: oklch(0.9 0.28 150);
+}
+
+@utility text-gradient {
+  background-image: var(--background-image-name-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 @keyframes blink {
@@ -397,7 +435,7 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 
   button {
     border-width: 1px;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-xl);
     padding: 1rem 2rem;
     cursor: pointer;
     transition: all 0.15s ease-in-out;

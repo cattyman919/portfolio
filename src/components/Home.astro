@@ -1,19 +1,24 @@
 ---
 import TypewriterText from "@/components/home/TypewriterText"
+import ParticlesBackground from "@/components/home/ParticlesBackground"
+
 ---
 <section id="home" class="h-dvh flex flex-col justify-center items-center text-center">
-  <div class="w-[50%] max-w-5xl flex flex-col gap-9">
+
+  <ParticlesBackground client:idle/>
+
+  <div class="w-[60%] max-w-5xl flex flex-col gap-9">
 
   {/* Main Title Section */}
-<div class="relative flex flex-col gap-10 text-center pb-4">
-    <div class="absolute -inset-4 bg-glow-green/20 blur-[80px] rounded-full z-0 pointer-events-none"></div>
+  <div class="relative flex flex-col gap-10 text-center pb-4">
+    <div class="absolute -inset-4 bg-glow-green/15 blur-[80px] rounded-full z-0 pointer-events-none"></div>
     <div class="relative z-10 font-bold">
       <h1 class="text-gray-200 text-7xl mb-12">Hi, I'm <span class="text-gradient">Seno Pamungkas Rahman</span></h1>
       <h2 class="text-5xl text-gray-300/90 mt-4">
         <TypewriterText client:load/>
       </h2>
     </div>
-</div>
+  </div>
 
   <div class="w-80 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto"></div>
 
@@ -21,8 +26,8 @@ import TypewriterText from "@/components/home/TypewriterText"
   <p class=" text-gray-50  text-2xl tracking-wider leading-relaxed">An avid software engineer with a zest for front-end, back-end, AI, and cloud technologies. Passionate about exploring new tech frontiers, I blend creativity with technical skill in every project, pushing the boundaries of software innovation</p>
 
   {/* Buttons Section */}
-  <div class="flex  gap-4 items-center justify-center">
-  <button>CV</button>
-  <button>Blog</button>
+  <div class="flex gap-4 items-center justify-center">
+   <button>CV</button>
+   <button>Blog</button>
   </div>
 </section>

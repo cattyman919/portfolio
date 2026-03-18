@@ -52,7 +52,6 @@ export default function Navbar() {
       className="w-full h-[50px] z-20 flex  justify-between items-center px-20 border-b sticky  
   backdrop-blur-md top-0 border-slate-200/50"
     >
-      <div className="absolute inset-0 blur-[100px] rounded-full z-0 pointer-events-none transform scale-110"></div>
       <div>Logo</div>
       <nav className="flex gap-10 font-bold">
         <a href="#home" className={getLinkClass("home")}>
