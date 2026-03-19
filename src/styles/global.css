@@ -20,6 +20,25 @@
   --color-glow-green: oklch(0.9 0.28 150);
 }
 
+@keyframes grow-line {
+  from {
+    transform: scaleY(0);
+    opacity: 0.2;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@utility scroll-animate-height {
+  animation: grow-line linear both;
+  /* Bind the timeline to the viewport */
+  animation-timeline: view();
+  /* Start when the top of the container enters, finish when it's 50% through the viewport */
+  animation-range: entry 0% cover 50%;
+}
+
 @utility text-gradient {
   background-image: var(--background-image-name-gradient);
   -webkit-background-clip: text;

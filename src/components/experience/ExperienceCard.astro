@@ -1,0 +1,130 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import type { Experience } from "@/types";
+
+type Props = Experience;
+
+const { company, date, location, logo, position, jobType, points } =
+  Astro.props;
+
+const parseBold = (text: string) => {
+  return text.replace(
+    /\*\*(.*?)\*\*/g,
+    '<strong class="font-bold">$1</strong>',
+  );
+};
+---
+
+<div
+  class="reveal-card opacity-0 translate-y-16 transition-all duration-1000 ease-out relative flex flex-col pl-15 will-change-transform"
+>
+  <div
+    class="group relative flex flex-col gap-8 px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] transition-all duration-500"
+  >
+    <div
+      class="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    >
+    </div>
+
+    <div class="relative z-10 flex flex-col gap-8">
+      <div class="flex gap-2 items-center">
+        {logo && <Image src={logo} alt="Company Logo" />}
+        <Icon name="lucide:building" size={24} />
+        <h3 class="text-2xl font-bold">
+          {company} - <span class="text-white italic">{position}</span>
+        </h3>
+      </div>
+
+      <div class="flex gap-8 text-sm">
+        <div class="flex gap-2 items-center rounded-lg border px-2 py-2">
+          <Icon name="lucide:calendar" size={24} />
+          <p>{date}</p>
+        </div>
+
+        <div class="flex gap-2 items-center rounded-lg border p-2">
+          <Icon name="mdi:location" size={24} />
+          <p>{location}</p>
+        </div>
+
+        <div class="flex gap-2 items-center rounded-lg border p-2">
+          <Icon name="mdi:clock" size={24} />
+          <p>{jobType}</p>
+        </div>
+      </div>
+
+      <ul class="list-none text-gray-100 flex flex-col gap-5">
+        {
+          points.map((p) => (
+            <li class="flex items-start gap-3 group/item">
+              <Icon
+                name="weui:arrow-filled"
+                class="w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all"
+              />
+              <span
+                class="text-gray-300 group-hover/item:text-gray-50 transition-colors leading-relaxed"
+                set:html={parseBold(p)}
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div
+    class="timeline-dot absolute left-0 top-10 transform -translate-x-1/2 w-4 h-4 rounded-full bg-slate-700 shadow-none transition-all duration-500 ease-out"
+  >
+  </div>
+</div>
+
+<script>
+  const setupCardsObserver = () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Find the specific dot inside the card that is currently intersecting
+          const dot = entry.target.querySelector(".timeline-dot");
+
+          if (entry.isIntersecting) {
+            // 1. Show the card
+            entry.target.classList.remove("opacity-0", "translate-y-16");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+
+            // 2. Turn ON the dot's glow
+            if (dot) {
+              dot.classList.remove("bg-slate-700", "shadow-none");
+              dot.classList.add(
+                "bg-primary",
+                "shadow-[0_0_25px_var(--color-primary)]",
+              );
+            }
+          } else {
+            // 1. Hide the card
+            entry.target.classList.remove("opacity-100", "translate-y-0");
+            entry.target.classList.add("opacity-0", "translate-y-16");
+
+            // 2. Turn OFF the dot's glow
+            if (dot) {
+              dot.classList.remove(
+                "bg-primary",
+                "shadow-[0_0_25px_var(--color-primary)]",
+              );
+              dot.classList.add("bg-slate-700", "shadow-none");
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    const cards = document.querySelectorAll(".reveal-card");
+    cards.forEach((card) => observer.observe(card));
+  };
+
+  setupCardsObserver();
+  document.addEventListener("astro:page-load", setupCardsObserver);
+</script>
