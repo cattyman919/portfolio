@@ -51,6 +51,21 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1
     devDependencies:
+      '@iconify-json/akar-icons':
+        specifier: ^1.2.7
+        version: 1.2.7
+      '@iconify-json/devicon':
+        specifier: ^1.2.61
+        version: 1.2.61
+      '@iconify-json/lineicons':
+        specifier: ^1.2.6
+        version: 1.2.6
+      '@iconify-json/ri':
+        specifier: ^1.2.10
+        version: 1.2.10
+      '@iconify-json/simple-icons':
+        specifier: ^1.2.74
+        version: 1.2.74
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
@@ -350,11 +365,26 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@iconify-json/akar-icons@1.2.7':
+    resolution: {integrity: sha512-cw44dCnZgGhm6Tywxm0WALAnDB9AyGkDk7kiLMo2B/Ayt7duZu/uyrsqb55weWUN8Ge2sQAOl8MRtT6bFcLzPg==}
+
+  '@iconify-json/devicon@1.2.61':
+    resolution: {integrity: sha512-GvJZrzyWbChwki9yscm8WaCfIHqFVi4hQbjNxoDS0JLsuAk4uyGOnmlHCJFN+SzAZ9FMU2RtmkdJGjYuw4G96w==}
+
+  '@iconify-json/lineicons@1.2.6':
+    resolution: {integrity: sha512-XDOzb5xUNxpOj0j2JPadPq4udrhYb92d6jT7jey9CAJfGhSyYMzk5vmNqWormZy0ETxiHojs2ERpY9KjLjt7rA==}
+
   '@iconify-json/lucide@1.2.98':
     resolution: {integrity: sha512-Lx2464W8Tty/QEnZ2UPb73nPdML/HpGCj0J0w37jP3/jx3l4fniZBjDxe1TgHiIL5XW9QO3vlx53ZQZ5JsNpzQ==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
+
+  '@iconify-json/ri@1.2.10':
+    resolution: {integrity: sha512-WWMhoncVVM+Xmu9T5fgu2lhYRrKTEWhKk3Com0KiM111EeEsRLiASjpsFKnC/SrB6covhUp95r2mH8tGxhgd5Q==}
+
+  '@iconify-json/simple-icons@1.2.74':
+    resolution: {integrity: sha512-yqaohfY6jnYjTVpuTkaBQHrWbdUrQyWXhau0r/0EZiNWYXPX/P8WWwl1DoLH5CbvDjjcWQw5J0zADhgCUklOqA==}
 
   '@iconify-json/weui@1.2.4':
     resolution: {integrity: sha512-11WOzuH81FokN34N2WYg/bRQ+5ewrIrzVfN4RhWxj3Xr37/eYmqb5SeC6EXpmH8yi+d8tLBdmPxbF41bIhrdxg==}
@@ -2462,11 +2492,31 @@ snapshots:
   '@esbuild/win32-x64@0.27.4':
     optional: true
 
+  '@iconify-json/akar-icons@1.2.7':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/devicon@1.2.61':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/lineicons@1.2.6':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/lucide@1.2.98':
     dependencies:
       '@iconify/types': 2.0.0
 
   '@iconify-json/mdi@1.2.3':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/ri@1.2.10':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/simple-icons@1.2.74':
     dependencies:
       '@iconify/types': 2.0.0
 

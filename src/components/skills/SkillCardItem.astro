@@ -1,0 +1,49 @@
+---
+import type { Skill } from "@/types";
+import { Icon } from "astro-icon/components";
+
+type Props = Skill;
+
+const { name, expertise, logo } = Astro.props;
+
+const ratingOutOfFive = Math.floor(expertise / 20);
+---
+
+<div class="flex items-center gap-4 px-6 py-4 bg-white/3 border border-white/5 rounded-2xl min-w-[200px] transition-colors hover:bg-white/8 backdrop-blur-sm cursor-default">
+
+  {logo ? (
+    <Icon 
+      name={logo} 
+      class={`flex items-center justify-center w-12 h-12 ${
+        name === "Rust" && "fill-[#C45508]"
+      }`} 
+    />
+  ) : (
+    <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
+      {name.charAt(0)}
+    </div>
+  )}
+  
+  <div class="flex flex-col gap-1.5">
+    <span class="text-white font-bold tracking-wider">{name}</span>
+    
+    <div class="flex gap-1 relative z-10">
+      {[0, 1, 2, 3, 4].map((index) => {
+        const isFilled = index < ratingOutOfFive;
+        
+        return (
+          <Icon 
+            name="lucide:star" 
+            class={`w-4 h-4 transition-colors duration-300 ${
+              isFilled 
+                // FIX: Swapped fill-primary for fill-current so it inherits the green from text-primary
+                ? "text-primary fill-current drop-shadow-[0_0_4px_var(--color-primary)]" 
+                : "text-white/20 fill-transparent"
+            }`}
+          />
+        );
+      })}
+    </div>
+  </div>
+
+</div>

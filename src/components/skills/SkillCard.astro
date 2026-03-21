@@ -1,0 +1,40 @@
+---
+import type { Skill } from "@/types";
+import type { ImageMetadata } from "astro";
+import SkillCardItem from "./SkillCardItem.astro";
+
+interface Props {
+  skills: Skill[];
+  title: string;
+  logo?: ImageMetadata;
+  reverse?: boolean; 
+}
+
+const { title, logo, skills, reverse = false } = Astro.props;
+
+// Duplicate the array to create the seamless infinite scroll illusion
+const duplicatedSkills = [...skills, ...skills];
+
+// Determine the animation class based on the reverse prop
+const animationClass = reverse ? "animate-marquee-reverse" : "animate-marquee";
+---
+
+<div class="flex flex-col gap-10 py-6 w-full relative overflow-hidden">
+  
+  {/* Gradient Masks to fade the left and right edges smoothly into the background */}
+  <div class="absolute inset-y-0 left-0 w-24 md:w-40 bg-linear-to-r from-bg to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute inset-y-0 right-0 w-24 md:w-40 bg-linear-to-l from-bg to-transparent z-10 pointer-events-none"></div>
+
+  <div class="flex gap-4 items-center px-8 md:px-20 relative z-20">
+    {logo && <p>Logo</p>}
+    <h3 class="font-bold text-4xl text-gray-300">{title}</h3>
+  </div>
+
+  {/* The Scrolling Track */}
+  <div class={`flex w-max gap-6 hover:[animation-play-state:paused] ${animationClass} px-4`}>
+    {duplicatedSkills.map((skill) => (
+      <SkillCardItem name={skill.name} expertise={skill.expertise} logo={skill.logo} />
+    ))}
+  </div>
+
+</div>
