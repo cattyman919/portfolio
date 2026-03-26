@@ -39,17 +39,17 @@ const parseBold = (text: string) => {
       <div class="flex gap-8 text-sm">
         <div class="flex gap-2 items-center rounded-lg border px-2 py-2">
           <Icon name="lucide:calendar" size={24} />
-          <p>{date}</p>
+          <p class="text-white font-bold">{date}</p>
         </div>
 
         <div class="flex gap-2 items-center rounded-lg border p-2">
           <Icon name="mdi:location" size={24} />
-          <p>{location}</p>
+          <p class="text-white font-bold">{location}</p>
         </div>
 
         <div class="flex gap-2 items-center rounded-lg border p-2">
           <Icon name="mdi:clock" size={24} />
-          <p>{jobType}</p>
+          <p class="text-white font-bold">{jobType}</p>
         </div>
       </div>
 
@@ -81,7 +81,7 @@ const parseBold = (text: string) => {
 <script>
   const setupCardsObserver = () => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, observerInstance) => {
         entries.forEach((entry) => {
           // Find the specific dot inside the card that is currently intersecting
           const dot = entry.target.querySelector(".timeline-dot");
@@ -99,19 +99,9 @@ const parseBold = (text: string) => {
                 "shadow-[0_0_25px_var(--color-primary)]",
               );
             }
-          } else {
-            // 1. Hide the card
-            entry.target.classList.remove("opacity-100", "translate-y-0");
-            entry.target.classList.add("opacity-0", "translate-y-16");
 
-            // 2. Turn OFF the dot's glow
-            if (dot) {
-              dot.classList.remove(
-                "bg-primary",
-                "shadow-[0_0_25px_var(--color-primary)]",
-              );
-              dot.classList.add("bg-slate-700", "shadow-none");
-            }
+            // 3. Unobserve the card so the animation only happens once
+            observerInstance.unobserve(entry.target);
           }
         });
       },
