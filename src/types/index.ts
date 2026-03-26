@@ -11,13 +11,14 @@ export interface Experience {
 }
 
 export interface SkillsLine {
-  title: string
-  skills: Skill[]
+  title: string;
+  logo?: string;
+  skills: Skill[];
 }
 
 export interface Skill {
-  name : string;
+  name: string;
   expertise: number;
   // Logo name from iconify
-  logo ?: string; 
+  logo?: string;
 }

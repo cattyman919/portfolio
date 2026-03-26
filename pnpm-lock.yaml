@@ -66,6 +66,9 @@ importers:
       '@iconify-json/simple-icons':
         specifier: ^1.2.74
         version: 1.2.74
+      '@iconify-json/skill-icons':
+        specifier: ^1.2.4
+        version: 1.2.4
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
@@ -385,6 +388,9 @@ packages:
 
   '@iconify-json/simple-icons@1.2.74':
     resolution: {integrity: sha512-yqaohfY6jnYjTVpuTkaBQHrWbdUrQyWXhau0r/0EZiNWYXPX/P8WWwl1DoLH5CbvDjjcWQw5J0zADhgCUklOqA==}
+
+  '@iconify-json/skill-icons@1.2.4':
+    resolution: {integrity: sha512-S6iRKHGlGCb/zfx3Isv1TBe5PunbDE5FEwJcaXji60+yRZMrcFFtYEI1xivKqaGKXyVZ508yjGDItsehQdJmSg==}
 
   '@iconify-json/weui@1.2.4':
     resolution: {integrity: sha512-11WOzuH81FokN34N2WYg/bRQ+5ewrIrzVfN4RhWxj3Xr37/eYmqb5SeC6EXpmH8yi+d8tLBdmPxbF41bIhrdxg==}
@@ -2517,6 +2523,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/simple-icons@1.2.74':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/skill-icons@1.2.4':
     dependencies:
       '@iconify/types': 2.0.0
 
