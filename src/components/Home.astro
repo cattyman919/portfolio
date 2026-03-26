@@ -2,7 +2,9 @@
 import TypewriterText from "@/components/home/TypewriterText"
 import ParticlesBackground from "@/components/home/ParticlesBackground"
 
+import { Icon } from "astro-icon/components";
 ---
+
 <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center">
 
   <ParticlesBackground client:idle/>
@@ -26,8 +28,14 @@ import ParticlesBackground from "@/components/home/ParticlesBackground"
   <p class=" text-gray-50  text-2xl tracking-wider leading-relaxed">An avid software engineer with a zest for front-end, back-end, AI, and cloud technologies. Passionate about exploring new tech frontiers, I blend creativity with technical skill in every project, pushing the boundaries of software innovation</p>
 
   {/* Buttons Section */}
-  <div class="flex gap-4 items-center justify-center">
-   <button>Resume</button>
-   <button>Blog</button>
+  <div class="flex gap-10 items-center justify-center mt-5">
+    <button class="flex gap-3 items-center justify-center">
+      <Icon name="lucide:file-badge" class="w-8 h-8" />
+      <p>Resume</p>
+    </button>
+    <button class="flex gap-3 items-center justify-center">
+      <Icon name="lucide:newspaper" class="w-8 h-8" />
+      <p>Blog</p>
+    </button>
   </div>
 </section>

@@ -1,13 +1,14 @@
-// src/components/TiltWrapper.tsx
 import { useState, useRef, type ReactNode } from "react";
 
 interface TiltWrapperProps {
   children: ReactNode;
+  maxTilt: number;
   className?: string;
 }
 
 export default function TiltWrapper({
   children,
+  maxTilt,
   className = "",
 }: TiltWrapperProps) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -15,7 +16,7 @@ export default function TiltWrapper({
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  const MAX_TILT = 15;
+  const MAX_TILT = maxTilt;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;

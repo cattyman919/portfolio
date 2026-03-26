@@ -1,0 +1,20 @@
+---
+import type { Project } from "@/types";
+import TiltWrapper from "@/components/TiltWrapper";
+
+interface Props {
+  project: Project;
+};
+
+const {} = Astro.props;
+---
+
+<div class="w-full h-[350px] md:w-[350px] flex justify-center">
+      <TiltWrapper
+        client:visible
+        maxTilt={4}
+        className=" rounded-2xl shadow-2xl border-2 border-primary/20 group bg-white"
+      >
+      <h1>Project Card</h1>
+      </TiltWrapper>
+</div>

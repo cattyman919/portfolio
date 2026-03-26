@@ -11,9 +11,6 @@ importers:
       '@astrojs/react':
         specifier: ^5.0.0
         version: 5.0.0(@types/node@25.5.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(jiti@2.6.1)(lightningcss@1.31.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@iconify-json/lucide':
-        specifier: ^1.2.98
-        version: 1.2.98
       '@iconify-json/mdi':
         specifier: ^1.2.3
         version: 1.2.3
@@ -60,6 +57,9 @@ importers:
       '@iconify-json/lineicons':
         specifier: ^1.2.6
         version: 1.2.6
+      '@iconify-json/lucide':
+        specifier: ^1.2.98
+        version: 1.2.98
       '@iconify-json/ri':
         specifier: ^1.2.10
         version: 1.2.10

@@ -10,6 +10,18 @@ export interface Experience {
   points: string[];
 }
 
+export interface Tool {
+  name: string;
+  logo?: string;
+}
+
+export interface Project {
+  title: string;
+  description: string;
+  type: string;
+  tools?: Tool[];
+}
+
 export interface SkillsLine {
   title: string;
   logo?: string;
