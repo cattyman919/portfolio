@@ -1,10 +1,11 @@
 ---
-import {projects} from "@/data/projects"
-import ProjectCard from "./project/ProjectCard.astro"
+import { projects } from "@/data/projects";
+import ProjectCard from "./project/ProjectCard.astro";
 ---
+
 <section id="projects" class="min-h-screen flex flex-col gap-15">
   <h1 class="text-center text-6xl font-bold">Projects</h1>
-  <div class="grid  grid-cols-2 md:grid-cols-3 place-items-center">
-  {projects.map((proj) => <ProjectCard project={proj}/>)
+  <div class="grid grid-cols-2 md:grid-cols-3 place-items-start">
+    {projects.map((proj) => <ProjectCard project={proj} />)}
   </div>
 </section>
