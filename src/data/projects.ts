@@ -1,5 +1,7 @@
 import type { Project } from "@/types";
 import DanceRTOSImage from "@/assets/projects/DanceRTOS.png";
+import VAIOImage from "@/assets/projects/vaio.jpg";
+import HomeServerImage from "@/assets/projects/home_server.jpg";
 
 export const projects: Project[] = [
   {
@@ -18,6 +20,8 @@ export const projects: Project[] = [
   {
     title: "VAIO (Vacuum All in One)",
     type: "iot",
+    image: VAIOImage,
+    sourceCodeURL: "https://github.com/VAIO-CE/VAIO-Code",
     description:
       "VAIO is an ESP32-based robot featuring autonomous navigation, a vacuum system, and multiple intuitive control methods including a sensor-equipped glove, voice commands via speech recognition, and a standard PS4 controller.",
     tools: [
@@ -30,6 +34,7 @@ export const projects: Project[] = [
   {
     title: "Home Server",
     type: "homelab",
+    image: HomeServerImage,
     description:
       "Dell OptiPlex 7050 running Debian as the Operating System used for my personal custom server. It currently provides services such as Portainer, Jellyfin, CasaOS, Samba Server, SIP Server, and also used as a backup for my files. Connected remotely using Tailscale.",
     tools: [

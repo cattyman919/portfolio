@@ -104,6 +104,9 @@
         transparent
       );
       color: white;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 10px
+        color-mix(in oklch, var(--color-primary) 20%, transparent);
     }
   }
 
