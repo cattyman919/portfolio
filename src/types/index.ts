@@ -19,6 +19,9 @@ export interface Project {
   title: string;
   description: string;
   type: string;
+  image?: ImageMetadata;
+  demoURL?: string;
+  sourceCodeURL?: string;
   tools?: Tool[];
 }
 

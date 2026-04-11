@@ -1,9 +1,11 @@
 import type { Project } from "@/types";
+import DanceRTOSImage from "@/assets/projects/DanceRTOS.png";
 
 export const projects: Project[] = [
   {
     title: "DanceRTOS",
     type: "fullstack",
+    image: DanceRTOSImage,
     description:
       "An attendance system using FreeRTOS ESP32 and RFID, with a web server and Blynk integration for class and schedule management.",
     tools: [

@@ -92,34 +92,18 @@
   }
 
   a {
-    text-underline-offset: 4px;
     text-decoration: none; /* Remove default underline */
     position: relative;
-    /* The invisible underline */
-    &::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px; /* Thickness of the underline */
-      bottom: -2px; /* Position it just below the text */
-      left: 0;
-      background-color: var(--color-coral); /* Using your OKLCH variable! */
-
-      /* Start collapsed, scale out from the bottom right */
-      transform: scaleX(0);
-      transform-origin: bottom right;
-      transition: transform 0.25s ease-out;
-    }
-
-    /* On hover, expand the line and change origin to make it "swipe" */
-    &:hover::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
+    transition: all 0.15s ease-in-out;
 
     /* Optional: change the text color on hover too */
     &:hover {
-      color: var(--color-coral);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        transparent
+      );
+      color: white;
     }
   }
 
@@ -132,9 +116,19 @@
     font-weight: 700;
 
     &:hover {
-      background-color: var(--color-primary);
+      /* Mixes 15% of your neon green with transparency */
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        transparent
+      );
+      /* color: var(--color-primary); */
       color: white;
       border-color: var(--color-primary);
+
+      /* Optional: adds a subtle glow to the box */
+      box-shadow: 0 0 10px
+        color-mix(in oklch, var(--color-primary) 20%, transparent);
     }
   }
 }
