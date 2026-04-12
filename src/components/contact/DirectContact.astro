@@ -7,18 +7,18 @@ const locationPlace = "Indonesia";
 const socialLinks = [
   {
     name: "GitHub",
-    icon: "devicon:github",
+    icon: "mdi:github",
     url: "https://github.com/cattyman919",
   },
   {
     name: "LinkedIn",
     icon: "devicon:linkedin",
-    url: "https://linkedin.com/in/yourusername",
+    url: "https://www.linkedin.com/in/seno-pamungkas-rahman-714341192",
   },
   {
     name: "Instagram",
     icon: "skill-icons:instagram",
-    url: "https://instagram.com/in/yourusername",
+    url: "https://www.instagram.com/senohebat",
   },
 ];
 ---
@@ -75,7 +75,7 @@ const socialLinks = [
       <Icon name="lucide:share-2" class="w-8 h-8" />
       <h2>Social Presence</h2>
     </div>
-    <div class="flex gap-4 filter-none">
+    <div class="flex gap-8 filter-none">
       {
         socialLinks.map((social) => (
           <a
@@ -83,9 +83,9 @@ const socialLinks = [
             target="_blank"
             rel="noopener noreferrer"
             title={`Visit Seno's ${social.name}`}
-            class="flex items-center justify-center w-12 h-12 rounded-full bg-white/[0.02] border border-white/5 text-gray-400 group-hover:border-primary/50 group-hover:text-primary transition-all duration-300 hover:bg-white/10"
+            class="flex items-center justify-center w-15 h-15 rounded-xl bg-white/[0.02] border border-primary/10 text-gray-400 group-hover:border-primary/50 group-hover:text-primary transition-all duration-300 hover:bg-white/5 hover:scale-110"
           >
-            <Icon name={social.icon} class="w-7 h-7" />
+            <Icon name={social.icon} class="w-10 h-10" />
           </a>
         ))
       }
