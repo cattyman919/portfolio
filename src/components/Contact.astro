@@ -1,8 +1,12 @@
 ---
 import EmailCard from "./contact/EmailCard.astro";
+import DirectContact from "./contact/DirectContact.astro";
 ---
 
-<section id="contact" class="min-h-screen w-[80%] mx-auto">
+<section
+  id="contact"
+  class="min-h-screen mx-auto flex flex-col justify-center items-center"
+>
   <!-- Title Header -->
   <div class="flex flex-col justify-center items-center gap-5">
     <h1 class="font-bold text-6xl text-center">Lets Connect</h1>
@@ -10,11 +14,8 @@ import EmailCard from "./contact/EmailCard.astro";
       Let's build something great together
     </p>
   </div>
-  <div class="flex w-full gap-5 mt-10">
-    <!-- Email Card -->
+  <div class="flex w-[80%] gap-15 mt-25">
     <EmailCard />
-
-    <EmailCard />
-    <!-- Direct Contact -->
+    <DirectContact />
   </div>
 </section>

@@ -12,7 +12,7 @@ const activeProjectTypes = [...new Set(projects.map((proj) => proj.type))];
   <div class="flex justify-center gap-4 filter-buttons px-4 flex-wrap mb-10">
     <button
       data-filter="all"
-      class="filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize bg-primary text-bg border-primary"
+      class="filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize bg-primary text-bg border-primary drop-shadow-[0_0px_4px_var(--color-primary)]"
     >
       All
     </button>
@@ -54,7 +54,12 @@ const activeProjectTypes = [...new Set(projects.map((proj) => proj.type))];
     const buttons = document.querySelectorAll(".filter-btn");
     const projects = document.querySelectorAll(".project-item");
 
-    const activeClasses = ["bg-primary", "text-bg", "border-primary"];
+    const activeClasses = [
+      "bg-primary",
+      "text-bg",
+      "border-primary",
+      "drop-shadow-[0_0px_4px_var(--color-primary)]",
+    ];
     const inactiveClasses = [
       "border-gray-600",
       "text-gray-400",
