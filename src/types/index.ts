@@ -15,10 +15,18 @@ export interface Tool {
   logo?: string;
 }
 
+export enum ProjectType {
+  IOT = "iot",
+  Fullstack = "fullstack",
+  Frontend = "frontend",
+  Backend = "backend",
+  HomeLab = "homelab",
+}
+
 export interface Project {
   title: string;
   description: string;
-  type: string;
+  type: ProjectType;
   image?: ImageMetadata;
   demoURL?: string;
   sourceCodeURL?: string;

@@ -21,30 +21,47 @@ const { title, image, description, type, tools, demoURL, sourceCodeURL } =
       <div
         class="bg-bg/98 w-full h-full flex flex-col overflow-hidden rounded-xl"
       >
-        {
-          image ? (
-            <div class="w-full h-48 shrink-0 mb-4 bg-black overflow-hidden rounded-t-lg">
-              <Image
-                src={image}
-                alt="Project Image"
-                class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 cursor-pointer transition-all duration-500"
-              />
-            </div>
-          ) : (
-            <div class="w-full h-48 rounded-t-lg shrink-0 mb-4 bg-white/5 border border-white/10 flex items-center justify-center">
-              <span class="text-gray-500 font-bold tracking-widest text-sm">
-                NO IMAGE
-              </span>
-            </div>
-          )
-        }
+        <div class="relative w-full h-48 group/image cursor-pointer">
+          {
+            image ? (
+              <div class="w-full h-48 shrink-0 mb-4 bg-black overflow-hidden rounded-t-lg">
+                <Image
+                  src={image}
+                  alt="Project Image"
+                  class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500"
+                />
+              </div>
+            ) : (
+              <div class="w-full h-48 rounded-t-lg shrink-0 mb-4 bg-white/5 border border-white/10 flex items-center justify-center">
+                <span class="text-gray-500 font-bold tracking-widest text-sm">
+                  NO IMAGE
+                </span>
+              </div>
+            )
+          }
+          <div
+            class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300"
+          >
+            <p class="font-bold text-white text-center text-lg px-4">
+              Click for more info
+            </p>
+          </div>
+        </div>
 
         {/* Text Group */}
         <div class="w-full h-full flex flex-col px-6 py-4">
           <div class="flex flex-col flex-1">
             <div class="flex flex-col gap-5">
               <div class="flex justify-between">
-                <h1 class="font-bold text-2xl">{title}</h1>
+                <a
+                  class="flex relative gap-2 group/title font-bold text-2xl text-primary/90 hover:text-primary/100 hover:bg-transparent hover:border-none drop-shadow-none shadow-none cursor-pointer"
+                >
+                  <h1>{title}</h1>
+                  <Icon
+                    name="mdi:external-link"
+                    class="absolute w-5 h-5 right-0 top-0 -translate-y-1 translate-x-[140%] opacity-0 group-hover/title:translate-x-[120%] group-hover/title:translate-y-1 group-hover/title:opacity-100 transition-all duration-300"
+                  />
+                </a>
                 <p class="border border-primary px-4 py-1 rounded-lg">{type}</p>
               </div>
               <p class="text-justify text-lg/loose text-gray-200">

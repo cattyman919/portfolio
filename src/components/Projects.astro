@@ -1,13 +1,97 @@
 ---
 import { projects } from "@/data/projects";
 import ProjectCard from "./project/ProjectCard.astro";
+
+const activeProjectTypes = [...new Set(projects.map((proj) => proj.type))];
 ---
 
 <section id="projects" class="min-h-screen flex flex-col gap-15">
   <h1 class="text-center text-6xl font-bold">Projects</h1>
+
+  {/* Filter Buttons */}
+  <div class="flex justify-center gap-4 filter-buttons px-4 flex-wrap mb-10">
+    <button
+      data-filter="all"
+      class="filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize bg-primary text-bg border-primary"
+    >
+      All
+    </button>
+
+    {
+      /* 2. Map over the dynamically generated activeProjectTypes instead of the Enum */
+    }
+    {
+      activeProjectTypes.map((type) => (
+        <button
+          data-filter={type}
+          class="filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize border-gray-600 text-gray-400 hover:bg-primary/20 hover:text-primary hover:border-primary/50"
+        >
+          {type}
+        </button>
+      ))
+    }
+  </div>
+
+  {/* Project Grid */}
   <div
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center items-stretch gap-4 px-4"
   >
-    {projects.map((proj) => <ProjectCard project={proj} />)}
+    {
+      projects.map((proj) => (
+        <div
+          class="project-item w-full flex justify-center"
+          data-type={proj.type}
+        >
+          <ProjectCard project={proj} />
+        </div>
+      ))
+    }
   </div>
 </section>
+
+<script>
+  const setupFilters = () => {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const projects = document.querySelectorAll(".project-item");
+
+    const activeClasses = ["bg-primary", "text-bg", "border-primary"];
+    const inactiveClasses = [
+      "border-gray-600",
+      "text-gray-400",
+      "hover:bg-primary/20",
+      "hover:text-primary",
+      "hover:border-primary/50",
+    ];
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const filter = target.getAttribute("data-filter");
+
+        // Handle button styling
+        buttons.forEach((btn) => {
+          btn.classList.remove(...activeClasses);
+          btn.classList.add(...inactiveClasses);
+        });
+
+        target.classList.remove(...inactiveClasses);
+        target.classList.add(...activeClasses);
+
+        // Handle project filtering
+        projects.forEach((project) => {
+          const el = project as HTMLElement;
+          const projectType = el.getAttribute("data-type");
+
+          if (filter === "all" || projectType === filter) {
+            el.style.display = "flex";
+          } else {
+            el.style.display = "none";
+          }
+        });
+      });
+    });
+  };
+
+  setupFilters();
+  document.addEventListener("astro:page-load", setupFilters);
+</script>
