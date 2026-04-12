@@ -54,6 +54,9 @@ importers:
       '@iconify-json/devicon':
         specifier: ^1.2.61
         version: 1.2.61
+      '@iconify-json/iconamoon':
+        specifier: ^1.2.2
+        version: 1.2.2
       '@iconify-json/lineicons':
         specifier: ^1.2.6
         version: 1.2.6
@@ -373,6 +376,9 @@ packages:
 
   '@iconify-json/devicon@1.2.61':
     resolution: {integrity: sha512-GvJZrzyWbChwki9yscm8WaCfIHqFVi4hQbjNxoDS0JLsuAk4uyGOnmlHCJFN+SzAZ9FMU2RtmkdJGjYuw4G96w==}
+
+  '@iconify-json/iconamoon@1.2.2':
+    resolution: {integrity: sha512-Xn7YeSDniPgutPr0qil/iQwQelq975OYQ/i2twGjcK4DjGOXBrBC+6q45WtVuQbFfXzM7bgijv4yVnxy0OqUdQ==}
 
   '@iconify-json/lineicons@1.2.6':
     resolution: {integrity: sha512-XDOzb5xUNxpOj0j2JPadPq4udrhYb92d6jT7jey9CAJfGhSyYMzk5vmNqWormZy0ETxiHojs2ERpY9KjLjt7rA==}
@@ -2504,6 +2510,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/devicon@1.2.61':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/iconamoon@1.2.2':
     dependencies:
       '@iconify/types': 2.0.0
 

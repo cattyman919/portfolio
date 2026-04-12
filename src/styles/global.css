@@ -134,4 +134,28 @@
         color-mix(in oklch, var(--color-primary) 20%, transparent);
     }
   }
+
+  input,
+  textarea {
+    border-width: 1px;
+    border-color: color-mix(in oklch, var(--color-primary) 30%, transparent);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px
+      color-mix(in oklch, var(--color-primary) 30%, transparent);
+  }
+
+  /* Adjust placeholder text color to blend nicely */
+  input::placeholder,
+  textarea::placeholder {
+    color: oklch(0.5 0 0); /* Muted gray for placeholder */
+  }
 }

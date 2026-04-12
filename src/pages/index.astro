@@ -1,20 +1,22 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '@/components/Navigation.tsx'
-import Home from '@/components/Home.astro'
-import About from '@/components/About.astro'
-import Experience from '@/components/Experience.astro'
-import Skills from '@/components/Skills.astro'
-import Projects from '@/components/Projects.astro'
-import Contact from '@/components/Contact.astro'
+import Layout from "../layouts/Layout.astro";
+import Navigation from "@/components/Navigation.tsx";
+import Home from "@/components/Home.astro";
+import About from "@/components/About.astro";
+import Experience from "@/components/Experience.astro";
+import Skills from "@/components/Skills.astro";
+import Projects from "@/components/Projects.astro";
+import Contact from "@/components/Contact.astro";
 ---
 
 <Layout>
-  <Navigation client:load/>
-  <Home/>
-  <About/>
-  <Experience/>
-  <Skills/>
-  <Projects/>
-  <Contact/>
+  <Navigation client:load />
+  <div class="space-y-32">
+    <Home />
+    <About />
+    <Experience />
+    <Skills />
+    <Projects />
+    <Contact />
+  </div>
 </Layout>
