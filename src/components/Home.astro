@@ -3,6 +3,9 @@ import TypewriterText from "@/components/home/TypewriterText";
 import ParticlesBackground from "@/components/home/ParticlesBackground";
 
 import { Icon } from "astro-icon/components";
+
+const resumeEndpoint: string =
+  "https://bucket.senop.dev/Seno%20Pamungkas%20Rahman%20-%20CV%20(main).pdf";
 ---
 
 <section
@@ -43,14 +46,22 @@ import { Icon } from "astro-icon/components";
 
     {/* Buttons Section */}
     <div class="flex gap-10 items-center justify-center mt-5">
-      <button class="flex gap-3 items-center justify-center">
+      <a
+        href={resumeEndpoint}
+        target="_blank"
+        class="flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]"
+      >
         <Icon name="lucide:file-badge" class="w-8 h-8" />
         <p>Resume</p>
-      </button>
-      <button class="flex gap-3 items-center justify-center">
+      </a>
+      <a
+        href="#"
+        target="_blank"
+        class="flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]"
+      >
         <Icon name="lucide:newspaper" class="w-8 h-8" />
         <p>Blog</p>
-      </button>
+      </a>
     </div>
   </div>
 </section>
