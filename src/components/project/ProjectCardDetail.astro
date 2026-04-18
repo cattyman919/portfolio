@@ -1,0 +1,96 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import type { ProjectType } from "@/src/content.config";
+import ProjectCarousel from "@/components/project/ProjectCarousel";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: ProjectType.image;
+  mediaUrls?: string[];
+  tags?: string[];
+  demoUrl?: string;
+  sourceCodeUrl?: string;
+}
+
+const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
+  Astro.props;
+---
+
+<div class="relative border border-gray-200/15 rounded-lg p-8 h-full">
+  <!-- Background Image -->
+  <div class="absolute inset-0 -z-1 rounded-lg">
+    <Image
+      src={image}
+      alt={`Cover image for ${title}`}
+      class="absolute top-0 right-0 left-0 bottom-0 w-full h-full object-cover opacity-20 blur-xs"
+      loading="lazy"
+      decoding="async"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"
+    >
+    </div>
+  </div>
+  <!-- Project Card -->
+  <div class="flex flex-col gap-8">
+    <div class="flex justify-between gap-8">
+      <div class="flex-1 min-w-0 w-full">
+        <ProjectCarousel sourcesUrl={mediaUrls!} client:load />
+      </div>
+      <div class="w-[400px] flex flex-col gap-5">
+        <h1 class="text-4xl font-bold text-primary">{title}</h1>
+        <p class="text-gray-300 text-justify leading-8">{description}</p>
+        <div class="flex gap-4 w-full">
+          {/* Live Demo Button */}
+          <a
+            href={demoUrl || undefined}
+            target={demoUrl ? "_blank" : undefined}
+            rel={demoUrl ? "noopener noreferrer" : undefined}
+            class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+              demoUrl
+                ? "cursor-pointer border-primary/50"
+                : "opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500"
+            }`}
+          >
+            {/* Added shrink-0 to prevent icon from squishing */}
+            <Icon
+              name="mdi:world-wide-web"
+              class="w-6 h-6 sm:w-8 sm:h-8 shrink-0"
+            />
+            {/* Added whitespace-nowrap to prevent text wrapping */}
+            <p class="font-bold whitespace-nowrap">Live Demo</p>
+          </a>
+
+          {/* Source Code Button */}
+          <a
+            href={sourceCodeUrl || undefined}
+            target={sourceCodeUrl ? "_blank" : undefined}
+            rel={sourceCodeUrl ? "noopener noreferrer" : undefined}
+            class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+              sourceCodeUrl
+                ? "cursor-pointer border-primary/50"
+                : "opacity-40 pointer-events-none border-gray-600 text-gray-500"
+            }`}
+          >
+            <Icon name="mdi:code-tags" class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" />
+            <p class="font-bold whitespace-nowrap">Source</p>
+          </a>
+        </div>
+        <div class="flex items-center gap-4 mt-5">
+          <h4 class="text-gray-400 font-bold">Tags:</h4>
+          <div class="flex gap-3">
+            {
+              tags?.map((tag) => (
+                <p class="border border-primary px-2 py-1 rounded-lg bg-primary/10 text-primary/80 font-bold">
+                  {tag}
+                </p>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -28,8 +28,10 @@ export interface Project {
   description: string;
   type: ProjectType;
   image?: ImageMetadata;
+  mediaUrls?: string[];
   demoURL?: string;
   sourceCodeURL?: string;
+  postUrl?: string;
   tools?: Tool[];
 }
 

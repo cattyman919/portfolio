@@ -1,0 +1,16 @@
+title: "DanceRTOS"
+type: "fullstack"
+tags: ["fullstack"]
+image: "./DanceRTOS.png"
+description: "An attendance system using FreeRTOS ESP32 and RFID, with a web server and Blynk integration for class and schedule management."
+
+highlights:
+  - "Fullstack Development: Led the fullstack development of the AbsenceSystem (DanceRTOS) project, creating both the frontend and backend infrastructure."
+  - "Login and Sign Up Pages: Designed and implemented the login and sign up pages for lecturers, ensuring a smooth user experience from the very beginning."
+
+tools:
+  - name: "Typescript"
+    logo: "devicon:typescript"
+
+mediaUrls:
+  - "https://bucket.senop.dev/projects/dancertos/DanceRTOS.png"

@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { MarkdownLayoutProps } from "astro";
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  author: string;
+  tags?: string[];
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout />

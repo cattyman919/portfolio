@@ -99,7 +99,7 @@ export default function Navbar() {
         {navItems.map((item) => (
           <a
             key={item.id}
-            href={`#${item.id}`}
+            href={`/#${item.id}`}
             ref={(el) => {
               navRefs.current[item.id] = el;
             }}

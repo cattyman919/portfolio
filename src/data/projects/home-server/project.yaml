@@ -1,0 +1,16 @@
+title: "Home Server"
+type: "homelab"
+tags: ["homelab", "linux"]
+image: "./home-server.jpg"
+description: "Dell OptiPlex 7050 running Debian as the Operating System used for my personal custom server. It currently provides services such as Portainer, Jellyfin, CasaOS, Samba Server, SIP Server, and also used as a backup for my files. Connected remotely using Tailscale."
+
+highlights:
+  - Implemented and refined the core gyroscope-based control system, enabling intuitive robot movement via the wearable glove, including developing the data transmission logic between the Glove and VAIO using the ESP-NOW protocol.
+
+tools:
+  - name: "Linux"
+    logo: "devicon:linux"
+
+mediaUrls:
+  - "https://bucket.senop.dev/projects/home-server/home_server.jpg"
+  - "https://bucket.senop.dev/projects/dancertos/DanceRTOS.png"

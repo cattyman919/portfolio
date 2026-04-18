@@ -1,0 +1,17 @@
+title: "Vacuum All in One"
+type: "iot"
+tags: ["iot"]
+image: "./vaio.jpg"
+description: "Vacuum All in One (VAIO) is an ESP32-based robot featuring autonomous navigation, a vacuum system, and multiple intuitive control methods including a sensor-equipped glove, voice commands via speech recognition, and a standard PS4 controller."
+
+highlights:
+  - Implemented and refined the core gyroscope-based control system, enabling intuitive robot movement via the wearable glove, including developing the data transmission logic between the Glove and VAIO using the ESP-NOW protocol.
+  - Spearheaded the integration and debugging efforts for the PS4 (DS4) controller functionality, troubleshooting library dependencies and Bluetooth communication issues to ensure reliable pairing and command input.
+
+sourceCodeUrl: "https://github.com/VAIO-CE/VAIO-Code"
+
+tools:
+  - name: "C++"
+    logo: "devicon:cplusplus"
+
+mediaUrls: [""]

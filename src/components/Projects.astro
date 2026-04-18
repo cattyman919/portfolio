@@ -1,8 +1,9 @@
 ---
-import { projects } from "@/data/projects";
+import { getCollection } from "astro:content";
 import ProjectCard from "./project/ProjectCard.astro";
 
-const activeProjectTypes = [...new Set(projects.map((proj) => proj.type))];
+const projects = await getCollection("projects");
+const activeProjectTypes = [...new Set(projects.map((proj) => proj.data.type))];
 ---
 
 <section id="projects" class="min-h-screen flex flex-col gap-15">
@@ -40,7 +41,7 @@ const activeProjectTypes = [...new Set(projects.map((proj) => proj.type))];
       projects.map((proj) => (
         <div
           class="project-item w-full flex justify-center"
-          data-type={proj.type}
+          data-type={proj.data.type}
         >
           <ProjectCard project={proj} />
         </div>

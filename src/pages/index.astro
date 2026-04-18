@@ -1,6 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navigation from "@/components/Navigation.tsx";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import Home from "@/components/Home.astro";
 import About from "@/components/About.astro";
 import Experience from "@/components/Experience.astro";
@@ -9,8 +8,7 @@ import Projects from "@/components/Projects.astro";
 import Contact from "@/components/Contact.astro";
 ---
 
-<Layout>
-  <Navigation client:load />
+<BaseLayout>
   <div class="space-y-32">
     <Home />
     <About />
@@ -19,4 +17,4 @@ import Contact from "@/components/Contact.astro";
     <Projects />
     <Contact />
   </div>
-</Layout>
+</BaseLayout>
