@@ -11,12 +11,6 @@ importers:
       '@astrojs/react':
         specifier: ^5.0.3
         version: 5.0.3(@types/node@25.5.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(jiti@2.6.1)(lightningcss@1.31.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@iconify-json/mdi':
-        specifier: ^1.2.3
-        version: 1.2.3
-      '@iconify-json/weui':
-        specifier: ^1.2.4
-        version: 1.2.4
       '@tailwindcss/vite':
         specifier: ^4.2.1
         version: 4.2.1(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.31.1))
@@ -26,12 +20,6 @@ importers:
       '@tsparticles/slim':
         specifier: ^3.9.1
         version: 3.9.1
-      '@types/react':
-        specifier: ^19.2.14
-        version: 19.2.14
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.14)
       astro:
         specifier: ^6.1.5
         version: 6.1.5(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(typescript@5.9.3)
@@ -66,6 +54,9 @@ importers:
       '@iconify-json/lucide':
         specifier: ^1.2.98
         version: 1.2.98
+      '@iconify-json/mdi':
+        specifier: ^1.2.3
+        version: 1.2.3
       '@iconify-json/ri':
         specifier: ^1.2.10
         version: 1.2.10
@@ -75,9 +66,18 @@ importers:
       '@iconify-json/skill-icons':
         specifier: ^1.2.4
         version: 1.2.4
+      '@iconify-json/weui':
+        specifier: ^1.2.4
+        version: 1.2.4
       '@iconify/react':
         specifier: ^6.0.2
         version: 6.0.2(react@19.2.4)
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
       prettier:
         specifier: ^3.8.1
         version: 3.8.1

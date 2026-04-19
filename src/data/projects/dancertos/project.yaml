@@ -7,6 +7,10 @@ description: "An attendance system using FreeRTOS ESP32 and RFID, with a web ser
 highlights:
   - "Fullstack Development: Led the fullstack development of the AbsenceSystem (DanceRTOS) project, creating both the frontend and backend infrastructure."
   - "Login and Sign Up Pages: Designed and implemented the login and sign up pages for lecturers, ensuring a smooth user experience from the very beginning."
+  - "Student Login: Developed a unique student login system using MQTT protocol with Flutter to connect to ESP32 using RFID, providing a seamless and secure login experience for students."
+  - "Data Collection: Created a system to collect data from the backend to track student absences, enabling lecturers to see which students are not in class."
+  - "Absence Tables: Implemented a feature where each class has its own absence table for students for specific weeks, providing a clear and organized view of student attendance."
+  - "Collaboration: Worked in collaboration with a team member who created the IoT hardware for the RFID absence system, demonstrating teamwork and cross-functional collaboration."
 
 tools:
   - name: "Typescript"

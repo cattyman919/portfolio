@@ -157,9 +157,12 @@ export default function ProjectCarousel({
       )}
       {/* Navigation Arrows */}
       {sourcesUrl.length > 1 && (
-        <div className="flex justify-between mt-2">
-          <button onClick={goToPrevious} className="p-0 px-1 rounded-md h-fit">
-            <Icon icon="lucide:chevron-left" width={24} height={24} />
+        <div className="flex items-center justify-between mt-2">
+          <button
+            onClick={goToPrevious}
+            className="py-0 px-2 flex justify-center items-center rounded-md h-fit"
+          >
+            <Icon icon="lucide:chevron-left" width={28} height={28} />
           </button>
           {/* Horizontal Slider */}
           <input
@@ -168,24 +171,27 @@ export default function ProjectCarousel({
             max="100"
             value={scrollProgress}
             onChange={handleSliderChange}
-            className="w-full h-2 bg-gray-500/10 rounded-none appearance-none cursor-pointer transition-all border-none focus:outline-none focus:backdrop-none focus:blur-none 
+            className="w-full h-full bg-gray-500/10 rounded-none appearance-none cursor-pointer transition-all border-none focus:outline-none focus:backdrop-none focus:blur-none 
 /* --- WebKit (Chrome, Safari, Edge) --- */
   [&::-webkit-slider-thumb]:appearance-none 
   [&::-webkit-slider-thumb]:w-[100px] 
-  [&::-webkit-slider-thumb]:h-2 
+  [&::-webkit-slider-thumb]:h-2
   [&::-webkit-slider-thumb]:bg-primary 
   [&::-webkit-slider-thumb]:rounded-sm
   
   /* --- Mozilla (Firefox) --- */
   [&::-moz-range-thumb]:appearance-none 
   [&::-moz-range-thumb]:w-[100px] 
-  [&::-moz-range-thumb]:h-2 
+  [&::-moz-range-thumb]:h-2
   [&::-moz-range-thumb]:bg-primary 
   [&::-moz-range-thumb]:border-none 
   [&::-moz-range-thumb]:rounded-sm"
           />
-          <button onClick={goToNext} className="p-0 px-1 rounded-md h-fit">
-            <Icon icon="lucide:chevron-right" width={24} height={24} />
+          <button
+            onClick={goToNext}
+            className="py-0 px-2 flex justify-center items-center rounded-md h-fit"
+          >
+            <Icon icon="lucide:chevron-right" width={28} height={28} />
           </button>
         </div>
       )}

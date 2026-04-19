@@ -4,9 +4,17 @@ tags: ["iot"]
 image: "./vaio.jpg"
 description: "Vacuum All in One (VAIO) is an ESP32-based robot featuring autonomous navigation, a vacuum system, and multiple intuitive control methods including a sensor-equipped glove, voice commands via speech recognition, and a standard PS4 controller."
 
+# (TODO) detailed description
+# The VAIO project showcases a versatile robotic platform built on the ESP32 microcontroller, designed for adaptable control and utility. It consists of two main components: the VAIO robot itself and a wearable Glove controller, communicating seamlessly via the ESP-NOW protocol. The VAIO robot integrates PWM-controlled motors for precise movement, an ultrasonic sensor coupled with a servo for autonomous navigation and obstacle avoidance, a controllable vacuum mechanism, and distinct LED indicators for visual feedback on the current operational state. The Glove controller houses an MPU6050 gyroscope/accelerometer for real-time gesture-based steering, a microphone leveraging an Edge Impulse model for speech command recognition (processed locally on the glove), and physical buttons for triggering voice input and vacuum activation. The system intelligently manages multiple control states—Autonomous, Gyro (Hand Gesture), and DS4 (PS4 Controller)—using FreeRTOS for efficient multi-tasking and leveraging the ESP32's dual cores. Configuration, including setting the DS4 controller's MAC address and potentially firmware updates (OTA), is facilitated through a built-in web server accessible via Wi-Fi. This project demonstrates robust integration of embedded systems, wireless communication, sensor fusion, RTOS principles, and multiple human-robot interaction paradigms.
+
 highlights:
+  - "Architected and structured the primary codebase for both the VAIO robot and the Glove controller using PlatformIO, employing C++ classes and static methods to enhance modularity, readability, and maintainability for team collaboration."
   - Implemented and refined the core gyroscope-based control system, enabling intuitive robot movement via the wearable glove, including developing the data transmission logic between the Glove and VAIO using the ESP-NOW protocol.
   - Spearheaded the integration and debugging efforts for the PS4 (DS4) controller functionality, troubleshooting library dependencies and Bluetooth communication issues to ensure reliable pairing and command input.
+  - "Actively participated in the physical hardware assembly, including wiring components, soldering connections for motors, sensors (ultrasonic), LED indicators, the vacuum system, and constructing the ESP32-based protoboard for the Glove controller."
+  - "Leveraged FreeRTOS to implement multi-core processing and concurrent task management on the VAIO robot, enabling simultaneous operation of sensor readings, motor control, communication handling (ESP-NOW, Web Server), and seamless switching between different control modes (Gyro, Auto, DS4)."
+  - "Developed and debugged key peripheral functionalities, including implementing precise motor speed control using PWM, establishing the system for LED status indication corresponding to control modes, and enabling the glove-based button activation for the vacuum system and voice command input."
+  - "Contributed to the implementation and refinement of the master_control logic on the VAIO, ensuring smooth transitions between control states based on inputs received from the glove (gyro, speech, buttons) or the web interface."
 
 sourceCodeUrl: "https://github.com/VAIO-CE/VAIO-Code"
 

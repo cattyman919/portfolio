@@ -1,7 +1,10 @@
 ---
 import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ProjectCardDetail from "@/components/project/ProjectCardDetail.astro";
+import ProjectTechnologies from "@/components/project/ProjectTechnologies.astro";
+import ProjectHiglights from "@/components/project/ProjectHiglights.astro";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -27,8 +30,11 @@ const {
 ---
 
 <BaseLayout>
-  <div class="max-w-7xl mx-auto w-full flex flex-col gap-8 px-4 sm:px-6 py-8">
-    <a href="/#projects" class="hover:text-primary transition-colors w-fit">
+  <div class="max-w-8xl mx-auto w-full flex flex-col gap-8 px-12 sm:px-14 py-8">
+    <a
+      href="/#projects"
+      class="hover:text-primary transition-all w-fit bg-transparent hover:bg-transparent hover:shadow-none hover:drop-shadow-none hover:scale-110 duration-300"
+    >
       <p>← Back to Projects</p>
     </a>
     <ProjectCardDetail
@@ -40,5 +46,10 @@ const {
       image={image}
       tags={tags}
     />
+
+    <div class="flex gap-10 relative">
+      <ProjectHiglights highlights={highlights} />
+      <ProjectTechnologies tools={tools} />
+    </div>
   </div>
 </BaseLayout>

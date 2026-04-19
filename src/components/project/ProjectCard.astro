@@ -8,6 +8,7 @@ interface Props {
   project: CollectionEntry<"projects">;
 }
 
+const MAX_TECH_LENGTH: number = 5;
 const { project } = Astro.props;
 const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
   project.data;
@@ -76,13 +77,13 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
                 {description}
               </p>
               <div>
-                <p class="font-bold mb-3 text-gray-300/70">Tools</p>
-                {
-                  tools &&
-                    tools.map((tool) => (
-                      <div class="flex gap-4">
+                <p class="font-bold mb-3 text-gray-300/70">Technologies</p>
+                <div class="flex flex-wrap gap-2">
+                  {
+                    tools.slice(0, MAX_TECH_LENGTH).map((tool) => (
+                      <div title={tool.name} class="flex gap-4">
                         {tool.logo ? (
-                          <div class="flex items-center justify-center p-1 rounded-lg border border-white/10 text-primary ">
+                          <div class="flex items-center justify-center p-1 rounded-lg border border-white/10 text-primary hover:border-primary/70 transition-all duration-300 hover:bg-primary/10 hover:-translate-y-1">
                             <Icon name={tool.logo} class="w-10 h-10 " />
                           </div>
                         ) : (
@@ -92,7 +93,8 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
                         )}
                       </div>
                     ))
-                }
+                  }
+                </div>
               </div>
             </div>
 

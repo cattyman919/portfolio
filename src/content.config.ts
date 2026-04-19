@@ -1,6 +1,7 @@
 import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
+import type { CollectionEntry } from "astro:content";
 
 const projects = defineCollection({
   loader: glob({
@@ -29,6 +30,6 @@ const projects = defineCollection({
     }),
 });
 
-export type ProjectType = z.infer<typeof projects>;
+export type ProjectType = CollectionEntry<"projects">["data"];
 
 export const collections = { projects };

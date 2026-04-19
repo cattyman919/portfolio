@@ -13,13 +13,9 @@
   },
   "dependencies": {
     "@astrojs/react": "^5.0.3",
-    "@iconify-json/mdi": "^1.2.3",
-    "@iconify-json/weui": "^1.2.4",
     "@tailwindcss/vite": "^4.2.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
     "astro": "^6.1.5",
     "astro-icon": "^1.1.5",
     "mdx": "^0.3.1",
@@ -28,6 +24,10 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/weui": "^1.2.4",
     "@iconify-json/akar-icons": "^1.2.7",
     "@iconify-json/devicon": "^1.2.61",
     "@iconify-json/iconamoon": "^1.2.2",
@@ -42,3 +42,4 @@
     "typescript": "^5.9.3"
   }
 }
+

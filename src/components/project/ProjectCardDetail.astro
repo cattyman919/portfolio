@@ -39,9 +39,11 @@ const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
       <div class="flex-1 min-w-0 w-full">
         <ProjectCarousel sourcesUrl={mediaUrls!} client:load />
       </div>
-      <div class="w-[400px] flex flex-col gap-5">
+      <div class="w-[35%] flex flex-col gap-5">
         <h1 class="text-4xl font-bold text-primary">{title}</h1>
-        <p class="text-gray-300 text-justify leading-8">{description}</p>
+        <p class="text-gray-300 text-xl text-justify leading-loose">
+          {description}
+        </p>
         <div class="flex gap-4 w-full">
           {/* Live Demo Button */}
           <a
@@ -51,7 +53,7 @@ const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
             class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
               demoUrl
                 ? "cursor-pointer border-primary/50"
-                : "opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500"
+                : "opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500 bg-gray-600/20"
             }`}
           >
             {/* Added shrink-0 to prevent icon from squishing */}
@@ -71,7 +73,7 @@ const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
             class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
               sourceCodeUrl
                 ? "cursor-pointer border-primary/50"
-                : "opacity-40 pointer-events-none border-gray-600 text-gray-500"
+                : "opacity-40 pointer-events-none border-gray-600 text-gray-500 bg-gray-600/20"
             }`}
           >
             <Icon name="mdi:code-tags" class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" />
