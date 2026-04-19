@@ -1,15 +1,12 @@
 ---
-import { dummyData } from "@/data/experiences";
+import { experienceData } from "@/data/experiences";
 import ExperienceCard from "./experience/ExperienceCard.astro";
 ---
 
 <section id="experience" class="min-h-screen py-20 relative">
   <h1 class="text-6xl font-bold text-center mb-20">My Journey</h1>
 
-  <div
-    id="experience-container"
-    class="relative space-y-20 w-[80%] mx-auto"
-  >
+  <div id="experience-container" class="relative space-y-20 w-[80%] mx-auto">
     <div
       class="absolute top-0 w-[2px] rounded-full bg-white/[0.04] backdrop-blur-3xl h-full"
     >
@@ -22,30 +19,18 @@ import ExperienceCard from "./experience/ExperienceCard.astro";
     >
     </div>
 
-    <ExperienceCard
-      company={dummyData.company}
-      date={dummyData.date}
-      jobType={dummyData.jobType}
-      location={dummyData.location}
-      points={dummyData.points}
-      position={dummyData.position}
-    />
-    <ExperienceCard
-      company={dummyData.company}
-      date={dummyData.date}
-      jobType={dummyData.jobType}
-      location={dummyData.location}
-      points={dummyData.points}
-      position={dummyData.position}
-    />
-    <ExperienceCard
-      company={dummyData.company}
-      date={dummyData.date}
-      jobType={dummyData.jobType}
-      location={dummyData.location}
-      points={dummyData.points}
-      position={dummyData.position}
-    />
+    {
+      experienceData.map((exp) => (
+        <ExperienceCard
+          company={exp.company}
+          date={exp.date}
+          jobType={exp.jobType}
+          location={exp.location}
+          points={exp.points}
+          position={exp.position}
+        />
+      ))
+    }
   </div>
 </section>
 

@@ -37,17 +37,23 @@ const parseBold = (text: string) => {
       </div>
 
       <div class="flex gap-8 text-sm">
-        <div class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md">
+        <div
+          class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
+        >
           <Icon name="lucide:calendar" size={24} />
           <p class="text-white font-bold">{date}</p>
         </div>
 
-        <div class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md">
+        <div
+          class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
+        >
           <Icon name="mdi:location" size={24} />
           <p class="text-white font-bold">{location}</p>
         </div>
 
-        <div class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md">
+        <div
+          class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
+        >
           <Icon name="mdi:clock" size={24} />
           <p class="text-white font-bold">{jobType}</p>
         </div>
@@ -56,7 +62,7 @@ const parseBold = (text: string) => {
       <ul class="list-none text-gray-100 flex flex-col gap-5">
         {
           points.map((p) => (
-            <li class="flex items-start gap-3 group/item">
+            <li class="flex items-start gap-3 group/item text-lg">
               <Icon
                 name="weui:arrow-filled"
                 class="w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all"
