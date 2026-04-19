@@ -22,4 +22,12 @@ tools:
   - name: "C++"
     logo: "devicon:cplusplus"
 
-mediaUrls: [""]
+mediaUrls:
+  - "https://bucket.senop.dev/projects/vaio/vaio.jpg"
+  - "https://bucket.senop.dev/projects/vaio/glove_vaio.jpg"
+  - "https://bucket.senop.dev/projects/vaio/ps4_car.mp4"
+  - "https://bucket.senop.dev/projects/vaio/vaio_test.mp4"
+  - "https://bucket.senop.dev/projects/vaio/voice_detection.mp4"
+  - "https://bucket.senop.dev/projects/vaio/vaio_car1.jpg"
+  - "https://bucket.senop.dev/projects/vaio/internal_vaio.jpg"
+  - "https://bucket.senop.dev/projects/vaio/group_vaio.jpg"

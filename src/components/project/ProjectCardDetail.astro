@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import type { ProjectType } from "@/src/content.config";
 import ProjectCarousel from "@/components/project/ProjectCarousel";
 
@@ -16,6 +16,43 @@ interface Props {
 
 const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
   Astro.props;
+
+const videoExtensions = ["mp4", "mov", "webm", "ogg"];
+
+const processedMedia = await Promise.all(
+  mediaUrls!.map(async (url) => {
+    const isVideo = videoExtensions.some((ext) =>
+      url.toLowerCase().endsWith(`.${ext}`),
+    );
+
+    if (isVideo) {
+      return { type: "video" as const, src: url };
+    }
+
+    // Generate high-res version for the viewer (1200px width)
+    const optimizedFull = await getImage({
+      src: url,
+      format: "webp",
+      inferSize: true,
+    });
+
+    // Generate tiny thumbnail (150px width, lower quality)
+    const optimizedThumb = await getImage({
+      src: url,
+      width: 150,
+      height: 100,
+      quality: 60,
+      format: "webp",
+      inferSize: true,
+    });
+
+    return {
+      type: "image" as const,
+      src: optimizedFull.src,
+      thumbSrc: optimizedThumb.src,
+    };
+  }),
+);
 ---
 
 <div class="relative border border-gray-200/15 rounded-lg p-8 h-full">
@@ -37,7 +74,7 @@ const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
   <div class="flex flex-col gap-8">
     <div class="flex justify-between gap-8">
       <div class="flex-1 min-w-0 w-full">
-        <ProjectCarousel sourcesUrl={mediaUrls!} client:load />
+        <ProjectCarousel media={processedMedia} client:load />
       </div>
       <div class="w-[35%] flex flex-col gap-5">
         <h1 class="text-4xl font-bold text-primary">{title}</h1>

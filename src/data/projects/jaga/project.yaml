@@ -1,7 +1,7 @@
 title: "Jaga"
 type: "fullstack"
 tags: ["fullstack"]
-image: "./home-server.jpg"
+image: "./jaga.png"
 description: "A vehicle maintenance app with GPS tracking to monitor kilometers and notify users of service needs based on distance and time."
 
 highlights:
@@ -27,4 +27,4 @@ tools:
 sourceCodeUrl: "https://github.com/cattyman919/Jaga"
 
 mediaUrls:
-  - "https://bucket.senop.dev/projects/home-server/home_server.jpg"
+  - "https://bucket.senop.dev/projects/jaga/jaga.png"

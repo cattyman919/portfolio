@@ -1,7 +1,7 @@
 title: "Restomatic"
 type: "frontend"
 tags: ["frontend"]
-image: "./home-server.jpg"
+image: "./restomatic.png"
 description: "A web platform for easy food and drink ordering. Users can browse restaurant menus, add funds, and leave ratings."
 # full_description
 # RestoMatic is a user-friendly web platform designed to simplify and streamline the process of ordering food and drinks from various restaurants. The platform offers users a convenient way to navigate through a wide range of restaurants, each with its own unique menu. Additionally, users can add funds to their balance to make payments and share their experiences by leaving ratings and reviews for specific restaurants.
@@ -32,4 +32,12 @@ tools:
 sourceCodeUrl: "https://github.com/SistemBasisData2023/RestoMatic"
 
 mediaUrls:
-  - "https://bucket.senop.dev/projects/home-server/home_server.jpg"
+  - "https://bucket.senop.dev/projects/restomatic/restomatic.png"
+  - "https://bucket.senop.dev/projects/restomatic/login_page.png"
+  - "https://bucket.senop.dev/projects/restomatic/register_page.png"
+  - "https://bucket.senop.dev/projects/restomatic/home_page.png"
+  - "https://bucket.senop.dev/projects/restomatic/profile_page.png"
+  - "https://bucket.senop.dev/projects/restomatic/order_page.png"
+  - "https://bucket.senop.dev/projects/restomatic/order_cart.png"
+  - "https://bucket.senop.dev/projects/restomatic/order_history_page.png"
+  - "https://bucket.senop.dev/projects/restomatic/review_page.png"
