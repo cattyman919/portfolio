@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
 
 export type CarouselMedia = {
@@ -17,31 +17,24 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
   }
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [scrollProgress, setScrollProgress] = useState<number>(0);
   const thumbnailRef = useRef<HTMLDivElement>(null);
 
-  // --- Image Navigation ---
-  const goToSlide = (slideIndex: number) => setCurrentIndex(slideIndex);
-
-  const handleScroll = () => {
+  // Auto-scroll thumbnails to keep the active one in view
+  useEffect(() => {
     if (!thumbnailRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = thumbnailRef.current;
-    const maxScroll = scrollWidth - clientWidth;
-    if (maxScroll > 0) {
-      const progress = (scrollLeft / maxScroll) * 100;
-      setScrollProgress(progress);
+    const activeThumb = thumbnailRef.current.children[
+      currentIndex
+    ] as HTMLElement;
+    if (activeThumb) {
+      activeThumb.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
     }
-  };
+  }, [currentIndex]);
 
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const progress = Number(e.target.value);
-    setScrollProgress(progress);
-
-    if (!thumbnailRef.current) return;
-    const { scrollWidth, clientWidth } = thumbnailRef.current;
-    const maxScroll = scrollWidth - clientWidth;
-    thumbnailRef.current.scrollLeft = (progress / 100) * maxScroll;
-  };
+  const goToSlide = (slideIndex: number) => setCurrentIndex(slideIndex);
 
   const goToPrevious = () => {
     setCurrentIndex(currentIndex === 0 ? media.length - 1 : currentIndex - 1);
@@ -51,7 +44,17 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
     setCurrentIndex(currentIndex === media.length - 1 ? 0 : currentIndex + 1);
   };
 
+  // The slider now changes the active slide
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const progress = Number(e.target.value);
+    const newIndex = Math.round((progress / 100) * (media.length - 1));
+    setCurrentIndex(newIndex);
+  };
+
   const currentItem = media[currentIndex];
+  // Calculate the slider's percentage based on the active index
+  const currentProgress =
+    media.length > 1 ? (currentIndex / (media.length - 1)) * 100 : 0;
 
   return (
     <div className="flex flex-col gap-4">
@@ -85,16 +88,16 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
       {/* Thumbnails */}
       {media.length > 1 && (
         <div
-          className="flex justify-center gap-2 mt-2 flex-wrap px-2"
+          className="flex gap-2 mt-2 px-2 overflow-x-auto flex-nowrap scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           ref={thumbnailRef}
-          onScroll={handleScroll}
         >
           {media.map((item, index) => {
             return (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-22 h-16 relative overflow-hidden rounded border-2 transition-all duration-200 group ${
+                // Added shrink-0 so they don't squish when overflowing
+                className={`shrink-0 w-22 h-16 relative overflow-hidden rounded border-2 transition-all duration-200 group ${
                   index === currentIndex
                     ? "border-primary-accent"
                     : "border-transparent hover:border-primary-accent/50"
@@ -104,7 +107,6 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
                 <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
                   {item.type === "video" ? (
                     <>
-                      {/* The #t=0.1 trick grabs the first frame of the video */}
                       <video
                         src={`${item.src}#t=0.1`}
                         className="object-cover w-full h-full"
@@ -112,7 +114,6 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
                         muted
                         playsInline
                       />
-                      {/* Play Icon Overlay */}
                       <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
                         <Icon
                           icon="lucide:play"
@@ -140,7 +141,7 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
         </div>
       )}
 
-      {/* Navigation Arrows (Unchanged) */}
+      {/* Navigation Arrows & Slider */}
       {media.length > 1 && (
         <div className="flex items-center justify-between mt-2">
           <button
@@ -154,7 +155,7 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
             type="range"
             min="0"
             max="100"
-            value={scrollProgress}
+            value={currentProgress}
             onChange={handleSliderChange}
             className="w-full h-full bg-gray-500/10 rounded-none appearance-none cursor-pointer transition-all border-none focus:outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-[100px] [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-sm [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-[100px] [&::-moz-range-thumb]:h-2 [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:rounded-sm"
           />
