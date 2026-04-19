@@ -171,3 +171,86 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
     </div>
   );
 }
+
+function CustomVideoPlayer({ src }: { src: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const currentProgress =
+        (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setProgress(currentProgress);
+    }
+  };
+
+  const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newProgress = Number(e.target.value);
+    setProgress(newProgress);
+    if (videoRef.current) {
+      videoRef.current.currentTime =
+        (newProgress / 100) * videoRef.current.duration;
+    }
+  };
+
+  return (
+    <div className="relative w-full h-full group bg-black/5 rounded-lg overflow-hidden flex items-center justify-center bg-black">
+      <video
+        ref={videoRef}
+        src={src}
+        className="w-full h-full object-contain"
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={() => setIsPlaying(false)}
+        onClick={togglePlay}
+        playsInline
+      />
+
+      {/* Large Play Button Overlay (Visible when paused) */}
+      {!isPlaying && (
+        <button
+          onClick={togglePlay}
+          className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors z-10"
+        >
+          <div className="bg-primary/90 text-black p-4 rounded-full shadow-lg transform transition-transform hover:scale-110">
+            <Icon icon="lucide:play" width={32} height={32} />
+          </div>
+        </button>
+      )}
+
+      {/* Custom Controls Bar (Visible on hover) */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-4 z-20">
+        <button
+          onClick={togglePlay}
+          className="text-white hover:text-primary transition-colors focus:outline-none"
+        >
+          <Icon
+            icon={isPlaying ? "lucide:pause" : "lucide:play"}
+            width={24}
+            height={24}
+          />
+        </button>
+
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={progress || 0}
+          onChange={handleProgressChange}
+          className="w-full h-1.5 bg-gray-500/50 rounded-full appearance-none cursor-pointer transition-all focus:outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:rounded-full"
+        />
+      </div>
+    </div>
+  );
+}
