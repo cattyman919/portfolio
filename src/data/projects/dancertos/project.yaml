@@ -16,5 +16,16 @@ tools:
   - name: "Typescript"
     logo: "devicon:typescript"
 
+  - name: "NestJS"
+    logo: "devicon:nestjs"
+
+  - name: "Dart"
+    logo: "devicon:dart"
+
+  - name: "Flutter"
+    logo: "devicon:flutter"
+
+sourceCodeUrl: "https://github.com/cattyman919/AbsenceSystem"
+
 mediaUrls:
   - "https://bucket.senop.dev/projects/dancertos/DanceRTOS.png"

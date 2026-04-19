@@ -8,7 +8,7 @@ interface Props {
   project: CollectionEntry<"projects">;
 }
 
-const MAX_TECH_LENGTH: number = 5;
+const MAX_TECH_LENGTH: number = 6;
 const { project } = Astro.props;
 const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
   project.data;
@@ -83,8 +83,8 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
                     tools.slice(0, MAX_TECH_LENGTH).map((tool) => (
                       <div title={tool.name} class="flex gap-4">
                         {tool.logo ? (
-                          <div class="flex items-center justify-center p-1 rounded-lg border border-white/10 text-primary hover:border-primary/70 transition-all duration-300 hover:bg-primary/10 hover:-translate-y-1">
-                            <Icon name={tool.logo} class="w-10 h-10 " />
+                          <div class="flex items-center justify-center p-1 rounded-lg border border-white/10  hover:border-primary/70 transition-all duration-300 hover:bg-primary/10 hover:-translate-y-1">
+                            <Icon name={tool.logo} class="w-10 h-10 iconify"  />
                           </div>
                         ) : (
                           <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
