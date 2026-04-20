@@ -1,8 +1,17 @@
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
+import type { IParticlesProps } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
-export default function ParticlesBackground() {
+interface ParticlesBackgroundProps {
+  id: string;
+  options?: IParticlesProps["options"];
+}
+
+export default function ParticlesBackground({
+  id,
+  options,
+}: ParticlesBackgroundProps) {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -18,54 +27,9 @@ export default function ParticlesBackground() {
 
   return (
     <Particles
-      id="tsparticles"
+      id={id}
       className="absolute inset-0 -z-20 w-full h-full"
-      options={{
-        fullScreen: {
-          enable: false,
-        },
-        background: {
-          color: { value: "transparent" },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          detectsOn: "window",
-          events: {
-            onHover: {
-              enable: true,
-              parallax: {
-                enable: true,
-                force: 60,
-                smooth: 10,
-              },
-            },
-          },
-        },
-        particles: {
-          color: { value: "#0ffe7a" },
-          links: {
-            color: "#ffffff",
-            distance: 150,
-            enable: true,
-            opacity: 0.1,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 1,
-            direction: "none",
-            outModes: { default: "bounce" },
-          },
-          number: {
-            density: { enable: true, width: 800, height: 800 },
-            value: 40, // Adjust for more/fewer particles
-          },
-          opacity: { value: 0.4 },
-          shape: { type: "circle" },
-          size: { value: { min: 1, max: 3 } },
-        },
-        detectRetina: true,
-      }}
+      options={options}
     />
   );
 }
