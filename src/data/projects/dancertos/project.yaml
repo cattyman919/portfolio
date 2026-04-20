@@ -1,6 +1,6 @@
 title: "DanceRTOS"
 type: "fullstack"
-tags: ["fullstack"]
+tags: ["fullstack", "iot"]
 image: "./DanceRTOS.png"
 description: "An attendance system using FreeRTOS ESP32 and RFID, with a web server and Blynk integration for class and schedule management."
 
