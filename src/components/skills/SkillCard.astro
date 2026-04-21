@@ -1,19 +1,22 @@
 ---
-import type { Skill } from "@/types";
 import SkillCardItem from "./SkillCardItem.astro";
 import { Icon } from "astro-icon/components";
+import type { SkillsLine } from "@/types";
 
 interface Props {
-  skills: Skill[];
-  title: string;
-  logo?: string;
+  skillLine: SkillsLine;
   reverse?: boolean;
 }
 
-const { title, logo, skills, reverse = false } = Astro.props;
+const { skillLine, reverse = false } = Astro.props;
+
+const { title, logo, skills } = skillLine;
 
 // Duplicate the array to create the seamless infinite scroll illusion
-const duplicatedSkills = [...skills, ...skills];
+const duplicatedSkills: SkillsLine["skills"] = skills.map((skill) => [
+  ...skill,
+  ...skill,
+]);
 
 // Determine the animation class based on the reverse prop
 const animationClass = reverse ? "animate-marquee-reverse" : "animate-marquee";
@@ -56,17 +59,31 @@ const animationClass = reverse ? "animate-marquee-reverse" : "animate-marquee";
   </div>
 
   {/* The Scrolling Track */}
-  <div
-    class={`flex w-max gap-6 hover:[animation-play-state:paused] ${animationClass} px-4`}
-  >
-    {
-      duplicatedSkills.map((skill) => (
-        <SkillCardItem
-          name={skill.name}
-          expertise={skill.expertise}
-          logo={skill.logo}
-        />
-      ))
-    }
-  </div>
+
+  {
+    duplicatedSkills.map((skill, index) => {
+      let isRowReversed = reverse;
+
+      if (index % 2 === 0) {
+        isRowReversed = true;
+      }
+
+      const animationClass = isRowReversed
+        ? "animate-marquee-reverse"
+        : "animate-marquee";
+      return (
+        <div
+          class={`flex w-max gap-6 hover:[animation-play-state:paused] ${animationClass} px-4`}
+        >
+          {skill.map((skillLine) => (
+            <SkillCardItem
+              name={skillLine.name}
+              expertise={skillLine.expertise}
+              logo={skillLine.logo}
+            />
+          ))}
+        </div>
+      );
+    })
+  }
 </div>

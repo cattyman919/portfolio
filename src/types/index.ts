@@ -15,30 +15,10 @@ export interface Tool {
   logo?: string;
 }
 
-export enum ProjectType {
-  IOT = "iot",
-  Fullstack = "fullstack",
-  Frontend = "frontend",
-  Backend = "backend",
-  HomeLab = "homelab",
-}
-
-export interface Project {
-  title: string;
-  description: string;
-  type: ProjectType;
-  image?: ImageMetadata;
-  mediaUrls?: string[];
-  demoURL?: string;
-  sourceCodeURL?: string;
-  postUrl?: string;
-  tools?: Tool[];
-}
-
 export interface SkillsLine {
   title: string;
   logo?: string;
-  skills: Skill[];
+  skills: Skill[][];
 }
 
 export interface Skill {

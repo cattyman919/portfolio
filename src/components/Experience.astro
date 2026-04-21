@@ -19,18 +19,7 @@ import ExperienceCard from "./experience/ExperienceCard.astro";
     >
     </div>
 
-    {
-      experienceData.map((exp) => (
-        <ExperienceCard
-          company={exp.company}
-          date={exp.date}
-          jobType={exp.jobType}
-          location={exp.location}
-          points={exp.points}
-          position={exp.position}
-        />
-      ))
-    }
+    {experienceData.map((exp) => <ExperienceCard {...exp} />)}
   </div>
 </section>
 

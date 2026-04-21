@@ -12,14 +12,7 @@ import { skillsData } from "@/data/skills";
         if (index % 2 === 1) {
           reverse = true;
         }
-        return (
-          <SkillCard
-            title={skillLine.title}
-            logo={skillLine.logo}
-            skills={skillLine.skills}
-            reverse={reverse}
-          />
-        );
+        return <SkillCard skillLine={skillLine} reverse={reverse} />;
       })
     }
   </div>

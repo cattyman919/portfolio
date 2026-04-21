@@ -1,20 +1,28 @@
 import type { Experience } from "@/types";
+import XLAxiataLogo from "@/assets/experiences/XL_Axiata_2014.png";
+import XLSmartLogo from "@/assets/experiences/XLSmart.png";
+import SuperBankLogo from "@/assets/experiences/Superbank.png";
+import BankVictoriaLogo from "@/assets/experiences/Bank_Victoria_logo.png";
+// import MileAppLogo from "@/assets/experiences/new-mileapp-logo-full.svg";
+import MileAppLogo from "@/assets/experiences/mileapp.png";
 
 export const experienceData: Experience[] = [
   {
     company: "XLSmart",
+    logo: XLSmartLogo,
     position: "Platform Engineer",
     date: "September 2025 - Present",
     jobType: "Contract",
     location: "Jakarta Selatan, Indonesia",
     points: [
       "**Engineered** a high-concurrency **Go** tool to automate weekly End-of-Support (EOS) and capacity reporting across **~100 AWS accounts** and **~100 GCP projects**, **slashing manual report generation time from 45 minutes to under 3 minutes**.",
-      "**Engineered** an automated **AMI compliance scanner** in **Go** to track **Amazon Linux 2 to 2023 migration** progress across **Karpenter** nodepools and **EKS Managed Node Groups** in **50+ AWS accounts**.",
+      "**Engineered** an automated **AMI compliance scanner** in **Go** to track **AmazSuperbankon Linux 2 to 2023 migration** progress across **Karpenter** nodepools and **EKS Managed Node Groups** in **50+ AWS accounts**.",
       "**Built** a **Go** utility to **audit Kubernetes clusters** at scale, querying **EKS clusters** to gather **PodDisruptionBudget (PDB)** and **HPA** data for cross-team resilience analysis.",
     ],
   },
   {
     company: "Superbank",
+    logo: SuperBankLogo,
     position: "Technical Support",
     date: "December 2024 - June 2025",
     jobType: "Internship",
@@ -28,6 +36,7 @@ export const experienceData: Experience[] = [
   },
   {
     company: "XL Axiata Tbk",
+    logo: XLAxiataLogo,
     position: "Fixed Connectivity, ICT & Cloud",
     date: "February 2024 - July 2025",
     jobType: "Internship",
@@ -41,6 +50,7 @@ export const experienceData: Experience[] = [
   },
   {
     company: "Bank Victoria International",
+    logo: BankVictoriaLogo,
     position: "Fullstack Engineer",
     date: "September 2023 - November 2023",
     jobType: "Internship",
@@ -53,6 +63,7 @@ export const experienceData: Experience[] = [
   },
   {
     company: "Mileapp",
+    logo: MileAppLogo,
     position: "Frontend Engineer",
     date: "September 2022 - October 2023",
     jobType: "Internship",
