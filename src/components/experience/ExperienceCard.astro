@@ -5,7 +5,7 @@ import type { Experience } from "@/types";
 
 type Props = Experience;
 
-const { company, date, location, logo, position, jobType, points } =
+const { company, date, location, logo, position, tools, jobType, points } =
   Astro.props;
 
 const parseBold = (text: string) => {
@@ -66,7 +66,39 @@ const parseBold = (text: string) => {
         </div>
       </div>
 
-      <ul class="list-none text-gray-100 flex flex-col gap-5 mt-5">
+      <div class="flex items-center flex-wrap gap-4 mt-5">
+        <!-- <h1 class="font-bold text-2xl">Tools:</h1> -->
+        <div title="tools" class="flex gap-2">
+          <Icon name="mdi:tools" class="w-10 h-10" />
+          <span class="text-2xl font-bold">:</span>
+        </div>
+        <div class="flex items-center flex-wrap gap-2">
+          {
+            tools &&
+              tools.map((tool) => {
+                const { name, logo } = tool;
+                return (
+                  <>
+                    {logo ? (
+                      <div
+                        title={name}
+                        class="flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100"
+                      >
+                        <Icon name={logo} class="w-10 h-10 " />
+                      </div>
+                    ) : (
+                      <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
+                        {name.charAt(0)}
+                      </div>
+                    )}
+                  </>
+                );
+              })
+          }
+        </div>
+      </div>
+
+      <ul class="list-none text-gray-100 flex flex-col gap-5 mt-0">
         {
           points.map((p) => (
             <li class="flex items-start gap-3 group/item text-lg">
@@ -75,7 +107,7 @@ const parseBold = (text: string) => {
                 class="w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all"
               />
               <span
-                class="text-gray-300 group-hover/item:text-gray-50 transition-colors leading-relaxed"
+                class="text-gray-300 group-hover/item:text-gray-50 transition-colors leading-relaxed text-justify"
                 set:html={parseBold(p)}
               />
             </li>

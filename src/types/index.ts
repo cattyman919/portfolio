@@ -7,11 +7,13 @@ export interface Experience {
   location: string;
   logo?: ImageMetadata;
   jobType: string;
+  tools?: Tool[];
   points: string[];
 }
 
 export interface Tool {
   name: string;
+  // Logo name from iconify
   logo?: string;
 }
 

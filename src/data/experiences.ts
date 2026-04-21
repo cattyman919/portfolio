@@ -14,6 +14,23 @@ export const experienceData: Experience[] = [
     date: "September 2025 - Present",
     jobType: "Contract",
     location: "Jakarta Selatan, Indonesia",
+    tools: [
+      { name: "golang", logo: "devicon:go" },
+      { name: "nextjs", logo: "devicon:nextjs" },
+      { name: "AWS", logo: "skill-icons:aws-dark" },
+      {
+        name: "Kubernetes",
+        logo: "devicon:kubernetes",
+      },
+      {
+        name: "Helm",
+        logo: "devicon:helm",
+      },
+      {
+        name: "Docker",
+        logo: "devicon:docker",
+      },
+    ],
     points: [
       "**Engineered** a high-concurrency **Go** tool to automate weekly End-of-Support (EOS) and capacity reporting across **~100 AWS accounts** and **~100 GCP projects**, **slashing manual report generation time from 45 minutes to under 3 minutes**.",
       "**Engineered** an automated **AMI compliance scanner** in **Go** to track **AmazSuperbankon Linux 2 to 2023 migration** progress across **Karpenter** nodepools and **EKS Managed Node Groups** in **50+ AWS accounts**.",
@@ -27,6 +44,10 @@ export const experienceData: Experience[] = [
     date: "December 2024 - June 2025",
     jobType: "Internship",
     location: "Jakarta Selatan, Indonesia",
+    tools: [
+      { name: "AWS", logo: "skill-icons:aws-dark" },
+      { name: "Powershell", logo: "devicon:powershell" },
+    ],
     points: [
       "Managed end-to-end deployment of vendor-provided scripts across AWS environments (EC2 Dev/Staging) via S3 bucket integration, WinSCP file transfers, and XML configuration adjustments.",
       "Automated deployment workflows by developing a PowerShell script to extract ZIP files and configuration for deployment processes, reducing manual effort by 40% and accelerating deployment cycles.",
@@ -41,6 +62,7 @@ export const experienceData: Experience[] = [
     date: "February 2024 - July 2025",
     jobType: "Internship",
     location: "Jakarta Selatan, Indonesia",
+    tools: [{ name: "Python", logo: "devicon:python" }],
     points: [
       "Conducted comprehensive performance analysis and SWOT evaluation of Starlink technology to explore its potential for expanding broadband access in remote Indonesian regions.",
       "Developed web scraping solutions using Python (BeautifulSoup, Pandas) to map Indonesian ISPs from APJII data, enabling insights into market distribution and operational scale.",
@@ -55,6 +77,10 @@ export const experienceData: Experience[] = [
     date: "September 2023 - November 2023",
     jobType: "Internship",
     location: "Jakarta Selatan, Indonesia",
+    tools: [
+      { name: "Flutter", logo: "devicon:flutter" },
+      { name: "NestJS", logo: "devicon:nestjs" },
+    ],
     points: [
       "Developed and maintained Victoria’s web application, integrating frontend (Flutter) and backend (NestJS) technologies to deliver seamless user experiences.",
       "Demonstrated exceptional time management skills by juggling internship duties with academic responsibilities, attending office once weekly.",
@@ -68,6 +94,10 @@ export const experienceData: Experience[] = [
     date: "September 2022 - October 2023",
     jobType: "Internship",
     location: "Jakarta Selatan, Indonesia",
+    tools: [
+      { name: "NextJS", logo: "devicon:nextjs" },
+      { name: "React", logo: "devicon:react" },
+    ],
     points: [
       "Redesigned critical user interface pages, including landing and login pages, to improve user experience.",
       "Engaged in productive discussions with the supervisor to plan and execute development tasks efficiently.",
