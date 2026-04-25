@@ -16,7 +16,7 @@ or other automated processes.</purpose><file_format>The content is organized as 
   the same level of security as you would the original repository.</usage_guidelines><notes>- Some files may have been excluded based on .gitignore rules and Repomix&apos;s configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
 - Only files matching these patterns are included: **/*
-- Files matching these patterns are excluded: tmp/, **/.vscode/**, *.log, Glove_Code/lib/speech_recognition_inferencing/, Glove_Code/lib/MPU6050/, src/assets
+- Files matching these patterns are excluded: tmp/, **/.vscode/**, *.log, Glove_Code/lib/speech_recognition_inferencing/, Glove_Code/lib/MPU6050/, src/assets, src/components/project
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
 - Code comments have been removed from supported file types
@@ -25,8 +25,17 @@ or other automated processes.</purpose><file_format>The content is organized as 
   favicon.svg
 src/
   components/
+    contact/
+      DirectContact.astro
+      EmailCard.astro
+    experience/
+      ExperienceCard.astro
     home/
+      ParticlesBackground.tsx
       TypewriterText.tsx
+    skills/
+      SkillCard.astro
+      SkillCardItem.astro
     About.astro
     Contact.astro
     Experience.astro
@@ -34,19 +43,825 @@ src/
     Navigation.tsx
     Projects.astro
     Skills.astro
+    TiltWrapper.tsx
+  content/
+    blogs/
+      2024-11-19_and-so-we-meet/
+        index.mdx
+      2024-12-23_VAIO/
+        index.mdx
+    projects/
+      dancertos/
+        project.yaml
+      home-server/
+        project.yaml
+      jaga/
+        project.yaml
+      restomatic/
+        project.yaml
+      vaio/
+        project.yaml
+    experiences.ts
+    skills.ts
   hooks/
     UseTypewriter.tsx
   layouts/
-    Layout.astro
+    BaseLayout.astro
+    ProjectPostLayout.astro
   pages/
+    blog/
+      [id].astro
+      index.astro
+    project/
+      [id].astro
     index.astro
   styles/
     global.css
+  types/
+    index.ts
+  content.config.ts
 .gitignore
+.prettierrc.mjs
+AGENTS.md
 astro.config.mjs
 package.json
 README.md
-tsconfig.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="public/favicon.svg">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 128 128&quot;&gt;
+tsconfig.json
+vercel.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="src/content/blogs/2024-11-19_and-so-we-meet/index.mdx">---
+title: And So we Meet...
+description: This is my first post on Docusaurus.
+coverImage: https://i.imgflip.com/1hx5mc.jpg?a480600
+pubDate: &quot;2024-11-19&quot;
+tags:
+  - random
+---
+
+# And so we Meet...
+
+Welcome unknown skibidi person.... welcome to my glorious blog that i don&apos;t even know what to blog about. I do this because im bored, but either way i will do this blog that will definitely benefit society by providing valuable information about technology, cloud, AI, Movies, and TV Series.
+
+&lt;center&gt;
+  &lt;img
+    src=&quot;https://i.imgflip.com/1hx5mc.jpg?a480600&quot;
+    alt=&quot;meme image&quot;
+    width=&quot;300&quot;
+  /&gt;
+&lt;/center&gt;
+
+{/* truncate */}
+
+## Introduction
+
+For those people who don&apos;t know who i am, my name is **Seno Pamungkas Rahman** and as of this post i&apos;m currently in my final year of computer engineering in Universitas Indonesia. Also currently stressed about the future of my career because i haven&apos;t done a lot in my experience or maybe this is just my imposter syndrome doing it&apos;s thing. Anyway im an introvert, chill, cool person who likes tinkering with tech, especially in electronics because one of my subject in college. But also still interested in Cloud &amp; AI.
+
+## Why i start a blog?
+
+I was inspired by this friend on mine &apos;Giga Chad Angga&apos; who have been writing blogs for more than 3 years, [go check out his blog](https://chevonair.com). He is pretty good at describing his ideas and concept in words that are easy for me to understand and he is also very smart. So i need to know why he is so good at writing and describing concepts, this seems like a very useful skill for anybody to have. This skill can be used not just in my field of work but literally anywhere whether it&apos;s explaining books, articles, tech, business, movies, etc. It turns out having these skill is all about writing...
+
+### Writing helps thinking
+
+The fact that i have to write makes me sick. Like you feel it in your brain that it&apos;s taking all the energy to just create simple and concise words from an idea right? But some people just have the talent to write like it takes no energy at all. Why is this? Perhaps writing it&apos;s talent? or is it a skill?
+
+So after extensive research i.e watching 2 educational videos [this](https://www.youtube.com/watch?v=65U5byDZ55M) and [this one](https://www.youtube.com/watch?v=IsQUT9xRYSg&amp;t=99s), it proves that writing helps the vague ideas/concepts we have into a structured and complete idea. Writing helps us find out what we know and what we don&apos;t know. Are there holes in your knowledge? or is it in your reasoning? Writing will expose them. That&apos;s why my friend is good at explaining stuff because he clearly knows the ideas and not just vaguely.
+
+![alt text](thinking.png)
+
+But the question still remains, can i learn this writing skill or not? The answer is **YES**. The great writer William Zinsser who wrote &apos;[On Writing Well](https://www.amazon.com/Writing-Well-Classic-Guide-Nonfiction/dp/0060891548)&apos; which has sold 1.5 million copies to three generations and he doesn&apos;t even like writing. Here&apos;s quote from him
+
+&gt; “I don’t like to write, but I take great pleasure in having written—in having finally made an arrangement that has a certain inevitability, like the solution to a mathematical problem. Perhaps in no other line of work is delayed gratification so delayed” - William Zinsser
+
+Even a writer like him doesn&apos;t like to write but can still write good concepts. So this must mean that **writing is a skill and we all can learn having this skill**. Which is why we need to practice this skill. [Tim Ferris](https://www.youtube.com/watch?v=65U5byDZ55M) suggest that we _vomit_ and make 2 crappy pages per day. This crappy pages can be worthless and useless but it still helps the brain think more structurally. So it&apos;s like a muscle that we have to train everyday. After making crappy pages, we can then revision the pages, make it more clear or have more meaningful topic because writing is re-writing says Tim. To do this, im gonna try to write crappy pages on [Bragdocs](https://www.bragdocs.com), it&apos;s just website to quickly put out ideas or concept for me.
+
+## So what am i writing?
+
+Well, to be honest i still don&apos;t know but i have some ideas from this guy [Evan Tay](https://evantay.com). He makes blogs like my friend but also do some book reviews, article reviews, explaining concepts like cloud and networking in his documents. This gives me the idea that i can also improve my skills in my field of work by just explaining tech concepts. So i&apos;m going to write about projects that i have been working or cool things i wanna talk about in my blog and explaining cool concepts in my documents. I also gonna rant about movies, tv series, and books that you have to watch.
+
+Here is the what im gonna write if you still don&apos;t get it
+
+**Blog** : Projects im working, competitions, or cool problem solutions
+
+**Documents** : Explaining tech concepts like Git, Docker, Linux, Networking, etc. Also doing books, movies, games reviews
+
+## To conclude...
+
+Im pretty new at this, so you probably will see contents that sucks ass but i hope to get better everytime i write. This blog and document will serve me to pour my thoughts and helps me think clearly. I hope you will like it :)
+
+![alt text](https://media.tenor.com/9m9_eXtG0U8AAAAM/sponge.gif)</file><file path="src/content/blogs/2024-12-23_VAIO/index.mdx">---
+title: Making a roomba robot, VAIO
+description: Making roomba tobot
+coverImage: https://i.imgflip.com/1hx5mc.jpg?a480600
+pubDate: &quot;2024-12-23&quot;
+tags:
+  - iot
+---
+## A roomba robot 🤔 ???
+
+Do you ever have a roomba that&apos;s just keeps crashing into the corner of your room or get stuck where it can&apos;t get out? Well i certainly have. I used to have this roomba that is used for cleaning my room but it keeps getting stuck, so i have to pick it up and place it again on the floor. It was supposed to clean my room automatically without me having to place it over and over again. That&apos;s why i need a better solution :)
+
+What if we can control the roomba manually? Like if it get stuck, at least we can control remotely to get unstuck. Like what if we used some kind of a controller for the roomba? But also the roomba can still work automatically.
+
+![image](assets/p1.png)
+
+Well that&apos;s what me and my team are trying to build for our college project. A simple roomba that can be controlled manually and automatically. We decided that the roomba can be controlled with a PS4 controller. But why stop there? We can have different kind of controllers too right? That&apos;s why we also added a hand-gesture controller that is using a gyroscope to control the roomba.
+
+![image](assets/p2.png)
+
+{/* truncate */}
+
+So if we have a roomba that can run automatically and controlled manually using PS4 and Hand-Gestures, how can we control the state of the roomba controllers? For example how can we change from PS4 Controller to Hand-Gestures Controller or from PS4 controller to Automatic? Well we decided a clever way to change the state, that is using a voice command :)
+
+It&apos;s like if we say &quot;controller&quot;, the roomba will change it state to be controlled with a PS4 controller. If we say &quot;hand&quot;, the state will change into hand-gesture controller. Finally if we say &quot;auto&quot; the roomba will change it&apos;s state to be automatic.
+
+![image](assets/p3.png)
+
+So here are all the list of features for our custom roomba :
+- Can still be run automatically
+- Can be controlled using PS4 controller
+- Can be controlled using hand-gestures
+- State management using voice commands
+- Vacuum for collecting dusts &amp; trash ( This turns out to be a massive problem :3 )
+
+![image](assets/p4.png)
+
+Before we start building this robot, We need a name for the project which we decided to call it Vacuum All-in-One (VAIO) and also i have to give massive credit to my team for helping me build this cool little project for college. Here are the team members :
+
+![image](assets/p5.png)
+
+## What tools do we need?
+
+So with all that in mind, how exactly can we build this thing? The concept seems simple enough but ooooh boi it&apos;s actually complicated. Like how is the logic going to work with all these different kinds of controllers? First we need to work out tools are we going to use? So we brainstorm the tools we needed
+
+General Purpose:
+- Microcontroller to handle the logic and communication (ESP32, Arduino Uno)
+- Communication protocol to communicate between 2 microcontrollers (Bluetooth, NRF, Wifi)
+- Microphone module for state management using voice commands : INMP441
+- Vacuum using fan and a plastic bottle
+- DC Gear Motor with Tyre Gear
+- Motor Driver for controlling all state of the DC Motors : L298N Motor Driver
+
+Automatic Control:
+ - Ultrasonic for detecting object in front of the robot :  HC-SR04
+- Servo : SG90
+
+Hand-Gesture Control:
+-  Microcontroller to handle the logic for hand-gesture controls &amp; voice commands
+ - NRF module to communicate with the other microcontroller
+ - Gyroscope module to handle the gesture controls : MPU6050
+
+PS4 Control:
+ - PS4 controller that is connected using bluetooth to the microcontroller
+
+Now we need to choose exactly what tools we want. For the microcontroller, we picked ESP32 because it is lightweight and we are more familiar with it. For the communication protocol, we used NRF module because of the references (we later change the communication protocol, which i will explain later).
+
+This all seems complicated even for us, so we made a simple visualization for better understanding
+
+![image](assets/p6.png)
+
+This simple concept laid the foundation for our VAIO robot. Now let&apos;s get into the nitty gritty with coding, wiring, and start build this thing!
+
+![image](assets/p7.gif)
+
+## Code Logic
+Now we got the tools we needed, now lets talk about the logic  &amp; code for the 2 microcontrollers. The ESP32 that is attached to the VAIO Robot is called &quot;VAIO Code&quot; and the other one that is attached to the MPU6050 is called &quot;Glove Code&quot;.
+
+VAIO Code:
+- Handles the state management logic for movement
+- Handles the receiving communication for NRF and bluetooth
+- Handles the DC Motors &amp; Motor Driver
+- Handles the Servo &amp; Ultrasonic for automatic control
+
+Glove Code:
+- Handles the NRF communication with the VAIO
+- Handles the gyroscope data with MPU6050 module
+- Handles the voice data with INMP441 module
+
+Since this is a very large and complex project, we decided to use [PlatformIO](https://platformio.org/https://platformio.org/) to manage all our source code and libraries.  Only using Arduino IDE for managing code and libraries of this complex project can be a pain to the ass. This will turns out to be very collaborative and modular for us to use which in turns we can easily integrate each other codes without a hassle. We also use [FreeRTOS](https://www.freertos.org/) to manage tasks and utilize two cores that ESP32 have, so we can fully utilize the maximum capability of an ESP32.
+
+![image](assets/p8.png)
+
+Now that we have the blueprint to start building this, well we can start building it. Each of us are given tasks to focus on building the VAIO
+- **Seno (me)** : Building the Glove &amp; Hand Gesture logic using MPU6050 module &amp; NRF communication
+- **Farras** : Building the voice command logic using TensorflowLite &amp; Edge-Impulse SDK
+- **Satya** : Building the logic for the PS4 controller using bluetooth communication
+- **Zefanya** : Building the base prototype for VAIO robot &amp; the automatic movement
+
+## Hand Gesture Logic
+Since i have been given the task on the Hand Gesture Logic (i.e. Glove Code), let&apos;s focus on that. This should be simple enough because all i needed to do was to use a ESP32 to gather data from the MPU6050 sensor and send the data to another ESP32 using the NRF communication. First off, we need to figure out how we can connect all this hardware components together. We can do that by figuring out what pins we needed to use to connect MPU6050 &amp; NRF component to the ESP32. Let&apos;s try to figure how we can connect the MPU6050 first.
+
+### MPU6050 (Gyroscope Module)
+MPU6050 module uses a [I2C communication protocols](https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/) which means we are using the SDA &amp; SCL pins that we need to connect to the default pin for I2C communication in ESP32. According to the [ESP32 pinout reference](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/), the default pin for SDA is GPIO21 and SCL is GPIO22 for the I2C communication protocol in ESP32. So our cables &amp; pins should look something like this
+
+![image](assets/p9.png)
+![image](assets/p10.png)
+
+Finally let&apos;s get into coding this module. I will be using a libraries such as &apos;I2Cdev&apos; and &apos;MPU6050_6Axis_MotionApps20&apos; to handle the complex logic for the I2C communication so we can just grab the necessary data easy and fast.
+
+```cpp
+// Libraries for MPU6050
+#include &quot;I2Cdev.h&quot;
+#include &quot;MPU6050_6Axis_MotionApps20.h&quot;
+```
+
+Now we define the necessary variables for the MPU6050.
+
+```cpp
+// MPU control/status vars
+MPU6050 mpu;
+bool dmpReady = false;  // set true if DMP init was successful
+uint8_t devStatus;      // return status after each device operation (0 = success, !0 = error)
+uint16_t packetSize;    // expected DMP packet size (default is 42 bytes)
+uint8_t fifoBuffer[64]; // FIFO storage buffer
+Quaternion q;           // [w, x, y, z]         quaternion container
+VectorFloat gravity;    // [x, y, z]            gravity vector
+float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+```
+
+Also we need to define the data structure for the gyroscope data. In our VAIO robot, we only needed the x and y value to move left/right/up/down for the robot. We can just send a value between 0 - 254, so we only need 8 bits for that. Therefore we define unsigned integer of 8 bits.
+
+```cpp
+struct gyroSensor_Data
+{
+  uint8_t xAxisValue;
+  uint8_t yAxisValue;
+} data;
+```
+
+
+To initialize the MPU6050, we just simply call the initialize function.
+```cpp
+  mpu.initialize();
+```
+
+Although in the final code, there is more error checking and validation to make sure the I2C communication protocol works properly. You can check the [code on our github repo](https://github.com/VAIO-CE/VAIO-Code/blob/b5742e10f9563abe55becef320b093efea5c9760/Glove_Code/lib/setup/setup.cpp#L33-L110).
+
+To get the data from MPU650, we need to make sure we get the latest data using the `mpu.dmpGetCurrentFIFOPacket()` function which takes an argument for our buffer. We just need to loop forever to keep getting the MPU6050 data. Now we only need to get the x and y value which means we only needed to call the `mpu.dmpGetYawPitchRoll()` function. Note that we don&apos;t need Quarternion or gravity because we don&apos;t actually need it.
+
+I also map and constrain the x and y value into 0 - 254 integer to make sure we get the correct data structure.
+
+```cpp
+while(1){
+
+    // if programming failed, don&apos;t try to do anything
+    if (!dmpReady) return;
+
+    // read a packet from FIFO. Get the Latest packet
+    if (mpu.dmpGetCurrentFIFOPacket(fifoBuffer))
+    {
+      // display Euler angles in degrees
+      mpu.dmpGetQuaternion(&amp;q, fifoBuffer);
+      mpu.dmpGetGravity(&amp;gravity, &amp;q);
+      mpu.dmpGetYawPitchRoll(ypr, &amp;q, &amp;gravity);
+
+      int xAxisValue = constrain(ypr[2] * 180/M_PI, -90, 90);
+      int yAxisValue = constrain(ypr[1] * 180/M_PI, -90, 90);
+
+      gyroSensor_Data.xAxisValue = map(xAxisValue, -90, 90, 0, 254);
+      gyroSensor_Data.yAxisValue = map(yAxisValue, -90, 90, 254, 0);
+    }
+
+}
+```
+
+
+
+Now before we loop again we need to make sure we clear the FIFO buffer so we don&apos;t get the same value again.
+
+```cpp
+while(1){
+    if (mpu.dmpGetCurrentFIFOPacket(fifoBuffer))
+    {
+        /*
+         *
+         * Previous Code
+         *
+         *
+        */
+
+        // Clear FIFO buffer
+        mpu.resetFIFO();
+    }
+}
+```
+
+This is essentially the code to get the MPU6050 data, we now should get the x and y value accurately from the gyroscope module.
+
+### The NRF Module does not work 😐
+After getting the MPU6050 data, the next goal is to send the data to the other ESP32 using NRF module. **But there is a problem...**
+
+![image](assets/p11.png)
+
+The NRF module that we bought is **not compatible with our ESP32** which means they can&apos;t communicate with each other 🥲. This NRF module only works with arduino boards. I should have thought about compability before buying this hardware and not just assume it will just work on any boards 😖.
+
+![image](assets/p12.png)
+
+This is really problematic. How can we send the hand-gesture data (i.e. MPU6050) to the ESP32 on the VAIO robot now? We might need to buy different NRF hardware just to make it work. I really don&apos;t want to waste anymore money and buying another hardware hoping it will work. This makes me sad bro 😭
+
+![image](assets/p13.gif)
+
+But as an computer engineer student, we can&apos;t just give up. It&apos;s just not in our DNA. We must find a solution, **we must find another way**.
+
+![image](assets/p14.jpg)
+
+### ESP-NOW - The Boy Savior
+To solve this problem, we needed to find an alternative solution for our wireless communication protocol. This can be in the form of bluetooth, WIFI, or NRF (which didn&apos;t worked). So our only choice is either bluetooth or WIFI, let&apos;s get the pros and cons of each solution for our VAIO project.
+
+Pros :
+- Bluetooth : This is a TCP connection means it&apos;s a reliable connection, good at close range.
+- WIFI : also TCP connection which means reliable connection, good at close-medium range.
+
+Cons :
+- Bluetooth : We cannot use bluetooth because it is already being used for the PS4 controller. This will cause conflict and ESP32 Transmitter will need to keep reconnecting between PS4 controller and ESP32 Receiver.
+- WIFI : This is a TCP connection which means it has connect first and do handshake everytime. **We wanted a fast data transfer and not keep reconnecting everytime which means we needed a UDP protocol for connectionless data transfer.**
+
+
+![image](assets/p15.png)
+
+This seems all hope is lost... There seems to be no solution for our project unless we buy another NRF module that is compatible with ESP32.
+
+But wait... There is hope.... The saviour... The boy savior... (a reference to [Arcane](https://www.imdb.com/title/tt11126994/) btw)
+
+Introducing [ESP-NOW](https://www.espressif.com/en/solutions/low-power-solutions/esp-now), a wireless connectionless protocol that uses the WIFI hardware but uses a custom protocol made by Expressif themself.
+
+
+![image](assets/p16.png)
+
+It is fast, low power usage, have a long range (up to 100m). This protocol doesn&apos;t use the standard OSI model for network, instead it uses a custom ESP-NOW model. It reduces 5 layer OSI model into just one layer, this causes to have quick response in data transfer.
+
+![image](assets/p17.png)
+
+This wireless communication protocol is the best solution for our problem. ESP-NOW has these characteristic which is why it fits our solution :
+- It is connectionless which means we don&apos;t need to do a TCP handshake. (ESP-NOW acts like a UDP but still different)
+- It is fast and not slow
+- It has a range up to 100m (Though we only need the range to be around 30-50m, which is still very good)
+
+Now, let&apos;s just implement this ESP-NOW protocol. To use this protocol, we actually need the MAC address of the ESP32&apos;s. We use this [guide](https://randomnerdtutorials.com/get-change-esp32-esp8266-mac-address-arduino/) to get our MAC addresses for ESP32.
+
+When using ESP-NOW, we need to set the WIFI mode into station. Then we call `esp_now_init()` to initialize the ESP-NOW protocol. After that is sucessful, we set callback function for transmitting data using the `esp_now_register_send_cb()` function (Note you can also set callback function when receiving data). Finally we can add &apos;peers&apos; which essentially means our other ESP32 MAC addresses. In this code, I put my receiving ESP32 MAC addresss into the broadcastAddress variable. Now can just call `esp_now_add_peer()` function. This is it for setting up ESP-NOW communication protocol.
+
+```cpp
+void setupESPNOW(){
+  // Set device as a Wi-Fi Station
+  WiFi.mode(WIFI_STA);
+
+  // Init ESP-NOW
+  if (esp_now_init() != ESP_OK) {
+    Serial.println(&quot;Error initializing ESP-NOW&quot;);
+    return;
+  }
+
+  // Once ESPNow is successfully Init, we will register for Send CB to
+  // get the status of Trasnmitted packet
+  esp_now_register_send_cb(OnDataSent);
+
+  // Register peer
+  memcpy(peerInfo.peer_addr, broadcastAddress, 6);
+  peerInfo.channel = 0;
+  peerInfo.encrypt = false;
+
+  // Add peer
+  if (esp_now_add_peer(&amp;peerInfo) != ESP_OK){
+    Serial.println(&quot;Failed to add peer&quot;);
+    return;
+  }
+
+}
+```
+
+Ok we have set a callback function and add peers to our esp-now protocol but how can we send the gyroscope data? Like what function do i call?
+
+Well we can call the `esp_now_send(address, data, data_size)` function which we wil provide the argument for the ESP32 MAC address and the data.
+
+```cpp
+esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &amp;data, sizeof(data));
+
+if (result == ESP_OK) {
+    Serial.println(&quot;Sent with success&quot;);
+}
+```
+
+Now that we can send data using ESP-NOW but how can we receive it? We just need to simply set the callback function on the receiver side with this function
+
+```cpp
+esp_now_register_recv_cb(esp_now_recv_cb_t(OnDataRecv));
+```
+Note we need to set the same data structure of the receiver side too, we then copy the memory from incoming data into this receiver data structure so we can read the actual value.
+```cpp
+struct PacketData
+{
+  uint8_t xAxisValue;
+  uint8_t yAxisValue;
+} receiverData;
+```
+```cpp
+void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
+  memcpy(&amp;receiverData, incomingData, sizeof(receiverData));
+  Serial.printf(&quot;X : %d , Y : %d\n&quot;, receiverData.xAxisValue, receiverData.yAxisValue);
+}
+```
+
+This callback function will be called everytime there is a data receive targeted at the MAC address of the ESP32. This doesn&apos;t require any ACK signals and just receive the data from whomever sent it.
+
+Now it works, we can finally get the gyroscope data from other ESP32 using the ESP-NOW communication protocol
+
+![image](assets/p18.gif)
+
+In the next part, we will explore more on how can we utilize PlatformIO to make this code more modular and apply OOP principles. We will also implement task using FreeRTOS as well.</file><file path="src/content/projects/dancertos/project.yaml">title: &quot;DanceRTOS&quot;
+type: &quot;fullstack&quot;
+tags: [&quot;fullstack&quot;, &quot;iot&quot;]
+image: &quot;./DanceRTOS.png&quot;
+description: &quot;An attendance system using FreeRTOS ESP32 and RFID, with a web server and Blynk integration for class and schedule management.&quot;
+
+highlights:
+  - &quot;Fullstack Development: Led the fullstack development of the AbsenceSystem (DanceRTOS) project, creating both the frontend and backend infrastructure.&quot;
+  - &quot;Login and Sign Up Pages: Designed and implemented the login and sign up pages for lecturers, ensuring a smooth user experience from the very beginning.&quot;
+  - &quot;Student Login: Developed a unique student login system using MQTT protocol with Flutter to connect to ESP32 using RFID, providing a seamless and secure login experience for students.&quot;
+  - &quot;Data Collection: Created a system to collect data from the backend to track student absences, enabling lecturers to see which students are not in class.&quot;
+  - &quot;Absence Tables: Implemented a feature where each class has its own absence table for students for specific weeks, providing a clear and organized view of student attendance.&quot;
+  - &quot;Collaboration: Worked in collaboration with a team member who created the IoT hardware for the RFID absence system, demonstrating teamwork and cross-functional collaboration.&quot;
+
+tools:
+  - name: &quot;Typescript&quot;
+    logo: &quot;devicon:typescript&quot;
+
+  - name: &quot;NestJS&quot;
+    logo: &quot;devicon:nestjs&quot;
+
+  - name: &quot;Dart&quot;
+    logo: &quot;devicon:dart&quot;
+
+  - name: &quot;Flutter&quot;
+    logo: &quot;devicon:flutter&quot;
+
+sourceCodeUrl: &quot;https://github.com/cattyman919/AbsenceSystem&quot;
+
+mediaUrls:
+  - &quot;https://bucket.senop.dev/projects/dancertos/DanceRTOS.png&quot;
+  - &quot;https://bucket.senop.dev/projects/dancertos/LCD-OTP-Verified.png&quot;
+  - &quot;https://bucket.senop.dev/projects/dancertos/LCD-OTP.png&quot;
+  - &quot;https://bucket.senop.dev/projects/dancertos/app1.png&quot;
+  - &quot;https://bucket.senop.dev/projects/dancertos/app2.png&quot;
+  - &quot;https://bucket.senop.dev/projects/dancertos/erd_database.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/dancertos/hardware.png&quot;
+  - &quot;https://bucket.senop.dev/projects/dancertos/network.png&quot;</file><file path="src/content/projects/home-server/project.yaml">title: &quot;Home Server&quot;
+type: &quot;homelab&quot;
+tags: [&quot;homelab&quot;, &quot;linux&quot;]
+image: &quot;./home-server.jpg&quot;
+description: &quot;Dell OptiPlex 7050 running Debian as the Operating System used for my personal custom server. It currently provides services such as Portainer, Jellyfin, CasaOS, Samba Server, SIP Server, and also used as a backup for my files. Connected remotely using Tailscale.&quot;
+
+highlights:
+  - &quot;Jellyfin: I utilize Jellyfin as a personal media server to stream my collection of movies and TV shows directly from the server. This enables me to watch my media from various devices, including remotely via Tailscale, providing a smooth and lag-free viewing experience.&quot;
+  - &quot;Portainer: I use this service to manage my Docker containers. Portainer provides a user-friendly interface to easily deploy, manage, and monitor various containerized applications, including databases and experimental open-source services I&apos;d like to try.&quot;
+  - &quot;SIP Server (Asterisk): The Asterisk service is running and serves as my SIP server, providing Voice over IP (VoIP) services for my home. I have three work telephones connected via Power over Ethernet (PoE) that register with the Asterisk server, allowing for easy communication with family members across my two-floor home.&quot;
+  - &quot;File Backup: The server serves as a critical backup destination for my important files, including college work, professional documents, and personal photos. I currently use rsync to perform these backups, ensuring my data is safely stored on the server. Rclone is also running and could be used for managing files on cloud storage, potentially as part of a broader backup strategy.&quot;
+  - &quot;Security: I manage security using fail2ban and firewalld. Fail2ban is configured to enhance security by monitoring logs for malicious activity and automatically banning users for a set timeout period after three failed password attempts. Firewalld provides dynamic firewall management.&quot;
+  - &quot;nginx: I use nginx as a reverse proxy for my local DNS. This setup allows me to access specific services running on my home server using user-friendly DNS endpoints (like http://movies.home) instead of needing to remember and use specific local IP addresses and port numbers for each service.&quot;
+  - &quot;Tailscale: The Tailscale node agent is active, providing a secure and efficient way for me to connect to my home network and access my server and its services remotely, as highlighted by its use with Jellyfin streaming and enabling access to my local network resources.&quot;
+
+tools:
+  - name: &quot;Linux&quot;
+    logo: &quot;devicon:linux&quot;
+  - name: &quot;Debian&quot;
+    logo: &quot;devicon:debian&quot;
+  - name: &quot;Docker&quot;
+    logo: &quot;devicon:docker&quot;
+  - name: &quot;Kubernetes&quot;
+    logo: &quot;devicon:kubernetes&quot;
+  - name: &quot;Helm&quot;
+    logo: &quot;devicon:helm&quot;
+  - name: &quot;Tailscale&quot;
+    logo: &quot;simple-icons:tailscale&quot;
+
+mediaUrls:
+  - &quot;https://bucket.senop.dev/projects/home-server/home_server.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/home-server/casaos.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/home-server/jellyfin.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/home-server/server.jpeg&quot;
+  - &quot;https://bucket.senop.dev/projects/home-server/portainer.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/home-server/nginx_config.jpg&quot;</file><file path="src/content/projects/jaga/project.yaml">title: &quot;Jaga&quot;
+type: &quot;fullstack&quot;
+tags: [&quot;fullstack&quot;]
+image: &quot;./jaga.png&quot;
+description: &quot;A vehicle maintenance app with GPS tracking to monitor kilometers and notify users of service needs based on distance and time.&quot;
+
+highlights:
+  - &quot;Fullstack Development: Led the fullstack development of the Jaga project using Flutter and NestJS, creating both the frontend and backend infrastructure.&quot;
+  - &quot;Data Collection: Created a system to collect data from the backend to get car model and car maintenance information, providing users with the necessary details for their vehicles.&quot;
+  - &quot;Maintenance Reminder: Developed the main function of the app to keep the car/motorcycle data for maintenance reminder, helping users to stay on top of their vehicle maintenance schedules.&quot;
+  - &quot;Multiple Vehicles: Implemented a feature that allows users to create multiple car/motorcycle entries for maintenance, catering to users with more than one vehicle.&quot;
+  - &quot;Collaboration: Worked in collaboration with a team member who created the IoT hardware EPS32 for GPS tracking, demonstrating teamwork and cross-functional collaboration.&quot;
+
+tools:
+  - name: &quot;Typescript&quot;
+    logo: &quot;devicon:typescript&quot;
+
+  - name: &quot;NestJS&quot;
+    logo: &quot;devicon:nestjs&quot;
+
+  - name: &quot;Dart&quot;
+    logo: &quot;devicon:dart&quot;
+
+  - name: &quot;Flutter&quot;
+    logo: &quot;devicon:flutter&quot;
+
+sourceCodeUrl: &quot;https://github.com/cattyman919/Jaga&quot;
+
+mediaUrls:
+  - &quot;https://bucket.senop.dev/projects/jaga/jaga.png&quot;</file><file path="src/content/projects/restomatic/project.yaml">title: &quot;Restomatic&quot;
+type: &quot;frontend&quot;
+tags: [&quot;frontend&quot;]
+image: &quot;./restomatic.png&quot;
+description: &quot;A web platform for easy food and drink ordering. Users can browse restaurant menus, add funds, and leave ratings.&quot;
+
+
+
+
+
+highlights:
+  - &quot;Frontend Development: Led the frontend development of the RestoMatic project, creating an intuitive and user-friendly interface.&quot;
+  - &quot;Login and Sign Up Pages: Designed and implemented the login and sign up pages, ensuring a smooth user experience from the very beginning.&quot;
+  - &quot;Restaurant Listing: Developed the list of restaurants feature, allowing users to effortlessly browse through a wide range of restaurant options.&quot;
+  - &quot;Filter Feature: Created a filter feature on the frontend side, enabling users to find menus based on ratings and discover the most highly regarded dishes and drinks.&quot;
+  - &quot;Order Carts: Built the Order Carts functionality, providing a clear and concise overview of selected items, their quantities, and total prices.&quot;
+  - &quot;Payment System: Implemented the payment system, performing thorough checks to verify whether the customer&apos;s balance is adequate for payment and preventing customers from placing orders without having sufficient funds.&quot;
+
+tools:
+  - name: &quot;React&quot;
+    logo: &quot;devicon:react&quot;
+
+  - name: &quot;NextJS&quot;
+    logo: &quot;devicon:nextjs&quot;
+
+  - name: &quot;Typescript&quot;
+    logo: &quot;devicon:typescript&quot;
+
+  - name: &quot;Tailwind&quot;
+    logo: &quot;devicon:tailwindcss&quot;
+
+sourceCodeUrl: &quot;https://github.com/SistemBasisData2023/RestoMatic&quot;
+
+mediaUrls:
+  - &quot;https://bucket.senop.dev/projects/restomatic/restomatic.png&quot;
+  - &quot;https://bucket.senop.dev/projects/restomatic/login_page.png&quot;
+  - &quot;https://bucket.senop.dev/projects/restomatic/register_page.png&quot;
+  - &quot;https://bucket.senop.dev/projects/restomatic/home_page.png&quot;
+  - &quot;https://bucket.senop.dev/projects/restomatic/profile_page.png&quot;
+  - &quot;https://bucket.senop.dev/projects/restomatic/order_page.png&quot;
+  - &quot;https://bucket.senop.dev/projects/restomatic/order_cart.png&quot;
+  - &quot;https://bucket.senop.dev/projects/restomatic/order_history_page.png&quot;
+  - &quot;https://bucket.senop.dev/projects/restomatic/review_page.png&quot;</file><file path="src/content/projects/vaio/project.yaml">title: &quot;Vacuum All in One&quot;
+type: &quot;iot&quot;
+tags: [&quot;iot&quot;]
+image: &quot;./vaio.jpg&quot;
+description: &quot;Vacuum All in One (VAIO) is an ESP32-based robot featuring autonomous navigation, a vacuum system, and multiple intuitive control methods including a sensor-equipped glove, voice commands via speech recognition, and a standard PS4 controller.&quot;
+
+
+
+
+highlights:
+  - &quot;Architected and structured the primary codebase for both the VAIO robot and the Glove controller using PlatformIO, employing C++ classes and static methods to enhance modularity, readability, and maintainability for team collaboration.&quot;
+  - Implemented and refined the core gyroscope-based control system, enabling intuitive robot movement via the wearable glove, including developing the data transmission logic between the Glove and VAIO using the ESP-NOW protocol.
+  - Spearheaded the integration and debugging efforts for the PS4 (DS4) controller functionality, troubleshooting library dependencies and Bluetooth communication issues to ensure reliable pairing and command input.
+  - &quot;Actively participated in the physical hardware assembly, including wiring components, soldering connections for motors, sensors (ultrasonic), LED indicators, the vacuum system, and constructing the ESP32-based protoboard for the Glove controller.&quot;
+  - &quot;Leveraged FreeRTOS to implement multi-core processing and concurrent task management on the VAIO robot, enabling simultaneous operation of sensor readings, motor control, communication handling (ESP-NOW, Web Server), and seamless switching between different control modes (Gyro, Auto, DS4).&quot;
+  - &quot;Developed and debugged key peripheral functionalities, including implementing precise motor speed control using PWM, establishing the system for LED status indication corresponding to control modes, and enabling the glove-based button activation for the vacuum system and voice command input.&quot;
+  - &quot;Contributed to the implementation and refinement of the master_control logic on the VAIO, ensuring smooth transitions between control states based on inputs received from the glove (gyro, speech, buttons) or the web interface.&quot;
+
+sourceCodeUrl: &quot;https://github.com/VAIO-CE/VAIO-Code&quot;
+
+tools:
+  - name: &quot;C++&quot;
+    logo: &quot;devicon:cplusplus&quot;
+
+mediaUrls:
+  - &quot;https://bucket.senop.dev/projects/vaio/vaio.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/vaio/glove_vaio.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/vaio/ps4_car.mp4&quot;
+  - &quot;https://bucket.senop.dev/projects/vaio/vaio_test.mp4&quot;
+  - &quot;https://bucket.senop.dev/projects/vaio/voice_detection.mp4&quot;
+  - &quot;https://bucket.senop.dev/projects/vaio/vaio_car1.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/vaio/internal_vaio.jpg&quot;
+  - &quot;https://bucket.senop.dev/projects/vaio/group_vaio.jpg&quot;</file><file path="src/content/experiences.ts">import type { Experience } from &quot;@/types&quot;;
+import XLAxiataLogo from &quot;@/assets/experiences/XL_Axiata_2014.png&quot;;
+import XLSmartLogo from &quot;@/assets/experiences/XLSmart.png&quot;;
+import SuperBankLogo from &quot;@/assets/experiences/Superbank.png&quot;;
+import BankVictoriaLogo from &quot;@/assets/experiences/Bank_Victoria_logo.png&quot;;
+
+import MileAppLogo from &quot;@/assets/experiences/mileapp.png&quot;;
+
+export const experienceData: Experience[] = [
+  {
+    company: &quot;XLSmart&quot;,
+    logo: XLSmartLogo,
+    position: &quot;Platform Engineer&quot;,
+    date: &quot;September 2025 - Present&quot;,
+    jobType: &quot;Contract&quot;,
+    location: &quot;Jakarta Selatan, Indonesia&quot;,
+    tools: [
+      { name: &quot;golang&quot;, logo: &quot;devicon:go&quot; },
+      { name: &quot;nextjs&quot;, logo: &quot;devicon:nextjs&quot; },
+      { name: &quot;AWS&quot;, logo: &quot;skill-icons:aws-dark&quot; },
+      {
+        name: &quot;Kubernetes&quot;,
+        logo: &quot;devicon:kubernetes&quot;,
+      },
+      {
+        name: &quot;Helm&quot;,
+        logo: &quot;devicon:helm&quot;,
+      },
+      {
+        name: &quot;Docker&quot;,
+        logo: &quot;devicon:docker&quot;,
+      },
+    ],
+    points: [
+      &quot;**Engineered** a high-concurrency **Go** tool to automate weekly End-of-Support (EOS) and capacity reporting across **~100 AWS accounts** and **~100 GCP projects**, **slashing manual report generation time from 45 minutes to under 3 minutes**.&quot;,
+      &quot;**Engineered** an automated **AMI compliance scanner** in **Go** to track **AmazSuperbankon Linux 2 to 2023 migration** progress across **Karpenter** nodepools and **EKS Managed Node Groups** in **50+ AWS accounts**.&quot;,
+      &quot;**Built** a **Go** utility to **audit Kubernetes clusters** at scale, querying **EKS clusters** to gather **PodDisruptionBudget (PDB)** and **HPA** data for cross-team resilience analysis.&quot;,
+    ],
+  },
+  {
+    company: &quot;Superbank&quot;,
+    logo: SuperBankLogo,
+    position: &quot;Technical Support&quot;,
+    date: &quot;December 2024 - June 2025&quot;,
+    jobType: &quot;Internship&quot;,
+    location: &quot;Jakarta Selatan, Indonesia&quot;,
+    tools: [
+      { name: &quot;AWS&quot;, logo: &quot;skill-icons:aws-dark&quot; },
+      { name: &quot;Powershell&quot;, logo: &quot;devicon:powershell&quot; },
+    ],
+    points: [
+      &quot;Managed end-to-end deployment of vendor-provided scripts across AWS environments (EC2 Dev/Staging) via S3 bucket integration, WinSCP file transfers, and XML configuration adjustments.&quot;,
+      &quot;Automated deployment workflows by developing a PowerShell script to extract ZIP files and configuration for deployment processes, reducing manual effort by 40% and accelerating deployment cycles.&quot;,
+      &quot;Streamlined cross-departmental communication by drafting and prioritizing Jira tickets with SQL query logs, error reports, and urgency assessments for vendor and internal teams.&quot;,
+      &quot;Secured client data by encrypting sensitive TXT files using Kleopatra with Superbank PGP keys and ensuring secure FTP transfers to comply with data protection standards.&quot;,
+    ],
+  },
+  {
+    company: &quot;XL Axiata Tbk&quot;,
+    logo: XLAxiataLogo,
+    position: &quot;Fixed Connectivity, ICT &amp; Cloud&quot;,
+    date: &quot;February 2024 - July 2025&quot;,
+    jobType: &quot;Internship&quot;,
+    location: &quot;Jakarta Selatan, Indonesia&quot;,
+    tools: [{ name: &quot;Python&quot;, logo: &quot;devicon:python&quot; }],
+    points: [
+      &quot;Conducted comprehensive performance analysis and SWOT evaluation of Starlink technology to explore its potential for expanding broadband access in remote Indonesian regions.&quot;,
+      &quot;Developed web scraping solutions using Python (BeautifulSoup, Pandas) to map Indonesian ISPs from APJII data, enabling insights into market distribution and operational scale.&quot;,
+      &quot;Created data visualizations and analytical reports with Power BI and Excel, aiding strategic business decision-making for enhanced telecommunications service quality.&quot;,
+      &quot;Presented findings and strategic recommendations to mentors and senior management, leveraging strong communication skills and technical knowledge to facilitate informed decision-making and business strategy development.&quot;,
+    ],
+  },
+  {
+    company: &quot;Bank Victoria International&quot;,
+    logo: BankVictoriaLogo,
+    position: &quot;Fullstack Engineer&quot;,
+    date: &quot;September 2023 - November 2023&quot;,
+    jobType: &quot;Internship&quot;,
+    location: &quot;Jakarta Selatan, Indonesia&quot;,
+    tools: [
+      { name: &quot;Flutter&quot;, logo: &quot;devicon:flutter&quot; },
+      { name: &quot;NestJS&quot;, logo: &quot;devicon:nestjs&quot; },
+    ],
+    points: [
+      &quot;Developed and maintained Victoria’s web application, integrating frontend (Flutter) and backend (NestJS) technologies to deliver seamless user experiences.&quot;,
+      &quot;Demonstrated exceptional time management skills by juggling internship duties with academic responsibilities, attending office once weekly.&quot;,
+      &quot;Ensured project requirements were met through effective communication and collaboration with the supervisory team.&quot;,
+    ],
+  },
+  {
+    company: &quot;Mileapp&quot;,
+    logo: MileAppLogo,
+    position: &quot;Frontend Engineer&quot;,
+    date: &quot;September 2022 - October 2023&quot;,
+    jobType: &quot;Internship&quot;,
+    location: &quot;Jakarta Selatan, Indonesia&quot;,
+    tools: [
+      { name: &quot;NextJS&quot;, logo: &quot;devicon:nextjs&quot; },
+      { name: &quot;React&quot;, logo: &quot;devicon:react&quot; },
+    ],
+    points: [
+      &quot;Redesigned critical user interface pages, including landing and login pages, to improve user experience.&quot;,
+      &quot;Engaged in productive discussions with the supervisor to plan and execute development tasks efficiently.&quot;,
+    ],
+  },
+];</file><file path="src/content/skills.ts">import type { SkillsLine } from &quot;@/types&quot;;
+
+export const skillsData: SkillsLine[] = [
+  {
+    title: &quot;Languages &amp; Framework&quot;,
+    logo: &quot;mdi:code&quot;,
+    skills: [
+      [
+        { name: &quot;Nextjs&quot;, expertise: 70, logo: &quot;devicon:nextjs&quot; },
+        { name: &quot;Typescript&quot;, expertise: 80, logo: &quot;devicon:typescript&quot; },
+        { name: &quot;Golang&quot;, expertise: 80, logo: &quot;devicon:go&quot; },
+        { name: &quot;Rust&quot;, expertise: 70, logo: &quot;devicon:rust&quot; },
+        { name: &quot;Nestjs&quot;, expertise: 70, logo: &quot;devicon:nestjs&quot; },
+        { name: &quot;React&quot;, expertise: 80, logo: &quot;devicon:react&quot; },
+        { name: &quot;Java&quot;, expertise: 60, logo: &quot;devicon:java&quot; },
+        { name: &quot;Flutter&quot;, expertise: 60, logo: &quot;devicon:flutter&quot; },
+      ],
+      [
+        { name: &quot;nextjs&quot;, expertise: 70, logo: &quot;devicon:nextjs&quot; },
+        { name: &quot;typescript&quot;, expertise: 80, logo: &quot;devicon:typescript&quot; },
+        { name: &quot;golang&quot;, expertise: 80, logo: &quot;devicon:go&quot; },
+        { name: &quot;rust&quot;, expertise: 70, logo: &quot;devicon:rust&quot; },
+        { name: &quot;nestjs&quot;, expertise: 70, logo: &quot;devicon:nestjs&quot; },
+        { name: &quot;react&quot;, expertise: 80, logo: &quot;devicon:react&quot; },
+        { name: &quot;java&quot;, expertise: 60, logo: &quot;devicon:java&quot; },
+      ],
+    ],
+  },
+  {
+    title: &quot;Devops&quot;,
+    logo: &quot;mdi:cloud-outline&quot;,
+    skills: [
+      [
+        { name: &quot;AWS&quot;, expertise: 60, logo: &quot;skill-icons:aws-dark&quot; },
+        { name: &quot;GCP&quot;, expertise: 50, logo: &quot;skill-icons:gcp-dark&quot; },
+        { name: &quot;Linux&quot;, expertise: 80, logo: &quot;devicon:linux&quot; },
+        { name: &quot;Docker&quot;, expertise: 80, logo: &quot;skill-icons:docker&quot; },
+        { name: &quot;Kubernetes&quot;, expertise: 60, logo: &quot;devicon:kubernetes&quot; },
+        { name: &quot;Computer Networks&quot;, expertise: 70 },
+      ],
+    ],
+  },
+];</file><file path="src/pages/blog/[id].astro">---
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import { render } from &quot;astro:content&quot;;
+import { getCollection } from &quot;astro:content&quot;;
+
+export async function getStaticPaths() {
+  const blogs = await getCollection(&quot;blogs&quot;);
+  return blogs.map((blog) =&gt; ({
+    params: { id: blog.id },
+    props: { blog: blog },
+  }));
+}
+
+const { blog } = Astro.props;
+const { Content } = await render(blog);
+---
+
+&lt;BaseLayout&gt;
+  &lt;h1&gt;{blog.data.title}&lt;/h1&gt;
+  &lt;Content /&gt;
+&lt;/BaseLayout&gt;</file><file path="src/pages/project/[id].astro">---
+import { getCollection } from &quot;astro:content&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import ProjectCardDetail from &quot;@/components/project/ProjectCardDetail.astro&quot;;
+import ProjectTechnologies from &quot;@/components/project/ProjectTechnologies.astro&quot;;
+import ProjectHiglights from &quot;@/components/project/ProjectHiglights.astro&quot;;
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const projects = await getCollection(&quot;projects&quot;);
+  return projects.map((project) =&gt; ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+// 2. For your template, you can get the entry directly from the prop
+const { project } = Astro.props;
+const {
+  title,
+  description,
+  highlights,
+  tools,
+  tags,
+  demoUrl,
+  sourceCodeUrl,
+  image,
+  mediaUrls,
+} = project.data;
+---
+
+&lt;BaseLayout&gt;
+  &lt;div class=&quot;max-w-8xl mx-auto w-full flex flex-col gap-8 px-12 sm:px-14 py-8&quot;&gt;
+    &lt;a
+      href=&quot;/#projects&quot;
+      class=&quot;hover:text-primary transition-all w-fit bg-transparent hover:bg-transparent hover:shadow-none hover:drop-shadow-none hover:scale-110 duration-300&quot;
+    &gt;
+      &lt;p class=&quot;font-bold&quot;&gt;← Back to Projects&lt;/p&gt;
+    &lt;/a&gt;
+    &lt;ProjectCardDetail
+      description={description}
+      title={title}
+      demoUrl={demoUrl}
+      mediaUrls={mediaUrls}
+      sourceCodeUrl={sourceCodeUrl}
+      image={image}
+      tags={tags}
+    /&gt;
+
+    &lt;div class=&quot;flex gap-10 relative&quot;&gt;
+      &lt;ProjectHiglights highlights={highlights} /&gt;
+      &lt;ProjectTechnologies tools={tools} /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;</file><file path="public/favicon.svg">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 128 128&quot;&gt;
     &lt;path d=&quot;M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z&quot; /&gt;
     &lt;style&gt;
         path { fill: #000; }
@@ -54,37 +869,55 @@ tsconfig.json</directory_structure><files>This section contains the contents of 
             path { fill: #FFF; }
         }
     &lt;/style&gt;
-&lt;/svg&gt;</file><file path="src/components/home/TypewriterText.tsx">import { useTypewriter } from &quot;@/hooks/UseTypewriter&quot;;
+&lt;/svg&gt;</file><file path="src/components/skills/SkillCardItem.astro">---
+import type { Skill } from &quot;@/types&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
 
-export default function TypewriterText() {
-  const text = useTypewriter(
-    [
-      &quot;Software Developer&quot;,
-      &quot;Computer Networks&quot;,
-      &quot;System Design&quot;,
-      &quot;Tech Enthusiast&quot;,
-      &quot;Computer Engineer&quot;,
-    ],
-    50,
-    1000,
-  );
-  return (
-    &lt;p&gt;
-      &lt;span&gt;{text || &quot;\u00A0&quot;}&lt;/span&gt;
-      &lt;span className=&quot;relative before:absolute before:inset-1 before:w-[0.125em] before:bg-primary animate-caret&quot;&gt;&lt;/span&gt;
-    &lt;/p&gt;
-  );
-}</file><file path="src/components/About.astro">&lt;section id=&quot;about&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;About&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/components/Contact.astro">&lt;section id=&quot;contact&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;Contact&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/components/Experience.astro">&lt;section id=&quot;experience&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;Experience&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/components/Projects.astro">&lt;section id=&quot;projects&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;Projects&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/components/Skills.astro">&lt;section id=&quot;skills&quot; class=&quot;h-dvh&quot;&gt;
-  &lt;h1&gt;Skills&lt;/h1&gt;
-&lt;/section&gt;</file><file path="src/hooks/UseTypewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+type Props = Skill;
+
+const { name, expertise, logo } = Astro.props;
+
+const ratingOutOfFive = Math.floor(expertise / 20);
+---
+
+&lt;div class=&quot;flex items-center gap-4 px-6 py-4 bg-white/3 border border-white/5 rounded-2xl min-w-[200px] transition-colors hover:bg-white/8 backdrop-blur-sm cursor-default&quot;&gt;
+
+  {logo ? (
+    &lt;Icon 
+      name={logo} 
+      class={`flex items-center justify-center w-12 h-12 ${
+        name === &quot;Rust&quot; &amp;&amp; &quot;fill-[#C45508]&quot;
+      }`} 
+    /&gt;
+  ) : (
+    &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+      {name.charAt(0)}
+    &lt;/div&gt;
+  )}
+  
+  &lt;div class=&quot;flex flex-col gap-1.5&quot;&gt;
+    &lt;span class=&quot;text-white font-bold tracking-wider&quot;&gt;{name}&lt;/span&gt;
+    
+    &lt;div class=&quot;flex gap-1 relative z-10&quot;&gt;
+      {[0, 1, 2, 3, 4].map((index) =&gt; {
+        const isFilled = index &lt; ratingOutOfFive;
+        
+        return (
+          &lt;Icon 
+            name=&quot;lucide:star&quot; 
+            class={`w-4 h-4 transition-colors duration-300 ${
+              isFilled 
+                // FIX: Swapped fill-primary for fill-current so it inherits the green from text-primary
+                ? &quot;text-primary fill-current drop-shadow-[0_0_4px_var(--color-primary)]&quot; 
+                : &quot;text-white/20 fill-transparent&quot;
+            }`}
+          /&gt;
+        );
+      })}
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;</file><file path="src/hooks/UseTypewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
 
 export const useTypewriter = (
   text: string[],
@@ -126,183 +959,578 @@ export const useTypewriter = (
   }, [isDeleting]);
 
   return displayText;
-};</file><file path="src/components/Home.astro">---
-import TypewriterText from &quot;@/components/home/TypewriterText&quot;
+};</file><file path="src/layouts/ProjectPostLayout.astro">---
+import BaseLayout from &quot;../layouts/BaseLayout.astro&quot;;
+import type { MarkdownLayoutProps } from &quot;astro&quot;;
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  author: string;
+  tags?: string[];
+}
+
+const { frontmatter } = Astro.props;
 ---
-&lt;section id=&quot;home&quot; class=&quot;h-dvh flex flex-col justify-center items-center text-center&quot;&gt;
-  &lt;div class=&quot;w-[50%] max-w-5xl flex flex-col gap-9&quot;&gt;
 
-  {/* Main Title Section */}
-&lt;div class=&quot;relative flex flex-col gap-10 text-center pb-4&quot;&gt;
-  
-  &lt;div class=&quot;relative inline-block mx-auto p-8&quot;&gt;
-    
-    &lt;div class=&quot;absolute -inset-4 bg-glow-green/20 blur-[80px] rounded-full z-0 pointer-events-none&quot;&gt;&lt;/div&gt;
-    
-    &lt;div class=&quot;relative z-10 font-bold&quot;&gt;
-      &lt;h1 class=&quot;text-gray-300 text-6xl mb-12&quot;&gt;Hi, I&apos;m &lt;span class=&quot;text-gradient&quot;&gt;Seno Pamungkas Rahman&lt;/span&gt;&lt;/h1&gt;
-      &lt;h2 class=&quot;text-5xl text-gray-300/90 mt-4&quot;&gt;
-        &lt;TypewriterText client:load/&gt;
-      &lt;/h2&gt;
+&lt;BaseLayout /&gt;</file><file path=".prettierrc.mjs">/** @type {import(&quot;prettier&quot;).Config} */
+export default {
+  plugins: [&quot;prettier-plugin-astro&quot;],
+  overrides: [
+    {
+      files: &quot;*.astro&quot;,
+      options: {
+        parser: &quot;astro&quot;,
+      },
+    },
+  ],
+};</file><file path="AGENTS.md"># AGENTS.md
+
+## Stack
+
+Astro 6 + React 19 + Tailwind CSS 4, deployed to Vercel. Package manager is **pnpm**. Requires Node &gt;= 22.12.0.
+
+## Commands
+
+- `pnpm dev` — dev server on `localhost:4321`
+- `pnpm build` — production build to `dist/`
+- `pnpm preview` — preview the build
+- Type checking: `pnpm astro check` (no dedicated script in package.json)
+- Formatting: `pnpm exec prettier --check .` / `pnpm exec prettier --write .` (uses `prettier-plugin-astro`)
+
+There is no lint script configured.
+
+## Architecture
+
+Single-page portfolio. All content is on one route (`src/pages/index.astro`) composed of section components.
+
+- **Pages**: `src/pages/index.astro` — imports and assembles all sections
+- **Components**: `src/components/` — Astro components for each section (Home, About, Experience, Skills, Projects, Contact) plus subdirectories with supporting pieces. `Navigation.tsx` and `TiltWrapper.tsx` are React components used with `client:*` directives.
+- **Data**: `src/data/` — typed TS files (`experiences.ts`, `projects.ts`, `skills.ts`) hold all portfolio content. Types are in `src/types/index.ts`.
+- **Styles**: `src/styles/global.css` — Tailwind v4 CSS-based config with custom theme colors (oklch), keyframes, and `@utility` definitions. No `tailwind.config.js`.
+- **Icons**: Uses `astro-icon` with iconify icon sets (many `@iconify-json/*` packages). Icons are referenced by their iconify name.
+
+## Path aliases
+
+Defined in `tsconfig.json`:
+
+- `@/*` → `src/*`
+- `@/components/*` → `src/components/*`
+- `@/layouts/*` → `src/layouts/*`
+- `@/styles/*` → `src/styles/*`
+
+## Conventions
+
+- React components in Astro files must use `client:*` directives (e.g., `client:load`).
+- Tailwind is v4 — configure theme tokens and utilities in `global.css` via `@theme` and `@utility`, not in a JS config file.
+- To add portfolio content, edit the data files in `src/data/` following the interfaces in `src/types/index.ts`.
+- `*.xml` files are gitignored (repomix outputs exist in the tree but should not be edited).
+
+## Deploy
+
+Vercel. Deployment is disabled for branches named `astro` and `new-portfolio` (see `vercel.json`).</file><file path="src/components/contact/EmailCard.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+---
+
+&lt;form
+  action=&quot;https://api.web3forms.com/submit&quot;
+  method=&quot;POST&quot;
+  class=&quot;flex flex-col gap-6 flex-1 border border-gray-500/30 rounded-lg px-10 py-8 bg-white/[0.02] backdrop-blur-md&quot;
+&gt;
+  &lt;h1 class=&quot;font-bold text-3xl text-primary mb-3&quot;&gt;Send a Message&lt;/h1&gt;
+  &lt;input
+    type=&quot;hidden&quot;
+    name=&quot;access_key&quot;
+    value=&quot;b18f0437-d489-48ac-9dbf-dcc9cdcbe8e6&quot;
+  /&gt;
+
+  &lt;div class=&quot;flex flex-col gap-2 group&quot;&gt;
+    &lt;div
+      class=&quot;flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary&quot;
+    &gt;
+      &lt;Icon name=&quot;iconamoon:profile&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;label for=&quot;username&quot;&gt;Your Name&lt;/label&gt;
     &lt;/div&gt;
-    
+    &lt;input
+      type=&quot;text&quot;
+      id=&quot;username&quot;
+      name=&quot;username&quot;
+      placeholder=&quot;John Doe&quot;
+      required
+      class=&quot;text-white&quot;
+    /&gt;
   &lt;/div&gt;
-  
-&lt;/div&gt;
 
-  &lt;div class=&quot;w-80 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto&quot;&gt;&lt;/div&gt;
-
-  {/* Description Section */}
-  &lt;p class=&quot; text-light-gray/70 text-white text-2xl tracking-wider leading-relaxed&quot;&gt;An avid software engineer with a zest for front-end, back-end, AI, and cloud technologies. Passionate about exploring new tech frontiers, I blend creativity with technical skill in every project, pushing the boundaries of software innovation&lt;/p&gt;
-
-  {/* Buttons Section */}
-  &lt;div class=&quot;flex  gap-4 items-center justify-center&quot;&gt;
-  &lt;button&gt;CV&lt;/button&gt;
-  &lt;button&gt;Blog&lt;/button&gt;
+  &lt;div class=&quot;flex flex-col gap-2 group&quot;&gt;
+    &lt;div
+      class=&quot;flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary&quot;
+    &gt;
+      &lt;Icon name=&quot;mdi:email-outline&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;label for=&quot;email&quot;&gt;Your Email&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;input
+      type=&quot;email&quot;
+      id=&quot;email&quot;
+      name=&quot;email&quot;
+      placeholder=&quot;john@example.com&quot;
+      required
+      class=&quot;text-white&quot;
+    /&gt;
   &lt;/div&gt;
-&lt;/section&gt;</file><file path="src/components/Navigation.tsx">import { useState, useEffect } from &quot;react&quot;;
 
-export default function Navbar() {
-  const [activeSection, setActiveSection] = useState&lt;string&gt;(&quot;home&quot;);
+  &lt;div class=&quot;flex flex-col gap-2 group&quot;&gt;
+    &lt;div
+      class=&quot;flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary&quot;
+    &gt;
+      &lt;Icon name=&quot;lucide:tag&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;label for=&quot;subject&quot;&gt;Subject&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;input
+      type=&quot;text&quot;
+      id=&quot;subject&quot;
+      name=&quot;subject&quot;
+      placeholder=&quot;Project Inquiry&quot;
+      required
+      class=&quot;text-white&quot;
+    /&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex flex-col gap-2 group&quot;&gt;
+    &lt;div
+      class=&quot;flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary&quot;
+    &gt;
+      &lt;Icon name=&quot;lucide:message-square&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;label for=&quot;message&quot;&gt;Message&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;textarea
+      id=&quot;message&quot;
+      name=&quot;message&quot;
+      placeholder=&quot;Tell me about your project...&quot;
+      class=&quot;h-40 text-white resize-none&quot;
+      required&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;input
+    type=&quot;checkbox&quot;
+    name=&quot;botcheck&quot;
+    class=&quot;hidden&quot;
+    style=&quot;display: none;&quot;
+  /&gt;
+
+  &lt;button
+    type=&quot;submit&quot;
+    class=&quot;flex gap-2 justify-center items-center group/button hover:scale-105 bg-primary/80 text-bg mt-2&quot;
+  &gt;
+    &lt;p&gt;Send Message&lt;/p&gt;
+    &lt;Icon
+      name=&quot;akar-icons:paper-airplane&quot;
+      class=&quot;w-6 h-6 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 transition-all duration-500&quot;
+    /&gt;
+  &lt;/button&gt;
+&lt;/form&gt;</file><file path="src/components/home/ParticlesBackground.tsx">import { useEffect, useState } from &quot;react&quot;;
+import Particles, { initParticlesEngine } from &quot;@tsparticles/react&quot;;
+import type { IParticlesProps } from &quot;@tsparticles/react&quot;;
+import { loadSlim } from &quot;@tsparticles/slim&quot;;
+
+interface ParticlesBackgroundProps {
+  id: string;
+  options?: IParticlesProps[&quot;options&quot;];
+}
+
+export default function ParticlesBackground({
+  id,
+  options,
+}: ParticlesBackgroundProps) {
+  const [init, setInit] = useState(false);
+
   useEffect(() =&gt; {
+    initParticlesEngine(async (engine) =&gt; {
 
-    const observer = new IntersectionObserver(
-      (entries) =&gt; {
-        entries.forEach((entry) =&gt; {
-
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-
-
-        rootMargin: &quot;-50% 0px -50% 0px&quot;,
-      },
-    );
-
-
-    const sections = document.querySelectorAll(&quot;section[id]&quot;);
-    sections.forEach((section) =&gt; observer.observe(section));
-
-
-    return () =&gt; {
-      sections.forEach((section) =&gt; observer.unobserve(section));
-    };
+      await loadSlim(engine);
+    }).then(() =&gt; {
+      setInit(true);
+    });
   }, []);
 
+  if (!init) return null;
 
-  const getLinkClass = (id: string) =&gt; {
-    const isActive = activeSection === id;
+  return (
+    &lt;Particles
+      id={id}
+      className=&quot;absolute inset-0 -z-20 w-full h-full&quot;
+      options={options}
+    /&gt;
+  );
+}</file><file path="src/components/home/TypewriterText.tsx">import { useTypewriter } from &quot;@/hooks/UseTypewriter&quot;;
 
-    return `
-      relative font-medium py-1
-      after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full
-       after:transition-transform after:duration-300 after:ease-out
-      ${
-        isActive
-          ? &quot;after:scale-x-100 after:origin-bottom-left &quot; // Active: Line is full width
-          : &quot;after:scale-x-0 after:origin-bottom-right &quot; // Inactive: Line is hidden, but expands on hover
-      }
-    `;
+export default function TypewriterText() {
+  const text = useTypewriter(
+    [
+      &quot;Software Developer&quot;,
+      &quot;Computer Networks&quot;,
+      &quot;System Design&quot;,
+      &quot;Tech Enthusiast&quot;,
+      &quot;Computer Engineer&quot;,
+    ],
+    50,
+    1000,
+  );
+  return (
+    &lt;p className=&quot;font-pixel&quot;&gt;
+      &lt;span&gt;{text || &quot;\u00A0&quot;}&lt;/span&gt;
+      &lt;span className=&quot;relative before:absolute before:inset-1 before:w-[0.125em] before:bg-primary animate-caret&quot;&gt;&lt;/span&gt;
+    &lt;/p&gt;
+  );
+}</file><file path="src/components/TiltWrapper.tsx">import { useState, useRef, type ReactNode } from &quot;react&quot;;
+
+interface TiltWrapperProps {
+  children: ReactNode;
+  maxTilt: number;
+  className?: string;
+}
+
+export default function TiltWrapper({
+  children,
+  maxTilt,
+  className = &quot;&quot;,
+}: TiltWrapperProps) {
+  const cardRef = useRef&lt;HTMLDivElement&gt;(null);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const MAX_TILT = maxTilt;
+
+  const handleMouseMove = (e: React.MouseEvent&lt;HTMLDivElement&gt;) =&gt; {
+    if (!cardRef.current) return;
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const mouseXFromCenter = e.clientX - rect.left - centerX;
+    const mouseYFromCenter = e.clientY - rect.top - centerY;
+
+    const rotateX = -(mouseYFromCenter / centerY) * MAX_TILT;
+    const rotateY = (mouseXFromCenter / centerX) * MAX_TILT;
+
+    setRotation({ x: rotateX, y: rotateY });
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const handleMouseLeave = () =&gt; {
+    setIsHovered(false);
+    setRotation({ x: 0, y: 0 });
+  };
+
+  const handleMouseEnter = () =&gt; {
+    setIsHovered(true);
   };
 
   return (
-    &lt;header
-      id=&quot;navigation-bar&quot;
-      className=&quot;w-full h-[50px] z-20 flex  justify-between items-center px-20 border-b sticky
-  backdrop-blur-md top-0 border-slate-200/50&quot;
+    &lt;div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      // The outer container handles the 3D perspective
+      className=&quot;relative group [perspective:1000px] w-full h-full&quot;
     &gt;
-      &lt;div className=&quot;absolute inset-0 blur-[100px] rounded-full z-0 pointer-events-none transform scale-110&quot;&gt;&lt;/div&gt;
-      &lt;div&gt;Logo&lt;/div&gt;
-      &lt;nav className=&quot;flex gap-10 font-bold&quot;&gt;
-        &lt;a href=&quot;#home&quot; className={getLinkClass(&quot;home&quot;)}&gt;
-          Home
-        &lt;/a&gt;
-        &lt;a href=&quot;#about&quot; className={getLinkClass(&quot;about&quot;)}&gt;
-          About
-        &lt;/a&gt;
-        &lt;a href=&quot;#experience&quot;&gt;Experience&lt;/a&gt;
-        &lt;a href=&quot;#skills&quot;&gt;Skills&lt;/a&gt;
-        &lt;a href=&quot;#projects&quot;&gt;Projects&lt;/a&gt;
-        &lt;a href=&quot;#contact&quot;&gt;Contact&lt;/a&gt;
-      &lt;/nav&gt;
-    &lt;/header&gt;
+      &lt;div
+        style={{
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        }}
+        className={`relative w-full h-full will-change-transform transform-3d
+          ${isHovered ? &quot;transition-none&quot; : &quot;transition-transform duration-500 ease-out&quot;}
+          ${className}`}
+      &gt;
+        {}
+        &lt;div className=&quot;absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none&quot;&gt;
+          &lt;div className=&quot;absolute inset-0 transition-opacity duration-300 mix-blend-overlay&quot; /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;relative z-10 w-full h-full transform-3d&quot;&gt;
+          {children}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   );
-}</file><file path="src/layouts/Layout.astro">---
-import &apos;../styles/global.css&apos;;
+}</file><file path="src/pages/blog/index.astro">---
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import { getCollection } from &quot;astro:content&quot;;
+// import { Icon } from &quot;astro-icon/components&quot;;
+
+const blogs = (await getCollection(&quot;blogs&quot;)).sort(
+  (a, b) =&gt; b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
-&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-	&lt;head&gt;
-		&lt;meta charset=&quot;UTF-8&quot; /&gt;
-		&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
-		&lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/favicon.svg&quot; /&gt;
-		&lt;link rel=&quot;icon&quot; href=&quot;/favicon.ico&quot; /&gt;
-		&lt;meta name=&quot;generator&quot; content={Astro.generator} /&gt;
-		&lt;title&gt;Seno Pamungkas Rahman - Portfolio&lt;/title&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;slot /&gt;
-	&lt;/body&gt;
-&lt;/html&gt;</file><file path="src/pages/index.astro">---
-import Layout from &apos;../layouts/Layout.astro&apos;;
-import Navigation from &apos;@/components/Navigation.tsx&apos;
-import Home from &apos;@/components/Home.astro&apos;
-import About from &apos;@/components/About.astro&apos;
-import Experience from &apos;@/components/Experience.astro&apos;
-import Skills from &apos;@/components/Skills.astro&apos;
-import Projects from &apos;@/components/Projects.astro&apos;
-import Contact from &apos;@/components/Contact.astro&apos;
+&lt;BaseLayout&gt;
+  &lt;div class=&quot;px-20 mt-15&quot;&gt;
+    &lt;div class=&quot;flex flex-col justify-center text-gray-200 gap-4&quot;&gt;
+      &lt;h1 class=&quot;font-bold text-4xl font-pixel&quot;&gt;Blog&lt;/h1&gt;
+      &lt;p class=&quot;w-[40%] text-justify text-gray-400&quot;&gt;
+        Welcome to my blog domain where I share personal stories about things
+        I&apos;ve learned, projects I&apos;m hacking on and just general findings.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;ul class=&quot;gap-4 space-y-2&quot;&gt;
+    {
+      blogs.map((blog) =&gt; (
+        &lt;li&gt;
+          &lt;a href={`/blog/${blog.id}`}&gt;{blog.data.title}&lt;/a&gt;
+        &lt;/li&gt;
+      ))
+    }
+  &lt;/ul&gt;
+&lt;/BaseLayout&gt;</file><file path="src/content.config.ts">import { defineCollection } from &quot;astro:content&quot;;
+import { z } from &quot;astro/zod&quot;;
+import { glob } from &quot;astro/loaders&quot;;
+import type { CollectionEntry } from &quot;astro:content&quot;;
+
+const projects = defineCollection({
+  loader: glob({
+    pattern: &quot;**/*.yaml&quot;,
+    base: &quot;./src/content/projects&quot;,
+    generateId: ({ entry }) =&gt;
+      entry.replace(&quot;/project.yaml&quot;, &quot;&quot;).replace(&quot;.yaml&quot;, &quot;&quot;),
+  }),
+  schema: ({ image }) =&gt;
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      type: z.string(),
+      image: image().optional(),
+      tags: z.array(z.string()).optional(),
+      tools: z.array(
+        z.object({
+          name: z.string(),
+          logo: z.string(),
+        }),
+      ),
+      highlights: z.array(z.string()),
+      mediaUrls: z.array(z.string()).optional(),
+      sourceCodeUrl: z.string().optional(),
+      demoUrl: z.string().optional(),
+    }),
+});
+
+const blogs = defineCollection({
+  loader: glob({
+    pattern: &quot;**</file><file path="src/components/contact/DirectContact.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+
+const emailAddress = &quot;senop.rahman@gmail.com&quot;;
+const locationPlace = &quot;Indonesia&quot;;
+
+const socialLinks = [
+  {
+    name: &quot;GitHub&quot;,
+    icon: &quot;mdi:github&quot;,
+    url: &quot;https://github.com/cattyman919&quot;,
+  },
+  {
+    name: &quot;LinkedIn&quot;,
+    icon: &quot;devicon:linkedin&quot;,
+    url: &quot;https://www.linkedin.com/in/seno-pamungkas-rahman-714341192&quot;,
+  },
+  {
+    name: &quot;Instagram&quot;,
+    icon: &quot;skill-icons:instagram&quot;,
+    url: &quot;https://www.instagram.com/senohebat&quot;,
+  },
+];
 ---
 
-&lt;Layout&gt;
-  &lt;Navigation client:load/&gt;
-  &lt;Home/&gt;
-  &lt;About/&gt;
-  &lt;Experience/&gt;
-  &lt;Skills/&gt;
-  &lt;Projects/&gt;
-  &lt;Contact/&gt;
-&lt;/Layout&gt;</file><file path="astro.config.mjs">// @ts-check
-import { defineConfig } from &apos;astro/config&apos;;
+&lt;div class=&quot;flex flex-col gap-10 flex-1&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-5&quot;&gt;
+    &lt;div class=&quot;flex gap-3 items-center text-primary font-bold text-2xl&quot;&gt;
+      &lt;Icon name=&quot;lucide:mail&quot; class=&quot;w-8 h-8&quot; /&gt;
+      &lt;h2&gt;Direct Contact&lt;/h2&gt;
+    &lt;/div&gt;
 
-import react from &apos;@astrojs/react&apos;;
-import tailwindcss from &apos;@tailwindcss/vite&apos;;
+    &lt;div
+      class=&quot;group border border-primary/20 bg-white/[0.02] backdrop-blur-md rounded-lg flex items-center p-2 gap-4 transition-all duration-300 hover:border-primary/50&quot;
+    &gt;
+      &lt;div
+        class=&quot;flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 transition-all duration-300&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:at-sign&quot; class=&quot;w-7 h-7&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;flex flex-col&quot;&gt;
+        &lt;span class=&quot;text-xs uppercase text-primary tracking-widest font-bold&quot;
+          &gt;EMAIL&lt;/span
+        &gt;
+        &lt;a
+          href={`mailto:${emailAddress}`}
+          class=&quot;text-white hover:text-primary transition-colors text-lg hover:bg-transparent hover:shadow-none&quot;
+        &gt;
+          {emailAddress}
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
 
-// https://astro.build/config
-export default defineConfig({
-  integrations: [react()],
+    &lt;div
+      class=&quot;group border border-primary/20 bg-white/[0.02] backdrop-blur-md rounded-lg flex items-center p-2 gap-4 transition-all duration-300 hover:border-primary/50&quot;
+    &gt;
+      &lt;div
+        class=&quot;flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 transition-all duration-300&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:map-pin&quot; class=&quot;w-7 h-7&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;flex flex-col&quot;&gt;
+        &lt;span class=&quot;text-xs uppercase text-primary tracking-widest font-bold&quot;
+          &gt;LOCATION&lt;/span
+        &gt;
+        &lt;span class=&quot;text-white text-lg&quot;&gt;
+          {locationPlace}
+        &lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 
-  vite: {
-    plugins: [tailwindcss()]
+  &lt;div class=&quot;flex flex-col gap-5&quot;&gt;
+    &lt;div class=&quot;flex gap-3 items-center text-primary font-bold text-2xl&quot;&gt;
+      &lt;Icon name=&quot;lucide:share-2&quot; class=&quot;w-8 h-8&quot; /&gt;
+      &lt;h2&gt;Social Presence&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;flex gap-8 filter-none&quot;&gt;
+      {
+        socialLinks.map((social) =&gt; (
+          &lt;a
+            href={social.url}
+            target=&quot;_blank&quot;
+            rel=&quot;noopener noreferrer&quot;
+            title={`Visit Seno&apos;s ${social.name}`}
+            class=&quot;flex items-center justify-center w-15 h-15 rounded-xl bg-white/[0.02] border border-primary/10 text-gray-400 group-hover:border-primary/50 group-hover:text-primary transition-all duration-300 hover:bg-white/5 hover:scale-110&quot;
+          &gt;
+            &lt;Icon name={social.icon} class=&quot;w-10 h-10&quot; /&gt;
+          &lt;/a&gt;
+        ))
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="vercel.json">{
+  &quot;$schema&quot;: &quot;https://openapi.vercel.sh/vercel.json&quot;,
+  &quot;git&quot;: {
+    &quot;deploymentEnabled&quot;: {
+      &quot;astro&quot;: false,
+      &quot;new-portfolio&quot;: false
+    }
   }
-});</file><file path=".gitignore"># build output
-dist/
+}</file><file path="src/components/skills/SkillCard.astro">---
+import SkillCardItem from &quot;./SkillCardItem.astro&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { SkillsLine } from &quot;@/types&quot;;
 
-# generated types
-.astro/
+interface Props {
+  skillLine: SkillsLine;
+  reverse?: boolean;
+}
 
-# dependencies
-node_modules/
+const { skillLine, reverse = false } = Astro.props;
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+const { title, logo, skills } = skillLine;
 
-# environment variables
-.env
-.env.production
+// Duplicate the array to create the seamless infinite scroll illusion
+const duplicatedSkills: SkillsLine[&quot;skills&quot;] = skills.map((skill) =&gt; [
+  ...skill,
+  ...skill,
+]);
 
-# macOS-specific files
-.DS_Store
+// Determine the animation class based on the reverse prop
+const animationClass = reverse ? &quot;animate-marquee-reverse&quot; : &quot;animate-marquee&quot;;
+---
 
-# jetbrains setting folder
-.idea/</file><file path="README.md"># Astro Starter Kit: Basics
+&lt;div
+  class=&quot;flex flex-col group border border-primary/50 hover:border-primary transform-all duration-500 rounded-xl gap-10 py-6 w-full relative overflow-hidden&quot;
+&gt;
+  &lt;div
+    class=&quot;absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500&quot;
+  &gt;
+  &lt;/div&gt;
+
+  {
+    /* Gradient Masks to fade the left and right edges smoothly into the background */
+  }
+
+  &lt;div
+    class=&quot;absolute inset-y-0 left-0 w-24 md:w-40 bg-linear-to-r from-bg to-transparent z-10 pointer-events-none&quot;
+  &gt;
+  &lt;/div&gt;
+  &lt;div
+    class=&quot;absolute inset-y-0 right-0 w-24 md:w-40 bg-linear-to-l from-bg to-transparent z-10 pointer-events-none&quot;
+  &gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex gap-4 items-center px-8 md:px-10 relative z-20&quot;&gt;
+    {
+      logo ? (
+        &lt;div class=&quot;flex items-center justify-center p-1 rounded-xl border border-white/10 text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+          &lt;Icon name={logo} class=&quot;w-11 h-11 &quot; /&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+          {title.charAt(0)}
+        &lt;/div&gt;
+      )
+    }
+    &lt;h3 class=&quot;font-bold text-4xl text-gray-300&quot;&gt;{title}&lt;/h3&gt;
+  &lt;/div&gt;
+
+  {/* The Scrolling Track */}
+
+  {
+    duplicatedSkills.map((skill, index) =&gt; {
+      let isRowReversed = reverse;
+
+      if (index % 2 === 0) {
+        isRowReversed = true;
+      }
+
+      const animationClass = isRowReversed
+        ? &quot;animate-marquee-reverse&quot;
+        : &quot;animate-marquee&quot;;
+      return (
+        &lt;div
+          class={`flex w-max gap-6 hover:[animation-play-state:paused] ${animationClass} px-4`}
+        &gt;
+          {skill.map((skillLine) =&gt; (
+            &lt;SkillCardItem
+              name={skillLine.name}
+              expertise={skillLine.expertise}
+              logo={skillLine.logo}
+            /&gt;
+          ))}
+        &lt;/div&gt;
+      );
+    })
+  }
+&lt;/div&gt;</file><file path="src/pages/index.astro">---
+import BaseLayout from &quot;../layouts/BaseLayout.astro&quot;;
+import Home from &quot;@/components/Home.astro&quot;;
+import About from &quot;@/components/About.astro&quot;;
+import Experience from &quot;@/components/Experience.astro&quot;;
+import Skills from &quot;@/components/Skills.astro&quot;;
+import Projects from &quot;@/components/Projects.astro&quot;;
+import Contact from &quot;@/components/Contact.astro&quot;;
+---
+
+&lt;BaseLayout&gt;
+  &lt;div class=&quot;space-y-32&quot;&gt;
+    &lt;Home /&gt;
+    &lt;About /&gt;
+    &lt;Experience /&gt;
+    &lt;Skills /&gt;
+    &lt;Projects /&gt;
+    &lt;Contact /&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;</file><file path="README.md"># Astro Starter Kit: Basics
 
 ```sh
 pnpm create astro@latest -- --template basics
@@ -347,9 +1575,859 @@ All commands are run from the root of the project, from a terminal:
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).</file><file path="src/styles/global.css">@import &quot;tailwindcss&quot;;
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).</file><file path="src/components/experience/ExperienceCard.astro">---
+import { Image } from &quot;astro:assets&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { Experience } from &quot;@/types&quot;;
 
-@theme static {
+type Props = Experience;
+
+const { company, date, location, logo, position, tools, jobType, points } =
+  Astro.props;
+
+const parseBold = (text: string) =&gt; {
+  return text.replace(
+    /\*\*(.*?)\*\*/g,
+    &apos;&lt;strong class=&quot;font-bold&quot;&gt;$1&lt;/strong&gt;&apos;,
+  );
+};
+---
+
+&lt;div
+  class=&quot;reveal-card opacity-0 translate-y-16 transition-all duration-1000 ease-out relative flex flex-col pl-15 will-change-transform&quot;
+&gt;
+  &lt;div
+    class=&quot;group relative flex flex-col gap-8 px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] transition-all duration-500&quot;
+  &gt;
+    &lt;div
+      class=&quot;absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500&quot;
+    &gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;relative z-10 flex flex-col gap-8&quot;&gt;
+      &lt;div class=&quot;flex flex-col items-center gap-6&quot;&gt;
+        {
+          logo &amp;&amp; (
+            &lt;Image
+              src={logo}
+              alt={`${company} Logo`}
+              class=&quot;h-12  object-contain&quot;
+            /&gt;
+          )
+        }
+        &lt;h3 class=&quot;text-2xl font-bold&quot;&gt;
+          {company} - &lt;span class=&quot;text-white italic&quot;&gt;{position}&lt;/span&gt;
+        &lt;/h3&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;flex gap-8 justify-center text-sm&quot;&gt;
+        &lt;div
+          class=&quot;flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md&quot;
+        &gt;
+          &lt;Icon name=&quot;lucide:calendar&quot; size={24} /&gt;
+          &lt;p class=&quot;text-white font-bold&quot;&gt;{date}&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class=&quot;flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md&quot;
+        &gt;
+          &lt;Icon name=&quot;mdi:location&quot; size={24} /&gt;
+          &lt;p class=&quot;text-white font-bold&quot;&gt;{location}&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class=&quot;flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md&quot;
+        &gt;
+          &lt;Icon name=&quot;mdi:clock&quot; size={24} /&gt;
+          &lt;p class=&quot;text-white font-bold&quot;&gt;{jobType}&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;flex items-center flex-wrap gap-4 mt-5&quot;&gt;
+        &lt;!-- &lt;h1 class=&quot;font-bold text-2xl&quot;&gt;Tools:&lt;/h1&gt; --&gt;
+        &lt;div title=&quot;tools&quot; class=&quot;flex gap-2&quot;&gt;
+          &lt;Icon name=&quot;mdi:tools&quot; class=&quot;w-10 h-10&quot; /&gt;
+          &lt;span class=&quot;text-2xl font-bold&quot;&gt;:&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;flex items-center flex-wrap gap-2&quot;&gt;
+          {
+            tools &amp;&amp;
+              tools.map((tool) =&gt; {
+                const { name, logo } = tool;
+                return (
+                  &lt;&gt;
+                    {logo ? (
+                      &lt;div
+                        title={name}
+                        class=&quot;flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100&quot;
+                      &gt;
+                        &lt;Icon name={logo} class=&quot;w-10 h-10 &quot; /&gt;
+                      &lt;/div&gt;
+                    ) : (
+                      &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+                        {name.charAt(0)}
+                      &lt;/div&gt;
+                    )}
+                  &lt;/&gt;
+                );
+              })
+          }
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;ul class=&quot;list-none text-gray-100 flex flex-col gap-5 mt-0&quot;&gt;
+        {
+          points.map((p) =&gt; (
+            &lt;li class=&quot;flex items-start gap-3 group/item text-lg&quot;&gt;
+              &lt;Icon
+                name=&quot;weui:arrow-filled&quot;
+                class=&quot;w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all&quot;
+              /&gt;
+              &lt;span
+                class=&quot;text-gray-300 group-hover/item:text-gray-50 transition-colors leading-relaxed text-justify&quot;
+                set:html={parseBold(p)}
+              /&gt;
+            &lt;/li&gt;
+          ))
+        }
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div
+    class=&quot;timeline-dot absolute left-0 top-10 transform -translate-x-1/2 w-4 h-4 rounded-full bg-slate-700 shadow-none transition-all duration-500 ease-out&quot;
+  &gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  const setupCardsObserver = () =&gt; {
+    const observer = new IntersectionObserver(
+      (entries, observerInstance) =&gt; {
+        entries.forEach((entry) =&gt; {
+          // Find the specific dot inside the card that is currently intersecting
+          const dot = entry.target.querySelector(&quot;.timeline-dot&quot;);
+
+          if (entry.isIntersecting) {
+            // 1. Show the card
+            entry.target.classList.remove(&quot;opacity-0&quot;, &quot;translate-y-16&quot;);
+            entry.target.classList.add(&quot;opacity-100&quot;, &quot;translate-y-0&quot;);
+
+            // 2. Turn ON the dot&apos;s glow
+            if (dot) {
+              dot.classList.remove(&quot;bg-slate-700&quot;, &quot;shadow-none&quot;);
+              dot.classList.add(
+                &quot;bg-primary&quot;,
+                &quot;shadow-[0_0_25px_var(--color-primary)]&quot;,
+              );
+            }
+
+            // 3. Unobserve the card so the animation only happens once
+            observerInstance.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: &quot;0px 0px -10% 0px&quot;,
+      },
+    );
+
+    const cards = document.querySelectorAll(&quot;.reveal-card&quot;);
+    cards.forEach((card) =&gt; observer.observe(card));
+  };
+
+  setupCardsObserver();
+  document.addEventListener(&quot;astro:page-load&quot;, setupCardsObserver);
+&lt;/script&gt;</file><file path="src/components/Contact.astro">---
+import EmailCard from &quot;./contact/EmailCard.astro&quot;;
+import DirectContact from &quot;./contact/DirectContact.astro&quot;;
+import ParticlesBackground from &quot;@/components/home/ParticlesBackground&quot;;
+---
+
+&lt;section
+  id=&quot;contact&quot;
+  class=&quot;min-h-screen relative mx-auto flex flex-col justify-center items-center&quot;
+&gt;
+  &lt;ParticlesBackground
+    id=&quot;contact-particles&quot;
+    options={{
+      fullScreen: {
+        enable: false,
+      },
+      background: {
+        color: { value: &quot;transparent&quot; },
+      },
+      fpsLimit: 120,
+      particles: {
+        color: {
+          value: &quot;#0ffe7a&quot;,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: &quot;none&quot;,
+          outModes: { default: &quot;bounce&quot; },
+        },
+        number: {
+          density: { enable: true, width: 800, height: 800 },
+          value: 60,
+        },
+        opacity: { value: 0.4 },
+        shape: { type: &quot;circle&quot; },
+        size: { value: { min: 1, max: 3 } },
+      },
+    }}
+    client:idle
+  /&gt;
+
+  &lt;!-- Title Header --&gt;
+  &lt;div class=&quot;flex flex-col justify-center items-center gap-5&quot;&gt;
+    &lt;h1 class=&quot;font-bold text-6xl text-center font-pixel&quot;&gt;Lets Connect&lt;/h1&gt;
+    &lt;p class=&quot;text-center text-gray-200&quot;&gt;
+      Let&apos;s build something great together
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex w-[80%] gap-15 mt-25&quot;&gt;
+    &lt;EmailCard /&gt;
+    &lt;DirectContact /&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="src/components/Navigation.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+
+interface NavigationItem {
+  id: string;
+  label: string;
+}
+
+const navItems: NavigationItem[] = [
+  { id: &quot;home&quot;, label: &quot;Home&quot; },
+  { id: &quot;about&quot;, label: &quot;About&quot; },
+  { id: &quot;experience&quot;, label: &quot;Experience&quot; },
+  { id: &quot;skills&quot;, label: &quot;Skills&quot; },
+  { id: &quot;projects&quot;, label: &quot;Projects&quot; },
+  { id: &quot;contact&quot;, label: &quot;Contact&quot; },
+];
+
+export default function Navbar() {
+  const [activeSection, setActiveSection] = useState&lt;string&gt;(&quot;home&quot;);
+
+
+  const navRefs = useRef&lt;Record&lt;string, HTMLAnchorElement | null&gt;&gt;({});
+
+  const [isScrolled, setIsScrolled] = useState&lt;Boolean&gt;(false);
+
+
+  const [underlineStyle, setUnderlineStyle] = useState({
+    width: 0,
+    transform: &quot;translateX(0px)&quot;,
+  });
+
+
+  const updateUnderlinePosition = () =&gt; {
+    const activeItemRef = navRefs.current[activeSection];
+    if (activeItemRef) {
+      setUnderlineStyle({
+        width: activeItemRef.offsetWidth,
+        transform: `translateX(${activeItemRef.offsetLeft}px)`,
+      });
+    }
+  };
+
+
+  useEffect(() =&gt; {
+    updateUnderlinePosition();
+
+
+    window.addEventListener(&quot;resize&quot;, updateUnderlinePosition);
+    return () =&gt; window.removeEventListener(&quot;resize&quot;, updateUnderlinePosition);
+  }, [activeSection]);
+
+  useEffect(() =&gt; {
+    const handleScroll = () =&gt; {
+      setIsScrolled(window.scrollY &gt; 10);
+    };
+
+    window.addEventListener(&quot;scroll&quot;, handleScroll);
+
+
+    handleScroll();
+
+    return () =&gt; {
+      window.removeEventListener(&quot;scroll&quot;, handleScroll);
+    };
+  }, []);
+
+
+  useEffect(() =&gt; {
+    const options = {
+      root: null,
+      rootMargin: &quot;-50% 0px -50% 0px&quot;,
+    };
+
+    const observer = new IntersectionObserver((entries) =&gt; {
+      entries.forEach((entry) =&gt; {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    const sections = document.querySelectorAll(&quot;section[id]&quot;);
+    sections.forEach((section) =&gt; observer.observe(section));
+
+    return () =&gt; {
+      sections.forEach((section) =&gt; observer.unobserve(section));
+    };
+  }, []);
+
+  return (
+    &lt;header
+      id=&quot;navigation-bar&quot;
+      className={`w-full h-[50px] z-20 flex justify-between items-center  bg-transparent px-20 sticky top-0 backdrop-blur-md transition-colors duration-300 border-b ${
+        isScrolled ? &quot;border-slate-200/20 shadow-sm &quot; : &quot;border-transparent&quot;
+      }`}
+    &gt;
+      &lt;div&gt;
+        &lt;a href=&quot;/&quot;&gt;Logo&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;nav className=&quot;relative flex gap-10 font-bold text-gray-200&quot;&gt;
+        {navItems.map((item) =&gt; (
+          &lt;a
+            key={item.id}
+            href={`/#${item.id}`}
+            ref={(el) =&gt; {
+              navRefs.current[item.id] = el;
+            }}
+            className={`relative hover:bg-transparent py-1 hover:border-none hover:shadow-none transition-colors duration-300 z-10 ${
+              activeSection === item.id ? &quot;text-primary&quot; : &quot;hover:text-primary&quot;
+            }`}
+          &gt;
+            {item.label}
+          &lt;/a&gt;
+        ))}
+
+        &lt;div
+          id=&quot;nav-underline&quot;
+          className=&quot;absolute -bottom-px left-0 h-0.5 bg-primary transition-all duration-300 ease-out&quot;
+          style={underlineStyle}
+        /&gt;
+      &lt;/nav&gt;
+    &lt;/header&gt;
+  );
+}</file><file path="src/components/Skills.astro">---
+import SkillCard from &quot;./skills/SkillCard.astro&quot;;
+import { skillsData } from &quot;@/content/skills&quot;;
+---
+
+&lt;section id=&quot;skills&quot; class=&quot;min-h-screen px-12&quot;&gt;
+  &lt;h1 class=&quot;font-bold text-6xl text-center mb-20 font-pixel&quot;&gt;My SkillSet&lt;/h1&gt;
+  &lt;div class=&quot;space-y-20&quot;&gt;
+    {
+      skillsData.map((skillLine, index) =&gt; {
+        var reverse = false;
+        if (index % 2 === 1) {
+          reverse = true;
+        }
+        return &lt;SkillCard skillLine={skillLine} reverse={reverse} /&gt;;
+      })
+    }
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path=".gitignore">*.xml
+*.log
+
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/</file><file path="src/components/About.astro">---
+import { Image } from &quot;astro:assets&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import SenoProfile from &quot;@/assets/images/Jas Hitam Seno 2.png&quot;;
+import TiltWrapper from &quot;@/components/TiltWrapper&quot;;
+---
+
+&lt;section id=&quot;about&quot; class=&quot;min-h-screen&quot;&gt;
+  &lt;h1 class=&quot;text-6xl font-bold text-center mb-20 font-pixel&quot;&gt;Who Am I?&lt;/h1&gt;
+
+  &lt;div
+    class=&quot;flex flex-col-reverse md:flex-row items-center w-[80%] mx-auto gap-12 lg:gap-20&quot;
+  &gt;
+    {/* LEFT SIDE */}
+    &lt;div class=&quot;w-full md:w-[60%] flex flex-col gap-6&quot;&gt;
+      &lt;div class=&quot;flex gap-4 items-center&quot;&gt;
+        &lt;div
+          class=&quot;flex items-center justify-center
+    w-12 h-12 rounded-full
+    bg-white/5 backdrop-blur-md border border-white/10
+    shadow-[0_0_30px_rgba(16,185,129,0.4)]&quot;
+        &gt;
+          &lt;Icon
+            name=&quot;lucide:user&quot;
+            class=&quot;w-8 h-8 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.8)]&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;h2 class=&quot;text-gray-300 text-4xl font-bold&quot;&gt;
+          About &lt;span class=&quot;text-gradient&quot;&gt;The Developer&lt;/span&gt;
+        &lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;text-gray-300 border border-white/5 bg-white/[0.02] backdrop-blur-3xl overflow-hidden shadow-2xl px-10 py-4 leading-relaxed tracking-widest text-justify rounded-md&quot;
+      &gt;
+        &lt;p class=&quot;text-xl/loose italic&quot;&gt;
+          My name is Seno Pamungkas Rahman. Im an avid software engineer with a
+          zest for front-end, back-end, AI, and cloud technologies. Passionate
+          about exploring new tech frontiers, I blend creativity with technical
+          skill in every project, pushing the boundaries of software innovation
+        &lt;/p&gt;
+        &lt;div
+          class=&quot;absolute w-1 h-20 bg-gradient-to-b from-primary to-transparent left-0 top-0 rounded-full&quot;
+        &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    {/* RIGHT SIDE */}
+    &lt;div class=&quot;w-full h-[500px] md:w-[40%] flex justify-center&quot;&gt;
+      &lt;TiltWrapper
+        client:visible
+        maxTilt={15}
+        className=&quot; rounded-2xl shadow-2xl border-2 border-primary/20 group bg-white/[0.02] &quot;
+      &gt;
+        &lt;Image
+          src={SenoProfile}
+          alt=&quot;Profile&quot;
+          class=&quot;w-full h-full drop-shadow-xl group-hover:translate-z-[50px] group-hover:drop-shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700 object-cover object-top&quot;
+          }
+        /&gt;
+        &lt;h2
+          class=&quot;absolute bottom-0 left-1/2 -translate-x-1/2 text-center w-[90%] text-xl font-bold bg-white/20 border border-white/5 text-gray-300 rounded-lg py-2 backdrop-blur-3xl opacity-0 group-hover:opacity-100 group-hover:bottom-[40px] transition-all duration-500 translate-z-[75px]&quot;
+        &gt;
+          Built With Passion
+        &lt;/h2&gt;
+      &lt;/TiltWrapper&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="src/components/Experience.astro">---
+import { experienceData } from &quot;@/content/experiences&quot;;
+import ExperienceCard from &quot;./experience/ExperienceCard.astro&quot;;
+---
+
+&lt;section id=&quot;experience&quot; class=&quot;min-h-screen py-20 relative&quot;&gt;
+  &lt;h2 class=&quot;text-6xl font-bold text-center mb-20 font-pixel&quot;&gt;My Journey&lt;/h2&gt;
+
+  &lt;div id=&quot;experience-container&quot; class=&quot;relative space-y-20 w-[80%] mx-auto&quot;&gt;
+    &lt;div
+      class=&quot;absolute top-0 w-[2px] rounded-full bg-white/[0.04] backdrop-blur-3xl h-full&quot;
+    &gt;
+    &lt;/div&gt;
+
+    &lt;div
+      id=&quot;experience-progress-line&quot;
+      class=&quot;absolute top-0 w-[2px] h-full rounded-full origin-top bg-primary shadow-[0_0_15px_var(--color-primary)] will-change-transform&quot;
+      style=&quot;transform: scaleY(0);&quot;
+    &gt;
+    &lt;/div&gt;
+
+    {experienceData.map((exp) =&gt; &lt;ExperienceCard {...exp} /&gt;)}
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+  const setupTimelineScroll = () =&gt; {
+    const container = document.getElementById(&quot;experience-container&quot;);
+    const line = document.getElementById(&quot;experience-progress-line&quot;);
+
+    if (!container || !line) return;
+
+    const updateLine = () =&gt; {
+      // Get the exact position of the container relative to the screen
+      const rect = container.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // START point: When the top of the container hits 80% down the screen
+      const startTrigger = viewportHeight * 0.8;
+
+      // Calculate how far we&apos;ve scrolled past that trigger point
+      const scrolledPast = startTrigger - rect.top;
+
+      // Calculate the progress percentage (0.0 to 1.0)
+      let progress = scrolledPast / rect.height;
+
+      // Clamp the value so it doesn&apos;t shrink backward or grow past 100%
+      progress = Math.max(0, Math.min(1, progress));
+
+      // Apply the scale!
+      line.style.transform = `scaleY(${progress})`;
+    };
+
+    // Run it once immediately so it sets the correct height on page load
+    updateLine();
+
+    // Run it every time the user scrolls.
+    // requestAnimationFrame ensures it runs perfectly synced with the monitor&apos;s refresh rate (60fps/120fps)
+    window.addEventListener(&quot;scroll&quot;, () =&gt; {
+      requestAnimationFrame(updateLine);
+    });
+  };
+
+  // Initialize the script
+  setupTimelineScroll();
+
+  // If you are using Astro&apos;s ViewTransitions, this ensures the script re-runs when navigating between pages
+  document.addEventListener(&quot;astro:page-load&quot;, setupTimelineScroll);
+&lt;/script&gt;</file><file path="src/layouts/BaseLayout.astro">---
+import &quot;../styles/global.css&quot;;
+import Navigation from &quot;@/components/Navigation.tsx&quot;;
+import { Font } from &quot;astro:assets&quot;;
+---
+
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;Font cssVariable=&quot;--font-pixel&quot; /&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/favicon.svg&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;/favicon.ico&quot; /&gt;
+    &lt;meta name=&quot;generator&quot; content={Astro.generator} /&gt;
+    &lt;title&gt;Seno Pamungkas Rahman - Portfolio&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;Navigation client:load /&gt;
+    &lt;slot /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</file><file path="astro.config.mjs">// @ts-check
+import { defineConfig, fontProviders } from &quot;astro/config&quot;;
+
+import react from &quot;@astrojs/react&quot;;
+import tailwindcss from &quot;@tailwindcss/vite&quot;;
+
+import icon from &quot;astro-icon&quot;;
+
+import mdx from &quot;@astrojs/mdx&quot;;
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [react(), icon(), mdx()],
+
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: &quot;HomeVideo&quot;,
+      cssVariable: &quot;--font-pixel&quot;,
+      options: {
+        variants: [
+          {
+            src: [&quot;./src/assets/fonts/HomeVideo.ttf&quot;],
+            weight: &quot;normal&quot;,
+            style: &quot;normal&quot;,
+          },
+        ],
+      },
+    },
+  ],
+
+  image: {
+    domains: [&quot;bucket.senop.dev&quot;],
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});</file><file path="src/types/index.ts">import type { ImageMetadata } from &quot;astro&quot;;
+
+export interface Experience {
+  company: string;
+  position: string;
+  date: string;
+  location: string;
+  logo?: ImageMetadata;
+  jobType: string;
+  tools?: Tool[];
+  points: string[];
+}
+
+export interface Tool {
+  name: string;
+
+  logo?: string;
+}
+
+export interface SkillsLine {
+  title: string;
+  logo?: string;
+  skills: Skill[][];
+}
+
+export interface Skill {
+  name: string;
+  expertise: number;
+
+  logo?: string;
+}</file><file path="src/components/Projects.astro">---
+import { getCollection } from &quot;astro:content&quot;;
+import ProjectCard from &quot;./project/ProjectCard.astro&quot;;
+
+const projects = await getCollection(&quot;projects&quot;);
+const activeProjectTypes = [...new Set(projects.map((proj) =&gt; proj.data.type))];
+---
+
+&lt;section id=&quot;projects&quot; class=&quot;min-h-screen flex flex-col gap-15&quot;&gt;
+  &lt;h1 class=&quot;text-center text-6xl font-bold font-pixel&quot;&gt;Projects&lt;/h1&gt;
+
+  {/* Filter Buttons */}
+  &lt;div class=&quot;flex justify-center gap-4 filter-buttons px-4 flex-wrap mb-10&quot;&gt;
+    &lt;button
+      data-filter=&quot;all&quot;
+      class=&quot;filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize bg-primary text-bg border-primary drop-shadow-[0_0px_4px_var(--color-primary)]&quot;
+    &gt;
+      All
+    &lt;/button&gt;
+
+    {
+      /* 2. Map over the dynamically generated activeProjectTypes instead of the Enum */
+    }
+    {
+      activeProjectTypes.map((type) =&gt; (
+        &lt;button
+          data-filter={type}
+          class=&quot;filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize border-gray-600 text-gray-400 hover:bg-primary/20 hover:text-primary hover:border-primary/50&quot;
+        &gt;
+          {type}
+        &lt;/button&gt;
+      ))
+    }
+  &lt;/div&gt;
+
+  {/* Project Grid */}
+  &lt;div
+    class=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center items-stretch gap-10 px-4&quot;
+  &gt;
+    {
+      projects.map((proj) =&gt; (
+        &lt;div
+          class=&quot;project-item w-full flex justify-center&quot;
+          data-type={proj.data.type}
+        &gt;
+          &lt;ProjectCard project={proj} /&gt;
+        &lt;/div&gt;
+      ))
+    }
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+  const setupFilters = () =&gt; {
+    const buttons = document.querySelectorAll(&quot;.filter-btn&quot;);
+    const projects = document.querySelectorAll(&quot;.project-item&quot;);
+
+    const activeClasses = [
+      &quot;bg-primary&quot;,
+      &quot;text-bg&quot;,
+      &quot;border-primary&quot;,
+      &quot;drop-shadow-[0_0px_4px_var(--color-primary)]&quot;,
+    ];
+    const inactiveClasses = [
+      &quot;border-gray-600&quot;,
+      &quot;text-gray-400&quot;,
+      &quot;hover:bg-primary/20&quot;,
+      &quot;hover:text-primary&quot;,
+      &quot;hover:border-primary/50&quot;,
+    ];
+
+    buttons.forEach((button) =&gt; {
+      button.addEventListener(&quot;click&quot;, (e) =&gt; {
+        const target = e.currentTarget as HTMLElement;
+        const filter = target.getAttribute(&quot;data-filter&quot;);
+
+        // Handle button styling
+        buttons.forEach((btn) =&gt; {
+          btn.classList.remove(...activeClasses);
+          btn.classList.add(...inactiveClasses);
+        });
+
+        target.classList.remove(...inactiveClasses);
+        target.classList.add(...activeClasses);
+
+        // Handle project filtering
+        projects.forEach((project) =&gt; {
+          const el = project as HTMLElement;
+          const projectType = el.getAttribute(&quot;data-type&quot;);
+
+          if (filter === &quot;all&quot; || projectType === filter) {
+            el.style.display = &quot;flex&quot;;
+          } else {
+            el.style.display = &quot;none&quot;;
+          }
+        });
+      });
+    });
+  };
+
+  setupFilters();
+  document.addEventListener(&quot;astro:page-load&quot;, setupFilters);
+&lt;/script&gt;</file><file path="src/components/Home.astro">---
+import TypewriterText from &quot;@/components/home/TypewriterText&quot;;
+import ParticlesBackground from &quot;@/components/home/ParticlesBackground&quot;;
+
+import { Icon } from &quot;astro-icon/components&quot;;
+
+const resumeEndpoint: string =
+  &quot;https://bucket.senop.dev/Seno%20Pamungkas%20Rahman%20-%20CV%20(main).pdf&quot;;
+
+const blogEndpoint: string = &quot;/blog&quot;;
+---
+
+&lt;section
+  id=&quot;home&quot;
+  class=&quot;min-h-screen relative flex flex-col justify-center items-center text-center&quot;
+&gt;
+  &lt;ParticlesBackground
+    id=&quot;home-particles&quot;
+    options={{
+      fullScreen: {
+        enable: false,
+      },
+      background: {
+        color: { value: &quot;transparent&quot; },
+      },
+      fpsLimit: 120,
+      interactivity: {
+        detectsOn: &quot;window&quot;,
+        events: {
+          onHover: {
+            enable: true,
+            parallax: {
+              enable: true,
+              force: 60,
+              smooth: 10,
+            },
+          },
+        },
+      },
+      particles: {
+        color: { value: &quot;#0ffe7a&quot; },
+        links: {
+          color: &quot;#ffffff&quot;,
+          distance: 150,
+          enable: true,
+          opacity: 0.1,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: &quot;none&quot;,
+          outModes: { default: &quot;bounce&quot; },
+        },
+        number: {
+          density: { enable: true, width: 800, height: 800 },
+          value: 40, // Adjust for more/fewer particles
+        },
+        opacity: { value: 0.4 },
+        shape: { type: &quot;circle&quot; },
+        size: { value: { min: 1, max: 3 } },
+      },
+      detectRetina: true,
+    }}
+    client:idle
+  /&gt;
+
+  &lt;div class=&quot;w-[60%] max-w-5xl flex flex-col gap-9&quot;&gt;
+    {/* Main Title Section */}
+    &lt;div class=&quot;relative flex flex-col gap-10 text-center pb-4&quot;&gt;
+      &lt;div
+        class=&quot;absolute -inset-4 bg-glow-green/15 blur-[80px] rounded-full z-0 pointer-events-none&quot;
+      &gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;relative z-10 font-bold&quot;&gt;
+        &lt;h1 class=&quot;text-gray-200 text-7xl mb-12&quot;&gt;
+          Hi, I&apos;m &lt;span class=&quot;text-gradient&quot;&gt;Seno Pamungkas Rahman&lt;/span&gt;
+        &lt;/h1&gt;
+        &lt;h2 class=&quot;text-5xl text-gray-300/90 mt-4&quot;&gt;
+          &lt;TypewriterText client:load /&gt;
+        &lt;/h2&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div
+      class=&quot;w-80 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto&quot;
+    &gt;
+    &lt;/div&gt;
+
+    {/* Description Section */}
+    &lt;p class=&quot;text-gray-50 text-2xl tracking-wider leading-relaxed&quot;&gt;
+      An avid software engineer with a zest for front-end, back-end, AI, and
+      cloud technologies. Passionate about exploring new tech frontiers, I blend
+      creativity with technical skill in every project, pushing the boundaries
+      of software innovation
+    &lt;/p&gt;
+
+    {/* Buttons Section */}
+    &lt;div class=&quot;flex gap-10 items-center justify-center mt-5&quot;&gt;
+      &lt;a
+        href={resumeEndpoint}
+        target=&quot;_blank&quot;
+        class=&quot;flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:file-badge&quot; class=&quot;w-8 h-8&quot; /&gt;
+        &lt;p&gt;Resume&lt;/p&gt;
+      &lt;/a&gt;
+      &lt;a
+        href={blogEndpoint}
+        class=&quot;flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:newspaper&quot; class=&quot;w-8 h-8&quot; /&gt;
+        &lt;p&gt;Blog&lt;/p&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="tsconfig.json">{
+  &quot;extends&quot;: &quot;astro/tsconfigs/strict&quot;,
+  &quot;include&quot;: [
+    &quot;.astro/types.d.ts&quot;,
+    &quot;**/*&quot;
+  ],
+  &quot;exclude&quot;: [
+    &quot;dist&quot;
+  ],
+  &quot;compilerOptions&quot;: {
+    &quot;jsx&quot;: &quot;react-jsx&quot;,
+    &quot;jsxImportSource&quot;: &quot;react&quot;,
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;:{
+      &quot;@/*&quot;:[&quot;src/*&quot;],
+      &quot;@/components/*&quot;: [&quot;src/components/*&quot;],
+      &quot;@/layouts/*&quot;: [&quot;src/layouts/*&quot;],
+      &quot;@/styles/*&quot;: [&quot;src/styles/*&quot;]
+    }
+  }
+}</file><file path="src/styles/global.css">@import &quot;tailwindcss&quot;;
+
+@theme inline {
+
+  --font-pixel: var(--font-pixel);
+
+
   --color-primary: oklch(0.8751 0.2375 150.21);
   --color-bg: oklch(0.1288 0.029 151.71);
   --color-lagoon: oklch(0.72 0.11 221.19);
@@ -357,6 +2435,12 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
   --color-driftwood: oklch(0.79 0.06 74.59);
   --color-tide: oklch(0.49 0.08 205.88);
   --color-dusk: oklch(0.82 0.15 72.09);
+
+
+  --color-glow-cyan: oklch(0.81 0.2 216);
+
+
+  --color-card-cream: oklch(0.97 0.015 150);
 
   --animate-caret: blink 1s steps(1) infinite;
 
@@ -367,6 +2451,39 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
   );
 
   --color-glow-green: oklch(0.9 0.28 150);
+
+
+  --animate-marquee: marquee 20s linear infinite;
+  --animate-marquee-reverse: marquee 20s linear infinite reverse;
+
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@keyframes grow-line {
+  from {
+    transform: scaleY(0);
+    opacity: 0.2;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@utility scroll-animate-height {
+  animation: grow-line linear both;
+
+  animation-timeline: view();
+
+  animation-range: entry 0% cover 50%;
 }
 
 @utility text-gradient {
@@ -402,34 +2519,21 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
   }
 
   a {
-    text-underline-offset: 4px;
     text-decoration: none;
     position: relative;
-
-    &amp;::after {
-      content: &quot;&quot;;
-      position: absolute;
-      width: 100%;
-      height: 2px; /* Thickness of the underline */
-      bottom: -2px; /* Position it just below the text */
-      left: 0;
-      background-color: var(--color-coral); /* Using your OKLCH variable! */
-
-      /* Start collapsed, scale out from the bottom right */
-      transform: scaleX(0);
-      transform-origin: bottom right;
-      transition: transform 0.25s ease-out;
-    }
-
-    /* On hover, expand the line and change origin to make it &quot;swipe&quot; */
-    &amp;:hover::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
+    transition: all 0.15s ease-in-out;
 
 
     &amp;:hover {
-      color: var(--color-coral);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        transparent
+      );
+      color: white;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 10px
+        color-mix(in oklch, var(--color-primary) 20%, transparent);
     }
   }
 
@@ -442,29 +2546,44 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
     font-weight: 700;
 
     &amp;:hover {
-      background-color: var(--color-primary);
+
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        transparent
+      );
+
       color: white;
       border-color: var(--color-primary);
+
+
+      box-shadow: 0 0 10px
+        color-mix(in oklch, var(--color-primary) 20%, transparent);
     }
   }
-}</file><file path="tsconfig.json">{
-  &quot;extends&quot;: &quot;astro/tsconfigs/strict&quot;,
-  &quot;include&quot;: [
-    &quot;.astro/types.d.ts&quot;,
-    &quot;**/*&quot;
-  ],
-  &quot;exclude&quot;: [
-    &quot;dist&quot;
-  ],
-  &quot;compilerOptions&quot;: {
-    &quot;jsx&quot;: &quot;react-jsx&quot;,
-    &quot;jsxImportSource&quot;: &quot;react&quot;,
-    &quot;paths&quot;:{
-      &quot;@/*&quot;:[&quot;src/*&quot;],
-      &quot;@/components/*&quot;: [&quot;src/components/*&quot;],
-      &quot;@/layouts/*&quot;: [&quot;src/layouts/*&quot;],
-      &quot;@/styles/*&quot;: [&quot;src/styles/*&quot;]
-    }
+
+  input,
+  textarea {
+    border-width: 1px;
+    border-color: color-mix(in oklch, var(--color-primary) 30%, transparent);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px
+      color-mix(in oklch, var(--color-primary) 30%, transparent);
+  }
+
+
+  input::placeholder,
+  textarea::placeholder {
+    color: oklch(0.5 0 0);
   }
 }</file><file path="package.json">{
   &quot;name&quot;: &quot;portfolio&quot;,
@@ -480,16 +2599,35 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
     &quot;astro&quot;: &quot;astro&quot;
   },
   &quot;dependencies&quot;: {
-    &quot;@astrojs/react&quot;: &quot;^5.0.0&quot;,
+    &quot;@astrojs/mdx&quot;: &quot;^5.0.4&quot;,
+    &quot;@astrojs/react&quot;: &quot;^5.0.3&quot;,
     &quot;@tailwindcss/vite&quot;: &quot;^4.2.1&quot;,
-    &quot;@types/react&quot;: &quot;^19.2.14&quot;,
-    &quot;@types/react-dom&quot;: &quot;^19.2.3&quot;,
-    &quot;astro&quot;: &quot;^6.0.4&quot;,
+    &quot;@tsparticles/react&quot;: &quot;^3.0.0&quot;,
+    &quot;@tsparticles/slim&quot;: &quot;^3.9.1&quot;,
+    &quot;astro&quot;: &quot;^6.1.5&quot;,
+    &quot;astro-icon&quot;: &quot;^1.1.5&quot;,
+    &quot;mdx&quot;: &quot;^0.3.1&quot;,
     &quot;react&quot;: &quot;^19.2.4&quot;,
     &quot;react-dom&quot;: &quot;^19.2.4&quot;,
+    &quot;sharp&quot;: &quot;^0.34.5&quot;,
     &quot;tailwindcss&quot;: &quot;^4.2.1&quot;
   },
   &quot;devDependencies&quot;: {
+    &quot;@iconify-json/akar-icons&quot;: &quot;^1.2.7&quot;,
+    &quot;@iconify-json/devicon&quot;: &quot;^1.2.61&quot;,
+    &quot;@iconify-json/iconamoon&quot;: &quot;^1.2.2&quot;,
+    &quot;@iconify-json/lineicons&quot;: &quot;^1.2.6&quot;,
+    &quot;@iconify-json/lucide&quot;: &quot;^1.2.98&quot;,
+    &quot;@iconify-json/mdi&quot;: &quot;^1.2.3&quot;,
+    &quot;@iconify-json/ri&quot;: &quot;^1.2.10&quot;,
+    &quot;@iconify-json/simple-icons&quot;: &quot;^1.2.74&quot;,
+    &quot;@iconify-json/skill-icons&quot;: &quot;^1.2.4&quot;,
+    &quot;@iconify-json/weui&quot;: &quot;^1.2.4&quot;,
+    &quot;@iconify/react&quot;: &quot;^6.0.2&quot;,
+    &quot;@types/react&quot;: &quot;^19.2.14&quot;,
+    &quot;@types/react-dom&quot;: &quot;^19.2.3&quot;,
+    &quot;prettier&quot;: &quot;^3.8.1&quot;,
+    &quot;prettier-plugin-astro&quot;: &quot;^0.14.1&quot;,
     &quot;typescript&quot;: &quot;^5.9.3&quot;
   }
 }</file></files></repomix>

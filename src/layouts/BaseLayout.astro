@@ -2,6 +2,14 @@
 import "../styles/global.css";
 import Navigation from "@/components/Navigation.tsx";
 import { Font } from "astro:assets";
+
+// Define the props accepted by this layout
+interface Props {
+  hideNav?: boolean;
+}
+
+// Extract hideNav, defaulting to false if not provided
+const { hideNav = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,7 +24,7 @@ import { Font } from "astro:assets";
     <title>Seno Pamungkas Rahman - Portfolio</title>
   </head>
   <body>
-    <Navigation client:load />
+    {!hideNav && <Navigation client:load />}
     <slot />
   </body>
 </html>

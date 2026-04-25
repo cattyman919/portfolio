@@ -3,47 +3,45 @@ import { useState, useEffect, useRef } from "react";
 interface NavigationItem {
   id: string;
   label: string;
+  href: string;
 }
 
 const navItems: NavigationItem[] = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact" },
+  { id: "home", label: "Home", href: "/#home" },
+  { id: "about", label: "About", href: "/#about" },
+  { id: "experience", label: "Experience", href: "/#experience" },
+  { id: "skills", label: "Skills", href: "/#skills" },
+  { id: "projects", label: "Projects", href: "/#projects" },
+  { id: "blog", label: "Blog", href: "/blog" },
+  { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState<string>("home");
+  // Start with an empty string to prevent hydration mismatches on page load
+  const [activeSection, setActiveSection] = useState<string>("");
 
-  // 1. Ref to store our navigation link elements to measure their width and position
   const navRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
-  const [isScrolled, setIsScrolled] = useState<Boolean>(false);
-
-  // 2. State to hold the dynamic inline styles for the underline
   const [underlineStyle, setUnderlineStyle] = useState({
     width: 0,
     transform: "translateX(0px)",
+    opacity: 0, // Hide until we know the active section
   });
 
-  // Handle calculating the underline position
   const updateUnderlinePosition = () => {
     const activeItemRef = navRefs.current[activeSection];
     if (activeItemRef) {
       setUnderlineStyle({
         width: activeItemRef.offsetWidth,
         transform: `translateX(${activeItemRef.offsetLeft}px)`,
+        opacity: 1, // Reveal underline
       });
     }
   };
 
-  // Update underline when the active section changes or window resizes
   useEffect(() => {
     updateUnderlinePosition();
-
-    // Recalculate on window resize to keep the underline aligned
     window.addEventListener("resize", updateUnderlinePosition);
     return () => window.removeEventListener("resize", updateUnderlinePosition);
   }, [activeSection]);
@@ -54,17 +52,26 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Check initial scroll position on mount (in case user refreshes while scrolled down)
-    handleScroll();
+    handleScroll(); // Trigger on mount
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Intersection Observer to track active sections
   useEffect(() => {
+    // Check if we are on the blog page route
+    const isBlogPage = window.location.pathname.startsWith("/blog");
+
+    if (isBlogPage) {
+      setActiveSection("blog");
+      return; // Skip the intersection observer on the blog page
+    } else {
+      // Default fallback for the home page before the observer kicks in
+      setActiveSection("home");
+    }
+
+    // Set up IntersectionObserver for home page scrolling
     const options = {
       root: null,
       rootMargin: "-50% 0px -50% 0px",
@@ -89,18 +96,20 @@ export default function Navbar() {
   return (
     <header
       id="navigation-bar"
-      className={`w-full h-[50px] z-20 flex justify-between items-center  bg-transparent px-20 sticky top-0 backdrop-blur-md transition-colors duration-300 border-b ${
+      className={`w-full h-[50px] z-20 flex justify-between items-center bg-transparent px-6 md:px-20 sticky top-0 backdrop-blur-md transition-colors duration-300 border-b ${
         isScrolled ? "border-slate-200/20 shadow-sm " : "border-transparent"
       }`}
     >
       <div>
-        <a href="/">Logo</a>
+        <a href="/" className="font-bold text-gray-200 hover:text-primary">
+          Logo
+        </a>
       </div>
-      <nav className="relative flex gap-10 font-bold text-gray-200">
+      <nav className="relative hidden md:flex gap-10 font-bold text-gray-200">
         {navItems.map((item) => (
           <a
             key={item.id}
-            href={`/#${item.id}`}
+            href={item.href}
             ref={(el) => {
               navRefs.current[item.id] = el;
             }}

@@ -1,0 +1,291 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { render } from "astro:content";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+export async function getStaticPaths() {
+  const blogs = await getCollection("blogs");
+  return blogs.map((blog) => ({
+    params: { id: blog.id },
+    props: { blog: blog },
+  }));
+}
+
+const { blog } = Astro.props;
+const { Content, headings } = await render(blog);
+---
+
+<BaseLayout hideNav>
+  <nav
+    id="blog-nav"
+    class="fixed top-0 left-0 right-0 z-50 h-[60px] flex items-center bg-black/20 backdrop-blur-lg border-b border-white/5 transition-transform duration-300"
+  >
+    <div
+      class="max-w-7xl mx-auto px-6 w-full flex items-center justify-between"
+    >
+      <a
+        href="/blog"
+        class="flex items-center gap-2 text-primary/80 hover:text-primary font-bold transition-colors bg-transparent hover:bg-transparent hover:shadow-none"
+      >
+        <Icon name="lucide:arrow-left" class="w-5 h-5" />
+        Back to Blog
+      </a>
+
+      <span
+        class="hidden md:block text-sm font-bold text-gray-500 truncate max-w-md"
+      >
+        {blog.data.title}
+      </span>
+    </div>
+  </nav>
+
+  <div
+    class="max-w-7xl mx-auto px-6 pt-24 pb-12 flex flex-col lg:flex-row gap-12 relative"
+  >
+    <article class="w-full lg:w-3/4 max-w-4xl blog-content text-gray-300">
+      <header class="mb-10 flex flex-col gap-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-primary/80">
+          {blog.data.title}
+        </h1>
+
+        <div class="flex gap-4 items-center text-sm text-gray-400">
+          <p>
+            {
+              new Date(blog.data.pubDate).toLocaleDateString("en-US", {
+                dateStyle: "long",
+              })
+            }
+          </p>
+          <div class="flex gap-2">
+            {
+              blog.data.tags?.map((tag: string) => (
+                <span class="text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary/80 border border-primary/20">
+                  #{tag}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        {
+          blog.data.coverImage && (
+            <img
+              src={blog.data.coverImage}
+              alt={blog.data.title}
+              class="w-full h-[400px] object-cover rounded-xl mt-6 border border-white/10"
+            />
+          )
+        }
+      </header>
+
+      <div class="content-wrapper">
+        <Content />
+      </div>
+    </article>
+
+    <aside class="hidden lg:block w-1/4 relative">
+      <div
+        class="sticky top-20 p-6 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-md"
+      >
+        <h3
+          class="text-xl font-bold text-primary/80 mb-4 font-pixel tracking-wide"
+        >
+          Table of Contents
+        </h3>
+        <ul class="flex flex-col gap-3 text-sm">
+          {
+            headings.map((heading) => (
+              <li
+                style={`margin-left: ${Math.max(0, heading.depth - 2) * 1}rem`}
+              >
+                <a
+                  href={`#${heading.slug}`}
+                  class="text-gray-400 hover:text-primary/80 transition-colors bg-transparent hover:bg-transparent hover:shadow-none font-medium line-clamp-2"
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>
+
+<script>
+  // Logic to hide the navbar on scroll down, and show it on scroll up
+  const setupSmartNav = () => {
+    const nav = document.getElementById("blog-nav");
+    if (!nav) return;
+
+    let lastScroll = window.scrollY;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll <= 0) {
+          // Always show at the very top
+          nav.classList.remove("-translate-y-full");
+          return;
+        }
+
+        if (currentScroll > lastScroll && currentScroll > 60) {
+          // Scrolling down past the header height -> Hide
+          nav.classList.add("-translate-y-full");
+        } else if (currentScroll < lastScroll) {
+          // Scrolling up -> Show
+          nav.classList.remove("-translate-y-full");
+        }
+
+        lastScroll = currentScroll;
+      },
+      { passive: true },
+    ); // passive: true improves scroll performance
+  };
+
+  // Run on initial load and handle Astro View Transitions if you ever enable them
+  setupSmartNav();
+  document.addEventListener("astro:page-load", setupSmartNav);
+</script>
+
+<style is:global>
+  /* Markdown Content Scoped Styling */
+
+  .content-wrapper {
+    /* Increase base font size slightly for better readability on modern screens */
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #d1d5db; /* Tailwind gray-300 */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings: Tighter letter-spacing looks more modern */
+  .content-wrapper h1,
+  .content-wrapper h2,
+  .content-wrapper h3,
+  .content-wrapper h4 {
+    color: color-mix(in oklch, var(--color-primary) 95%, white);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 2.5em;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .content-wrapper h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.025em;
+  }
+
+  .content-wrapper h2 {
+    font-size: 2rem;
+    /* Add a subtle underline to H2s to clearly separate major sections */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+  }
+
+  .content-wrapper h3 {
+    font-size: 1.5rem;
+  }
+  .content-wrapper h4 {
+    font-size: 1.25rem;
+  }
+
+  /* Paragraphs: Left-aligned is better for web reading than justified */
+  .content-wrapper p {
+    margin-bottom: 1.75em;
+    text-align: left;
+    letter-spacing: 0.01em;
+  }
+
+  /* Links: Styled underline that highlights on hover */
+  .content-wrapper a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(
+      in oklch,
+      var(--color-primary) 40%,
+      transparent
+    );
+    text-underline-offset: 4px;
+    background: transparent !important;
+    box-shadow: none !important;
+    transition: text-decoration-color 0.2s ease;
+  }
+  .content-wrapper a:hover {
+    text-decoration-color: var(--color-primary);
+  }
+
+  /* Lists: Added primary color to the bullets/numbers */
+  .content-wrapper ul,
+  .content-wrapper ol {
+    margin-bottom: 1.75em;
+    padding-left: 1.5em;
+  }
+  .content-wrapper ul {
+    list-style-type: disc;
+  }
+  .content-wrapper ol {
+    list-style-type: decimal;
+  }
+  .content-wrapper li {
+    margin-bottom: 0.5em;
+  }
+  .content-wrapper li::marker {
+    color: color-mix(in oklch, var(--color-primary) 80%, transparent);
+  }
+
+  /* Images: Nice rounded corners and subtle border */
+  .content-wrapper img {
+    border-radius: 0.75rem;
+    margin: 2.5em auto;
+    max-width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Blockquotes: Larger, italicized, and distinguished */
+  .content-wrapper blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding: 1.25rem 1.5rem;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #e5e7eb; /* Tailwind gray-200 */
+    background: color-mix(in oklch, var(--color-primary) 5%, transparent);
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin: 2.5em 0;
+  }
+
+  /* Code Blocks: Custom monospace stack and dark inner shadow */
+  .content-wrapper pre {
+    padding: 1.5em;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 2em 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0d1117 !important; /* Deep dark background */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Inline Code */
+  .content-wrapper code {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: color-mix(in oklch, var(--color-primary) 90%, white);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .content-wrapper pre code {
+    color: #e5e7eb;
+    background: transparent;
+    padding: 0;
+    font-size: 0.9em;
+  }
+</style>
