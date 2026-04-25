@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout>
+  <div class="px-20">
+    <div class="flex flex-col items-center justify-center text-gray-200 gap-4">
+      <h1 class="font-bold text-6xl">Blog</h1>
+      <p class="text-gray-400">
+        Explore articles about technology, career tips, and more.
+      </p>
+    </div>
+
+    <div class="relative">
+      <Icon
+        name="mdi:search"
+        size={24}
+        class="absolute text-gray-300 inset-0 top-1/2 -translate-y-1/2 left-4"
+      />
+      <input
+        type="search"
+        class="text-white border border-gray-300/20 focus:border-primary focus:outline-none transition-colors pl-12 py-3 rounded-lg"
+        placeholder="Search articles..."
+      />
+    </div>
+  </div>
+</BaseLayout>

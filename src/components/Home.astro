@@ -7,7 +7,7 @@ import { Icon } from "astro-icon/components";
 const resumeEndpoint: string =
   "https://bucket.senop.dev/Seno%20Pamungkas%20Rahman%20-%20CV%20(main).pdf";
 
-const blogEndpoint: string = "";
+const blogEndpoint: string = "/blog";
 ---
 
 <section
@@ -106,7 +106,7 @@ const blogEndpoint: string = "";
         <p>Resume</p>
       </a>
       <a
-        href="#"
+        href={blogEndpoint}
         target="_blank"
         class="flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]"
       >
