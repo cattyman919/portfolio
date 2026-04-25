@@ -101,7 +101,7 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
                   index === currentIndex
                     ? "border-primary-accent"
                     : "border-transparent hover:border-primary-accent/50"
-                } focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2`}
+                } focus:outline-none `}
                 aria-label={`Go to ${item.type} ${index + 1}`}
               >
                 <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
