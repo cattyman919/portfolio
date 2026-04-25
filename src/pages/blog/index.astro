@@ -53,13 +53,14 @@ const years = Object.keys(blogsByYear).sort(
                   href={`/blog/${blog.id}`}
                   class="group flex flex-col gap-3 p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all duration-300 hover:bg-white/[0.04] bg-transparent hover:shadow-none"
                 >
-                  <h3 class="text-2xl font-bold text-primary/80 group-hover:text-primary transition-colors">
+                  <h3 class="text-2xl font-pixel font-bold text-primary/80 group-hover:text-primary transition-colors">
                     {blog.data.title}
                   </h3>
                   <p class="text-sm text-gray-400">
                     {new Date(blog.data.pubDate).toLocaleDateString("en-US", {
-                      month: "long",
-                      day: "numeric",
+                      // month: "long",
+                      // day: "numeric",
+                      dateStyle: "long",
                     })}
                   </p>
                   <p class="text-gray-300 line-clamp-3">

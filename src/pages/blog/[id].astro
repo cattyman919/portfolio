@@ -45,7 +45,7 @@ const { Content, headings } = await render(blog);
   >
     <article class="w-full lg:w-3/4 max-w-4xl blog-content text-gray-300">
       <header class="mb-10 flex flex-col gap-4">
-        <h1 class="text-4xl md:text-5xl font-bold text-primary/80">
+        <h1 class="text-4xl md:text-5xl font-bold text-primary/80 font-pixel">
           {blog.data.title}
         </h1>
 
@@ -101,7 +101,7 @@ const { Content, headings } = await render(blog);
               >
                 <a
                   href={`#${heading.slug}`}
-                  class="text-gray-400 hover:text-primary/80 transition-colors bg-transparent hover:bg-transparent hover:shadow-none font-medium line-clamp-2"
+                  class="toc-link text-gray-400 hover:text-primary/80 transition-colors bg-transparent hover:bg-transparent hover:shadow-none font-medium line-clamp-2"
                 >
                   {heading.text}
                 </a>
@@ -147,9 +147,60 @@ const { Content, headings } = await render(blog);
     ); // passive: true improves scroll performance
   };
 
+  // 2. Table of Contents Highlight Logic
+  const setupToCHighlight = () => {
+    // Grab all the links we just added the 'toc-link' class to
+    const tocLinks = document.querySelectorAll(".toc-link");
+    // Grab all the headings inside the markdown content
+    const headings = document.querySelectorAll(
+      ".content-wrapper h1, .content-wrapper h2, .content-wrapper h3, .content-wrapper h4",
+    );
+
+    if (!tocLinks.length || !headings.length) return;
+
+    // Set up the observer to watch when headings hit the top 20% of the screen
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+
+            // Reset all links to their default inactive state
+            tocLinks.forEach((link) => {
+              link.classList.remove("text-primary", "translate-x-2");
+              link.classList.add("text-gray-400");
+            });
+
+            // Highlight the currently intersecting link and push it slightly to the right
+            const activeLink = document.querySelector(
+              `.toc-link[href="#${id}"]`,
+            );
+            if (activeLink) {
+              activeLink.classList.remove("text-gray-400");
+              activeLink.classList.add("text-primary", "translate-x-2");
+            }
+          }
+        });
+      },
+      {
+        // Triggers when the heading is between the top 100px and the upper middle of the viewport
+        rootMargin: "-100px 0px -70% 0px",
+      },
+    );
+
+    // Tell the observer to watch every heading
+    headings.forEach((heading) => observer.observe(heading));
+  };
+
   // Run on initial load and handle Astro View Transitions if you ever enable them
-  setupSmartNav();
-  document.addEventListener("astro:page-load", setupSmartNav);
+  const initScripts = () => {
+    setupSmartNav();
+    setupToCHighlight();
+  };
+
+  initScripts();
+
+  document.addEventListener("astro:page-load", initScripts);
 </script>
 
 <style is:global>
@@ -168,6 +219,7 @@ const { Content, headings } = await render(blog);
   .content-wrapper h2,
   .content-wrapper h3,
   .content-wrapper h4 {
+    font-family: var(--font-pixel);
     color: color-mix(in oklch, var(--color-primary) 95%, white);
     font-weight: 700;
     line-height: 1.3;
