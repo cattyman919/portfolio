@@ -250,8 +250,11 @@ const { Content, headings } = await render(blog);
   /* Paragraphs: Left-aligned is better for web reading than justified */
   .content-wrapper p {
     margin-bottom: 1.75em;
-    text-align: left;
+    text-align: justify;
     letter-spacing: 0.01em;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
   }
 
   /* Links: Styled underline that highlights on hover */
