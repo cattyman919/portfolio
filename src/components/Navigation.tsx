@@ -93,8 +93,9 @@ export default function Navbar() {
         isScrolled ? "border-slate-200/20 shadow-sm " : "border-transparent"
       }`}
     >
-      <div>Logo</div>
-
+      <div>
+        <a href="/">Logo</a>
+      </div>
       <nav className="relative flex gap-10 font-bold text-gray-200">
         {navItems.map((item) => (
           <a

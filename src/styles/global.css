@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
+  /* Fonts */
+  --font-pixel: var(--font-pixel);
+
+  /* Colors */
   --color-primary: oklch(0.8751 0.2375 150.21);
   --color-bg: oklch(0.1288 0.029 151.71);
   --color-lagoon: oklch(0.72 0.11 221.19);
