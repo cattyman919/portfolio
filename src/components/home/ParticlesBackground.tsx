@@ -23,7 +23,7 @@ export default function ParticlesBackground({
     });
   }, []);
 
-  if (!init) return null;
+  if (!init) return <></>;
 
   return (
     <Particles

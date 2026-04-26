@@ -8,14 +8,6 @@ export type CarouselMedia = {
 };
 
 export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
-  if (!media || media.length === 0) {
-    return (
-      <div className="flex p-4 items-center justify-center">
-        <h1>Empty Carousel</h1>
-      </div>
-    );
-  }
-
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const thumbnailRef = useRef<HTMLDivElement>(null);
 
@@ -33,6 +25,14 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
       });
     }
   }, [currentIndex]);
+
+  if (!media || media.length === 0) {
+    return (
+      <div className="flex p-4 items-center justify-center">
+        <h1>Empty Carousel</h1>
+      </div>
+    );
+  }
 
   const goToSlide = (slideIndex: number) => setCurrentIndex(slideIndex);
 

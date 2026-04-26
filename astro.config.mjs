@@ -1,16 +1,13 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
-
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-
 import icon from "astro-icon";
-
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), icon(), mdx()],
+  integrations: [react(), mdx(), icon()],
 
   fonts: [
     {
@@ -35,5 +32,12 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      dedupe: ["react", "react-dom"],
+    },
+    ssr: {
+      noExternal: ["@tsparticles/react", "@iconify/react"],
+    },
   },
 });
+

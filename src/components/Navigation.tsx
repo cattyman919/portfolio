@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
+import SRLogo from "@/assets/SR-Logo.png";
 
 interface NavigationItem {
   id: string;
@@ -105,7 +106,11 @@ export default function Navbar() {
     >
       <div>
         <a href="/" className="font-bold text-gray-200 hover:text-primary">
-          Logo
+          <img
+            src={SRLogo.src}
+            alt={`Seno Logo`}
+            className="h-18  object-contain"
+          />
         </a>
       </div>
       <nav className="relative hidden md:flex gap-10 font-bold text-gray-200">
