@@ -3,7 +3,7 @@ import XLAxiataLogo from "@/assets/experiences/XL_Axiata_2014.png";
 import XLSmartLogo from "@/assets/experiences/XLSmart.png";
 import SuperBankLogo from "@/assets/experiences/Superbank.png";
 import BankVictoriaLogo from "@/assets/experiences/Bank_Victoria_logo.png";
-// import MileAppLogo from "@/assets/experiences/new-mileapp-logo-full.svg";
+import FurahaSystemLogo from "@/assets/experiences/furaha_system.png";
 import MileAppLogo from "@/assets/experiences/mileapp.png";
 
 export const experienceData: Experience[] = [
@@ -16,7 +16,9 @@ export const experienceData: Experience[] = [
     location: "Jakarta Selatan, Indonesia",
     tools: [
       { name: "Golang", logo: "devicon:go" },
+      { name: "React", logo: "devicon:react" },
       { name: "NextJS", logo: "devicon:nextjs" },
+      { name: "Typescript", logo: "devicon:typescript" },
       { name: "AWS", logo: "skill-icons:aws-dark" },
       { name: "GCP", logo: "skill-icons:gcp-dark" },
       {
@@ -100,11 +102,30 @@ export const experienceData: Experience[] = [
     tools: [
       { name: "NextJS", logo: "devicon:nextjs" },
       { name: "React", logo: "devicon:react" },
+      { name: "Typescript", logo: "devicon:typescript" },
     ],
     points: [
       "**Rebuilt and redesigned** critical web pages (landing, login, and registration) from scratch using **React** and **styled-components**.",
       "Contributed to a major UI overhaul aimed at **improving user experience and frontend performance** for field agents and administrators.",
       "Collaborated remotely with supervisors to integrate the new **React-based frontend** with the platform’s evolving product direction, replacing legacy code with scalable components.",
+    ],
+  },
+  {
+    company: "Furaha System",
+    logo: FurahaSystemLogo,
+    position: "Frontend Engineer",
+    date: "February 2021 - October 2022",
+    jobType: "Volunteer",
+    location: "Jakarta Selatan, Indonesia",
+    tools: [
+      { name: "NextJS", logo: "devicon:nextjs" },
+      { name: "React", logo: "devicon:react" },
+      { name: "Typescript", logo: "devicon:typescript" },
+    ],
+    points: [
+      "Engineered **complex exam pages** for a comprehensive E-Learning platform using **Next.js**, incorporating **navigation bars**, **dynamic question-sidebars**, and **real-time answer tracking**.",
+      "Collaborated with **cross-functional teams** and **maintained regular progress updates**, ensuring alignment with project milestones and timely delivery of platform enhancements.",
+      "Acquired and applied expertise in **React, HTML, CSS, and JavaScript** to create and enhance web applications.",
     ],
   },
 ];
