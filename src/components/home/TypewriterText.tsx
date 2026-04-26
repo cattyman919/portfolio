@@ -5,7 +5,7 @@ export default function TypewriterText() {
     [
       "Platform Engineer",
       "Full-Stack Developer",
-      "Cloud Operations",
+      "Devops Engineer",
       "Systems Programmer",
       "Computer Engineer",
     ],

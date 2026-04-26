@@ -15,9 +15,10 @@ export const experienceData: Experience[] = [
     jobType: "Contract",
     location: "Jakarta Selatan, Indonesia",
     tools: [
-      { name: "golang", logo: "devicon:go" },
-      { name: "nextjs", logo: "devicon:nextjs" },
+      { name: "Go", logo: "skill-icons:golang" },
+      { name: "NextJS", logo: "devicon:nextjs" },
       { name: "AWS", logo: "skill-icons:aws-dark" },
+      { name: "GCP", logo: "skill-icons:gcp-dark" },
       {
         name: "Kubernetes",
         logo: "devicon:kubernetes",
@@ -30,11 +31,14 @@ export const experienceData: Experience[] = [
         name: "Docker",
         logo: "devicon:docker",
       },
+
+      { name: "Grafana", logo: "devicon:grafana" },
     ],
     points: [
+      "**Developed** Kluster-Compare, a full-stack internal platform (**Go** backend, **Next.js** frontend) to visualize and **diff Kubernetes manifests between live clusters and GitOps states**, engineering strict datasource loading sequences to guarantee accurate multi-cluster auditing.",
+      "**Built a Go utility to audit Kubernetes clusters at scale**, capturing PodDisruptionBudget (PDB) and Horizontal Pod Autoscaler (HPA) metrics, and implementing a precise range-based formula `(safeCurrent - min) / (max - min)` to ensure highly accurate capacity visualization.",
       "**Engineered** a high-concurrency **Go** tool to automate weekly End-of-Support (EOS) and capacity reporting across **~100 AWS accounts** and **~100 GCP projects**, **slashing manual report generation time from 45 minutes to under 3 minutes**.",
-      "**Engineered** an automated **AMI compliance scanner** in **Go** to track **AmazSuperbankon Linux 2 to 2023 migration** progress across **Karpenter** nodepools and **EKS Managed Node Groups** in **50+ AWS accounts**.",
-      "**Built** a **Go** utility to **audit Kubernetes clusters** at scale, querying **EKS clusters** to gather **PodDisruptionBudget (PDB)** and **HPA** data for cross-team resilience analysis.",
+      "**Automated compliance tracking** by building an AMI scanner in **Go** to monitor **Amazon Linux 2 to AL2023** migration progress across Karpenter nodepools and EKS Managed Node Groups in 50+ AWS accounts.",
     ],
   },
   {
@@ -49,8 +53,8 @@ export const experienceData: Experience[] = [
       { name: "Powershell", logo: "devicon:powershell" },
     ],
     points: [
-      "Managed end-to-end deployment of vendor-provided scripts across AWS environments (EC2 Dev/Staging) via S3 bucket integration, WinSCP file transfers, and XML configuration adjustments.",
-      "Automated deployment workflows by developing a PowerShell script to extract ZIP files and configuration for deployment processes, reducing manual effort by 40% and accelerating deployment cycles.",
+      "**Managed end-to-end deployment** of vendor-provided scripts across **AWS EC2** (Dev/Staging) via **S3 bucket integration**, **WinSCP** file transfers, and **XML configuration adjustments**.",
+      "**Automated deployment workflows** by developing a **PowerShell script** to extract ZIP files and configure deployment processes, reducing manual effort by 40% and accelerating deployment cycles.",
       "Streamlined cross-departmental communication by drafting and prioritizing Jira tickets with SQL query logs, error reports, and urgency assessments for vendor and internal teams.",
       "Secured client data by encrypting sensitive TXT files using Kleopatra with Superbank PGP keys and ensuring secure FTP transfers to comply with data protection standards.",
     ],
@@ -64,8 +68,8 @@ export const experienceData: Experience[] = [
     location: "Jakarta Selatan, Indonesia",
     tools: [{ name: "Python", logo: "devicon:python" }],
     points: [
-      "Conducted comprehensive performance analysis and SWOT evaluation of Starlink technology to explore its potential for expanding broadband access in remote Indonesian regions.",
-      "Developed web scraping solutions using Python (BeautifulSoup, Pandas) to map Indonesian ISPs from APJII data, enabling insights into market distribution and operational scale.",
+      "Developed **automated data ingestion pipelines** using **Python (Pandas)** and **BeautifulSoup** to scrape, clean, and structure large datasets for strategic data mining and market analysis.",
+      "Conducted **comprehensive market research** utilizing automated scraping to identify growth opportunities and assess the competitive landscape for satellite products.",
       "Created data visualizations and analytical reports with Power BI and Excel, aiding strategic business decision-making for enhanced telecommunications service quality.",
       "Presented findings and strategic recommendations to mentors and senior management, leveraging strong communication skills and technical knowledge to facilitate informed decision-making and business strategy development.",
     ],
@@ -82,9 +86,8 @@ export const experienceData: Experience[] = [
       { name: "NestJS", logo: "devicon:nestjs" },
     ],
     points: [
-      "Developed and maintained Victoria’s web application, integrating frontend (Flutter) and backend (NestJS) technologies to deliver seamless user experiences.",
-      "Demonstrated exceptional time management skills by juggling internship duties with academic responsibilities, attending office once weekly.",
-      "Ensured project requirements were met through effective communication and collaboration with the supervisory team.",
+      "**Integrated the Flutter frontend with backend APIs built in NestJS** and maintained data consistency with **MySQL**, ensuring accurate, real-time accounting records.",
+      "Developed **dynamic journal booking tables** on the frontend with **Flutter**, integrating advanced filtering by date and booking type, pagination, and soft deletion functionalities.",
     ],
   },
   {
@@ -99,8 +102,9 @@ export const experienceData: Experience[] = [
       { name: "React", logo: "devicon:react" },
     ],
     points: [
-      "Redesigned critical user interface pages, including landing and login pages, to improve user experience.",
-      "Engaged in productive discussions with the supervisor to plan and execute development tasks efficiently.",
+      "**Rebuilt and redesigned** critical web pages (landing, login, and registration) from scratch using **React** and **styled-components**.",
+      "Contributed to a major UI overhaul aimed at **improving user experience and frontend performance** for field agents and administrators.",
+      "Collaborated remotely with supervisors to integrate the new **React-based frontend** with the platform’s evolving product direction, replacing legacy code with scalable components.",
     ],
   },
 ];
