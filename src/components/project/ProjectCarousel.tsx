@@ -77,7 +77,7 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
             sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 40vw"
             fetchPriority="high"
             loading="eager"
-            decoding="sync"
+            decoding="async"
             src={currentItem.src}
             alt={`Main viewer displaying slide ${currentIndex + 1}`}
             className="w-full h-full object-contain transition-opacity duration-300 ease-in-out"

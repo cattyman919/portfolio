@@ -1,6 +1,9 @@
 *.xml
 *.log
+.next
+.astro
 
+next-env*
 # build output
 dist/
 

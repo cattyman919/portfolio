@@ -32,7 +32,9 @@ const processedMedia = await Promise.all(
     // Generate high-res version for the viewer (1200px width)
     const optimizedFull = await getImage({
       src: url,
-      format: "webp",
+      width: 1200,
+      fit: "inside",
+      format: "avif",
       inferSize: true,
     });
 
@@ -41,8 +43,8 @@ const processedMedia = await Promise.all(
       src: url,
       width: 150,
       height: 100,
-      quality: 60,
-      format: "webp",
+      quality: 40,
+      format: "avif",
       inferSize: true,
     });
 
@@ -63,8 +65,10 @@ const processedMedia = await Promise.all(
     <Image
       src={image}
       alt={`Cover image for ${title}`}
+      width={800}
+      quality={30}
       class="absolute top-0 right-0 left-0 bottom-0 w-full h-full object-cover opacity-20 blur-xs"
-      loading="lazy"
+      loading="eager"
       decoding="async"
     />
     <div
