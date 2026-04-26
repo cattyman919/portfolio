@@ -232,13 +232,13 @@ const { Content, headings } = await render(blog);
             });
 
             // Highlight the currently intersecting link and push it slightly to the right
-            const activeLink = document.querySelector(
+            const activeLinks = document.querySelectorAll(
               `.toc-link[href="#${id}"]`,
             );
-            if (activeLink) {
+            activeLinks.forEach((activeLink) => {
               activeLink.classList.remove("text-gray-400");
               activeLink.classList.add("text-primary", "translate-x-2");
-            }
+            });
           }
         });
       },

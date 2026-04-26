@@ -35,9 +35,6 @@ export default defineConfig({
     resolve: {
       dedupe: ["react", "react-dom"],
     },
-    ssr: {
-      noExternal: ["@tsparticles/react", "@iconify/react"],
-    },
   },
 });
 

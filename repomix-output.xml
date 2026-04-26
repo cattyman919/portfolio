@@ -16,14 +16,12 @@ or other automated processes.</purpose><file_format>The content is organized as 
   the same level of security as you would the original repository.</usage_guidelines><notes>- Some files may have been excluded based on .gitignore rules and Repomix&apos;s configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
 - Only files matching these patterns are included: **/*
-- Files matching these patterns are excluded: tmp/, **/.vscode/**, *.log, Glove_Code/lib/speech_recognition_inferencing/, Glove_Code/lib/MPU6050/, src/assets, src/components/project
+- Files matching these patterns are excluded: tmp/, **/.vscode/**, *.log, Glove_Code/lib/speech_recognition_inferencing/, Glove_Code/lib/MPU6050/, src/assets, public, src/content
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
 - Code comments have been removed from supported file types
 - Content has been formatted for parsing in xml style
-- Files are sorted by Git change count (files with more changes are at the bottom)</notes></file_summary><directory_structure>public/
-  favicon.svg
-src/
+- Files are sorted by Git change count (files with more changes are at the bottom)</notes></file_summary><directory_structure>src/
   components/
     contact/
       DirectContact.astro
@@ -33,6 +31,12 @@ src/
     home/
       ParticlesBackground.tsx
       TypewriterText.tsx
+    project/
+      ProjectCard.astro
+      ProjectCardDetail.astro
+      ProjectCarousel.tsx
+      ProjectHiglights.astro
+      ProjectTechnologies.astro
     skills/
       SkillCard.astro
       SkillCardItem.astro
@@ -44,25 +48,6 @@ src/
     Projects.astro
     Skills.astro
     TiltWrapper.tsx
-  content/
-    blogs/
-      2024-11-19_and-so-we-meet/
-        index.mdx
-      2024-12-23_VAIO/
-        index.mdx
-    projects/
-      dancertos/
-        project.yaml
-      home-server/
-        project.yaml
-      jaga/
-        project.yaml
-      restomatic/
-        project.yaml
-      vaio/
-        project.yaml
-    experiences.ts
-    skills.ts
   hooks/
     UseTypewriter.tsx
   layouts/
@@ -87,837 +72,7 @@ astro.config.mjs
 package.json
 README.md
 tsconfig.json
-vercel.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="src/content/blogs/2024-11-19_and-so-we-meet/index.mdx">---
-title: And So we Meet...
-description: This is my first post on Docusaurus.
-coverImage: https://i.imgflip.com/1hx5mc.jpg?a480600
-pubDate: &quot;2024-11-19&quot;
-tags:
-  - random
----
-
-# And so we Meet...
-
-Welcome unknown skibidi person.... welcome to my glorious blog that i don&apos;t even know what to blog about. I do this because im bored, but either way i will do this blog that will definitely benefit society by providing valuable information about technology, cloud, AI, Movies, and TV Series.
-
-&lt;center&gt;
-  &lt;img
-    src=&quot;https://i.imgflip.com/1hx5mc.jpg?a480600&quot;
-    alt=&quot;meme image&quot;
-    width=&quot;300&quot;
-  /&gt;
-&lt;/center&gt;
-
-{/* truncate */}
-
-## Introduction
-
-For those people who don&apos;t know who i am, my name is **Seno Pamungkas Rahman** and as of this post i&apos;m currently in my final year of computer engineering in Universitas Indonesia. Also currently stressed about the future of my career because i haven&apos;t done a lot in my experience or maybe this is just my imposter syndrome doing it&apos;s thing. Anyway im an introvert, chill, cool person who likes tinkering with tech, especially in electronics because one of my subject in college. But also still interested in Cloud &amp; AI.
-
-## Why i start a blog?
-
-I was inspired by this friend on mine &apos;Giga Chad Angga&apos; who have been writing blogs for more than 3 years, [go check out his blog](https://chevonair.com). He is pretty good at describing his ideas and concept in words that are easy for me to understand and he is also very smart. So i need to know why he is so good at writing and describing concepts, this seems like a very useful skill for anybody to have. This skill can be used not just in my field of work but literally anywhere whether it&apos;s explaining books, articles, tech, business, movies, etc. It turns out having these skill is all about writing...
-
-### Writing helps thinking
-
-The fact that i have to write makes me sick. Like you feel it in your brain that it&apos;s taking all the energy to just create simple and concise words from an idea right? But some people just have the talent to write like it takes no energy at all. Why is this? Perhaps writing it&apos;s talent? or is it a skill?
-
-So after extensive research i.e watching 2 educational videos [this](https://www.youtube.com/watch?v=65U5byDZ55M) and [this one](https://www.youtube.com/watch?v=IsQUT9xRYSg&amp;t=99s), it proves that writing helps the vague ideas/concepts we have into a structured and complete idea. Writing helps us find out what we know and what we don&apos;t know. Are there holes in your knowledge? or is it in your reasoning? Writing will expose them. That&apos;s why my friend is good at explaining stuff because he clearly knows the ideas and not just vaguely.
-
-![alt text](thinking.png)
-
-But the question still remains, can i learn this writing skill or not? The answer is **YES**. The great writer William Zinsser who wrote &apos;[On Writing Well](https://www.amazon.com/Writing-Well-Classic-Guide-Nonfiction/dp/0060891548)&apos; which has sold 1.5 million copies to three generations and he doesn&apos;t even like writing. Here&apos;s quote from him
-
-&gt; “I don’t like to write, but I take great pleasure in having written—in having finally made an arrangement that has a certain inevitability, like the solution to a mathematical problem. Perhaps in no other line of work is delayed gratification so delayed” - William Zinsser
-
-Even a writer like him doesn&apos;t like to write but can still write good concepts. So this must mean that **writing is a skill and we all can learn having this skill**. Which is why we need to practice this skill. [Tim Ferris](https://www.youtube.com/watch?v=65U5byDZ55M) suggest that we _vomit_ and make 2 crappy pages per day. This crappy pages can be worthless and useless but it still helps the brain think more structurally. So it&apos;s like a muscle that we have to train everyday. After making crappy pages, we can then revision the pages, make it more clear or have more meaningful topic because writing is re-writing says Tim. To do this, im gonna try to write crappy pages on [Bragdocs](https://www.bragdocs.com), it&apos;s just website to quickly put out ideas or concept for me.
-
-## So what am i writing?
-
-Well, to be honest i still don&apos;t know but i have some ideas from this guy [Evan Tay](https://evantay.com). He makes blogs like my friend but also do some book reviews, article reviews, explaining concepts like cloud and networking in his documents. This gives me the idea that i can also improve my skills in my field of work by just explaining tech concepts. So i&apos;m going to write about projects that i have been working or cool things i wanna talk about in my blog and explaining cool concepts in my documents. I also gonna rant about movies, tv series, and books that you have to watch.
-
-Here is the what im gonna write if you still don&apos;t get it
-
-**Blog** : Projects im working, competitions, or cool problem solutions
-
-**Documents** : Explaining tech concepts like Git, Docker, Linux, Networking, etc. Also doing books, movies, games reviews
-
-## To conclude...
-
-Im pretty new at this, so you probably will see contents that sucks ass but i hope to get better everytime i write. This blog and document will serve me to pour my thoughts and helps me think clearly. I hope you will like it :)
-
-![alt text](https://media.tenor.com/9m9_eXtG0U8AAAAM/sponge.gif)</file><file path="src/content/blogs/2024-12-23_VAIO/index.mdx">---
-title: Making a roomba robot, VAIO
-description: Making roomba tobot
-coverImage: https://i.imgflip.com/1hx5mc.jpg?a480600
-pubDate: &quot;2024-12-23&quot;
-tags:
-  - iot
----
-## A roomba robot 🤔 ???
-
-Do you ever have a roomba that&apos;s just keeps crashing into the corner of your room or get stuck where it can&apos;t get out? Well i certainly have. I used to have this roomba that is used for cleaning my room but it keeps getting stuck, so i have to pick it up and place it again on the floor. It was supposed to clean my room automatically without me having to place it over and over again. That&apos;s why i need a better solution :)
-
-What if we can control the roomba manually? Like if it get stuck, at least we can control remotely to get unstuck. Like what if we used some kind of a controller for the roomba? But also the roomba can still work automatically.
-
-![image](assets/p1.png)
-
-Well that&apos;s what me and my team are trying to build for our college project. A simple roomba that can be controlled manually and automatically. We decided that the roomba can be controlled with a PS4 controller. But why stop there? We can have different kind of controllers too right? That&apos;s why we also added a hand-gesture controller that is using a gyroscope to control the roomba.
-
-![image](assets/p2.png)
-
-{/* truncate */}
-
-So if we have a roomba that can run automatically and controlled manually using PS4 and Hand-Gestures, how can we control the state of the roomba controllers? For example how can we change from PS4 Controller to Hand-Gestures Controller or from PS4 controller to Automatic? Well we decided a clever way to change the state, that is using a voice command :)
-
-It&apos;s like if we say &quot;controller&quot;, the roomba will change it state to be controlled with a PS4 controller. If we say &quot;hand&quot;, the state will change into hand-gesture controller. Finally if we say &quot;auto&quot; the roomba will change it&apos;s state to be automatic.
-
-![image](assets/p3.png)
-
-So here are all the list of features for our custom roomba :
-- Can still be run automatically
-- Can be controlled using PS4 controller
-- Can be controlled using hand-gestures
-- State management using voice commands
-- Vacuum for collecting dusts &amp; trash ( This turns out to be a massive problem :3 )
-
-![image](assets/p4.png)
-
-Before we start building this robot, We need a name for the project which we decided to call it Vacuum All-in-One (VAIO) and also i have to give massive credit to my team for helping me build this cool little project for college. Here are the team members :
-
-![image](assets/p5.png)
-
-## What tools do we need?
-
-So with all that in mind, how exactly can we build this thing? The concept seems simple enough but ooooh boi it&apos;s actually complicated. Like how is the logic going to work with all these different kinds of controllers? First we need to work out tools are we going to use? So we brainstorm the tools we needed
-
-General Purpose:
-- Microcontroller to handle the logic and communication (ESP32, Arduino Uno)
-- Communication protocol to communicate between 2 microcontrollers (Bluetooth, NRF, Wifi)
-- Microphone module for state management using voice commands : INMP441
-- Vacuum using fan and a plastic bottle
-- DC Gear Motor with Tyre Gear
-- Motor Driver for controlling all state of the DC Motors : L298N Motor Driver
-
-Automatic Control:
- - Ultrasonic for detecting object in front of the robot :  HC-SR04
-- Servo : SG90
-
-Hand-Gesture Control:
--  Microcontroller to handle the logic for hand-gesture controls &amp; voice commands
- - NRF module to communicate with the other microcontroller
- - Gyroscope module to handle the gesture controls : MPU6050
-
-PS4 Control:
- - PS4 controller that is connected using bluetooth to the microcontroller
-
-Now we need to choose exactly what tools we want. For the microcontroller, we picked ESP32 because it is lightweight and we are more familiar with it. For the communication protocol, we used NRF module because of the references (we later change the communication protocol, which i will explain later).
-
-This all seems complicated even for us, so we made a simple visualization for better understanding
-
-![image](assets/p6.png)
-
-This simple concept laid the foundation for our VAIO robot. Now let&apos;s get into the nitty gritty with coding, wiring, and start build this thing!
-
-![image](assets/p7.gif)
-
-## Code Logic
-Now we got the tools we needed, now lets talk about the logic  &amp; code for the 2 microcontrollers. The ESP32 that is attached to the VAIO Robot is called &quot;VAIO Code&quot; and the other one that is attached to the MPU6050 is called &quot;Glove Code&quot;.
-
-VAIO Code:
-- Handles the state management logic for movement
-- Handles the receiving communication for NRF and bluetooth
-- Handles the DC Motors &amp; Motor Driver
-- Handles the Servo &amp; Ultrasonic for automatic control
-
-Glove Code:
-- Handles the NRF communication with the VAIO
-- Handles the gyroscope data with MPU6050 module
-- Handles the voice data with INMP441 module
-
-Since this is a very large and complex project, we decided to use [PlatformIO](https://platformio.org/https://platformio.org/) to manage all our source code and libraries.  Only using Arduino IDE for managing code and libraries of this complex project can be a pain to the ass. This will turns out to be very collaborative and modular for us to use which in turns we can easily integrate each other codes without a hassle. We also use [FreeRTOS](https://www.freertos.org/) to manage tasks and utilize two cores that ESP32 have, so we can fully utilize the maximum capability of an ESP32.
-
-![image](assets/p8.png)
-
-Now that we have the blueprint to start building this, well we can start building it. Each of us are given tasks to focus on building the VAIO
-- **Seno (me)** : Building the Glove &amp; Hand Gesture logic using MPU6050 module &amp; NRF communication
-- **Farras** : Building the voice command logic using TensorflowLite &amp; Edge-Impulse SDK
-- **Satya** : Building the logic for the PS4 controller using bluetooth communication
-- **Zefanya** : Building the base prototype for VAIO robot &amp; the automatic movement
-
-## Hand Gesture Logic
-Since i have been given the task on the Hand Gesture Logic (i.e. Glove Code), let&apos;s focus on that. This should be simple enough because all i needed to do was to use a ESP32 to gather data from the MPU6050 sensor and send the data to another ESP32 using the NRF communication. First off, we need to figure out how we can connect all this hardware components together. We can do that by figuring out what pins we needed to use to connect MPU6050 &amp; NRF component to the ESP32. Let&apos;s try to figure how we can connect the MPU6050 first.
-
-### MPU6050 (Gyroscope Module)
-MPU6050 module uses a [I2C communication protocols](https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/) which means we are using the SDA &amp; SCL pins that we need to connect to the default pin for I2C communication in ESP32. According to the [ESP32 pinout reference](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/), the default pin for SDA is GPIO21 and SCL is GPIO22 for the I2C communication protocol in ESP32. So our cables &amp; pins should look something like this
-
-![image](assets/p9.png)
-![image](assets/p10.png)
-
-Finally let&apos;s get into coding this module. I will be using a libraries such as &apos;I2Cdev&apos; and &apos;MPU6050_6Axis_MotionApps20&apos; to handle the complex logic for the I2C communication so we can just grab the necessary data easy and fast.
-
-```cpp
-// Libraries for MPU6050
-#include &quot;I2Cdev.h&quot;
-#include &quot;MPU6050_6Axis_MotionApps20.h&quot;
-```
-
-Now we define the necessary variables for the MPU6050.
-
-```cpp
-// MPU control/status vars
-MPU6050 mpu;
-bool dmpReady = false;  // set true if DMP init was successful
-uint8_t devStatus;      // return status after each device operation (0 = success, !0 = error)
-uint16_t packetSize;    // expected DMP packet size (default is 42 bytes)
-uint8_t fifoBuffer[64]; // FIFO storage buffer
-Quaternion q;           // [w, x, y, z]         quaternion container
-VectorFloat gravity;    // [x, y, z]            gravity vector
-float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
-```
-
-Also we need to define the data structure for the gyroscope data. In our VAIO robot, we only needed the x and y value to move left/right/up/down for the robot. We can just send a value between 0 - 254, so we only need 8 bits for that. Therefore we define unsigned integer of 8 bits.
-
-```cpp
-struct gyroSensor_Data
-{
-  uint8_t xAxisValue;
-  uint8_t yAxisValue;
-} data;
-```
-
-
-To initialize the MPU6050, we just simply call the initialize function.
-```cpp
-  mpu.initialize();
-```
-
-Although in the final code, there is more error checking and validation to make sure the I2C communication protocol works properly. You can check the [code on our github repo](https://github.com/VAIO-CE/VAIO-Code/blob/b5742e10f9563abe55becef320b093efea5c9760/Glove_Code/lib/setup/setup.cpp#L33-L110).
-
-To get the data from MPU650, we need to make sure we get the latest data using the `mpu.dmpGetCurrentFIFOPacket()` function which takes an argument for our buffer. We just need to loop forever to keep getting the MPU6050 data. Now we only need to get the x and y value which means we only needed to call the `mpu.dmpGetYawPitchRoll()` function. Note that we don&apos;t need Quarternion or gravity because we don&apos;t actually need it.
-
-I also map and constrain the x and y value into 0 - 254 integer to make sure we get the correct data structure.
-
-```cpp
-while(1){
-
-    // if programming failed, don&apos;t try to do anything
-    if (!dmpReady) return;
-
-    // read a packet from FIFO. Get the Latest packet
-    if (mpu.dmpGetCurrentFIFOPacket(fifoBuffer))
-    {
-      // display Euler angles in degrees
-      mpu.dmpGetQuaternion(&amp;q, fifoBuffer);
-      mpu.dmpGetGravity(&amp;gravity, &amp;q);
-      mpu.dmpGetYawPitchRoll(ypr, &amp;q, &amp;gravity);
-
-      int xAxisValue = constrain(ypr[2] * 180/M_PI, -90, 90);
-      int yAxisValue = constrain(ypr[1] * 180/M_PI, -90, 90);
-
-      gyroSensor_Data.xAxisValue = map(xAxisValue, -90, 90, 0, 254);
-      gyroSensor_Data.yAxisValue = map(yAxisValue, -90, 90, 254, 0);
-    }
-
-}
-```
-
-
-
-Now before we loop again we need to make sure we clear the FIFO buffer so we don&apos;t get the same value again.
-
-```cpp
-while(1){
-    if (mpu.dmpGetCurrentFIFOPacket(fifoBuffer))
-    {
-        /*
-         *
-         * Previous Code
-         *
-         *
-        */
-
-        // Clear FIFO buffer
-        mpu.resetFIFO();
-    }
-}
-```
-
-This is essentially the code to get the MPU6050 data, we now should get the x and y value accurately from the gyroscope module.
-
-### The NRF Module does not work 😐
-After getting the MPU6050 data, the next goal is to send the data to the other ESP32 using NRF module. **But there is a problem...**
-
-![image](assets/p11.png)
-
-The NRF module that we bought is **not compatible with our ESP32** which means they can&apos;t communicate with each other 🥲. This NRF module only works with arduino boards. I should have thought about compability before buying this hardware and not just assume it will just work on any boards 😖.
-
-![image](assets/p12.png)
-
-This is really problematic. How can we send the hand-gesture data (i.e. MPU6050) to the ESP32 on the VAIO robot now? We might need to buy different NRF hardware just to make it work. I really don&apos;t want to waste anymore money and buying another hardware hoping it will work. This makes me sad bro 😭
-
-![image](assets/p13.gif)
-
-But as an computer engineer student, we can&apos;t just give up. It&apos;s just not in our DNA. We must find a solution, **we must find another way**.
-
-![image](assets/p14.jpg)
-
-### ESP-NOW - The Boy Savior
-To solve this problem, we needed to find an alternative solution for our wireless communication protocol. This can be in the form of bluetooth, WIFI, or NRF (which didn&apos;t worked). So our only choice is either bluetooth or WIFI, let&apos;s get the pros and cons of each solution for our VAIO project.
-
-Pros :
-- Bluetooth : This is a TCP connection means it&apos;s a reliable connection, good at close range.
-- WIFI : also TCP connection which means reliable connection, good at close-medium range.
-
-Cons :
-- Bluetooth : We cannot use bluetooth because it is already being used for the PS4 controller. This will cause conflict and ESP32 Transmitter will need to keep reconnecting between PS4 controller and ESP32 Receiver.
-- WIFI : This is a TCP connection which means it has connect first and do handshake everytime. **We wanted a fast data transfer and not keep reconnecting everytime which means we needed a UDP protocol for connectionless data transfer.**
-
-
-![image](assets/p15.png)
-
-This seems all hope is lost... There seems to be no solution for our project unless we buy another NRF module that is compatible with ESP32.
-
-But wait... There is hope.... The saviour... The boy savior... (a reference to [Arcane](https://www.imdb.com/title/tt11126994/) btw)
-
-Introducing [ESP-NOW](https://www.espressif.com/en/solutions/low-power-solutions/esp-now), a wireless connectionless protocol that uses the WIFI hardware but uses a custom protocol made by Expressif themself.
-
-
-![image](assets/p16.png)
-
-It is fast, low power usage, have a long range (up to 100m). This protocol doesn&apos;t use the standard OSI model for network, instead it uses a custom ESP-NOW model. It reduces 5 layer OSI model into just one layer, this causes to have quick response in data transfer.
-
-![image](assets/p17.png)
-
-This wireless communication protocol is the best solution for our problem. ESP-NOW has these characteristic which is why it fits our solution :
-- It is connectionless which means we don&apos;t need to do a TCP handshake. (ESP-NOW acts like a UDP but still different)
-- It is fast and not slow
-- It has a range up to 100m (Though we only need the range to be around 30-50m, which is still very good)
-
-Now, let&apos;s just implement this ESP-NOW protocol. To use this protocol, we actually need the MAC address of the ESP32&apos;s. We use this [guide](https://randomnerdtutorials.com/get-change-esp32-esp8266-mac-address-arduino/) to get our MAC addresses for ESP32.
-
-When using ESP-NOW, we need to set the WIFI mode into station. Then we call `esp_now_init()` to initialize the ESP-NOW protocol. After that is sucessful, we set callback function for transmitting data using the `esp_now_register_send_cb()` function (Note you can also set callback function when receiving data). Finally we can add &apos;peers&apos; which essentially means our other ESP32 MAC addresses. In this code, I put my receiving ESP32 MAC addresss into the broadcastAddress variable. Now can just call `esp_now_add_peer()` function. This is it for setting up ESP-NOW communication protocol.
-
-```cpp
-void setupESPNOW(){
-  // Set device as a Wi-Fi Station
-  WiFi.mode(WIFI_STA);
-
-  // Init ESP-NOW
-  if (esp_now_init() != ESP_OK) {
-    Serial.println(&quot;Error initializing ESP-NOW&quot;);
-    return;
-  }
-
-  // Once ESPNow is successfully Init, we will register for Send CB to
-  // get the status of Trasnmitted packet
-  esp_now_register_send_cb(OnDataSent);
-
-  // Register peer
-  memcpy(peerInfo.peer_addr, broadcastAddress, 6);
-  peerInfo.channel = 0;
-  peerInfo.encrypt = false;
-
-  // Add peer
-  if (esp_now_add_peer(&amp;peerInfo) != ESP_OK){
-    Serial.println(&quot;Failed to add peer&quot;);
-    return;
-  }
-
-}
-```
-
-Ok we have set a callback function and add peers to our esp-now protocol but how can we send the gyroscope data? Like what function do i call?
-
-Well we can call the `esp_now_send(address, data, data_size)` function which we wil provide the argument for the ESP32 MAC address and the data.
-
-```cpp
-esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &amp;data, sizeof(data));
-
-if (result == ESP_OK) {
-    Serial.println(&quot;Sent with success&quot;);
-}
-```
-
-Now that we can send data using ESP-NOW but how can we receive it? We just need to simply set the callback function on the receiver side with this function
-
-```cpp
-esp_now_register_recv_cb(esp_now_recv_cb_t(OnDataRecv));
-```
-Note we need to set the same data structure of the receiver side too, we then copy the memory from incoming data into this receiver data structure so we can read the actual value.
-```cpp
-struct PacketData
-{
-  uint8_t xAxisValue;
-  uint8_t yAxisValue;
-} receiverData;
-```
-```cpp
-void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
-  memcpy(&amp;receiverData, incomingData, sizeof(receiverData));
-  Serial.printf(&quot;X : %d , Y : %d\n&quot;, receiverData.xAxisValue, receiverData.yAxisValue);
-}
-```
-
-This callback function will be called everytime there is a data receive targeted at the MAC address of the ESP32. This doesn&apos;t require any ACK signals and just receive the data from whomever sent it.
-
-Now it works, we can finally get the gyroscope data from other ESP32 using the ESP-NOW communication protocol
-
-![image](assets/p18.gif)
-
-In the next part, we will explore more on how can we utilize PlatformIO to make this code more modular and apply OOP principles. We will also implement task using FreeRTOS as well.</file><file path="src/content/projects/dancertos/project.yaml">title: &quot;DanceRTOS&quot;
-type: &quot;fullstack&quot;
-tags: [&quot;fullstack&quot;, &quot;iot&quot;]
-image: &quot;./DanceRTOS.png&quot;
-description: &quot;An attendance system using FreeRTOS ESP32 and RFID, with a web server and Blynk integration for class and schedule management.&quot;
-
-highlights:
-  - &quot;Fullstack Development: Led the fullstack development of the AbsenceSystem (DanceRTOS) project, creating both the frontend and backend infrastructure.&quot;
-  - &quot;Login and Sign Up Pages: Designed and implemented the login and sign up pages for lecturers, ensuring a smooth user experience from the very beginning.&quot;
-  - &quot;Student Login: Developed a unique student login system using MQTT protocol with Flutter to connect to ESP32 using RFID, providing a seamless and secure login experience for students.&quot;
-  - &quot;Data Collection: Created a system to collect data from the backend to track student absences, enabling lecturers to see which students are not in class.&quot;
-  - &quot;Absence Tables: Implemented a feature where each class has its own absence table for students for specific weeks, providing a clear and organized view of student attendance.&quot;
-  - &quot;Collaboration: Worked in collaboration with a team member who created the IoT hardware for the RFID absence system, demonstrating teamwork and cross-functional collaboration.&quot;
-
-tools:
-  - name: &quot;Typescript&quot;
-    logo: &quot;devicon:typescript&quot;
-
-  - name: &quot;NestJS&quot;
-    logo: &quot;devicon:nestjs&quot;
-
-  - name: &quot;Dart&quot;
-    logo: &quot;devicon:dart&quot;
-
-  - name: &quot;Flutter&quot;
-    logo: &quot;devicon:flutter&quot;
-
-sourceCodeUrl: &quot;https://github.com/cattyman919/AbsenceSystem&quot;
-
-mediaUrls:
-  - &quot;https://bucket.senop.dev/projects/dancertos/DanceRTOS.png&quot;
-  - &quot;https://bucket.senop.dev/projects/dancertos/LCD-OTP-Verified.png&quot;
-  - &quot;https://bucket.senop.dev/projects/dancertos/LCD-OTP.png&quot;
-  - &quot;https://bucket.senop.dev/projects/dancertos/app1.png&quot;
-  - &quot;https://bucket.senop.dev/projects/dancertos/app2.png&quot;
-  - &quot;https://bucket.senop.dev/projects/dancertos/erd_database.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/dancertos/hardware.png&quot;
-  - &quot;https://bucket.senop.dev/projects/dancertos/network.png&quot;</file><file path="src/content/projects/home-server/project.yaml">title: &quot;Home Server&quot;
-type: &quot;homelab&quot;
-tags: [&quot;homelab&quot;, &quot;linux&quot;]
-image: &quot;./home-server.jpg&quot;
-description: &quot;Dell OptiPlex 7050 running Debian as the Operating System used for my personal custom server. It currently provides services such as Portainer, Jellyfin, CasaOS, Samba Server, SIP Server, and also used as a backup for my files. Connected remotely using Tailscale.&quot;
-
-highlights:
-  - &quot;Jellyfin: I utilize Jellyfin as a personal media server to stream my collection of movies and TV shows directly from the server. This enables me to watch my media from various devices, including remotely via Tailscale, providing a smooth and lag-free viewing experience.&quot;
-  - &quot;Portainer: I use this service to manage my Docker containers. Portainer provides a user-friendly interface to easily deploy, manage, and monitor various containerized applications, including databases and experimental open-source services I&apos;d like to try.&quot;
-  - &quot;SIP Server (Asterisk): The Asterisk service is running and serves as my SIP server, providing Voice over IP (VoIP) services for my home. I have three work telephones connected via Power over Ethernet (PoE) that register with the Asterisk server, allowing for easy communication with family members across my two-floor home.&quot;
-  - &quot;File Backup: The server serves as a critical backup destination for my important files, including college work, professional documents, and personal photos. I currently use rsync to perform these backups, ensuring my data is safely stored on the server. Rclone is also running and could be used for managing files on cloud storage, potentially as part of a broader backup strategy.&quot;
-  - &quot;Security: I manage security using fail2ban and firewalld. Fail2ban is configured to enhance security by monitoring logs for malicious activity and automatically banning users for a set timeout period after three failed password attempts. Firewalld provides dynamic firewall management.&quot;
-  - &quot;nginx: I use nginx as a reverse proxy for my local DNS. This setup allows me to access specific services running on my home server using user-friendly DNS endpoints (like http://movies.home) instead of needing to remember and use specific local IP addresses and port numbers for each service.&quot;
-  - &quot;Tailscale: The Tailscale node agent is active, providing a secure and efficient way for me to connect to my home network and access my server and its services remotely, as highlighted by its use with Jellyfin streaming and enabling access to my local network resources.&quot;
-
-tools:
-  - name: &quot;Linux&quot;
-    logo: &quot;devicon:linux&quot;
-  - name: &quot;Debian&quot;
-    logo: &quot;devicon:debian&quot;
-  - name: &quot;Docker&quot;
-    logo: &quot;devicon:docker&quot;
-  - name: &quot;Kubernetes&quot;
-    logo: &quot;devicon:kubernetes&quot;
-  - name: &quot;Helm&quot;
-    logo: &quot;devicon:helm&quot;
-  - name: &quot;Tailscale&quot;
-    logo: &quot;simple-icons:tailscale&quot;
-
-mediaUrls:
-  - &quot;https://bucket.senop.dev/projects/home-server/home_server.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/home-server/casaos.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/home-server/jellyfin.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/home-server/server.jpeg&quot;
-  - &quot;https://bucket.senop.dev/projects/home-server/portainer.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/home-server/nginx_config.jpg&quot;</file><file path="src/content/projects/jaga/project.yaml">title: &quot;Jaga&quot;
-type: &quot;fullstack&quot;
-tags: [&quot;fullstack&quot;]
-image: &quot;./jaga.png&quot;
-description: &quot;A vehicle maintenance app with GPS tracking to monitor kilometers and notify users of service needs based on distance and time.&quot;
-
-highlights:
-  - &quot;Fullstack Development: Led the fullstack development of the Jaga project using Flutter and NestJS, creating both the frontend and backend infrastructure.&quot;
-  - &quot;Data Collection: Created a system to collect data from the backend to get car model and car maintenance information, providing users with the necessary details for their vehicles.&quot;
-  - &quot;Maintenance Reminder: Developed the main function of the app to keep the car/motorcycle data for maintenance reminder, helping users to stay on top of their vehicle maintenance schedules.&quot;
-  - &quot;Multiple Vehicles: Implemented a feature that allows users to create multiple car/motorcycle entries for maintenance, catering to users with more than one vehicle.&quot;
-  - &quot;Collaboration: Worked in collaboration with a team member who created the IoT hardware EPS32 for GPS tracking, demonstrating teamwork and cross-functional collaboration.&quot;
-
-tools:
-  - name: &quot;Typescript&quot;
-    logo: &quot;devicon:typescript&quot;
-
-  - name: &quot;NestJS&quot;
-    logo: &quot;devicon:nestjs&quot;
-
-  - name: &quot;Dart&quot;
-    logo: &quot;devicon:dart&quot;
-
-  - name: &quot;Flutter&quot;
-    logo: &quot;devicon:flutter&quot;
-
-sourceCodeUrl: &quot;https://github.com/cattyman919/Jaga&quot;
-
-mediaUrls:
-  - &quot;https://bucket.senop.dev/projects/jaga/jaga.png&quot;</file><file path="src/content/projects/restomatic/project.yaml">title: &quot;Restomatic&quot;
-type: &quot;frontend&quot;
-tags: [&quot;frontend&quot;]
-image: &quot;./restomatic.png&quot;
-description: &quot;A web platform for easy food and drink ordering. Users can browse restaurant menus, add funds, and leave ratings.&quot;
-
-
-
-
-
-highlights:
-  - &quot;Frontend Development: Led the frontend development of the RestoMatic project, creating an intuitive and user-friendly interface.&quot;
-  - &quot;Login and Sign Up Pages: Designed and implemented the login and sign up pages, ensuring a smooth user experience from the very beginning.&quot;
-  - &quot;Restaurant Listing: Developed the list of restaurants feature, allowing users to effortlessly browse through a wide range of restaurant options.&quot;
-  - &quot;Filter Feature: Created a filter feature on the frontend side, enabling users to find menus based on ratings and discover the most highly regarded dishes and drinks.&quot;
-  - &quot;Order Carts: Built the Order Carts functionality, providing a clear and concise overview of selected items, their quantities, and total prices.&quot;
-  - &quot;Payment System: Implemented the payment system, performing thorough checks to verify whether the customer&apos;s balance is adequate for payment and preventing customers from placing orders without having sufficient funds.&quot;
-
-tools:
-  - name: &quot;React&quot;
-    logo: &quot;devicon:react&quot;
-
-  - name: &quot;NextJS&quot;
-    logo: &quot;devicon:nextjs&quot;
-
-  - name: &quot;Typescript&quot;
-    logo: &quot;devicon:typescript&quot;
-
-  - name: &quot;Tailwind&quot;
-    logo: &quot;devicon:tailwindcss&quot;
-
-sourceCodeUrl: &quot;https://github.com/SistemBasisData2023/RestoMatic&quot;
-
-mediaUrls:
-  - &quot;https://bucket.senop.dev/projects/restomatic/restomatic.png&quot;
-  - &quot;https://bucket.senop.dev/projects/restomatic/login_page.png&quot;
-  - &quot;https://bucket.senop.dev/projects/restomatic/register_page.png&quot;
-  - &quot;https://bucket.senop.dev/projects/restomatic/home_page.png&quot;
-  - &quot;https://bucket.senop.dev/projects/restomatic/profile_page.png&quot;
-  - &quot;https://bucket.senop.dev/projects/restomatic/order_page.png&quot;
-  - &quot;https://bucket.senop.dev/projects/restomatic/order_cart.png&quot;
-  - &quot;https://bucket.senop.dev/projects/restomatic/order_history_page.png&quot;
-  - &quot;https://bucket.senop.dev/projects/restomatic/review_page.png&quot;</file><file path="src/content/projects/vaio/project.yaml">title: &quot;Vacuum All in One&quot;
-type: &quot;iot&quot;
-tags: [&quot;iot&quot;]
-image: &quot;./vaio.jpg&quot;
-description: &quot;Vacuum All in One (VAIO) is an ESP32-based robot featuring autonomous navigation, a vacuum system, and multiple intuitive control methods including a sensor-equipped glove, voice commands via speech recognition, and a standard PS4 controller.&quot;
-
-
-
-
-highlights:
-  - &quot;Architected and structured the primary codebase for both the VAIO robot and the Glove controller using PlatformIO, employing C++ classes and static methods to enhance modularity, readability, and maintainability for team collaboration.&quot;
-  - Implemented and refined the core gyroscope-based control system, enabling intuitive robot movement via the wearable glove, including developing the data transmission logic between the Glove and VAIO using the ESP-NOW protocol.
-  - Spearheaded the integration and debugging efforts for the PS4 (DS4) controller functionality, troubleshooting library dependencies and Bluetooth communication issues to ensure reliable pairing and command input.
-  - &quot;Actively participated in the physical hardware assembly, including wiring components, soldering connections for motors, sensors (ultrasonic), LED indicators, the vacuum system, and constructing the ESP32-based protoboard for the Glove controller.&quot;
-  - &quot;Leveraged FreeRTOS to implement multi-core processing and concurrent task management on the VAIO robot, enabling simultaneous operation of sensor readings, motor control, communication handling (ESP-NOW, Web Server), and seamless switching between different control modes (Gyro, Auto, DS4).&quot;
-  - &quot;Developed and debugged key peripheral functionalities, including implementing precise motor speed control using PWM, establishing the system for LED status indication corresponding to control modes, and enabling the glove-based button activation for the vacuum system and voice command input.&quot;
-  - &quot;Contributed to the implementation and refinement of the master_control logic on the VAIO, ensuring smooth transitions between control states based on inputs received from the glove (gyro, speech, buttons) or the web interface.&quot;
-
-sourceCodeUrl: &quot;https://github.com/VAIO-CE/VAIO-Code&quot;
-
-tools:
-  - name: &quot;C++&quot;
-    logo: &quot;devicon:cplusplus&quot;
-
-mediaUrls:
-  - &quot;https://bucket.senop.dev/projects/vaio/vaio.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/vaio/glove_vaio.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/vaio/ps4_car.mp4&quot;
-  - &quot;https://bucket.senop.dev/projects/vaio/vaio_test.mp4&quot;
-  - &quot;https://bucket.senop.dev/projects/vaio/voice_detection.mp4&quot;
-  - &quot;https://bucket.senop.dev/projects/vaio/vaio_car1.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/vaio/internal_vaio.jpg&quot;
-  - &quot;https://bucket.senop.dev/projects/vaio/group_vaio.jpg&quot;</file><file path="src/content/experiences.ts">import type { Experience } from &quot;@/types&quot;;
-import XLAxiataLogo from &quot;@/assets/experiences/XL_Axiata_2014.png&quot;;
-import XLSmartLogo from &quot;@/assets/experiences/XLSmart.png&quot;;
-import SuperBankLogo from &quot;@/assets/experiences/Superbank.png&quot;;
-import BankVictoriaLogo from &quot;@/assets/experiences/Bank_Victoria_logo.png&quot;;
-
-import MileAppLogo from &quot;@/assets/experiences/mileapp.png&quot;;
-
-export const experienceData: Experience[] = [
-  {
-    company: &quot;XLSmart&quot;,
-    logo: XLSmartLogo,
-    position: &quot;Platform Engineer&quot;,
-    date: &quot;September 2025 - Present&quot;,
-    jobType: &quot;Contract&quot;,
-    location: &quot;Jakarta Selatan, Indonesia&quot;,
-    tools: [
-      { name: &quot;golang&quot;, logo: &quot;devicon:go&quot; },
-      { name: &quot;nextjs&quot;, logo: &quot;devicon:nextjs&quot; },
-      { name: &quot;AWS&quot;, logo: &quot;skill-icons:aws-dark&quot; },
-      {
-        name: &quot;Kubernetes&quot;,
-        logo: &quot;devicon:kubernetes&quot;,
-      },
-      {
-        name: &quot;Helm&quot;,
-        logo: &quot;devicon:helm&quot;,
-      },
-      {
-        name: &quot;Docker&quot;,
-        logo: &quot;devicon:docker&quot;,
-      },
-    ],
-    points: [
-      &quot;**Engineered** a high-concurrency **Go** tool to automate weekly End-of-Support (EOS) and capacity reporting across **~100 AWS accounts** and **~100 GCP projects**, **slashing manual report generation time from 45 minutes to under 3 minutes**.&quot;,
-      &quot;**Engineered** an automated **AMI compliance scanner** in **Go** to track **AmazSuperbankon Linux 2 to 2023 migration** progress across **Karpenter** nodepools and **EKS Managed Node Groups** in **50+ AWS accounts**.&quot;,
-      &quot;**Built** a **Go** utility to **audit Kubernetes clusters** at scale, querying **EKS clusters** to gather **PodDisruptionBudget (PDB)** and **HPA** data for cross-team resilience analysis.&quot;,
-    ],
-  },
-  {
-    company: &quot;Superbank&quot;,
-    logo: SuperBankLogo,
-    position: &quot;Technical Support&quot;,
-    date: &quot;December 2024 - June 2025&quot;,
-    jobType: &quot;Internship&quot;,
-    location: &quot;Jakarta Selatan, Indonesia&quot;,
-    tools: [
-      { name: &quot;AWS&quot;, logo: &quot;skill-icons:aws-dark&quot; },
-      { name: &quot;Powershell&quot;, logo: &quot;devicon:powershell&quot; },
-    ],
-    points: [
-      &quot;Managed end-to-end deployment of vendor-provided scripts across AWS environments (EC2 Dev/Staging) via S3 bucket integration, WinSCP file transfers, and XML configuration adjustments.&quot;,
-      &quot;Automated deployment workflows by developing a PowerShell script to extract ZIP files and configuration for deployment processes, reducing manual effort by 40% and accelerating deployment cycles.&quot;,
-      &quot;Streamlined cross-departmental communication by drafting and prioritizing Jira tickets with SQL query logs, error reports, and urgency assessments for vendor and internal teams.&quot;,
-      &quot;Secured client data by encrypting sensitive TXT files using Kleopatra with Superbank PGP keys and ensuring secure FTP transfers to comply with data protection standards.&quot;,
-    ],
-  },
-  {
-    company: &quot;XL Axiata Tbk&quot;,
-    logo: XLAxiataLogo,
-    position: &quot;Fixed Connectivity, ICT &amp; Cloud&quot;,
-    date: &quot;February 2024 - July 2025&quot;,
-    jobType: &quot;Internship&quot;,
-    location: &quot;Jakarta Selatan, Indonesia&quot;,
-    tools: [{ name: &quot;Python&quot;, logo: &quot;devicon:python&quot; }],
-    points: [
-      &quot;Conducted comprehensive performance analysis and SWOT evaluation of Starlink technology to explore its potential for expanding broadband access in remote Indonesian regions.&quot;,
-      &quot;Developed web scraping solutions using Python (BeautifulSoup, Pandas) to map Indonesian ISPs from APJII data, enabling insights into market distribution and operational scale.&quot;,
-      &quot;Created data visualizations and analytical reports with Power BI and Excel, aiding strategic business decision-making for enhanced telecommunications service quality.&quot;,
-      &quot;Presented findings and strategic recommendations to mentors and senior management, leveraging strong communication skills and technical knowledge to facilitate informed decision-making and business strategy development.&quot;,
-    ],
-  },
-  {
-    company: &quot;Bank Victoria International&quot;,
-    logo: BankVictoriaLogo,
-    position: &quot;Fullstack Engineer&quot;,
-    date: &quot;September 2023 - November 2023&quot;,
-    jobType: &quot;Internship&quot;,
-    location: &quot;Jakarta Selatan, Indonesia&quot;,
-    tools: [
-      { name: &quot;Flutter&quot;, logo: &quot;devicon:flutter&quot; },
-      { name: &quot;NestJS&quot;, logo: &quot;devicon:nestjs&quot; },
-    ],
-    points: [
-      &quot;Developed and maintained Victoria’s web application, integrating frontend (Flutter) and backend (NestJS) technologies to deliver seamless user experiences.&quot;,
-      &quot;Demonstrated exceptional time management skills by juggling internship duties with academic responsibilities, attending office once weekly.&quot;,
-      &quot;Ensured project requirements were met through effective communication and collaboration with the supervisory team.&quot;,
-    ],
-  },
-  {
-    company: &quot;Mileapp&quot;,
-    logo: MileAppLogo,
-    position: &quot;Frontend Engineer&quot;,
-    date: &quot;September 2022 - October 2023&quot;,
-    jobType: &quot;Internship&quot;,
-    location: &quot;Jakarta Selatan, Indonesia&quot;,
-    tools: [
-      { name: &quot;NextJS&quot;, logo: &quot;devicon:nextjs&quot; },
-      { name: &quot;React&quot;, logo: &quot;devicon:react&quot; },
-    ],
-    points: [
-      &quot;Redesigned critical user interface pages, including landing and login pages, to improve user experience.&quot;,
-      &quot;Engaged in productive discussions with the supervisor to plan and execute development tasks efficiently.&quot;,
-    ],
-  },
-];</file><file path="src/content/skills.ts">import type { SkillsLine } from &quot;@/types&quot;;
-
-export const skillsData: SkillsLine[] = [
-  {
-    title: &quot;Languages &amp; Framework&quot;,
-    logo: &quot;mdi:code&quot;,
-    skills: [
-      [
-        { name: &quot;Nextjs&quot;, expertise: 70, logo: &quot;devicon:nextjs&quot; },
-        { name: &quot;Typescript&quot;, expertise: 80, logo: &quot;devicon:typescript&quot; },
-        { name: &quot;Golang&quot;, expertise: 80, logo: &quot;devicon:go&quot; },
-        { name: &quot;Rust&quot;, expertise: 70, logo: &quot;devicon:rust&quot; },
-        { name: &quot;Nestjs&quot;, expertise: 70, logo: &quot;devicon:nestjs&quot; },
-        { name: &quot;React&quot;, expertise: 80, logo: &quot;devicon:react&quot; },
-        { name: &quot;Java&quot;, expertise: 60, logo: &quot;devicon:java&quot; },
-        { name: &quot;Flutter&quot;, expertise: 60, logo: &quot;devicon:flutter&quot; },
-      ],
-      [
-        { name: &quot;nextjs&quot;, expertise: 70, logo: &quot;devicon:nextjs&quot; },
-        { name: &quot;typescript&quot;, expertise: 80, logo: &quot;devicon:typescript&quot; },
-        { name: &quot;golang&quot;, expertise: 80, logo: &quot;devicon:go&quot; },
-        { name: &quot;rust&quot;, expertise: 70, logo: &quot;devicon:rust&quot; },
-        { name: &quot;nestjs&quot;, expertise: 70, logo: &quot;devicon:nestjs&quot; },
-        { name: &quot;react&quot;, expertise: 80, logo: &quot;devicon:react&quot; },
-        { name: &quot;java&quot;, expertise: 60, logo: &quot;devicon:java&quot; },
-      ],
-    ],
-  },
-  {
-    title: &quot;Devops&quot;,
-    logo: &quot;mdi:cloud-outline&quot;,
-    skills: [
-      [
-        { name: &quot;AWS&quot;, expertise: 60, logo: &quot;skill-icons:aws-dark&quot; },
-        { name: &quot;GCP&quot;, expertise: 50, logo: &quot;skill-icons:gcp-dark&quot; },
-        { name: &quot;Linux&quot;, expertise: 80, logo: &quot;devicon:linux&quot; },
-        { name: &quot;Docker&quot;, expertise: 80, logo: &quot;skill-icons:docker&quot; },
-        { name: &quot;Kubernetes&quot;, expertise: 60, logo: &quot;devicon:kubernetes&quot; },
-        { name: &quot;Computer Networks&quot;, expertise: 70 },
-      ],
-    ],
-  },
-];</file><file path="src/pages/blog/[id].astro">---
-import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
-import { render } from &quot;astro:content&quot;;
-import { getCollection } from &quot;astro:content&quot;;
-
-export async function getStaticPaths() {
-  const blogs = await getCollection(&quot;blogs&quot;);
-  return blogs.map((blog) =&gt; ({
-    params: { id: blog.id },
-    props: { blog: blog },
-  }));
-}
-
-const { blog } = Astro.props;
-const { Content } = await render(blog);
----
-
-&lt;BaseLayout&gt;
-  &lt;h1&gt;{blog.data.title}&lt;/h1&gt;
-  &lt;Content /&gt;
-&lt;/BaseLayout&gt;</file><file path="src/pages/project/[id].astro">---
-import { getCollection } from &quot;astro:content&quot;;
-import { Icon } from &quot;astro-icon/components&quot;;
-import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
-import ProjectCardDetail from &quot;@/components/project/ProjectCardDetail.astro&quot;;
-import ProjectTechnologies from &quot;@/components/project/ProjectTechnologies.astro&quot;;
-import ProjectHiglights from &quot;@/components/project/ProjectHiglights.astro&quot;;
-
-// 1. Generate a new path for every collection entry
-export async function getStaticPaths() {
-  const projects = await getCollection(&quot;projects&quot;);
-  return projects.map((project) =&gt; ({
-    params: { id: project.id },
-    props: { project },
-  }));
-}
-// 2. For your template, you can get the entry directly from the prop
-const { project } = Astro.props;
-const {
-  title,
-  description,
-  highlights,
-  tools,
-  tags,
-  demoUrl,
-  sourceCodeUrl,
-  image,
-  mediaUrls,
-} = project.data;
----
-
-&lt;BaseLayout&gt;
-  &lt;div class=&quot;max-w-8xl mx-auto w-full flex flex-col gap-8 px-12 sm:px-14 py-8&quot;&gt;
-    &lt;a
-      href=&quot;/#projects&quot;
-      class=&quot;hover:text-primary transition-all w-fit bg-transparent hover:bg-transparent hover:shadow-none hover:drop-shadow-none hover:scale-110 duration-300&quot;
-    &gt;
-      &lt;p class=&quot;font-bold&quot;&gt;← Back to Projects&lt;/p&gt;
-    &lt;/a&gt;
-    &lt;ProjectCardDetail
-      description={description}
-      title={title}
-      demoUrl={demoUrl}
-      mediaUrls={mediaUrls}
-      sourceCodeUrl={sourceCodeUrl}
-      image={image}
-      tags={tags}
-    /&gt;
-
-    &lt;div class=&quot;flex gap-10 relative&quot;&gt;
-      &lt;ProjectHiglights highlights={highlights} /&gt;
-      &lt;ProjectTechnologies tools={tools} /&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/BaseLayout&gt;</file><file path="public/favicon.svg">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 128 128&quot;&gt;
-    &lt;path d=&quot;M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z&quot; /&gt;
-    &lt;style&gt;
-        path { fill: #000; }
-        @media (prefers-color-scheme: dark) {
-            path { fill: #FFF; }
-        }
-    &lt;/style&gt;
-&lt;/svg&gt;</file><file path="src/components/skills/SkillCardItem.astro">---
-import type { Skill } from &quot;@/types&quot;;
-import { Icon } from &quot;astro-icon/components&quot;;
-
-type Props = Skill;
-
-const { name, expertise, logo } = Astro.props;
-
-const ratingOutOfFive = Math.floor(expertise / 20);
----
-
-&lt;div class=&quot;flex items-center gap-4 px-6 py-4 bg-white/3 border border-white/5 rounded-2xl min-w-[200px] transition-colors hover:bg-white/8 backdrop-blur-sm cursor-default&quot;&gt;
-
-  {logo ? (
-    &lt;Icon 
-      name={logo} 
-      class={`flex items-center justify-center w-12 h-12 ${
-        name === &quot;Rust&quot; &amp;&amp; &quot;fill-[#C45508]&quot;
-      }`} 
-    /&gt;
-  ) : (
-    &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
-      {name.charAt(0)}
-    &lt;/div&gt;
-  )}
-  
-  &lt;div class=&quot;flex flex-col gap-1.5&quot;&gt;
-    &lt;span class=&quot;text-white font-bold tracking-wider&quot;&gt;{name}&lt;/span&gt;
-    
-    &lt;div class=&quot;flex gap-1 relative z-10&quot;&gt;
-      {[0, 1, 2, 3, 4].map((index) =&gt; {
-        const isFilled = index &lt; ratingOutOfFive;
-        
-        return (
-          &lt;Icon 
-            name=&quot;lucide:star&quot; 
-            class={`w-4 h-4 transition-colors duration-300 ${
-              isFilled 
-                // FIX: Swapped fill-primary for fill-current so it inherits the green from text-primary
-                ? &quot;text-primary fill-current drop-shadow-[0_0_4px_var(--color-primary)]&quot; 
-                : &quot;text-white/20 fill-transparent&quot;
-            }`}
-          /&gt;
-        );
-      })}
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-&lt;/div&gt;</file><file path="src/hooks/UseTypewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+vercel.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="src/hooks/UseTypewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
 
 export const useTypewriter = (
   text: string[],
@@ -1127,61 +282,61 @@ import { Icon } from &quot;astro-icon/components&quot;;
       class=&quot;w-6 h-6 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 transition-all duration-500&quot;
     /&gt;
   &lt;/button&gt;
-&lt;/form&gt;</file><file path="src/components/home/ParticlesBackground.tsx">import { useEffect, useState } from &quot;react&quot;;
-import Particles, { initParticlesEngine } from &quot;@tsparticles/react&quot;;
-import type { IParticlesProps } from &quot;@tsparticles/react&quot;;
-import { loadSlim } from &quot;@tsparticles/slim&quot;;
+&lt;/form&gt;</file><file path="src/components/skills/SkillCardItem.astro">---
+import type { Skill } from &quot;@/types&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
 
-interface ParticlesBackgroundProps {
-  id: string;
-  options?: IParticlesProps[&quot;options&quot;];
-}
+type Props = Skill;
 
-export default function ParticlesBackground({
-  id,
-  options,
-}: ParticlesBackgroundProps) {
-  const [init, setInit] = useState(false);
+const { name, expertise, logo } = Astro.props;
 
-  useEffect(() =&gt; {
-    initParticlesEngine(async (engine) =&gt; {
+const ratingOutOfFive = Math.floor(expertise / 20);
+---
 
-      await loadSlim(engine);
-    }).then(() =&gt; {
-      setInit(true);
-    });
-  }, []);
+&lt;div
+  class=&quot;flex items-center gap-4 px-4 md:px-6 py-2 md:py-4 bg-white/3 border border-white/5 rounded-2xl md:min-w-[200px] transition-colors hover:bg-white/8 backdrop-blur-sm cursor-default&quot;
+&gt;
+  {
+    logo ? (
+      &lt;Icon
+        name={logo}
+        class={`flex items-center justify-center w-8 h-8 md:w-12 md:h-12 ${
+          name === &quot;Rust&quot; &amp;&amp; &quot;fill-[#C45508]&quot;
+        }`}
+      /&gt;
+    ) : (
+      &lt;div class=&quot;flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+        {name.charAt(0)}
+      &lt;/div&gt;
+    )
+  }
 
-  if (!init) return null;
+  &lt;div class=&quot;flex flex-col gap-1.5&quot;&gt;
+    &lt;span class=&quot;text-sm md:text-base text-white font-bold tracking-wider&quot;
+      &gt;{name}&lt;/span
+    &gt;
 
-  return (
-    &lt;Particles
-      id={id}
-      className=&quot;absolute inset-0 -z-20 w-full h-full&quot;
-      options={options}
-    /&gt;
-  );
-}</file><file path="src/components/home/TypewriterText.tsx">import { useTypewriter } from &quot;@/hooks/UseTypewriter&quot;;
+    &lt;div class=&quot;flex gap-1 relative z-10&quot;&gt;
+      {
+        [0, 1, 2, 3, 4].map((index) =&gt; {
+          const isFilled = index &lt; ratingOutOfFive;
 
-export default function TypewriterText() {
-  const text = useTypewriter(
-    [
-      &quot;Software Developer&quot;,
-      &quot;Computer Networks&quot;,
-      &quot;System Design&quot;,
-      &quot;Tech Enthusiast&quot;,
-      &quot;Computer Engineer&quot;,
-    ],
-    50,
-    1000,
-  );
-  return (
-    &lt;p className=&quot;font-pixel&quot;&gt;
-      &lt;span&gt;{text || &quot;\u00A0&quot;}&lt;/span&gt;
-      &lt;span className=&quot;relative before:absolute before:inset-1 before:w-[0.125em] before:bg-primary animate-caret&quot;&gt;&lt;/span&gt;
-    &lt;/p&gt;
-  );
-}</file><file path="src/components/TiltWrapper.tsx">import { useState, useRef, type ReactNode } from &quot;react&quot;;
+          return (
+            &lt;Icon
+              name=&quot;lucide:star&quot;
+              class={`w-4 h-4 transition-colors duration-300 ${
+                isFilled
+                  ? // FIX: Swapped fill-primary for fill-current so it inherits the green from text-primary
+                    &quot;text-primary fill-current drop-shadow-[0_0_4px_var(--color-primary)]&quot;
+                  : &quot;text-white/20 fill-transparent&quot;
+              }`}
+            /&gt;
+          );
+        })
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/components/TiltWrapper.tsx">import { useState, useRef, type ReactNode } from &quot;react&quot;;
 
 interface TiltWrapperProps {
   children: ReactNode;
@@ -1258,71 +413,61 @@ export default function TiltWrapper({
       &lt;/div&gt;
     &lt;/div&gt;
   );
-}</file><file path="src/pages/blog/index.astro">---
-import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+}</file><file path="src/pages/project/[id].astro">---
 import { getCollection } from &quot;astro:content&quot;;
-// import { Icon } from &quot;astro-icon/components&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import ProjectCardDetail from &quot;@/components/project/ProjectCardDetail.astro&quot;;
+import ProjectTechnologies from &quot;@/components/project/ProjectTechnologies.astro&quot;;
+import ProjectHiglights from &quot;@/components/project/ProjectHiglights.astro&quot;;
 
-const blogs = (await getCollection(&quot;blogs&quot;)).sort(
-  (a, b) =&gt; b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const projects = await getCollection(&quot;projects&quot;);
+  return projects.map((project) =&gt; ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+// 2. For your template, you can get the entry directly from the prop
+const { project } = Astro.props;
+const {
+  title,
+  description,
+  highlights,
+  tools,
+  tags,
+  demoUrl,
+  sourceCodeUrl,
+  image,
+  mediaUrls,
+} = project.data;
 ---
 
 &lt;BaseLayout&gt;
-  &lt;div class=&quot;px-20 mt-15&quot;&gt;
-    &lt;div class=&quot;flex flex-col justify-center text-gray-200 gap-4&quot;&gt;
-      &lt;h1 class=&quot;font-bold text-4xl font-pixel&quot;&gt;Blog&lt;/h1&gt;
-      &lt;p class=&quot;w-[40%] text-justify text-gray-400&quot;&gt;
-        Welcome to my blog domain where I share personal stories about things
-        I&apos;ve learned, projects I&apos;m hacking on and just general findings.
-      &lt;/p&gt;
+  &lt;div class=&quot;max-w-8xl mx-auto w-full flex flex-col gap-8 px-12 sm:px-14 py-8&quot;&gt;
+    &lt;a
+      href=&quot;/#projects&quot;
+      class=&quot;hover:text-primary transition-all w-fit bg-transparent hover:bg-transparent hover:shadow-none hover:drop-shadow-none hover:scale-110 duration-300&quot;
+    &gt;
+      &lt;p class=&quot;font-bold&quot;&gt;← Back to Projects&lt;/p&gt;
+    &lt;/a&gt;
+    &lt;ProjectCardDetail
+      description={description}
+      title={title}
+      demoUrl={demoUrl}
+      mediaUrls={mediaUrls}
+      sourceCodeUrl={sourceCodeUrl}
+      image={image}
+      tags={tags}
+    /&gt;
+
+    &lt;div class=&quot;flex flex-col-reverse md:flex-row gap-10 relative&quot;&gt;
+      &lt;ProjectHiglights highlights={highlights} /&gt;
+      &lt;ProjectTechnologies tools={tools} /&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
-  &lt;ul class=&quot;gap-4 space-y-2&quot;&gt;
-    {
-      blogs.map((blog) =&gt; (
-        &lt;li&gt;
-          &lt;a href={`/blog/${blog.id}`}&gt;{blog.data.title}&lt;/a&gt;
-        &lt;/li&gt;
-      ))
-    }
-  &lt;/ul&gt;
-&lt;/BaseLayout&gt;</file><file path="src/content.config.ts">import { defineCollection } from &quot;astro:content&quot;;
-import { z } from &quot;astro/zod&quot;;
-import { glob } from &quot;astro/loaders&quot;;
-import type { CollectionEntry } from &quot;astro:content&quot;;
-
-const projects = defineCollection({
-  loader: glob({
-    pattern: &quot;**/*.yaml&quot;,
-    base: &quot;./src/content/projects&quot;,
-    generateId: ({ entry }) =&gt;
-      entry.replace(&quot;/project.yaml&quot;, &quot;&quot;).replace(&quot;.yaml&quot;, &quot;&quot;),
-  }),
-  schema: ({ image }) =&gt;
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      type: z.string(),
-      image: image().optional(),
-      tags: z.array(z.string()).optional(),
-      tools: z.array(
-        z.object({
-          name: z.string(),
-          logo: z.string(),
-        }),
-      ),
-      highlights: z.array(z.string()),
-      mediaUrls: z.array(z.string()).optional(),
-      sourceCodeUrl: z.string().optional(),
-      demoUrl: z.string().optional(),
-    }),
-});
-
-const blogs = defineCollection({
-  loader: glob({
-    pattern: &quot;**</file><file path="src/components/contact/DirectContact.astro">---
+&lt;/BaseLayout&gt;</file><file path="src/components/contact/DirectContact.astro">---
 import { Icon } from &quot;astro-icon/components&quot;;
 
 const emailAddress = &quot;senop.rahman@gmail.com&quot;;
@@ -1415,7 +560,143 @@ const socialLinks = [
       }
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</file><file path="vercel.json">{
+&lt;/div&gt;</file><file path="src/components/home/ParticlesBackground.tsx">import { useEffect, useState } from &quot;react&quot;;
+import Particles, { initParticlesEngine } from &quot;@tsparticles/react&quot;;
+import type { IParticlesProps } from &quot;@tsparticles/react&quot;;
+import { loadSlim } from &quot;@tsparticles/slim&quot;;
+
+interface ParticlesBackgroundProps {
+  id: string;
+  options?: IParticlesProps[&quot;options&quot;];
+}
+
+export default function ParticlesBackground({
+  id,
+  options,
+}: ParticlesBackgroundProps) {
+  const [init, setInit] = useState(false);
+
+  useEffect(() =&gt; {
+    initParticlesEngine(async (engine) =&gt; {
+
+      await loadSlim(engine);
+    }).then(() =&gt; {
+      setInit(true);
+    });
+  }, []);
+
+  if (!init) return &lt;&gt;&lt;/&gt;;
+
+  return (
+    &lt;Particles
+      id={id}
+      className=&quot;absolute inset-0 -z-20 w-full h-full&quot;
+      options={options}
+    /&gt;
+  );
+}</file><file path="src/components/project/ProjectHiglights.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { ProjectType } from &quot;../../content.config&quot;;
+
+interface Props {
+  highlights: ProjectType[&quot;highlights&quot;];
+}
+
+const { highlights } = Astro.props;
+---
+
+&lt;div class=&quot;flex-1 px-0 md:px-8 py-4 flex flex-col gap-8&quot;&gt;
+  &lt;div class=&quot;flex gap-2 items-center&quot;&gt;
+    &lt;Icon name=&quot;lucide:star&quot; class=&quot;w-6 h-6&quot; /&gt;
+    &lt;h1 class=&quot;font-bold text-2xl md:text-4xl&quot;&gt;Project Highlights&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-8&quot;&gt;
+    {
+      highlights.map((hightlight) =&gt; (
+        &lt;div class=&quot;flex gap-6 items-center text-justify border border-gray-200/20 hover:border-primary/30 px-4 py-2 rounded-md hover:bg-primary/5 transform-all duration-300&quot;&gt;
+          &lt;div class=&quot;w-4 h-4 shadow-primary backdrop-brightness-75 shadow-xl drop-shadow-[0_0_3px_var(--color-primary)]   aspect-square rounded-full border bg-primary&quot; /&gt;
+          &lt;p class=&quot;text-base md:text-xl leading-loose text-gray-100&quot;&gt;
+            {hightlight}
+          &lt;/p&gt;
+        &lt;/div&gt;
+      ))
+    }
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/components/project/ProjectTechnologies.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { ProjectType } from &quot;../../content.config&quot;;
+
+interface Props {
+  tools: ProjectType[&quot;tools&quot;];
+}
+
+const { tools } = Astro.props;
+---
+
+&lt;div
+  class=&quot;w-full md:w-[350px] h-fit flex flex-col flex-wrap top-20 md:sticky border border-gray-200/25 px-8 py-4 rounded-lg&quot;
+&gt;
+  &lt;div class=&quot;flex justify-center items-center gap-4 mb-8&quot;&gt;
+    &lt;Icon name=&quot;lucide:cpu&quot; class=&quot;w-10 h-10&quot; /&gt;
+    &lt;h1 class=&quot;text-2xl font-bold&quot;&gt;Technologies&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-wrap gap-4&quot;&gt;
+    {
+      tools &amp;&amp;
+        tools.map((tool) =&gt; {
+          const { name, logo } = tool;
+          return (
+            &lt;&gt;
+              {logo ? (
+                &lt;div class=&quot;flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100&quot;&gt;
+                  &lt;Icon name={logo} class=&quot;w-8 h-8 &quot; /&gt;
+                  &lt;p class=&quot;font-bold&quot;&gt;{name}&lt;/p&gt;
+                &lt;/div&gt;
+              ) : (
+                &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+                  {name.charAt(0)}
+                &lt;/div&gt;
+              )}
+            &lt;/&gt;
+          );
+        })
+    }
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/content.config.ts">import { defineCollection } from &quot;astro:content&quot;;
+import { z } from &quot;astro/zod&quot;;
+import { glob } from &quot;astro/loaders&quot;;
+import type { CollectionEntry } from &quot;astro:content&quot;;
+
+const projects = defineCollection({
+  loader: glob({
+    pattern: &quot;**/*.yaml&quot;,
+    base: &quot;./src/content/projects&quot;,
+    generateId: ({ entry }) =&gt;
+      entry.replace(&quot;/project.yaml&quot;, &quot;&quot;).replace(&quot;.yaml&quot;, &quot;&quot;),
+  }),
+  schema: ({ image }) =&gt;
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      type: z.string(),
+      image: image().optional(),
+      tags: z.array(z.string()).optional(),
+      tools: z.array(
+        z.object({
+          name: z.string(),
+          logo: z.string(),
+        }),
+      ),
+      highlights: z.array(z.string()),
+      mediaUrls: z.array(z.string()).optional(),
+      sourceCodeUrl: z.string().optional(),
+      demoUrl: z.string().optional(),
+    }),
+});
+
+const blogs = defineCollection({
+  loader: glob({
+    pattern: &quot;**</file><file path="vercel.json">{
   &quot;$schema&quot;: &quot;https://openapi.vercel.sh/vercel.json&quot;,
   &quot;git&quot;: {
     &quot;deploymentEnabled&quot;: {
@@ -1423,114 +704,27 @@ const socialLinks = [
       &quot;new-portfolio&quot;: false
     }
   }
-}</file><file path="src/components/skills/SkillCard.astro">---
-import SkillCardItem from &quot;./SkillCardItem.astro&quot;;
-import { Icon } from &quot;astro-icon/components&quot;;
-import type { SkillsLine } from &quot;@/types&quot;;
+}</file><file path="src/components/home/TypewriterText.tsx">import { useTypewriter } from &quot;@/hooks/UseTypewriter&quot;;
 
-interface Props {
-  skillLine: SkillsLine;
-  reverse?: boolean;
-}
-
-const { skillLine, reverse = false } = Astro.props;
-
-const { title, logo, skills } = skillLine;
-
-// Duplicate the array to create the seamless infinite scroll illusion
-const duplicatedSkills: SkillsLine[&quot;skills&quot;] = skills.map((skill) =&gt; [
-  ...skill,
-  ...skill,
-]);
-
-// Determine the animation class based on the reverse prop
-const animationClass = reverse ? &quot;animate-marquee-reverse&quot; : &quot;animate-marquee&quot;;
----
-
-&lt;div
-  class=&quot;flex flex-col group border border-primary/50 hover:border-primary transform-all duration-500 rounded-xl gap-10 py-6 w-full relative overflow-hidden&quot;
-&gt;
-  &lt;div
-    class=&quot;absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500&quot;
-  &gt;
-  &lt;/div&gt;
-
-  {
-    /* Gradient Masks to fade the left and right edges smoothly into the background */
-  }
-
-  &lt;div
-    class=&quot;absolute inset-y-0 left-0 w-24 md:w-40 bg-linear-to-r from-bg to-transparent z-10 pointer-events-none&quot;
-  &gt;
-  &lt;/div&gt;
-  &lt;div
-    class=&quot;absolute inset-y-0 right-0 w-24 md:w-40 bg-linear-to-l from-bg to-transparent z-10 pointer-events-none&quot;
-  &gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;flex gap-4 items-center px-8 md:px-10 relative z-20&quot;&gt;
-    {
-      logo ? (
-        &lt;div class=&quot;flex items-center justify-center p-1 rounded-xl border border-white/10 text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
-          &lt;Icon name={logo} class=&quot;w-11 h-11 &quot; /&gt;
-        &lt;/div&gt;
-      ) : (
-        &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
-          {title.charAt(0)}
-        &lt;/div&gt;
-      )
-    }
-    &lt;h3 class=&quot;font-bold text-4xl text-gray-300&quot;&gt;{title}&lt;/h3&gt;
-  &lt;/div&gt;
-
-  {/* The Scrolling Track */}
-
-  {
-    duplicatedSkills.map((skill, index) =&gt; {
-      let isRowReversed = reverse;
-
-      if (index % 2 === 0) {
-        isRowReversed = true;
-      }
-
-      const animationClass = isRowReversed
-        ? &quot;animate-marquee-reverse&quot;
-        : &quot;animate-marquee&quot;;
-      return (
-        &lt;div
-          class={`flex w-max gap-6 hover:[animation-play-state:paused] ${animationClass} px-4`}
-        &gt;
-          {skill.map((skillLine) =&gt; (
-            &lt;SkillCardItem
-              name={skillLine.name}
-              expertise={skillLine.expertise}
-              logo={skillLine.logo}
-            /&gt;
-          ))}
-        &lt;/div&gt;
-      );
-    })
-  }
-&lt;/div&gt;</file><file path="src/pages/index.astro">---
-import BaseLayout from &quot;../layouts/BaseLayout.astro&quot;;
-import Home from &quot;@/components/Home.astro&quot;;
-import About from &quot;@/components/About.astro&quot;;
-import Experience from &quot;@/components/Experience.astro&quot;;
-import Skills from &quot;@/components/Skills.astro&quot;;
-import Projects from &quot;@/components/Projects.astro&quot;;
-import Contact from &quot;@/components/Contact.astro&quot;;
----
-
-&lt;BaseLayout&gt;
-  &lt;div class=&quot;space-y-32&quot;&gt;
-    &lt;Home /&gt;
-    &lt;About /&gt;
-    &lt;Experience /&gt;
-    &lt;Skills /&gt;
-    &lt;Projects /&gt;
-    &lt;Contact /&gt;
-  &lt;/div&gt;
-&lt;/BaseLayout&gt;</file><file path="README.md"># Astro Starter Kit: Basics
+export default function TypewriterText() {
+  const text = useTypewriter(
+    [
+      &quot;Platform Engineer&quot;,
+      &quot;Full-Stack Developer&quot;,
+      &quot;Devops Engineer&quot;,
+      &quot;Systems Programmer&quot;,
+      &quot;Computer Engineer&quot;,
+    ],
+    50,
+    1000,
+  );
+  return (
+    &lt;p className=&quot;font-pixel&quot;&gt;
+      &lt;span&gt;{text || &quot;\u00A0&quot;}&lt;/span&gt;
+      &lt;span className=&quot;relative before:absolute before:inset-1 before:w-[0.125em] before:bg-primary animate-caret&quot;&gt;&lt;/span&gt;
+    &lt;/p&gt;
+  );
+}</file><file path="README.md"># Astro Starter Kit: Basics
 
 ```sh
 pnpm create astro@latest -- --template basics
@@ -1575,7 +769,784 @@ All commands are run from the root of the project, from a terminal:
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).</file><file path="src/components/experience/ExperienceCard.astro">---
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).</file><file path="src/pages/blog/[id].astro">---
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import { render } from &quot;astro:content&quot;;
+import { getCollection } from &quot;astro:content&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+
+export async function getStaticPaths() {
+  const blogs = await getCollection(&quot;blogs&quot;);
+  return blogs.map((blog) =&gt; ({
+    params: { id: blog.id },
+    props: { blog: blog },
+  }));
+}
+
+const { blog } = Astro.props;
+const { Content, headings } = await render(blog);
+---
+
+&lt;BaseLayout hideNav&gt;
+  &lt;nav
+    id=&quot;blog-nav&quot;
+    class=&quot;fixed top-0 left-0 right-0 z-50 h-[60px] flex items-center backdrop-blur-xl border-b border-white/5 transition-transform duration-300&quot;
+  &gt;
+    &lt;div
+      class=&quot;max-w-7xl mx-auto px-6 w-full flex items-center justify-between relative z-10 bg-inherit&quot;
+    &gt;
+      &lt;a
+        href=&quot;/blog&quot;
+        class=&quot;flex items-center gap-2 text-primary/80 hover:text-primary font-bold transition-colors bg-transparent hover:bg-transparent hover:shadow-none&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:arrow-left&quot; class=&quot;w-5 h-5&quot; /&gt;
+        Back to Blog
+      &lt;/a&gt;
+
+      &lt;span
+        class=&quot;hidden md:block text-sm font-bold text-gray-500 truncate max-w-md&quot;
+      &gt;
+        {blog.data.title}
+      &lt;/span&gt;
+
+      &lt;button
+        id=&quot;mobile-toc-toggle&quot;
+        class=&quot;lg:hidden p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer border-none&quot;
+        aria-label=&quot;Table of Contents&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:list&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div
+      id=&quot;mobile-toc-menu&quot;
+      class=&quot;absolute top-[60px] left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/5 shadow-2xl transition-all duration-300 transform -translate-y-full opacity-0 hidden lg:hidden z-0&quot;
+    &gt;
+      &lt;div class=&quot;p-6 flex flex-col gap-4 max-h-[70vh] overflow-y-auto&quot;&gt;
+        &lt;h3 class=&quot;text-lg font-bold text-primary/80 font-pixel tracking-wide&quot;&gt;
+          Table of Contents
+        &lt;/h3&gt;
+        &lt;ul class=&quot;flex flex-col gap-3 text-sm&quot;&gt;
+          {
+            headings.map((heading) =&gt; (
+              &lt;li
+                style={`margin-left: ${Math.max(0, heading.depth - 2) * 1}rem`}
+              &gt;
+                &lt;a
+                  href={`#${heading.slug}`}
+                  class=&quot;toc-link mobile-toc-link text-gray-400 hover:text-primary/80 transition-all duration-300 bg-transparent hover:bg-transparent hover:shadow-none font-medium block py-1 line-clamp-2&quot;
+                &gt;
+                  {heading.text}
+                &lt;/a&gt;
+              &lt;/li&gt;
+            ))
+          }
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;div
+    class=&quot;max-w-7xl mx-auto px-6 pt-24 pb-12 flex flex-col lg:flex-row gap-12 relative&quot;
+  &gt;
+    &lt;article class=&quot;w-full lg:w-3/4 max-w-4xl blog-content text-gray-300&quot;&gt;
+      &lt;header class=&quot;mb-10 flex flex-col gap-4&quot;&gt;
+        &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-primary/80 font-pixel&quot;&gt;
+          {blog.data.title}
+        &lt;/h1&gt;
+
+        &lt;div class=&quot;flex gap-4 items-center text-sm text-gray-400&quot;&gt;
+          &lt;p&gt;
+            {
+              new Date(blog.data.pubDate).toLocaleDateString(&quot;en-US&quot;, {
+                dateStyle: &quot;long&quot;,
+              })
+            }
+          &lt;/p&gt;
+          &lt;div class=&quot;flex gap-2&quot;&gt;
+            {
+              blog.data.tags?.map((tag: string) =&gt; (
+                &lt;span class=&quot;text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary/80 border border-primary/20&quot;&gt;
+                  #{tag}
+                &lt;/span&gt;
+              ))
+            }
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+
+      &lt;div class=&quot;content-wrapper&quot;&gt;
+        &lt;Content /&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;aside class=&quot;hidden lg:block w-1/4 relative&quot;&gt;
+      &lt;div
+        class=&quot;sticky top-20 p-6 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-lg&quot;
+      &gt;
+        &lt;h3
+          class=&quot;text-xl font-bold text-primary/80 mb-4 font-pixel tracking-wide&quot;
+        &gt;
+          Table of Contents
+        &lt;/h3&gt;
+        &lt;ul class=&quot;flex flex-col gap-3 text-sm&quot;&gt;
+          {
+            headings.map((heading) =&gt; (
+              &lt;li
+                style={`margin-left: ${Math.max(0, heading.depth - 2) * 1}rem`}
+              &gt;
+                &lt;a
+                  href={`#${heading.slug}`}
+                  class=&quot;toc-link text-gray-400 hover:text-primary/80 transition-colors bg-transparent hover:bg-transparent hover:shadow-none font-medium line-clamp-2&quot;
+                &gt;
+                  {heading.text}
+                &lt;/a&gt;
+              &lt;/li&gt;
+            ))
+          }
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/aside&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;
+
+&lt;script&gt;
+  // Logic to hide the navbar on scroll down, and show it on scroll up
+  const setupSmartNav = () =&gt; {
+    const nav = document.getElementById(&quot;blog-nav&quot;);
+    if (!nav) return;
+
+    let lastScroll = window.scrollY;
+
+    window.addEventListener(
+      &quot;scroll&quot;,
+      () =&gt; {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll &lt;= 0) {
+          // Always show at the very top
+          nav.classList.remove(&quot;-translate-y-full&quot;);
+          return;
+        }
+
+        if (currentScroll &gt; lastScroll &amp;&amp; currentScroll &gt; 60) {
+          // Scrolling down past the header height -&gt; Hide
+          nav.classList.add(&quot;-translate-y-full&quot;);
+        } else if (currentScroll &lt; lastScroll) {
+          // Scrolling up -&gt; Show
+          nav.classList.remove(&quot;-translate-y-full&quot;);
+        }
+
+        lastScroll = currentScroll;
+      },
+      { passive: true },
+    ); // passive: true improves scroll performance
+  };
+
+  const setupMobileToC = () =&gt; {
+    const toggleBtn = document.getElementById(&quot;mobile-toc-toggle&quot;);
+    const menu = document.getElementById(&quot;mobile-toc-menu&quot;);
+    const links = document.querySelectorAll(&quot;.mobile-toc-link&quot;);
+    let isOpen = false;
+
+    if (!toggleBtn || !menu) return;
+
+    const toggleMenu = () =&gt; {
+      isOpen = !isOpen;
+      if (isOpen) {
+        menu.classList.remove(&quot;hidden&quot;);
+        // requestAnimationFrame allows the &apos;display: block&apos; from removing &apos;hidden&apos; to apply before animating
+        requestAnimationFrame(() =&gt; {
+          menu.classList.remove(&quot;-translate-y-full&quot;, &quot;opacity-0&quot;);
+        });
+      } else {
+        menu.classList.add(&quot;-translate-y-full&quot;, &quot;opacity-0&quot;);
+        // Wait for the CSS transition to finish before hiding from the DOM
+        setTimeout(() =&gt; {
+          menu.classList.add(&quot;hidden&quot;);
+        }, 300);
+      }
+    };
+
+    toggleBtn.addEventListener(&quot;click&quot;, toggleMenu);
+
+    // Close the mobile menu automatically when a link is clicked
+    links.forEach((link) =&gt; {
+      link.addEventListener(&quot;click&quot;, () =&gt; {
+        if (isOpen) toggleMenu();
+      });
+    });
+  };
+
+  // 2. Table of Contents Highlight Logic
+  const setupToCHighlight = () =&gt; {
+    // Grab all the links we just added the &apos;toc-link&apos; class to
+    const tocLinks = document.querySelectorAll(&quot;.toc-link&quot;);
+    // Grab all the headings inside the markdown content
+    const headings = document.querySelectorAll(
+      &quot;.content-wrapper h1, .content-wrapper h2, .content-wrapper h3, .content-wrapper h4&quot;,
+    );
+
+    if (!tocLinks.length || !headings.length) return;
+
+    // Set up the observer to watch when headings hit the top 20% of the screen
+    const observer = new IntersectionObserver(
+      (entries) =&gt; {
+        entries.forEach((entry) =&gt; {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute(&quot;id&quot;);
+
+            // Reset all links to their default inactive state
+            tocLinks.forEach((link) =&gt; {
+              link.classList.remove(&quot;text-primary&quot;, &quot;translate-x-2&quot;);
+              link.classList.add(&quot;text-gray-400&quot;);
+            });
+
+            // Highlight the currently intersecting link and push it slightly to the right
+            const activeLink = document.querySelector(
+              `.toc-link[href=&quot;#${id}&quot;]`,
+            );
+            if (activeLink) {
+              activeLink.classList.remove(&quot;text-gray-400&quot;);
+              activeLink.classList.add(&quot;text-primary&quot;, &quot;translate-x-2&quot;);
+            }
+          }
+        });
+      },
+      {
+        // Triggers when the heading is between the top 100px and the upper middle of the viewport
+        rootMargin: &quot;-100px 0px -70% 0px&quot;,
+      },
+    );
+
+    // Tell the observer to watch every heading
+    headings.forEach((heading) =&gt; observer.observe(heading));
+  };
+
+  // Run on initial load and handle Astro View Transitions if you ever enable them
+  const initScripts = () =&gt; {
+    setupSmartNav();
+    setupToCHighlight();
+    setupMobileToC();
+  };
+
+  initScripts();
+
+  document.addEventListener(&quot;astro:page-load&quot;, initScripts);
+&lt;/script&gt;
+
+&lt;style is:global&gt;
+  /* Markdown Content Scoped Styling */
+
+  .content-wrapper {
+    /* Increase base font size slightly for better readability on modern screens */
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #d1d5db; /* Tailwind gray-300 */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings: Tighter letter-spacing looks more modern */
+  .content-wrapper h1,
+  .content-wrapper h2,
+  .content-wrapper h3,
+  .content-wrapper h4 {
+    font-family: var(--font-pixel);
+    color: color-mix(in oklch, var(--color-primary) 95%, white);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 2.5em;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .content-wrapper h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.025em;
+  }
+
+  .content-wrapper h2 {
+    font-size: 2rem;
+    /* Add a subtle underline to H2s to clearly separate major sections */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+  }
+
+  .content-wrapper h3 {
+    font-size: 1.5rem;
+  }
+  .content-wrapper h4 {
+    font-size: 1.25rem;
+  }
+
+  /* Paragraphs: Left-aligned is better for web reading than justified */
+  .content-wrapper p {
+    margin-bottom: 1.75em;
+    text-align: justify;
+    letter-spacing: 0.01em;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+
+  /* Links: Styled underline that highlights on hover */
+  .content-wrapper a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(
+      in oklch,
+      var(--color-primary) 40%,
+      transparent
+    );
+    text-underline-offset: 4px;
+    background: transparent !important;
+    box-shadow: none !important;
+    transition: text-decoration-color 0.2s ease;
+  }
+  .content-wrapper a:hover {
+    text-decoration-color: var(--color-primary);
+  }
+
+  /* Lists: Added primary color to the bullets/numbers */
+  .content-wrapper ul,
+  .content-wrapper ol {
+    margin-bottom: 1.75em;
+    padding-left: 1.5em;
+  }
+  .content-wrapper ul {
+    list-style-type: disc;
+  }
+  .content-wrapper ol {
+    list-style-type: decimal;
+  }
+  .content-wrapper li {
+    margin-bottom: 0.5em;
+  }
+  .content-wrapper li::marker {
+    color: color-mix(in oklch, var(--color-primary) 80%, transparent);
+  }
+
+  /* Images: Nice rounded corners and subtle border */
+  .content-wrapper img {
+    border-radius: 0.75rem;
+    margin: 2.5em auto;
+    max-width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Blockquotes: Larger, italicized, and distinguished */
+  .content-wrapper blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding: 1.25rem 1.5rem;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #e5e7eb; /* Tailwind gray-200 */
+    background: color-mix(in oklch, var(--color-primary) 5%, transparent);
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin: 2.5em 0;
+  }
+
+  /* Code Blocks: Custom monospace stack and dark inner shadow */
+  .content-wrapper pre {
+    padding: 1.5em;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 2em 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0d1117 !important; /* Deep dark background */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Inline Code */
+  .content-wrapper code {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: color-mix(in oklch, var(--color-primary) 90%, white);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .content-wrapper pre code {
+    color: #e5e7eb;
+    background: transparent;
+    padding: 0;
+    font-size: 0.9em;
+  }
+&lt;/style&gt;</file><file path="src/pages/index.astro">---
+import BaseLayout from &quot;../layouts/BaseLayout.astro&quot;;
+import Home from &quot;@/components/Home.astro&quot;;
+import About from &quot;@/components/About.astro&quot;;
+import Experience from &quot;@/components/Experience.astro&quot;;
+import Skills from &quot;@/components/Skills.astro&quot;;
+import Projects from &quot;@/components/Projects.astro&quot;;
+import Contact from &quot;@/components/Contact.astro&quot;;
+---
+
+&lt;BaseLayout&gt;
+  &lt;div class=&quot;space-y-32&quot;&gt;
+    &lt;Home /&gt;
+    &lt;About /&gt;
+    &lt;Experience /&gt;
+    &lt;Skills /&gt;
+    &lt;Projects /&gt;
+    &lt;Contact /&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;</file><file path="src/components/project/ProjectCardDetail.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+import { Image, getImage } from &quot;astro:assets&quot;;
+import type { ProjectType } from &quot;@/src/content.config&quot;;
+import ProjectCarousel from &quot;@/components/project/ProjectCarousel&quot;;
+
+interface Props {
+  title: string;
+  description: string;
+  image?: ProjectType.image;
+  mediaUrls?: string[];
+  tags?: string[];
+  demoUrl?: string;
+  sourceCodeUrl?: string;
+}
+
+const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
+  Astro.props;
+
+const videoExtensions = [&quot;mp4&quot;, &quot;mov&quot;, &quot;webm&quot;, &quot;ogg&quot;];
+
+const processedMedia = await Promise.all(
+  mediaUrls!.map(async (url) =&gt; {
+    const isVideo = videoExtensions.some((ext) =&gt;
+      url.toLowerCase().endsWith(`.${ext}`),
+    );
+
+    if (isVideo) {
+      return { type: &quot;video&quot; as const, src: url };
+    }
+
+    // Generate high-res version for the viewer (1200px width)
+    const optimizedFull = await getImage({
+      src: url,
+      format: &quot;webp&quot;,
+      inferSize: true,
+    });
+
+    // Generate tiny thumbnail (150px width, lower quality)
+    const optimizedThumb = await getImage({
+      src: url,
+      width: 150,
+      height: 100,
+      quality: 60,
+      format: &quot;webp&quot;,
+      inferSize: true,
+    });
+
+    return {
+      type: &quot;image&quot; as const,
+      src: optimizedFull.src,
+      thumbSrc: optimizedThumb.src,
+    };
+  }),
+);
+---
+
+&lt;div
+  class=&quot;relative border border-gray-200/15 border-primary/30 rounded-lg p-8 h-full&quot;
+&gt;
+  &lt;!-- Background Image --&gt;
+  &lt;div class=&quot;absolute inset-0 -z-1 rounded-lg&quot;&gt;
+    &lt;Image
+      src={image}
+      alt={`Cover image for ${title}`}
+      class=&quot;absolute top-0 right-0 left-0 bottom-0 w-full h-full object-cover opacity-20 blur-xs&quot;
+      loading=&quot;lazy&quot;
+      decoding=&quot;async&quot;
+    /&gt;
+    &lt;div
+      class=&quot;absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent&quot;
+    &gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Project Card --&gt;
+  &lt;div class=&quot;flex flex-col gap-8&quot;&gt;
+    &lt;div class=&quot;flex flex-col lg:flex-row justify-between gap-8&quot;&gt;
+      &lt;div class=&quot;flex-1 min-w-0 w-full&quot;&gt;
+        &lt;ProjectCarousel media={processedMedia} client:load /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;w-full lg:w-[35%] flex flex-col gap-5&quot;&gt;
+        &lt;h1 class=&quot;text-4xl font-bold text-primary font-pixel&quot;&gt;{title}&lt;/h1&gt;
+        &lt;p
+          class=&quot;text-gray-300 text-base md:text-xl text-justify leading-loose&quot;
+        &gt;
+          {description}
+        &lt;/p&gt;
+        &lt;div class=&quot;flex gap-4 w-full&quot;&gt;
+          {/* Live Demo Button */}
+          &lt;a
+            href={demoUrl || undefined}
+            target={demoUrl ? &quot;_blank&quot; : undefined}
+            rel={demoUrl ? &quot;noopener noreferrer&quot; : undefined}
+            class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+              demoUrl
+                ? &quot;cursor-pointer border-primary/50&quot;
+                : &quot;opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500 bg-gray-600/20&quot;
+            }`}
+          &gt;
+            {/* Added shrink-0 to prevent icon from squishing */}
+            &lt;Icon
+              name=&quot;mdi:world-wide-web&quot;
+              class=&quot;w-6 h-6 sm:w-8 sm:h-8 shrink-0&quot;
+            /&gt;
+            {/* Added whitespace-nowrap to prevent text wrapping */}
+            &lt;p class=&quot;font-bold whitespace-nowrap&quot;&gt;Live Demo&lt;/p&gt;
+          &lt;/a&gt;
+
+          {/* Source Code Button */}
+          &lt;a
+            href={sourceCodeUrl || undefined}
+            target={sourceCodeUrl ? &quot;_blank&quot; : undefined}
+            rel={sourceCodeUrl ? &quot;noopener noreferrer&quot; : undefined}
+            class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+              sourceCodeUrl
+                ? &quot;cursor-pointer border-primary/50&quot;
+                : &quot;opacity-40 pointer-events-none border-gray-600 text-gray-500 bg-gray-600/20&quot;
+            }`}
+          &gt;
+            &lt;Icon name=&quot;mdi:code-tags&quot; class=&quot;w-6 h-6 sm:w-8 sm:h-8 shrink-0&quot; /&gt;
+            &lt;p class=&quot;font-bold whitespace-nowrap&quot;&gt;Source&lt;/p&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;flex items-center gap-4 mt-5&quot;&gt;
+          &lt;h4 class=&quot;text-gray-400 font-bold&quot;&gt;Tags:&lt;/h4&gt;
+          &lt;div class=&quot;flex gap-3&quot;&gt;
+            {
+              tags?.map((tag) =&gt; (
+                &lt;p class=&quot;border border-primary px-2 py-1 rounded-lg bg-primary/10 text-primary/80 font-bold&quot;&gt;
+                  {tag}
+                &lt;/p&gt;
+              ))
+            }
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/components/skills/SkillCard.astro">---
+import SkillCardItem from &quot;./SkillCardItem.astro&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { SkillsLine } from &quot;@/types&quot;;
+
+interface Props {
+  skillLine: SkillsLine;
+  reverse?: boolean;
+}
+
+const { skillLine, reverse = false } = Astro.props;
+const { title, logo, skills } = skillLine;
+
+// Multiply the array to guarantee it fills ultra-wide screens.
+// If the base array has 5 items, this makes 15 items per track.
+const fillTrack = (skillArray: any[]) =&gt; [
+  ...skillArray,
+  ...skillArray,
+  ...skillArray,
+];
+---
+
+&lt;div
+  class=&quot;flex flex-col group border border-primary/50 hover:border-primary transition-all duration-500 rounded-xl gap-10 py-6 w-full relative overflow-hidden&quot;
+&gt;
+  &lt;div
+    class=&quot;absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0&quot;
+  &gt;
+  &lt;/div&gt;
+  &lt;div
+    class=&quot;absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none&quot;
+  &gt;
+  &lt;/div&gt;
+  &lt;div
+    class=&quot;absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none&quot;
+  &gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex gap-4 items-center px-8 md:px-10 relative z-20&quot;&gt;
+    {
+      logo ? (
+        &lt;div class=&quot;flex items-center justify-center p-1 rounded-xl border border-white/10 text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+          &lt;Icon name={logo} class=&quot;w-11 h-11 &quot; /&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+          {title.charAt(0)}
+        &lt;/div&gt;
+      )
+    }
+    &lt;h3 class=&quot;font-bold text-xl md:text-4xl text-gray-300&quot;&gt;{title}&lt;/h3&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex flex-col gap-6 relative z-20&quot;&gt;
+    {
+      skills.map((skill, index) =&gt; {
+        let isRowReversed = reverse;
+        if (index % 2 === 0) {
+          isRowReversed = !isRowReversed;
+        }
+
+        const animationClass = isRowReversed
+          ? &quot;animate-marquee-reverse&quot;
+          : &quot;animate-marquee&quot;;
+
+        // Create the massive array for the track
+        const trackItems = fillTrack(skill);
+
+        return (
+          // Parent flex container holding the two identical tracks.
+          // gap-6 connects the end of Track 1 to the start of Track 2 seamlessly.
+          &lt;div class=&quot;flex overflow-hidden w-full group/row&quot;&gt;
+            {/* Track 1 */}
+            &lt;div
+              class={`flex w-max shrink-0 gap-6 pr-6 ${animationClass} group-hover/row:[animation-play-state:paused]`}
+            &gt;
+              {trackItems.map((skillLine) =&gt; (
+                &lt;SkillCardItem
+                  name={skillLine.name}
+                  expertise={skillLine.expertise}
+                  logo={skillLine.logo}
+                /&gt;
+              ))}
+            &lt;/div&gt;
+
+            {/* Track 2 (Identical mirror for the loop) */}
+            &lt;div
+              aria-hidden=&quot;true&quot;
+              class={`flex w-max shrink-0 gap-6 pr-6 ${animationClass} group-hover/row:[animation-play-state:paused]`}
+            &gt;
+              {trackItems.map((skillLine) =&gt; (
+                &lt;SkillCardItem
+                  name={skillLine.name}
+                  expertise={skillLine.expertise}
+                  logo={skillLine.logo}
+                /&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        );
+      })
+    }
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/pages/blog/index.astro">---
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import { getCollection } from &quot;astro:content&quot;;
+
+const blogs = (await getCollection(&quot;blogs&quot;)).sort(
+  (a, b) =&gt;
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+);
+
+// Group blogs by year
+const blogsByYear = blogs.reduce(
+  (acc, blog) =&gt; {
+    const year = new Date(blog.data.pubDate).getFullYear().toString();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(blog);
+    return acc;
+  },
+  {} as Record&lt;string, typeof blogs&gt;,
+);
+
+// Sort years in descending order (newest first)
+const years = Object.keys(blogsByYear).sort(
+  (a, b) =&gt; parseInt(b) - parseInt(a),
+);
+---
+
+&lt;BaseLayout&gt;
+  &lt;div class=&quot;px-6 md:px-20 mt-15 max-w-7xl mx-auto mb-20&quot;&gt;
+    &lt;div class=&quot;flex flex-col justify-center text-gray-200 gap-4 mb-6&quot;&gt;
+      &lt;h1 class=&quot;font-bold text-4xl font-pixel text-primary/90&quot;&gt;Blog&lt;/h1&gt;
+      &lt;p class=&quot;w-full md:w-[60%] text-justify text-gray-300 leading-8&quot;&gt;
+        Welcome to my blog domain where I share personal stories about things
+        I&apos;ve learned, projects I&apos;m hacking on and just general findings.
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;flex flex-col gap-10&quot;&gt;
+      {
+        years.map((year) =&gt; (
+          &lt;div class=&quot;flex flex-col gap-6&quot;&gt;
+            &lt;div class=&quot;flex items-center gap-4 mt-4&quot;&gt;
+              &lt;h2 class=&quot;text-3xl font-bold font-pixel text-gray-200&quot;&gt;
+                {year}
+              &lt;/h2&gt;
+              &lt;div class=&quot;flex-grow h-px bg-white/10 rounded-full&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;grid grid-cols-1 gap-6&quot;&gt;
+              {blogsByYear[year].map((blog) =&gt; (
+                &lt;a
+                  href={`/blog/${blog.id}`}
+                  class=&quot;group flex flex-col gap-3 p-6 rounded-2xl bg-white/2 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:bg-white/[0.04] bg-transparent hover:shadow-none&quot;
+                &gt;
+                  &lt;h3 class=&quot;text-2xl font-pixel font-bold text-primary/80 group-hover:text-primary transition-colors&quot;&gt;
+                    {blog.data.title}
+                  &lt;/h3&gt;
+                  &lt;p class=&quot;text-sm text-gray-400&quot;&gt;
+                    {new Date(blog.data.pubDate).toLocaleDateString(&quot;en-US&quot;, {
+                      // month: &quot;long&quot;,
+                      // day: &quot;numeric&quot;,
+                      dateStyle: &quot;long&quot;,
+                    })}
+                  &lt;/p&gt;
+                  &lt;p class=&quot;text-gray-300 line-clamp-3&quot;&gt;
+                    {blog.data.description}
+                  &lt;/p&gt;
+                  {blog.data.tags &amp;&amp; (
+                    &lt;div class=&quot;flex gap-2 mt-2&quot;&gt;
+                      {blog.data.tags.map((tag: string) =&gt; (
+                        &lt;span class=&quot;text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary/80 border border-primary/20&quot;&gt;
+                          #{tag}
+                        &lt;/span&gt;
+                      ))}
+                    &lt;/div&gt;
+                  )}
+                &lt;/a&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;</file><file path=".gitignore">*.xml
+*.log
+
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/</file><file path="src/components/experience/ExperienceCard.astro">---
 import { Image } from &quot;astro:assets&quot;;
 import { Icon } from &quot;astro-icon/components&quot;;
 import type { Experience } from &quot;@/types&quot;;
@@ -1594,10 +1565,10 @@ const parseBold = (text: string) =&gt; {
 ---
 
 &lt;div
-  class=&quot;reveal-card opacity-0 translate-y-16 transition-all duration-1000 ease-out relative flex flex-col pl-15 will-change-transform&quot;
+  class=&quot;reveal-card opacity-0 translate-y-16 transition-all duration-1000 ease-out relative flex flex-col pl-8 md:pl-15 will-change-transform&quot;
 &gt;
   &lt;div
-    class=&quot;group relative flex flex-col gap-8 px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] transition-all duration-500&quot;
+    class=&quot;group relative flex flex-col gap-8 px-4 md:px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] transition-all duration-500&quot;
   &gt;
     &lt;div
       class=&quot;absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500&quot;
@@ -1620,7 +1591,9 @@ const parseBold = (text: string) =&gt; {
         &lt;/h3&gt;
       &lt;/div&gt;
 
-      &lt;div class=&quot;flex gap-8 justify-center text-sm&quot;&gt;
+      &lt;div
+        class=&quot;flex flex-col md:flex-row gap-8 justify-center text-sm w-fit md:w-full&quot;
+      &gt;
         &lt;div
           class=&quot;flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md&quot;
         &gt;
@@ -1661,7 +1634,7 @@ const parseBold = (text: string) =&gt; {
                         title={name}
                         class=&quot;flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100&quot;
                       &gt;
-                        &lt;Icon name={logo} class=&quot;w-10 h-10 &quot; /&gt;
+                        &lt;Icon name={logo} class=&quot;w-8 h-8 md:w-10 md:h-10 &quot; /&gt;
                       &lt;/div&gt;
                     ) : (
                       &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
@@ -1678,7 +1651,7 @@ const parseBold = (text: string) =&gt; {
       &lt;ul class=&quot;list-none text-gray-100 flex flex-col gap-5 mt-0&quot;&gt;
         {
           points.map((p) =&gt; (
-            &lt;li class=&quot;flex items-start gap-3 group/item text-lg&quot;&gt;
+            &lt;li class=&quot;flex items-start gap-3 group/item text-base md:text-lg&quot;&gt;
               &lt;Icon
                 name=&quot;weui:arrow-filled&quot;
                 class=&quot;w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all&quot;
@@ -1747,7 +1720,7 @@ import ParticlesBackground from &quot;@/components/home/ParticlesBackground&quot
 
 &lt;section
   id=&quot;contact&quot;
-  class=&quot;min-h-screen relative mx-auto flex flex-col justify-center items-center&quot;
+  class=&quot;min-h-screen relative mx-auto flex flex-col justify-center items-center pb-20&quot;
 &gt;
   &lt;ParticlesBackground
     id=&quot;contact-particles&quot;
@@ -1788,245 +1761,268 @@ import ParticlesBackground from &quot;@/components/home/ParticlesBackground&quot
       Let&apos;s build something great together
     &lt;/p&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex w-[80%] gap-15 mt-25&quot;&gt;
+  &lt;div
+    class=&quot;flex flex-col lg:flex-row w-[90%] lg:w-[80%] gap-10 lg:gap-15 mt-16 md:mt-25&quot;
+  &gt;
     &lt;EmailCard /&gt;
     &lt;DirectContact /&gt;
   &lt;/div&gt;
-&lt;/section&gt;</file><file path="src/components/Navigation.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+&lt;/section&gt;</file><file path="src/components/project/ProjectCarousel.tsx">import { useState, useRef, useEffect } from &quot;react&quot;;
+import { Icon } from &quot;@iconify/react&quot;;
 
-interface NavigationItem {
-  id: string;
-  label: string;
-}
+export type CarouselMedia = {
+  type: &quot;image&quot; | &quot;video&quot;;
+  src: string;
+  thumbSrc?: string;
+};
 
-const navItems: NavigationItem[] = [
-  { id: &quot;home&quot;, label: &quot;Home&quot; },
-  { id: &quot;about&quot;, label: &quot;About&quot; },
-  { id: &quot;experience&quot;, label: &quot;Experience&quot; },
-  { id: &quot;skills&quot;, label: &quot;Skills&quot; },
-  { id: &quot;projects&quot;, label: &quot;Projects&quot; },
-  { id: &quot;contact&quot;, label: &quot;Contact&quot; },
-];
-
-export default function Navbar() {
-  const [activeSection, setActiveSection] = useState&lt;string&gt;(&quot;home&quot;);
+export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
+  const [currentIndex, setCurrentIndex] = useState&lt;number&gt;(0);
+  const thumbnailRef = useRef&lt;HTMLDivElement&gt;(null);
 
 
-  const navRefs = useRef&lt;Record&lt;string, HTMLAnchorElement | null&gt;&gt;({});
-
-  const [isScrolled, setIsScrolled] = useState&lt;Boolean&gt;(false);
-
-
-  const [underlineStyle, setUnderlineStyle] = useState({
-    width: 0,
-    transform: &quot;translateX(0px)&quot;,
-  });
-
-
-  const updateUnderlinePosition = () =&gt; {
-    const activeItemRef = navRefs.current[activeSection];
-    if (activeItemRef) {
-      setUnderlineStyle({
-        width: activeItemRef.offsetWidth,
-        transform: `translateX(${activeItemRef.offsetLeft}px)`,
+  useEffect(() =&gt; {
+    if (!thumbnailRef.current) return;
+    const activeThumb = thumbnailRef.current.children[
+      currentIndex
+    ] as HTMLElement;
+    if (activeThumb) {
+      activeThumb.scrollIntoView({
+        behavior: &quot;smooth&quot;,
+        block: &quot;nearest&quot;,
+        inline: &quot;center&quot;,
       });
     }
+  }, [currentIndex]);
+
+  if (!media || media.length === 0) {
+    return (
+      &lt;div className=&quot;flex p-4 items-center justify-center&quot;&gt;
+        &lt;h1&gt;Empty Carousel&lt;/h1&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  const goToSlide = (slideIndex: number) =&gt; setCurrentIndex(slideIndex);
+
+  const goToPrevious = () =&gt; {
+    setCurrentIndex(currentIndex === 0 ? media.length - 1 : currentIndex - 1);
+  };
+
+  const goToNext = () =&gt; {
+    setCurrentIndex(currentIndex === media.length - 1 ? 0 : currentIndex + 1);
   };
 
 
-  useEffect(() =&gt; {
-    updateUnderlinePosition();
+  const handleSliderChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    const progress = Number(e.target.value);
+    const newIndex = Math.round((progress / 100) * (media.length - 1));
+    setCurrentIndex(newIndex);
+  };
 
+  const currentItem = media[currentIndex];
 
-    window.addEventListener(&quot;resize&quot;, updateUnderlinePosition);
-    return () =&gt; window.removeEventListener(&quot;resize&quot;, updateUnderlinePosition);
-  }, [activeSection]);
-
-  useEffect(() =&gt; {
-    const handleScroll = () =&gt; {
-      setIsScrolled(window.scrollY &gt; 10);
-    };
-
-    window.addEventListener(&quot;scroll&quot;, handleScroll);
-
-
-    handleScroll();
-
-    return () =&gt; {
-      window.removeEventListener(&quot;scroll&quot;, handleScroll);
-    };
-  }, []);
-
-
-  useEffect(() =&gt; {
-    const options = {
-      root: null,
-      rootMargin: &quot;-50% 0px -50% 0px&quot;,
-    };
-
-    const observer = new IntersectionObserver((entries) =&gt; {
-      entries.forEach((entry) =&gt; {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, options);
-
-    const sections = document.querySelectorAll(&quot;section[id]&quot;);
-    sections.forEach((section) =&gt; observer.observe(section));
-
-    return () =&gt; {
-      sections.forEach((section) =&gt; observer.unobserve(section));
-    };
-  }, []);
+  const currentProgress =
+    media.length &gt; 1 ? (currentIndex / (media.length - 1)) * 100 : 0;
 
   return (
-    &lt;header
-      id=&quot;navigation-bar&quot;
-      className={`w-full h-[50px] z-20 flex justify-between items-center  bg-transparent px-20 sticky top-0 backdrop-blur-md transition-colors duration-300 border-b ${
-        isScrolled ? &quot;border-slate-200/20 shadow-sm &quot; : &quot;border-transparent&quot;
-      }`}
-    &gt;
-      &lt;div&gt;
-        &lt;a href=&quot;/&quot;&gt;Logo&lt;/a&gt;
-      &lt;/div&gt;
-      &lt;nav className=&quot;relative flex gap-10 font-bold text-gray-200&quot;&gt;
-        {navItems.map((item) =&gt; (
-          &lt;a
-            key={item.id}
-            href={`/#${item.id}`}
-            ref={(el) =&gt; {
-              navRefs.current[item.id] = el;
-            }}
-            className={`relative hover:bg-transparent py-1 hover:border-none hover:shadow-none transition-colors duration-300 z-10 ${
-              activeSection === item.id ? &quot;text-primary&quot; : &quot;hover:text-primary&quot;
-            }`}
+    &lt;div className=&quot;flex flex-col gap-4&quot;&gt;
+      {}
+      &lt;div className=&quot;relative w-full aspect-video mx-auto lg:max-h-[400px] rounded-lg border-gray-300&quot;&gt;
+        {currentItem.type === &quot;video&quot; ? (
+          &lt;video
+            key={`${currentIndex}-${currentItem.src}`}
+            src={currentItem.src}
+            className=&quot;w-full h-full object-contain bg-black/5 rounded-lg&quot;
+            preload=&quot;metadata&quot;
+            controls
+            playsInline
           &gt;
-            {item.label}
-          &lt;/a&gt;
-        ))}
+            Your browser does not support the video tag.
+          &lt;/video&gt;
+        ) : (
+          &lt;img
+            key={`${currentIndex}-${currentItem.src}`}
+            sizes=&quot;(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 40vw&quot;
+            fetchPriority=&quot;high&quot;
+            loading=&quot;eager&quot;
+            decoding=&quot;sync&quot;
+            src={currentItem.src}
+            alt={`Main viewer displaying slide ${currentIndex + 1}`}
+            className=&quot;w-full h-full object-contain transition-opacity duration-300 ease-in-out&quot;
+          /&gt;
+        )}
+      &lt;/div&gt;
 
+      {}
+      {media.length &gt; 1 &amp;&amp; (
         &lt;div
-          id=&quot;nav-underline&quot;
-          className=&quot;absolute -bottom-px left-0 h-0.5 bg-primary transition-all duration-300 ease-out&quot;
-          style={underlineStyle}
-        /&gt;
-      &lt;/nav&gt;
-    &lt;/header&gt;
+          className=&quot;flex gap-2 mt-2 px-2 overflow-x-auto flex-nowrap scroll-smooth [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]&quot;
+          ref={thumbnailRef}
+        &gt;
+          {media.map((item, index) =&gt; {
+            return (
+              &lt;button
+                key={index}
+                onClick={() =&gt; goToSlide(index)}
+
+                className={`shrink-0 w-18 h-12 md:w-22 md:h-16 relative overflow-hidden rounded border-2 transition-all duration-200 group ${
+                  index === currentIndex
+                    ? &quot;border-primary-accent&quot;
+                    : &quot;border-transparent hover:border-primary-accent/50&quot;
+                } focus:outline-none `}
+                aria-label={`Go to ${item.type} ${index + 1}`}
+              &gt;
+                &lt;div className=&quot;absolute inset-0 bg-gray-200 flex items-center justify-center&quot;&gt;
+                  {item.type === &quot;video&quot; ? (
+                    &lt;&gt;
+                      &lt;video
+                        src={`${item.src}#t=0.1`}
+                        className=&quot;object-cover w-full h-full&quot;
+                        preload=&quot;metadata&quot;
+                        muted
+                        playsInline
+                      /&gt;
+                      &lt;div className=&quot;absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors&quot;&gt;
+                        &lt;Icon
+                          icon=&quot;lucide:play&quot;
+                          className=&quot;text-white w-6 h-6 drop-shadow-md&quot;
+                        /&gt;
+                      &lt;/div&gt;
+                    &lt;/&gt;
+                  ) : (
+                    &lt;img
+                      src={item.thumbSrc || item.src}
+                      alt={`Thumbnail ${index + 1}`}
+                      className=&quot;object-cover w-full h-full&quot;
+                      loading=&quot;lazy&quot;
+                      decoding=&quot;async&quot;
+                      sizes=&quot;64px&quot;
+                    /&gt;
+                  )}
+                &lt;/div&gt;
+                {index !== currentIndex &amp;&amp; item.type !== &quot;video&quot; &amp;&amp; (
+                  &lt;div className=&quot;absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-200&quot;&gt;&lt;/div&gt;
+                )}
+              &lt;/button&gt;
+            );
+          })}
+        &lt;/div&gt;
+      )}
+
+      {}
+      {media.length &gt; 1 &amp;&amp; (
+        &lt;div className=&quot;flex items-center justify-between mt-2&quot;&gt;
+          &lt;button
+            onClick={goToPrevious}
+            className=&quot;py-0 px-2 flex justify-center items-center rounded-md h-fit&quot;
+          &gt;
+            &lt;Icon icon=&quot;lucide:chevron-left&quot; width={28} height={28} /&gt;
+          &lt;/button&gt;
+
+          &lt;input
+            type=&quot;range&quot;
+            min=&quot;0&quot;
+            max=&quot;100&quot;
+            value={currentProgress}
+            onChange={handleSliderChange}
+            className=&quot;w-full h-full bg-gray-500/10 rounded-none appearance-none cursor-pointer transition-all border-none focus:outline-none [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-[100px] [&amp;::-webkit-slider-thumb]:h-2 [&amp;::-webkit-slider-thumb]:bg-primary [&amp;::-webkit-slider-thumb]:rounded-sm [&amp;::-moz-range-thumb]:appearance-none [&amp;::-moz-range-thumb]:w-[100px] [&amp;::-moz-range-thumb]:h-2 [&amp;::-moz-range-thumb]:bg-primary [&amp;::-moz-range-thumb]:border-none [&amp;::-moz-range-thumb]:rounded-sm&quot;
+          /&gt;
+
+          &lt;button
+            onClick={goToNext}
+            className=&quot;py-0 px-2 flex justify-center items-center rounded-md h-fit&quot;
+          &gt;
+            &lt;Icon icon=&quot;lucide:chevron-right&quot; width={28} height={28} /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
   );
-}</file><file path="src/components/Skills.astro">---
-import SkillCard from &quot;./skills/SkillCard.astro&quot;;
-import { skillsData } from &quot;@/content/skills&quot;;
----
+}
 
-&lt;section id=&quot;skills&quot; class=&quot;min-h-screen px-12&quot;&gt;
-  &lt;h1 class=&quot;font-bold text-6xl text-center mb-20 font-pixel&quot;&gt;My SkillSet&lt;/h1&gt;
-  &lt;div class=&quot;space-y-20&quot;&gt;
-    {
-      skillsData.map((skillLine, index) =&gt; {
-        var reverse = false;
-        if (index % 2 === 1) {
-          reverse = true;
-        }
-        return &lt;SkillCard skillLine={skillLine} reverse={reverse} /&gt;;
-      })
+function CustomVideoPlayer({ src }: { src: string }) {
+  const videoRef = useRef&lt;HTMLVideoElement&gt;(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const togglePlay = () =&gt; {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-  &lt;/div&gt;
-&lt;/section&gt;</file><file path=".gitignore">*.xml
-*.log
+  };
 
-# build output
-dist/
+  const handleTimeUpdate = () =&gt; {
+    if (videoRef.current) {
+      const currentProgress =
+        (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setProgress(currentProgress);
+    }
+  };
 
-# generated types
-.astro/
+  const handleProgressChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    const newProgress = Number(e.target.value);
+    setProgress(newProgress);
+    if (videoRef.current) {
+      videoRef.current.currentTime =
+        (newProgress / 100) * videoRef.current.duration;
+    }
+  };
 
-# dependencies
-node_modules/
+  return (
+    &lt;div className=&quot;relative w-full h-full group bg-black/5 rounded-lg overflow-hidden flex items-center justify-center bg-black&quot;&gt;
+      &lt;video
+        ref={videoRef}
+        src={src}
+        className=&quot;w-full h-full object-contain&quot;
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={() =&gt; setIsPlaying(false)}
+        onClick={togglePlay}
+        playsInline
+      /&gt;
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+      {}
+      {!isPlaying &amp;&amp; (
+        &lt;button
+          onClick={togglePlay}
+          className=&quot;absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors z-10&quot;
+        &gt;
+          &lt;div className=&quot;bg-primary/90 text-black p-4 rounded-full shadow-lg transform transition-transform hover:scale-110&quot;&gt;
+            &lt;Icon icon=&quot;lucide:play&quot; width={32} height={32} /&gt;
+          &lt;/div&gt;
+        &lt;/button&gt;
+      )}
 
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
-.DS_Store
-
-# jetbrains setting folder
-.idea/</file><file path="src/components/About.astro">---
-import { Image } from &quot;astro:assets&quot;;
-import { Icon } from &quot;astro-icon/components&quot;;
-import SenoProfile from &quot;@/assets/images/Jas Hitam Seno 2.png&quot;;
-import TiltWrapper from &quot;@/components/TiltWrapper&quot;;
----
-
-&lt;section id=&quot;about&quot; class=&quot;min-h-screen&quot;&gt;
-  &lt;h1 class=&quot;text-6xl font-bold text-center mb-20 font-pixel&quot;&gt;Who Am I?&lt;/h1&gt;
-
-  &lt;div
-    class=&quot;flex flex-col-reverse md:flex-row items-center w-[80%] mx-auto gap-12 lg:gap-20&quot;
-  &gt;
-    {/* LEFT SIDE */}
-    &lt;div class=&quot;w-full md:w-[60%] flex flex-col gap-6&quot;&gt;
-      &lt;div class=&quot;flex gap-4 items-center&quot;&gt;
-        &lt;div
-          class=&quot;flex items-center justify-center
-    w-12 h-12 rounded-full
-    bg-white/5 backdrop-blur-md border border-white/10
-    shadow-[0_0_30px_rgba(16,185,129,0.4)]&quot;
+      {}
+      &lt;div className=&quot;absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-4 z-20&quot;&gt;
+        &lt;button
+          onClick={togglePlay}
+          className=&quot;text-white hover:text-primary transition-colors focus:outline-none&quot;
         &gt;
           &lt;Icon
-            name=&quot;lucide:user&quot;
-            class=&quot;w-8 h-8 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.8)]&quot;
+            icon={isPlaying ? &quot;lucide:pause&quot; : &quot;lucide:play&quot;}
+            width={24}
+            height={24}
           /&gt;
-        &lt;/div&gt;
-        &lt;h2 class=&quot;text-gray-300 text-4xl font-bold&quot;&gt;
-          About &lt;span class=&quot;text-gradient&quot;&gt;The Developer&lt;/span&gt;
-        &lt;/h2&gt;
-      &lt;/div&gt;
-      &lt;div
-        class=&quot;text-gray-300 border border-white/5 bg-white/[0.02] backdrop-blur-3xl overflow-hidden shadow-2xl px-10 py-4 leading-relaxed tracking-widest text-justify rounded-md&quot;
-      &gt;
-        &lt;p class=&quot;text-xl/loose italic&quot;&gt;
-          My name is Seno Pamungkas Rahman. Im an avid software engineer with a
-          zest for front-end, back-end, AI, and cloud technologies. Passionate
-          about exploring new tech frontiers, I blend creativity with technical
-          skill in every project, pushing the boundaries of software innovation
-        &lt;/p&gt;
-        &lt;div
-          class=&quot;absolute w-1 h-20 bg-gradient-to-b from-primary to-transparent left-0 top-0 rounded-full&quot;
-        &gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+        &lt;/button&gt;
 
-    {/* RIGHT SIDE */}
-    &lt;div class=&quot;w-full h-[500px] md:w-[40%] flex justify-center&quot;&gt;
-      &lt;TiltWrapper
-        client:visible
-        maxTilt={15}
-        className=&quot; rounded-2xl shadow-2xl border-2 border-primary/20 group bg-white/[0.02] &quot;
-      &gt;
-        &lt;Image
-          src={SenoProfile}
-          alt=&quot;Profile&quot;
-          class=&quot;w-full h-full drop-shadow-xl group-hover:translate-z-[50px] group-hover:drop-shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700 object-cover object-top&quot;
-          }
+        &lt;input
+          type=&quot;range&quot;
+          min=&quot;0&quot;
+          max=&quot;100&quot;
+          value={progress || 0}
+          onChange={handleProgressChange}
+          className=&quot;w-full h-1.5 bg-gray-500/50 rounded-full appearance-none cursor-pointer transition-all focus:outline-none [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-4 [&amp;::-webkit-slider-thumb]:h-4 [&amp;::-webkit-slider-thumb]:bg-primary [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-moz-range-thumb]:appearance-none [&amp;::-moz-range-thumb]:w-4 [&amp;::-moz-range-thumb]:h-4 [&amp;::-moz-range-thumb]:bg-primary [&amp;::-moz-range-thumb]:border-none [&amp;::-moz-range-thumb]:rounded-full&quot;
         /&gt;
-        &lt;h2
-          class=&quot;absolute bottom-0 left-1/2 -translate-x-1/2 text-center w-[90%] text-xl font-bold bg-white/20 border border-white/5 text-gray-300 rounded-lg py-2 backdrop-blur-3xl opacity-0 group-hover:opacity-100 group-hover:bottom-[40px] transition-all duration-500 translate-z-[75px]&quot;
-        &gt;
-          Built With Passion
-        &lt;/h2&gt;
-      &lt;/TiltWrapper&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</file><file path="src/components/Experience.astro">---
+  );
+}</file><file path="src/components/Experience.astro">---
 import { experienceData } from &quot;@/content/experiences&quot;;
 import ExperienceCard from &quot;./experience/ExperienceCard.astro&quot;;
 ---
@@ -2094,10 +2090,36 @@ import ExperienceCard from &quot;./experience/ExperienceCard.astro&quot;;
 
   // If you are using Astro&apos;s ViewTransitions, this ensures the script re-runs when navigating between pages
   document.addEventListener(&quot;astro:page-load&quot;, setupTimelineScroll);
-&lt;/script&gt;</file><file path="src/layouts/BaseLayout.astro">---
+&lt;/script&gt;</file><file path="src/components/Skills.astro">---
+import SkillCard from &quot;./skills/SkillCard.astro&quot;;
+import { skillsData } from &quot;@/content/skills&quot;;
+---
+
+&lt;section id=&quot;skills&quot; class=&quot;min-h-screen px-6 md:px-20&quot;&gt;
+  &lt;h1 class=&quot;font-bold text-6xl text-center mb-20 font-pixel&quot;&gt;My SkillSet&lt;/h1&gt;
+  &lt;div class=&quot;space-y-20&quot;&gt;
+    {
+      skillsData.map((skillLine, index) =&gt; {
+        var reverse = false;
+        if (index % 2 === 1) {
+          reverse = true;
+        }
+        return &lt;SkillCard skillLine={skillLine} reverse={reverse} /&gt;;
+      })
+    }
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="src/layouts/BaseLayout.astro">---
 import &quot;../styles/global.css&quot;;
 import Navigation from &quot;@/components/Navigation.tsx&quot;;
 import { Font } from &quot;astro:assets&quot;;
+
+// Define the props accepted by this layout
+interface Props {
+  hideNav?: boolean;
+}
+
+// Extract hideNav, defaulting to false if not provided
+const { hideNav = false } = Astro.props;
 ---
 
 &lt;!doctype html&gt;
@@ -2106,54 +2128,16 @@ import { Font } from &quot;astro:assets&quot;;
     &lt;Font cssVariable=&quot;--font-pixel&quot; /&gt;
     &lt;meta charset=&quot;UTF-8&quot; /&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
-    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/favicon.svg&quot; /&gt;
-    &lt;link rel=&quot;icon&quot; href=&quot;/favicon.ico&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/SR-Logo.svg&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;/SR-Logo.ico&quot; /&gt;
     &lt;meta name=&quot;generator&quot; content={Astro.generator} /&gt;
     &lt;title&gt;Seno Pamungkas Rahman - Portfolio&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;Navigation client:load /&gt;
+    {!hideNav &amp;&amp; &lt;Navigation client:load /&gt;}
     &lt;slot /&gt;
   &lt;/body&gt;
-&lt;/html&gt;</file><file path="astro.config.mjs">// @ts-check
-import { defineConfig, fontProviders } from &quot;astro/config&quot;;
-
-import react from &quot;@astrojs/react&quot;;
-import tailwindcss from &quot;@tailwindcss/vite&quot;;
-
-import icon from &quot;astro-icon&quot;;
-
-import mdx from &quot;@astrojs/mdx&quot;;
-
-// https://astro.build/config
-export default defineConfig({
-  integrations: [react(), icon(), mdx()],
-
-  fonts: [
-    {
-      provider: fontProviders.local(),
-      name: &quot;HomeVideo&quot;,
-      cssVariable: &quot;--font-pixel&quot;,
-      options: {
-        variants: [
-          {
-            src: [&quot;./src/assets/fonts/HomeVideo.ttf&quot;],
-            weight: &quot;normal&quot;,
-            style: &quot;normal&quot;,
-          },
-        ],
-      },
-    },
-  ],
-
-  image: {
-    domains: [&quot;bucket.senop.dev&quot;],
-  },
-
-  vite: {
-    plugins: [tailwindcss()],
-  },
-});</file><file path="src/types/index.ts">import type { ImageMetadata } from &quot;astro&quot;;
+&lt;/html&gt;</file><file path="src/types/index.ts">import type { ImageMetadata } from &quot;astro&quot;;
 
 export interface Experience {
   company: string;
@@ -2183,7 +2167,306 @@ export interface Skill {
   expertise: number;
 
   logo?: string;
-}</file><file path="src/components/Projects.astro">---
+}</file><file path="astro.config.mjs">// @ts-check
+import { defineConfig, fontProviders } from &quot;astro/config&quot;;
+import react from &quot;@astrojs/react&quot;;
+import tailwindcss from &quot;@tailwindcss/vite&quot;;
+import icon from &quot;astro-icon&quot;;
+import mdx from &quot;@astrojs/mdx&quot;;
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [react(), mdx(), icon()],
+
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: &quot;HomeVideo&quot;,
+      cssVariable: &quot;--font-pixel&quot;,
+      options: {
+        variants: [
+          {
+            src: [&quot;./src/assets/fonts/HomeVideo.ttf&quot;],
+            weight: &quot;normal&quot;,
+            style: &quot;normal&quot;,
+          },
+        ],
+      },
+    },
+  ],
+
+  image: {
+    domains: [&quot;bucket.senop.dev&quot;],
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
+    resolve: {
+      dedupe: [&quot;react&quot;, &quot;react-dom&quot;],
+    },
+  },
+});</file><file path="src/components/Navigation.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+import { Icon } from &quot;@iconify/react&quot;;
+import SRLogo from &quot;@/assets/SR-Logo.png&quot;;
+
+interface NavigationItem {
+  id: string;
+  label: string;
+  href: string;
+}
+
+const navItems: NavigationItem[] = [
+  { id: &quot;home&quot;, label: &quot;Home&quot;, href: &quot;/#home&quot; },
+  { id: &quot;about&quot;, label: &quot;About&quot;, href: &quot;/#about&quot; },
+  { id: &quot;experience&quot;, label: &quot;Experience&quot;, href: &quot;/#experience&quot; },
+  { id: &quot;skills&quot;, label: &quot;Skills&quot;, href: &quot;/#skills&quot; },
+  { id: &quot;projects&quot;, label: &quot;Projects&quot;, href: &quot;/#projects&quot; },
+  { id: &quot;blog&quot;, label: &quot;Blog&quot;, href: &quot;/blog&quot; },
+  { id: &quot;contact&quot;, label: &quot;Contact&quot;, href: &quot;/#contact&quot; },
+];
+
+export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+
+  const [activeSection, setActiveSection] = useState&lt;string&gt;(&quot;&quot;);
+
+  const navRefs = useRef&lt;Record&lt;string, HTMLAnchorElement | null&gt;&gt;({});
+  const [isScrolled, setIsScrolled] = useState&lt;boolean&gt;(false);
+
+  const [underlineStyle, setUnderlineStyle] = useState({
+    width: 0,
+    transform: &quot;translateX(0px)&quot;,
+    opacity: 0, // Hide until we know the active section
+  });
+
+  const updateUnderlinePosition = () =&gt; {
+    const activeItemRef = navRefs.current[activeSection];
+    if (activeItemRef) {
+      setUnderlineStyle({
+        width: activeItemRef.offsetWidth,
+        transform: `translateX(${activeItemRef.offsetLeft}px)`,
+        opacity: 1, // Reveal underline
+      });
+    }
+  };
+
+  useEffect(() =&gt; {
+    updateUnderlinePosition();
+    window.addEventListener(&quot;resize&quot;, updateUnderlinePosition);
+    return () =&gt; window.removeEventListener(&quot;resize&quot;, updateUnderlinePosition);
+  }, [activeSection]);
+
+  useEffect(() =&gt; {
+    const handleScroll = () =&gt; {
+      setIsScrolled(window.scrollY &gt; 10);
+    };
+
+    window.addEventListener(&quot;scroll&quot;, handleScroll);
+    handleScroll();
+
+    return () =&gt; {
+      window.removeEventListener(&quot;scroll&quot;, handleScroll);
+    };
+  }, []);
+
+  useEffect(() =&gt; {
+
+    const isBlogPage = window.location.pathname.startsWith(&quot;/blog&quot;);
+
+    if (isBlogPage) {
+      setActiveSection(&quot;blog&quot;);
+      return;
+    } else {
+
+      setActiveSection(&quot;home&quot;);
+    }
+
+
+    const options = {
+      root: null,
+      rootMargin: &quot;-50% 0px -50% 0px&quot;,
+    };
+
+    const observer = new IntersectionObserver((entries) =&gt; {
+      entries.forEach((entry) =&gt; {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    const sections = document.querySelectorAll(&quot;section[id]&quot;);
+    sections.forEach((section) =&gt; observer.observe(section));
+
+    return () =&gt; {
+      sections.forEach((section) =&gt; observer.unobserve(section));
+    };
+  }, []);
+
+  return (
+    &lt;header
+      id=&quot;navigation-bar&quot;
+      className={`w-full h-[50px] z-30 flex justify-between items-center bg-transparent px-6 md:px-20 sticky top-0 backdrop-blur-md transition-colors duration-300 border-b ${
+        isScrolled ? &quot;border-slate-200/20 shadow-sm &quot; : &quot;border-transparent&quot;
+      }`}
+    &gt;
+      &lt;div&gt;
+        &lt;a href=&quot;/&quot; className=&quot;font-bold text-gray-200 hover:text-primary&quot;&gt;
+          &lt;img
+            src={SRLogo.src}
+            alt={`Seno Logo`}
+            className=&quot;h-18  object-contain&quot;
+          /&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;nav className=&quot;relative hidden md:flex gap-10 font-bold text-gray-200&quot;&gt;
+        {navItems.map((item) =&gt; (
+          &lt;a
+            key={item.id}
+            href={item.href}
+            ref={(el) =&gt; {
+              navRefs.current[item.id] = el;
+            }}
+            className={`relative hover:bg-transparent py-1 hover:border-none hover:shadow-none transition-colors duration-300 z-10 ${
+              activeSection === item.id ? &quot;text-primary&quot; : &quot;hover:text-primary&quot;
+            }`}
+          &gt;
+            {item.label}
+          &lt;/a&gt;
+        ))}
+
+        &lt;div
+          id=&quot;nav-underline&quot;
+          className=&quot;absolute -bottom-px left-0 h-0.5 bg-primary transition-all duration-300 ease-out&quot;
+          style={underlineStyle}
+        /&gt;
+      &lt;/nav&gt;
+      &lt;button
+        className=&quot;md:hidden p-2 text-gray-200 border-none&quot;
+        onClick={() =&gt; setIsMobileMenuOpen(!isMobileMenuOpen)}
+      &gt;
+        &lt;Icon icon={isMobileMenuOpen ? &quot;lucide:x&quot; : &quot;lucide:menu&quot;} width={24} /&gt;
+      &lt;/button&gt;
+
+      {isMobileMenuOpen &amp;&amp; (
+        &lt;div className=&quot;absolute top-[50px] left-0 w-full bg-bg/95 backdrop-blur-xl border-b border-white/10 flex flex-col md:hidden p-4 gap-4&quot;&gt;
+          {navItems.map((item) =&gt; (
+            &lt;a
+              key={item.id}
+              href={item.href}
+              onClick={() =&gt; setIsMobileMenuOpen(false)}
+              className={`font-bold ${activeSection === item.id ? &quot;text-primary&quot; : &quot;text-gray-200&quot;}`}
+            &gt;
+              {item.label}
+            &lt;/a&gt;
+          ))}
+        &lt;/div&gt;
+      )}
+    &lt;/header&gt;
+  );
+}</file><file path="src/components/About.astro">---
+import { Image } from &quot;astro:assets&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import SenoProfile from &quot;@/assets/images/Jas Hitam Seno 2.png&quot;;
+import UILogo from &quot;@/assets/Makara_of_Universitas_Indonesia.png&quot;;
+import TiltWrapper from &quot;@/components/TiltWrapper&quot;;
+---
+
+&lt;section id=&quot;about&quot; class=&quot;min-h-screen&quot;&gt;
+  &lt;h1 class=&quot;text-6xl font-bold text-center mb-20 font-pixel&quot;&gt;Who Am I?&lt;/h1&gt;
+
+  &lt;div
+    class=&quot;flex flex-col-reverse md:flex-row items-center w-[90%] lg:w-[80%] mx-auto gap-12 lg:gap-20&quot;
+  &gt;
+    {/* LEFT SIDE */}
+    &lt;div class=&quot;w-full md:w-[60%] flex flex-col gap-6&quot;&gt;
+      &lt;div class=&quot;flex gap-4 items-center&quot;&gt;
+        &lt;div
+          class=&quot;flex items-center justify-center
+    w-12 h-12 rounded-full
+    bg-white/5 backdrop-blur-md border border-white/10
+    shadow-[0_0_30px_rgba(16,185,129,0.4)]&quot;
+        &gt;
+          &lt;Icon
+            name=&quot;lucide:user&quot;
+            class=&quot;w-8 h-8 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.8)]&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;h2 class=&quot;text-gray-300 text-2xl md:text-4xl font-bold&quot;&gt;
+          About &lt;span class=&quot;text-gradient&quot;&gt;The Developer&lt;/span&gt;
+        &lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;text-gray-300 border border-white/5 bg-white/[0.02] backdrop-blur-3xl overflow-hidden shadow-2xl px-10 py-4 leading-relaxed tracking-widest text-justify rounded-md&quot;
+      &gt;
+        &lt;!-- &lt;p class=&quot;text-md/loose md:text-xl/loose italic&quot;&gt; --&gt;
+        &lt;!--   My name is Seno Pamungkas Rahman. Im an avid software engineer with a --&gt;
+        &lt;!--   zest for front-end, back-end, AI, and cloud technologies. Passionate --&gt;
+        &lt;!--   about exploring new tech frontiers, I blend creativity with technical --&gt;
+        &lt;!--   skill in every project, pushing the boundaries of software innovation --&gt;
+        &lt;!-- &lt;/p&gt; --&gt;
+        &lt;p class=&quot;text-md/loose md:text-xl md:leading-12 italic&quot;&gt;
+          My name is Seno Pamungkas Rahman, a Computer Engineering graduate from
+          Universitas Indonesia. I specialize in building highly concurrent
+          systems, automating cloud infrastructure across AWS and GCP, and
+          developing robust full-stack applications. Whether I am crafting
+          terminal-driven CLI tools in Go and Rust, auditing Kubernetes
+          clusters, or designing platforms with Next.js and NestJS, I am driven
+          by a passion for creating efficient, secure, and scalable solutions.
+        &lt;/p&gt;
+        &lt;div
+          class=&quot;absolute w-1 h-20 bg-gradient-to-b from-primary to-transparent left-0 top-0 rounded-full&quot;
+        &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;flex items-center gap-4 text-gray-300 border border-white/5 bg-white/[0.02] backdrop-blur-3xl overflow-hidden shadow-2xl px-5 py-4 leading-relaxed tracking-widest text-justify rounded-md&quot;
+      &gt;
+        &lt;Image
+          src={UILogo}
+          alt=&quot;Logo Universitas Indonesia&quot;
+          class=&quot;w-16 h-16 md:w-18 md:h-18 object-contain&quot;
+          }
+        /&gt;
+        &lt;div&gt;
+          &lt;p class=&quot;text-md/loose md:text-xl/loose italic&quot;&gt;
+            &lt;span class=&quot;text-primary/80 font-bold&quot;&gt;Universitas Indonesia&lt;/span&gt; -
+            Computer Engineer
+          &lt;/p&gt;
+          &lt;p class=&quot;text-md/loose md:text-xl/loose italic&quot;&gt;
+            &lt;span class=&quot;font-bold text-primary/80&quot;&gt;GPA:&lt;/span&gt; 3.78
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;absolute w-1 h-20 bg-linear-to-b from-primary to-transparent right-0 top-0 rounded-full&quot;
+        &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    {/* RIGHT SIDE */}
+    &lt;div class=&quot;w-full h-[500px] md:w-[40%] flex justify-center&quot;&gt;
+      &lt;TiltWrapper
+        client:visible
+        maxTilt={15}
+        className=&quot; rounded-2xl shadow-2xl border-2 border-primary/20 group bg-white/[0.02] &quot;
+      &gt;
+        &lt;Image
+          src={SenoProfile}
+          alt=&quot;Profile&quot;
+          class=&quot;w-full h-full drop-shadow-xl group-hover:translate-z-[50px] group-hover:drop-shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700 object-cover object-top&quot;
+          }
+        /&gt;
+        &lt;h2
+          class=&quot;absolute bottom-0 left-1/2 -translate-x-1/2 text-center w-[90%] text-xl font-bold bg-white/20 border border-white/5 text-gray-300 rounded-lg py-2 backdrop-blur-3xl opacity-0 group-hover:opacity-100 group-hover:bottom-[40px] transition-all duration-500 translate-z-[75px]&quot;
+        &gt;
+          Built With Passion
+        &lt;/h2&gt;
+      &lt;/TiltWrapper&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="src/components/Projects.astro">---
 import { getCollection } from &quot;astro:content&quot;;
 import ProjectCard from &quot;./project/ProjectCard.astro&quot;;
 
@@ -2220,7 +2503,7 @@ const activeProjectTypes = [...new Set(projects.map((proj) =&gt; proj.data.type)
 
   {/* Project Grid */}
   &lt;div
-    class=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center items-stretch gap-10 px-4&quot;
+    class=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center items-stretch gap-10 px-15 md:px-4&quot;
   &gt;
     {
       projects.map((proj) =&gt; (
@@ -2285,7 +2568,27 @@ const activeProjectTypes = [...new Set(projects.map((proj) =&gt; proj.data.type)
 
   setupFilters();
   document.addEventListener(&quot;astro:page-load&quot;, setupFilters);
-&lt;/script&gt;</file><file path="src/components/Home.astro">---
+&lt;/script&gt;</file><file path="tsconfig.json">{
+  &quot;extends&quot;: &quot;astro/tsconfigs/strict&quot;,
+  &quot;include&quot;: [
+    &quot;.astro/types.d.ts&quot;,
+    &quot;**/*&quot;
+  ],
+  &quot;exclude&quot;: [
+    &quot;dist&quot;
+  ],
+  &quot;compilerOptions&quot;: {
+    &quot;jsx&quot;: &quot;react-jsx&quot;,
+    &quot;jsxImportSource&quot;: &quot;react&quot;,
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;:{
+      &quot;@/*&quot;:[&quot;src/*&quot;],
+      &quot;@/components/*&quot;: [&quot;src/components/*&quot;],
+      &quot;@/layouts/*&quot;: [&quot;src/layouts/*&quot;],
+      &quot;@/styles/*&quot;: [&quot;src/styles/*&quot;]
+    }
+  }
+}</file><file path="src/components/Home.astro">---
 import TypewriterText from &quot;@/components/home/TypewriterText&quot;;
 import ParticlesBackground from &quot;@/components/home/ParticlesBackground&quot;;
 
@@ -2352,7 +2655,7 @@ const blogEndpoint: string = &quot;/blog&quot;;
     client:idle
   /&gt;
 
-  &lt;div class=&quot;w-[60%] max-w-5xl flex flex-col gap-9&quot;&gt;
+  &lt;div class=&quot;w-[90%] lg:w-[60%] max-w-5xl flex flex-col gap-9&quot;&gt;
     {/* Main Title Section */}
     &lt;div class=&quot;relative flex flex-col gap-10 text-center pb-4&quot;&gt;
       &lt;div
@@ -2360,10 +2663,10 @@ const blogEndpoint: string = &quot;/blog&quot;;
       &gt;
       &lt;/div&gt;
       &lt;div class=&quot;relative z-10 font-bold&quot;&gt;
-        &lt;h1 class=&quot;text-gray-200 text-7xl mb-12&quot;&gt;
+        &lt;h1 class=&quot;text-gray-200 text-5xl md:text-7xl mb-12&quot;&gt;
           Hi, I&apos;m &lt;span class=&quot;text-gradient&quot;&gt;Seno Pamungkas Rahman&lt;/span&gt;
         &lt;/h1&gt;
-        &lt;h2 class=&quot;text-5xl text-gray-300/90 mt-4&quot;&gt;
+        &lt;h2 class=&quot;text-3xl md:text-5xl text-gray-300/90 mt-4&quot;&gt;
           &lt;TypewriterText client:load /&gt;
         &lt;/h2&gt;
       &lt;/div&gt;
@@ -2375,11 +2678,18 @@ const blogEndpoint: string = &quot;/blog&quot;;
     &lt;/div&gt;
 
     {/* Description Section */}
-    &lt;p class=&quot;text-gray-50 text-2xl tracking-wider leading-relaxed&quot;&gt;
-      An avid software engineer with a zest for front-end, back-end, AI, and
-      cloud technologies. Passionate about exploring new tech frontiers, I blend
-      creativity with technical skill in every project, pushing the boundaries
-      of software innovation
+    &lt;!-- &lt;p class=&quot;text-gray-50 text-xl md:text-2xl tracking-wider leading-relaxed&quot;&gt; --&gt;
+    &lt;!--   An avid software engineer with a zest for front-end, back-end, AI, and --&gt;
+    &lt;!--   cloud technologies. Passionate about exploring new tech frontiers, I blend --&gt;
+    &lt;!--   creativity with technical skill in every project, pushing the boundaries --&gt;
+    &lt;!--   of software innovation --&gt;
+    &lt;!-- &lt;/p&gt; --&gt;
+    &lt;p class=&quot;text-gray-50 text-xl md:text-2xl tracking-wider leading-relaxed&quot;&gt;
+      A Platform and Full-Stack Software Engineer specializing in cloud-native
+      infrastructure, systems programming, and scalable web applications. From
+      architecting high-concurrency Go tools and managing Kubernetes
+      environments to building dynamic frontend experiences, I bridge the gap
+      between robust backend operations and seamless user interactions.
     &lt;/p&gt;
 
     {/* Buttons Section */}
@@ -2401,27 +2711,157 @@ const blogEndpoint: string = &quot;/blog&quot;;
       &lt;/a&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/section&gt;</file><file path="tsconfig.json">{
-  &quot;extends&quot;: &quot;astro/tsconfigs/strict&quot;,
-  &quot;include&quot;: [
-    &quot;.astro/types.d.ts&quot;,
-    &quot;**/*&quot;
-  ],
-  &quot;exclude&quot;: [
-    &quot;dist&quot;
-  ],
-  &quot;compilerOptions&quot;: {
-    &quot;jsx&quot;: &quot;react-jsx&quot;,
-    &quot;jsxImportSource&quot;: &quot;react&quot;,
-    &quot;baseUrl&quot;: &quot;.&quot;,
-    &quot;paths&quot;:{
-      &quot;@/*&quot;:[&quot;src/*&quot;],
-      &quot;@/components/*&quot;: [&quot;src/components/*&quot;],
-      &quot;@/layouts/*&quot;: [&quot;src/layouts/*&quot;],
-      &quot;@/styles/*&quot;: [&quot;src/styles/*&quot;]
-    }
-  }
-}</file><file path="src/styles/global.css">@import &quot;tailwindcss&quot;;
+&lt;/section&gt;</file><file path="src/components/project/ProjectCard.astro">---
+import type { CollectionEntry } from &quot;astro:content&quot;;
+import TiltWrapper from &quot;@/components/TiltWrapper&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import { Image } from &quot;astro:assets&quot;;
+
+interface Props {
+  project: CollectionEntry&lt;&quot;projects&quot;&gt;;
+}
+
+const MAX_TECH_LENGTH: number = 6;
+const { project } = Astro.props;
+const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
+  project.data;
+---
+
+&lt;div class=&quot;w-full h-full md:w-[450px] flex justify-center group&quot;&gt;
+  &lt;TiltWrapper client:visible maxTilt={4} className=&quot;w-full h-full&quot;&gt;
+    &lt;div
+      class=&quot;w-full h-full p-2 rounded-2xl shadow-xl shadow-primary/30 bg-primary/50 group-hover:shadow-primary/50 group-hover:shadow-2xl group-hover:bg-primary/100 group-hover:-translate-y-5 transition-all duration-500 flex flex-col overflow-hidden&quot;
+    &gt;
+      &lt;div
+        class=&quot;bg-bg/98 w-full h-full flex flex-col overflow-hidden rounded-xl&quot;
+      &gt;
+        &lt;a
+          href={`/project/${project.id}`}
+          class=&quot;relative w-full h-48 group/image cursor-pointer&quot;
+        &gt;
+          {
+            image ? (
+              &lt;div class=&quot;w-full h-48 shrink-0 mb-4 bg-black overflow-hidden rounded-t-lg&quot;&gt;
+                &lt;Image
+                  src={image}
+                  alt=&quot;Project Image&quot;
+                  class=&quot;w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500&quot;
+                /&gt;
+              &lt;/div&gt;
+            ) : (
+              &lt;div class=&quot;w-full h-48 rounded-t-lg shrink-0 mb-4 bg-white/5 border border-white/10 flex items-center justify-center&quot;&gt;
+                &lt;span class=&quot;text-gray-500 font-bold tracking-widest text-sm&quot;&gt;
+                  NO IMAGE
+                &lt;/span&gt;
+              &lt;/div&gt;
+            )
+          }
+          &lt;div
+            class=&quot;absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300&quot;
+          &gt;
+            &lt;p class=&quot;font-bold text-white text-center text-lg px-4&quot;&gt;
+              Click for more info
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+        {/* Text Group */}
+        &lt;div class=&quot;w-full h-full flex flex-col px-6 py-4&quot;&gt;
+          &lt;div class=&quot;flex flex-col flex-1&quot;&gt;
+            &lt;div class=&quot;flex flex-col gap-5&quot;&gt;
+              &lt;div
+                class=&quot;flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between&quot;
+              &gt;
+                &lt;a
+                  href={`projects/${project.id}`}
+                  class=&quot;flex relative gap-2 group/title font-bold text-2xl text-primary/90 hover:text-primary/100 hover:bg-transparent hover:border-none drop-shadow-none shadow-none cursor-pointer&quot;
+                &gt;
+                  &lt;h1 class=&quot;font-pixel&quot;&gt;{title}&lt;/h1&gt;
+                  &lt;Icon
+                    name=&quot;mdi:external-link&quot;
+                    class=&quot;absolute w-5 h-5 right-0 top-0 -translate-y-1 translate-x-[140%] opacity-0 group-hover/title:translate-x-[120%] group-hover/title:translate-y-1 group-hover/title:opacity-100 transition-all duration-300&quot;
+                  /&gt;
+                &lt;/a&gt;
+                &lt;p
+                  class=&quot;border border-primary px-4 py-1 rounded-lg bg-primary/10 font-bold w-fit&quot;
+                &gt;
+                  {type}
+                &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;p class=&quot;text-justify text-lg/loose text-gray-200 line-clamp-5&quot;&gt;
+                {description}
+              &lt;/p&gt;
+              &lt;div&gt;
+                &lt;p class=&quot;font-bold mb-3 text-gray-300/70&quot;&gt;Technologies&lt;/p&gt;
+                &lt;div class=&quot;flex flex-wrap gap-2&quot;&gt;
+                  {
+                    tools.slice(0, MAX_TECH_LENGTH).map((tool) =&gt; (
+                      &lt;div title={tool.name} class=&quot;flex gap-4&quot;&gt;
+                        {tool.logo ? (
+                          &lt;div class=&quot;flex items-center justify-center p-1 rounded-lg border border-white/20  hover:border-primary/70 transition-all duration-300 hover:bg-primary/10 hover:-translate-y-1 text-gray-100&quot;&gt;
+                            &lt;Icon
+                              name={tool.logo}
+                              class=&quot;w-8 h-8 md:w-10 md:h-10 &quot;
+                            /&gt;
+                          &lt;/div&gt;
+                        ) : (
+                          &lt;div class=&quot;flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+                            {title.charAt(0)}
+                          &lt;/div&gt;
+                        )}
+                      &lt;/div&gt;
+                    ))
+                  }
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            {/* Buttons Group */}
+            &lt;div class=&quot;flex flex-col md:flex-row gap-3 mt-auto pt-8&quot;&gt;
+              {/* Live Demo Button */}
+              &lt;a
+                href={demoUrl || undefined}
+                target={demoUrl ? &quot;_blank&quot; : undefined}
+                rel={demoUrl ? &quot;noopener noreferrer&quot; : undefined}
+                class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+                  demoUrl
+                    ? &quot;cursor-pointer border-primary/50&quot;
+                    : &quot;opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500&quot;
+                }`}
+              &gt;
+                {/* Added shrink-0 to prevent icon from squishing */}
+                &lt;Icon
+                  name=&quot;mdi:world-wide-web&quot;
+                  class=&quot;w-6 h-6 sm:w-8 sm:h-8 shrink-0&quot;
+                /&gt;
+                {/* Added whitespace-nowrap to prevent text wrapping */}
+                &lt;p class=&quot;font-bold whitespace-nowrap&quot;&gt;Live Demo&lt;/p&gt;
+              &lt;/a&gt;
+
+              {/* Source Code Button */}
+              &lt;a
+                href={sourceCodeUrl || undefined}
+                target={sourceCodeUrl ? &quot;_blank&quot; : undefined}
+                rel={sourceCodeUrl ? &quot;noopener noreferrer&quot; : undefined}
+                class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+                  sourceCodeUrl
+                    ? &quot;cursor-pointer border-primary/50&quot;
+                    : &quot;opacity-40 pointer-events-none border-gray-600 text-gray-500&quot;
+                }`}
+              &gt;
+                &lt;Icon
+                  name=&quot;mdi:code-tags&quot;
+                  class=&quot;w-6 h-6 sm:w-8 sm:h-8 shrink-0&quot;
+                /&gt;
+                &lt;p class=&quot;font-bold whitespace-nowrap&quot;&gt;Source&lt;/p&gt;
+              &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/TiltWrapper&gt;
+&lt;/div&gt;</file><file path="src/styles/global.css">@import &quot;tailwindcss&quot;;
 
 @theme inline {
 
@@ -2453,8 +2893,8 @@ const blogEndpoint: string = &quot;/blog&quot;;
   --color-glow-green: oklch(0.9 0.28 150);
 
 
-  --animate-marquee: marquee 20s linear infinite;
-  --animate-marquee-reverse: marquee 20s linear infinite reverse;
+  --animate-marquee: marquee 80s linear infinite;
+  --animate-marquee-reverse: marquee 80s linear infinite reverse;
 
 
   @keyframes marquee {
@@ -2462,7 +2902,8 @@ const blogEndpoint: string = &quot;/blog&quot;;
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(-50%);
+
+      transform: translateX(-100%);
     }
   }
 }
@@ -2597,6 +3038,17 @@ const blogEndpoint: string = &quot;/blog&quot;;
     &quot;build&quot;: &quot;astro build&quot;,
     &quot;preview&quot;: &quot;astro preview&quot;,
     &quot;astro&quot;: &quot;astro&quot;
+  },
+  &quot;pnpm&quot;: {
+    &quot;overrides&quot;: {
+      &quot;react&quot;: &quot;^19.2.4&quot;,
+      &quot;react-dom&quot;: &quot;^19.2.4&quot;
+    },
+    &quot;onlyBuiltDependencies&quot;: [
+      &quot;@tsparticles/engine&quot;,
+      &quot;esbuild&quot;,
+      &quot;sharp&quot;
+    ]
   },
   &quot;dependencies&quot;: {
     &quot;@astrojs/mdx&quot;: &quot;^5.0.4&quot;,
