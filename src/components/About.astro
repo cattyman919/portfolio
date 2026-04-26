@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import SenoProfile from "@/assets/images/Jas Hitam Seno 2.png";
+import UILogo from "@/assets/Makara_of_Universitas_Indonesia.png";
 import TiltWrapper from "@/components/TiltWrapper";
 ---
 
@@ -40,6 +41,29 @@ import TiltWrapper from "@/components/TiltWrapper";
         </p>
         <div
           class="absolute w-1 h-20 bg-gradient-to-b from-primary to-transparent left-0 top-0 rounded-full"
+        >
+        </div>
+      </div>
+      <div
+        class="flex items-center gap-4 text-gray-300 border border-white/5 bg-white/[0.02] backdrop-blur-3xl overflow-hidden shadow-2xl px-5 py-4 leading-relaxed tracking-widest text-justify rounded-md"
+      >
+        <Image
+          src={UILogo}
+          alt="Logo Universitas Indonesia"
+          class="w-16 h-16 md:w-18 md:h-18 object-contain"
+          }
+        />
+        <div>
+          <p class="text-md/loose md:text-xl/loose italic">
+            <span class="text-primary/80 font-bold">Universitas Indonesia</span> -
+            Computer Engineer
+          </p>
+          <p class="text-md/loose md:text-xl/loose italic">
+            <span class="font-bold text-primary/80">GPA:</span> 3.78
+          </p>
+        </div>
+        <div
+          class="absolute w-1 h-20 bg-linear-to-b from-primary to-transparent right-0 top-0 rounded-full"
         >
         </div>
       </div>
