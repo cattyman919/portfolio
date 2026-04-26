@@ -100,7 +100,7 @@ export default function Navbar() {
   return (
     <header
       id="navigation-bar"
-      className={`w-full h-[50px] z-20 flex justify-between items-center bg-transparent px-6 md:px-20 sticky top-0 backdrop-blur-md transition-colors duration-300 border-b ${
+      className={`w-full h-[50px] z-30 flex justify-between items-center bg-transparent px-6 md:px-20 sticky top-0 backdrop-blur-md transition-colors duration-300 border-b ${
         isScrolled ? "border-slate-200/20 shadow-sm " : "border-transparent"
       }`}
     >
