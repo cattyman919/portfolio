@@ -3,10 +3,10 @@ import { useTypewriter } from "@/hooks/UseTypewriter";
 export default function TypewriterText() {
   const text = useTypewriter(
     [
-      "Software Developer",
-      "Computer Networks",
-      "System Design",
-      "Tech Enthusiast",
+      "Platform Engineer",
+      "Full-Stack Developer",
+      "Cloud Operations",
+      "Systems Programmer",
       "Computer Engineer",
     ],
     50,

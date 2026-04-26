@@ -9,34 +9,30 @@ interface Props {
 }
 
 const { skillLine, reverse = false } = Astro.props;
-
 const { title, logo, skills } = skillLine;
 
-// Duplicate the array to create the seamless infinite scroll illusion
-const duplicatedSkills: SkillsLine["skills"] = skills.map((skill) => [
-  ...skill,
-  ...skill,
-]);
+// Multiply the array to guarantee it fills ultra-wide screens.
+// If the base array has 5 items, this makes 15 items per track.
+const fillTrack = (skillArray: any[]) => [
+  ...skillArray,
+  ...skillArray,
+  ...skillArray,
+];
 ---
 
 <div
-  class="flex flex-col group border border-primary/50 hover:border-primary transform-all duration-500 rounded-xl gap-10 py-6 w-full relative overflow-hidden"
+  class="flex flex-col group border border-primary/50 hover:border-primary transition-all duration-500 rounded-xl gap-10 py-6 w-full relative overflow-hidden"
 >
   <div
-    class="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-  >
-  </div>
-
-  {
-    /* Gradient Masks to fade the left and right edges smoothly into the background */
-  }
-
-  <div
-    class="absolute inset-y-0 left-0 w-24 md:w-40 bg-linear-to-r from-bg to-transparent z-10 pointer-events-none"
+    class="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"
   >
   </div>
   <div
-    class="absolute inset-y-0 right-0 w-24 md:w-40 bg-linear-to-l from-bg to-transparent z-10 pointer-events-none"
+    class="absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none"
   >
   </div>
 
@@ -55,32 +51,54 @@ const duplicatedSkills: SkillsLine["skills"] = skills.map((skill) => [
     <h3 class="font-bold text-xl md:text-4xl text-gray-300">{title}</h3>
   </div>
 
-  {/* The Scrolling Track */}
+  <div class="flex flex-col gap-6 relative z-20">
+    {
+      skills.map((skill, index) => {
+        let isRowReversed = reverse;
+        if (index % 2 === 0) {
+          isRowReversed = !isRowReversed;
+        }
 
-  {
-    duplicatedSkills.map((skill, index) => {
-      let isRowReversed = reverse;
+        const animationClass = isRowReversed
+          ? "animate-marquee-reverse"
+          : "animate-marquee";
 
-      if (index % 2 === 0) {
-        isRowReversed = true;
-      }
+        // Create the massive array for the track
+        const trackItems = fillTrack(skill);
 
-      const animationClass = isRowReversed
-        ? "animate-marquee-reverse"
-        : "animate-marquee";
-      return (
-        <div
-          class={`flex w-max gap-6 hover:[animation-play-state:paused] ${animationClass} px-4`}
-        >
-          {skill.map((skillLine) => (
-            <SkillCardItem
-              name={skillLine.name}
-              expertise={skillLine.expertise}
-              logo={skillLine.logo}
-            />
-          ))}
-        </div>
-      );
-    })
-  }
+        return (
+          // Parent flex container holding the two identical tracks.
+          // gap-6 connects the end of Track 1 to the start of Track 2 seamlessly.
+          <div class="flex overflow-hidden w-full group/row">
+            {/* Track 1 */}
+            <div
+              class={`flex w-max shrink-0 gap-6 pr-6 ${animationClass} group-hover/row:[animation-play-state:paused]`}
+            >
+              {trackItems.map((skillLine) => (
+                <SkillCardItem
+                  name={skillLine.name}
+                  expertise={skillLine.expertise}
+                  logo={skillLine.logo}
+                />
+              ))}
+            </div>
+
+            {/* Track 2 (Identical mirror for the loop) */}
+            <div
+              aria-hidden="true"
+              class={`flex w-max shrink-0 gap-6 pr-6 ${animationClass} group-hover/row:[animation-play-state:paused]`}
+            >
+              {trackItems.map((skillLine) => (
+                <SkillCardItem
+                  name={skillLine.name}
+                  expertise={skillLine.expertise}
+                  logo={skillLine.logo}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
 </div>

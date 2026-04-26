@@ -30,8 +30,8 @@
   --color-glow-green: oklch(0.9 0.28 150);
 
   /* Define the animation utilities */
-  --animate-marquee: marquee 20s linear infinite;
-  --animate-marquee-reverse: marquee 20s linear infinite reverse;
+  --animate-marquee: marquee 60s linear infinite;
+  --animate-marquee-reverse: marquee 60s linear infinite reverse;
 
   /* Define the keyframes */
   @keyframes marquee {
@@ -39,7 +39,8 @@
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(-50%);
+      /* transform: translateX(calc(-100% - 1.5rem)); */
+      transform: translateX(-100%);
     }
   }
 }
