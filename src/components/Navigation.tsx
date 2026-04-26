@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Icon } from "@iconify/react";
 
 interface NavigationItem {
   id: string;
@@ -17,6 +18,8 @@ const navItems: NavigationItem[] = [
 ];
 
 export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   // Start with an empty string to prevent hydration mismatches on page load
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -127,6 +130,27 @@ export default function Navbar() {
           style={underlineStyle}
         />
       </nav>
+      <button
+        className="md:hidden p-2 text-gray-200 border-none"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        <Icon icon={isMobileMenuOpen ? "lucide:x" : "lucide:menu"} width={24} />
+      </button>
+
+      {isMobileMenuOpen && (
+        <div className="absolute top-[50px] left-0 w-full bg-bg/95 backdrop-blur-xl border-b border-white/10 flex flex-col md:hidden p-4 gap-4">
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={item.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`font-bold ${activeSection === item.id ? "text-primary" : "text-gray-200"}`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 }

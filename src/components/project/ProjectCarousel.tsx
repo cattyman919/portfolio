@@ -97,7 +97,7 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
                 key={index}
                 onClick={() => goToSlide(index)}
                 // Added shrink-0 so they don't squish when overflowing
-                className={`shrink-0 w-22 h-16 relative overflow-hidden rounded border-2 transition-all duration-200 group ${
+                className={`shrink-0 w-18 h-12 md:w-22 md:h-16 relative overflow-hidden rounded border-2 transition-all duration-200 group ${
                   index === currentIndex
                     ? "border-primary-accent"
                     : "border-transparent hover:border-primary-accent/50"

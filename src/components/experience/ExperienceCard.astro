@@ -17,10 +17,10 @@ const parseBold = (text: string) => {
 ---
 
 <div
-  class="reveal-card opacity-0 translate-y-16 transition-all duration-1000 ease-out relative flex flex-col pl-15 will-change-transform"
+  class="reveal-card opacity-0 translate-y-16 transition-all duration-1000 ease-out relative flex flex-col pl-8 md:pl-15 will-change-transform"
 >
   <div
-    class="group relative flex flex-col gap-8 px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] transition-all duration-500"
+    class="group relative flex flex-col gap-8 px-4 md:px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] transition-all duration-500"
   >
     <div
       class="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -43,7 +43,9 @@ const parseBold = (text: string) => {
         </h3>
       </div>
 
-      <div class="flex gap-8 justify-center text-sm">
+      <div
+        class="flex flex-col md:flex-row gap-8 justify-center text-sm w-fit md:w-full"
+      >
         <div
           class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
         >
@@ -84,7 +86,7 @@ const parseBold = (text: string) => {
                         title={name}
                         class="flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100"
                       >
-                        <Icon name={logo} class="w-10 h-10 " />
+                        <Icon name={logo} class="w-8 h-8 md:w-10 md:h-10 " />
                       </div>
                     ) : (
                       <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
@@ -101,7 +103,7 @@ const parseBold = (text: string) => {
       <ul class="list-none text-gray-100 flex flex-col gap-5 mt-0">
         {
           points.map((p) => (
-            <li class="flex items-start gap-3 group/item text-lg">
+            <li class="flex items-start gap-3 group/item text-base md:text-lg">
               <Icon
                 name="weui:arrow-filled"
                 class="w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all"

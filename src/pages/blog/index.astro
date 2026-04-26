@@ -51,7 +51,7 @@ const years = Object.keys(blogsByYear).sort(
               {blogsByYear[year].map((blog) => (
                 <a
                   href={`/blog/${blog.id}`}
-                  class="group flex flex-col gap-3 p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-primary/50 transition-all duration-300 hover:bg-white/[0.04] bg-transparent hover:shadow-none"
+                  class="group flex flex-col gap-3 p-6 rounded-2xl bg-white/2 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:bg-white/[0.04] bg-transparent hover:shadow-none"
                 >
                   <h3 class="text-2xl font-pixel font-bold text-primary/80 group-hover:text-primary transition-colors">
                     {blog.data.title}

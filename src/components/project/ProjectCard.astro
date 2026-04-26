@@ -56,7 +56,9 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
         <div class="w-full h-full flex flex-col px-6 py-4">
           <div class="flex flex-col flex-1">
             <div class="flex flex-col gap-5">
-              <div class="flex justify-between">
+              <div
+                class="flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between"
+              >
                 <a
                   href={`projects/${project.id}`}
                   class="flex relative gap-2 group/title font-bold text-2xl text-primary/90 hover:text-primary/100 hover:bg-transparent hover:border-none drop-shadow-none shadow-none cursor-pointer"
@@ -68,7 +70,7 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
                   />
                 </a>
                 <p
-                  class="border border-primary px-4 py-1 rounded-lg bg-primary/10 font-bold"
+                  class="border border-primary px-4 py-1 rounded-lg bg-primary/10 font-bold w-fit"
                 >
                   {type}
                 </p>
@@ -84,10 +86,13 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
                       <div title={tool.name} class="flex gap-4">
                         {tool.logo ? (
                           <div class="flex items-center justify-center p-1 rounded-lg border border-white/20  hover:border-primary/70 transition-all duration-300 hover:bg-primary/10 hover:-translate-y-1 text-gray-100">
-                            <Icon name={tool.logo} class="w-10 h-10 " />
+                            <Icon
+                              name={tool.logo}
+                              class="w-8 h-8 md:w-10 md:h-10 "
+                            />
                           </div>
                         ) : (
-                          <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
+                          <div class="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
                             {title.charAt(0)}
                           </div>
                         )}
@@ -99,46 +104,44 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
             </div>
 
             {/* Buttons Group */}
-            <div class="flex flex-col gap-3 mt-auto pt-8">
-              <div class="flex gap-4 w-full">
-                {/* Live Demo Button */}
-                <a
-                  href={demoUrl || undefined}
-                  target={demoUrl ? "_blank" : undefined}
-                  rel={demoUrl ? "noopener noreferrer" : undefined}
-                  class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
-                    demoUrl
-                      ? "cursor-pointer border-primary/50"
-                      : "opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500"
-                  }`}
-                >
-                  {/* Added shrink-0 to prevent icon from squishing */}
-                  <Icon
-                    name="mdi:world-wide-web"
-                    class="w-6 h-6 sm:w-8 sm:h-8 shrink-0"
-                  />
-                  {/* Added whitespace-nowrap to prevent text wrapping */}
-                  <p class="font-bold whitespace-nowrap">Live Demo</p>
-                </a>
+            <div class="flex flex-col md:flex-row gap-3 mt-auto pt-8">
+              {/* Live Demo Button */}
+              <a
+                href={demoUrl || undefined}
+                target={demoUrl ? "_blank" : undefined}
+                rel={demoUrl ? "noopener noreferrer" : undefined}
+                class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+                  demoUrl
+                    ? "cursor-pointer border-primary/50"
+                    : "opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500"
+                }`}
+              >
+                {/* Added shrink-0 to prevent icon from squishing */}
+                <Icon
+                  name="mdi:world-wide-web"
+                  class="w-6 h-6 sm:w-8 sm:h-8 shrink-0"
+                />
+                {/* Added whitespace-nowrap to prevent text wrapping */}
+                <p class="font-bold whitespace-nowrap">Live Demo</p>
+              </a>
 
-                {/* Source Code Button */}
-                <a
-                  href={sourceCodeUrl || undefined}
-                  target={sourceCodeUrl ? "_blank" : undefined}
-                  rel={sourceCodeUrl ? "noopener noreferrer" : undefined}
-                  class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
-                    sourceCodeUrl
-                      ? "cursor-pointer border-primary/50"
-                      : "opacity-40 pointer-events-none border-gray-600 text-gray-500"
-                  }`}
-                >
-                  <Icon
-                    name="mdi:code-tags"
-                    class="w-6 h-6 sm:w-8 sm:h-8 shrink-0"
-                  />
-                  <p class="font-bold whitespace-nowrap">Source</p>
-                </a>
-              </div>
+              {/* Source Code Button */}
+              <a
+                href={sourceCodeUrl || undefined}
+                target={sourceCodeUrl ? "_blank" : undefined}
+                rel={sourceCodeUrl ? "noopener noreferrer" : undefined}
+                class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+                  sourceCodeUrl
+                    ? "cursor-pointer border-primary/50"
+                    : "opacity-40 pointer-events-none border-gray-600 text-gray-500"
+                }`}
+              >
+                <Icon
+                  name="mdi:code-tags"
+                  class="w-6 h-6 sm:w-8 sm:h-8 shrink-0"
+                />
+                <p class="font-bold whitespace-nowrap">Source</p>
+              </a>
             </div>
           </div>
         </div>

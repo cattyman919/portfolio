@@ -17,9 +17,6 @@ const duplicatedSkills: SkillsLine["skills"] = skills.map((skill) => [
   ...skill,
   ...skill,
 ]);
-
-// Determine the animation class based on the reverse prop
-const animationClass = reverse ? "animate-marquee-reverse" : "animate-marquee";
 ---
 
 <div
@@ -55,7 +52,7 @@ const animationClass = reverse ? "animate-marquee-reverse" : "animate-marquee";
         </div>
       )
     }
-    <h3 class="font-bold text-4xl text-gray-300">{title}</h3>
+    <h3 class="font-bold text-xl md:text-4xl text-gray-300">{title}</h3>
   </div>
 
   {/* The Scrolling Track */}
