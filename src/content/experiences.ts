@@ -15,7 +15,7 @@ export const experienceData: Experience[] = [
     jobType: "Contract",
     location: "Jakarta Selatan, Indonesia",
     tools: [
-      { name: "Go", logo: "skill-icons:golang" },
+      { name: "Golang", logo: "devicon:go" },
       { name: "NextJS", logo: "devicon:nextjs" },
       { name: "AWS", logo: "skill-icons:aws-dark" },
       { name: "GCP", logo: "skill-icons:gcp-dark" },

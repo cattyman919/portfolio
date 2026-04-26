@@ -6,7 +6,7 @@ export const skillsData: SkillsLine[] = [
     logo: "lucide:code-2",
     skills: [
       [
-        { name: "Go", expertise: 95, logo: "skill-icons:golang" },
+        { name: "Golang", expertise: 95, logo: "devicon:go" },
         { name: "Rust", expertise: 85, logo: "skill-icons:rust" },
         { name: "TypeScript", expertise: 90, logo: "skill-icons:typescript" },
         { name: "Python", expertise: 85, logo: "skill-icons:python-dark" },

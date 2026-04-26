@@ -1,0 +1,33 @@
+---
+// src/components/blog/MdxImage.astro
+import { Image } from "astro:assets";
+
+const { src, alt, title } = Astro.props;
+
+// 1. Detect GIFs correctly for both remote strings AND local objects
+const isGif =
+  (typeof src === "string" && src.toLowerCase().endsWith(".gif")) ||
+  (typeof src === "object" &&
+    (src.format === "gif" || src.src?.toLowerCase().endsWith(".gif")));
+
+// 2. Extract the string URL safely for the <img> fallback
+const imgUrl = typeof src === "string" ? src : src.src;
+
+// 3. inferSize is only needed (and only valid) for remote images
+const shouldInferSize = typeof src === "string";
+---
+
+{
+  isGif ? (
+    <img src={imgUrl} alt={alt || "Blog image"} title={title} />
+  ) : (
+    <Image
+      src={src}
+      alt={alt || "Blog image"}
+      title={title}
+      inferSize={shouldInferSize}
+      format="avif"
+      quality={80}
+    />
+  )
+}
