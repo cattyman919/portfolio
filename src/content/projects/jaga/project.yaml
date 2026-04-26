@@ -24,7 +24,25 @@ tools:
   - name: "Flutter"
     logo: "devicon:flutter"
 
+  - name: "C++"
+    logo: "devicon:cplusplus"
+
 sourceCodeUrl: "https://github.com/cattyman919/Jaga"
 
 mediaUrls:
   - "https://bucket.senop.dev/projects/jaga/jaga.png"
+  - "https://bucket.senop.dev/projects/jaga/bluetooth2.png"
+  - "https://bucket.senop.dev/projects/jaga/bluetooth1.png"
+  - "https://bucket.senop.dev/projects/jaga/home.png"
+  - "https://bucket.senop.dev/projects/jaga/how_it_works.png"
+  - "https://bucket.senop.dev/projects/jaga/activity_diagram.png"
+  - "https://bucket.senop.dev/projects/jaga/login1.png"
+  - "https://bucket.senop.dev/projects/jaga/login2.png"
+  - "https://bucket.senop.dev/projects/jaga/login3.png"
+  - "https://bucket.senop.dev/projects/jaga/sign_up1.png"
+  - "https://bucket.senop.dev/projects/jaga/sign_up2.png"
+  - "https://bucket.senop.dev/projects/jaga/sign_up3.png"
+  - "https://bucket.senop.dev/projects/jaga/sign_up4.png"
+  - "https://bucket.senop.dev/projects/jaga/use_case_diagram.png"
+  - "https://bucket.senop.dev/projects/jaga/wifi_connection.png"
+  - "https://bucket.senop.dev/projects/jaga/data_to_database.png"
