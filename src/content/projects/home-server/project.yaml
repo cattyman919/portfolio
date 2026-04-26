@@ -23,7 +23,7 @@ tools:
   - name: "Kubernetes"
     logo: "devicon:kubernetes"
   - name: "Helm"
-    logo: "devicon:helm"
+    logo: "material-icon-theme:helm"
   - name: "Tailscale"
     logo: "simple-icons:tailscale"
 

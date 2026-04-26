@@ -25,7 +25,7 @@ export const experienceData: Experience[] = [
       },
       {
         name: "Helm",
-        logo: "devicon:helm",
+        logo: "material-icon-theme:helm",
       },
       {
         name: "Docker",
