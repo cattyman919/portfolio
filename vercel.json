@@ -2,8 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "git": {
     "deploymentEnabled": {
-      "astro": false,
-      "new-portfolio": false
+      "v1": false,
+      "v2": false
     }
   }
 }
