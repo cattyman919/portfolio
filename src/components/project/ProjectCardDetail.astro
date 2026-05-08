@@ -29,6 +29,17 @@ const processedMedia = await Promise.all(
       return { type: "video" as const, src: url };
     }
 
+    const isGif = url.toLowerCase().endsWith(".gif");
+
+    if (isGif) {
+      // Bypass Astro's image optimization to preserve the animation
+      return {
+        type: "image" as const,
+        src: url,
+        thumbSrc: url, // Use the original GIF for the thumbnail as well
+      };
+    }
+
     // Generate high-res version for the viewer (1200px width)
     const optimizedFull = await getImage({
       src: url,

@@ -29,12 +29,20 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
           {
             image ? (
               <div class="w-full h-48 shrink-0 mb-4 bg-black overflow-hidden rounded-t-lg">
-                <Image
-                  format="avif"
-                  src={image}
-                  alt="Project Image"
-                  class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500"
-                />
+                {image.format === "gif" ? (
+                  <img
+                    src={image.src}
+                    alt="Project Image"
+                    class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500"
+                  />
+                ) : (
+                  <Image
+                    format="avif"
+                    src={image}
+                    alt="Project Image"
+                    class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500"
+                  />
+                )}
               </div>
             ) : (
               <div class="w-full h-48 rounded-t-lg shrink-0 mb-4 bg-white/5 border border-white/10 flex items-center justify-center">
