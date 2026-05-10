@@ -1,0 +1,89 @@
+---
+// src/components/blog/RevealWrapper.astro
+// import "reveal.js/dist/reveal.css";
+// import "reveal.js/dist/theme/black.css";
+---
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css"
+/>
+
+<div
+  class="reveal-wrapper relative my-10 w-full overflow-hidden rounded-xl border border-white/10 shadow-[10px_10px_15px_0px_var(--color-primary)] bg-white/2 backdrop-blur-3xl transition-all duration-500"
+>
+  <div
+    class="absolute inset-0 pointer-events-none bg-linear-to-br from-primary/10 via-transparent to-primary/10 opacity-50 z-0"
+  >
+  </div>
+
+  <div class="reveal relative z-10" style="height: 500px;">
+    <div class="slides">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  import Reveal from "reveal.js";
+
+  const initReveal = () => {
+    const revealContainers = document.querySelectorAll(".reveal");
+
+    revealContainers.forEach((container) => {
+      if (container.classList.contains("ready")) return;
+
+      // FIX: Cast container to HTMLElement for TypeScript
+      const deck = new Reveal(container as HTMLElement, {
+        embedded: true,
+        keyboardCondition: "focused",
+        hash: false,
+        slideNumber: true,
+        margin: 0.1,
+      });
+
+      deck.initialize();
+    });
+  };
+
+  initReveal();
+  document.addEventListener("astro:page-load", initReveal);
+</script>
+
+<style is:global>
+  .reveal-wrapper .reveal {
+    --r-main-font: system-ui, -apple-system, sans-serif;
+    --r-heading-font: var(--font-pixel), system-ui, sans-serif;
+    --r-background-color: transparent;
+    --r-main-color: #d1d5db;
+    --r-heading-color: var(--color-primary);
+    --r-link-color: var(--color-primary);
+    --r-link-color-hover: oklch(0.95 0.22 145);
+    --r-selection-background-color: var(--color-primary);
+    --r-selection-color: var(--color-bg);
+    --r-controls-color: var(--color-primary);
+    --r-progress-color: var(--color-primary);
+  }
+
+  .reveal-wrapper .reveal h1,
+  .reveal-wrapper .reveal h2,
+  .reveal-wrapper .reveal h3,
+  .reveal-wrapper .reveal h4 {
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 10px
+      color-mix(in oklch, var(--color-primary) 30%, transparent);
+  }
+
+  .reveal-wrapper .reveal code {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: color-mix(in oklch, var(--color-primary) 90%, white);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+  }
+</style>

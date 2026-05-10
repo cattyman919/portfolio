@@ -51,6 +51,7 @@
     "mdx": "^0.3.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "reveal.js": "^6.0.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1"
   },
@@ -69,6 +70,7 @@
     "@iconify/react": "^6.0.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/reveal.js": "^5.2.2",
     "bundlewatch": "^0.4.2",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",

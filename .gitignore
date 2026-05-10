@@ -2,6 +2,7 @@
 *.log
 .next
 .astro
+*.xml
 
 next-env*
 # build output
