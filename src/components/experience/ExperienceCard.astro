@@ -20,104 +20,114 @@ const parseBold = (text: string) => {
   class="reveal-card opacity-0 translate-y-16 transition-all duration-1000 ease-out relative flex flex-col pl-8 md:pl-15 will-change-transform"
 >
   <div
-    class="group relative flex flex-col gap-8 px-4 md:px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] transition-all duration-500"
+    data-experience-card
+    class="group/card relative flex flex-col gap-8 px-4 md:px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] cursor-pointer"
   >
     <div
-      class="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+      class="absolute inset-0 pointer-events-none rounded-lg bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"
     >
     </div>
 
-    <div class="relative z-10 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-6">
-        {
-          logo && (
-            <Image
-              format="avif"
-              src={logo}
-              alt={`${company} Logo`}
-              class="h-12  object-contain"
-            />
-          )
-        }
-        <h3 class="text-2xl font-bold">
-          {company} - <span class="text-white italic">{position}</span>
-        </h3>
+    <div
+      class="absolute right-10 top-[50%] -translate-y-1/2 group-[.is-active]/card:top-8 group-[.is-active]/card:-translate-y-0 z-20"
+    >
+      <Icon class="chevron h-16 w-16" name="akar-icons:chevron-down" />
+    </div>
+
+    <div
+      class="relative z-10 flex flex-col items-start group-[.is-active]/card:items-center gap-6 pt-3"
+    >
+      {
+        logo && (
+          <Image
+            format="avif"
+            src={logo}
+            alt={`${company} Logo`}
+            class="h-12 w-fit object-contain"
+          />
+        )
+      }
+      <h3 class="text-2xl font-bold">
+        {company} - <span class="text-white italic">{position}</span>
+      </h3>
+    </div>
+
+    <div
+      class="relative z-10 flex flex-col md:flex-row gap-8 justify-start group-[.is-active]/card:justify-center text-sm w-fit md:w-full"
+    >
+      <div
+        class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
+      >
+        <Icon name="lucide:calendar" size={24} />
+        <p class="text-white font-bold">{date}</p>
       </div>
 
       <div
-        class="flex flex-col md:flex-row gap-8 justify-center text-sm w-fit md:w-full"
+        class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
       >
-        <div
-          class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
-        >
-          <Icon name="lucide:calendar" size={24} />
-          <p class="text-white font-bold">{date}</p>
-        </div>
-
-        <div
-          class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
-        >
-          <Icon name="mdi:location" size={24} />
-          <p class="text-white font-bold">{location}</p>
-        </div>
-
-        <div
-          class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
-        >
-          <Icon name="mdi:clock" size={24} />
-          <p class="text-white font-bold">{jobType}</p>
-        </div>
+        <Icon name="mdi:location" size={24} />
+        <p class="text-white font-bold">{location}</p>
       </div>
 
-      <div class="flex items-center flex-wrap gap-4 mt-5">
-        <!-- <h1 class="font-bold text-2xl">Tools:</h1> -->
-        <div title="tools" class="flex gap-2">
-          <Icon name="mdi:tools" class="w-10 h-10" />
-          <span class="text-2xl font-bold">:</span>
-        </div>
-        <div class="flex items-center flex-wrap gap-2">
-          {
-            tools &&
-              tools.map((tool) => {
-                const { name, logo } = tool;
-                return (
-                  <>
-                    {logo ? (
-                      <div
-                        title={name}
-                        class="flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100"
-                      >
-                        <Icon name={logo} class="w-8 h-8 md:w-10 md:h-10 " />
-                      </div>
-                    ) : (
-                      <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
-                        {name.charAt(0)}
-                      </div>
-                    )}
-                  </>
-                );
-              })
-          }
-        </div>
+      <div
+        class="flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md"
+      >
+        <Icon name="mdi:clock" size={24} />
+        <p class="text-white font-bold">{jobType}</p>
       </div>
-
-      <ul class="list-none text-gray-100 flex flex-col gap-5 mt-0">
-        {
-          points.map((p) => (
-            <li class="flex items-start gap-3 group/item text-base md:text-lg">
-              <Icon
-                name="weui:arrow-filled"
-                class="w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all"
-              />
-              <span
-                class="text-gray-300 group-hover/item:text-gray-50 transition-colors leading-relaxed text-justify"
-                set:html={parseBold(p)}
-              />
-            </li>
-          ))
-        }
-      </ul>
     </div>
+
+    <div
+      class="relative z-10 flex items-center flex-wrap gap-4 group-[.is-active]/card:mt-5"
+    >
+      <div title="tools" class="hidden gap-2 group-[.is-active]/card:flex">
+        <Icon name="mdi:tools" class="w-10 h-10" />
+        <span class="text-2xl font-bold">:</span>
+      </div>
+      <div class="flex items-center flex-wrap gap-2">
+        {
+          tools &&
+            tools.map((tool) => {
+              const { name, logo } = tool;
+              return (
+                <>
+                  {logo ? (
+                    <div
+                      title={name}
+                      class="flex gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100"
+                    >
+                      <Icon name={logo} class="w-8 h-8 md:w-10 md:h-10 " />
+                    </div>
+                  ) : (
+                    <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
+                      {name.charAt(0)}
+                    </div>
+                  )}
+                </>
+              );
+            })
+        }
+      </div>
+    </div>
+
+    <ul
+      class="relative z-10 list-none text-gray-100 flex-col gap-5 mt-0 hidden group-[.is-active]/card:flex"
+    >
+      {
+        points.map((p) => (
+          <li class="flex items-start gap-3 group/item text-base md:text-lg">
+            <Icon
+              name="weui:arrow-filled"
+              class="w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all"
+            />
+            <span
+              class="text-gray-300 group-hover/item:text-gray-50 transition-colors leading-relaxed text-justify"
+              set:html={parseBold(p)}
+            />
+          </li>
+        ))
+      }
+    </ul>
   </div>
 
   <div
@@ -127,6 +137,9 @@ const parseBold = (text: string) => {
 </div>
 
 <script>
+  import { AutoLayout, createLayout } from "animejs/layout";
+  import { animate } from "animejs/animation";
+
   const setupCardsObserver = () => {
     const observer = new IntersectionObserver(
       (entries, observerInstance) => {
@@ -163,6 +176,40 @@ const parseBold = (text: string) => {
     cards.forEach((card) => observer.observe(card));
   };
 
+  const setupAnimationCard = () => {
+    const experienceCards = document.querySelectorAll("[data-experience-card]");
+
+    function changeLayout(layout: AutoLayout) {
+      layout.update(({ root }) => {
+        const isActive = root.classList.contains("is-active");
+        const chevron = root.querySelector(".chevron");
+
+        if (isActive) {
+          animate(chevron!, {
+            scale: 1,
+            rotate: "0deg",
+            duration: 500,
+          });
+        } else {
+          animate(chevron!, {
+            scale: 0.75,
+            rotate: "180deg",
+            duration: 500,
+          });
+        }
+
+        root.classList.toggle("is-active");
+      });
+    }
+
+    experienceCards.forEach((card) => {
+      const layout = createLayout(card);
+      card.addEventListener("click", () => {
+        changeLayout(layout);
+      });
+    });
+  };
+
+  setupAnimationCard();
   setupCardsObserver();
-  document.addEventListener("astro:page-load", setupCardsObserver);
 </script>

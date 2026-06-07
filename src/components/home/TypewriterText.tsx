@@ -4,10 +4,11 @@ export default function TypewriterText() {
   const text = useTypewriter(
     [
       "Full-Stack Developer",
-      "Platform Engineer",
       "Devops Engineer",
-      "Systems Programmer",
+      "Platform Engineer",
+      "IoT Engineer",
       "Computer Engineer",
+      "Systems Programmer",
     ],
     50,
     1000,

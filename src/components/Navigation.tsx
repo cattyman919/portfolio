@@ -18,7 +18,7 @@ const navItems: NavigationItem[] = [
   { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
-export default function Navbar() {
+export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Start with an empty string to prevent hydration mismatches on page load
