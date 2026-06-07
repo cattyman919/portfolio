@@ -17,10 +17,6 @@ const activeProjectTypes = [...new Set(projects.map((proj) => proj.data.type))];
     >
       All
     </button>
-
-    {
-      /* 2. Map over the dynamically generated activeProjectTypes instead of the Enum */
-    }
     {
       activeProjectTypes.map((type) => (
         <button
@@ -35,7 +31,7 @@ const activeProjectTypes = [...new Set(projects.map((proj) => proj.data.type))];
 
   {/* Project Grid */}
   <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center items-stretch gap-10 px-15 md:px-4"
+    class="project-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center items-stretch gap-10 px-15 md:px-4"
   >
     {
       projects.map((proj) => (
@@ -50,10 +46,29 @@ const activeProjectTypes = [...new Set(projects.map((proj) => proj.data.type))];
   </div>
 </section>
 
+<style>
+  .project-item {
+    transition:
+      opacity 250ms ease,
+      transform 250ms ease;
+  }
+  .project-item.is-hiding {
+    opacity: 0;
+    transform: scale(0.85);
+    pointer-events: none;
+  }
+  .project-item.is-hidden {
+    display: none;
+  }
+  .project-item.is-entering {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+</style>
+
 <script>
   const setupFilters = () => {
-    const buttons = document.querySelectorAll(".filter-btn");
-    const projects = document.querySelectorAll(".project-item");
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
 
     const activeClasses = [
       "bg-primary",
@@ -69,35 +84,93 @@ const activeProjectTypes = [...new Set(projects.map((proj) => proj.data.type))];
       "hover:border-primary/50",
     ];
 
+    let isAnimating = false;
+
+    const applyFilter = (filter: string) => {
+      if (isAnimating) return;
+
+      const projects = document.querySelectorAll<HTMLElement>(".project-item");
+
+      const toHide: HTMLElement[] = [];
+      const toShow: HTMLElement[] = [];
+
+      projects.forEach((el) => {
+        const type = el.getAttribute("data-type");
+        const matches = filter === "all" || type === filter;
+        const isCurrentlyHidden = el.classList.contains("is-hidden");
+
+        if (!matches && !isCurrentlyHidden) toHide.push(el);
+        if (matches && isCurrentlyHidden) toShow.push(el);
+      });
+
+      if (toHide.length === 0 && toShow.length === 0) return;
+
+      isAnimating = true;
+
+      // Phase 1: animate out items that should hide
+      const hidePhase = () =>
+        new Promise<void>((resolve) => {
+          if (toHide.length === 0) return resolve();
+
+          let completed = 0;
+          toHide.forEach((el, i) => {
+            el.style.transitionDelay = `${i * 40}ms`;
+            el.classList.add("is-hiding");
+
+            const onEnd = () => {
+              el.removeEventListener("transitionend", onEnd);
+              el.classList.add("is-hidden");
+              el.classList.remove("is-hiding");
+              el.style.transitionDelay = "";
+              completed++;
+              if (completed === toHide.length) resolve();
+            };
+            el.addEventListener("transitionend", onEnd);
+          });
+        });
+
+      // Phase 2: un-hide and animate in items that should show
+      const showPhase = () => {
+        toShow.forEach((el, i) => {
+          el.classList.remove("is-hidden");
+          el.classList.add("is-entering");
+
+          // Force reflow so the starting state is painted before we remove the class
+          void el.offsetHeight;
+
+          el.style.transitionDelay = `${i * 50}ms`;
+          el.classList.remove("is-entering");
+
+          const onEnd = () => {
+            el.removeEventListener("transitionend", onEnd);
+            el.style.transitionDelay = "";
+          };
+          el.addEventListener("transitionend", onEnd);
+        });
+      };
+
+      hidePhase().then(() => {
+        showPhase();
+        isAnimating = false;
+      });
+    };
+
     buttons.forEach((button) => {
       button.addEventListener("click", (e) => {
         const target = e.currentTarget as HTMLElement;
-        const filter = target.getAttribute("data-filter");
+        const filter = target.getAttribute("data-filter")!;
 
-        // Handle button styling
         buttons.forEach((btn) => {
           btn.classList.remove(...activeClasses);
           btn.classList.add(...inactiveClasses);
         });
-
         target.classList.remove(...inactiveClasses);
         target.classList.add(...activeClasses);
 
-        // Handle project filtering
-        projects.forEach((project) => {
-          const el = project as HTMLElement;
-          const projectType = el.getAttribute("data-type");
-
-          if (filter === "all" || projectType === filter) {
-            el.style.display = "flex";
-          } else {
-            el.style.display = "none";
-          }
-        });
+        applyFilter(filter);
       });
     });
   };
 
-  // setupFilters();
   document.addEventListener("astro:page-load", setupFilters);
 </script>
