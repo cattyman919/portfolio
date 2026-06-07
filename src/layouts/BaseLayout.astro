@@ -3,6 +3,9 @@ import "../styles/global.css";
 import Navigation from "@/components/Navigation.tsx";
 import { Font } from "astro:assets";
 
+import { ClientRouter } from "astro:transitions";
+import { fade } from "astro:transitions";
+
 // Define the props accepted by this layout
 interface Props {
   hideNav?: boolean;
@@ -22,9 +25,12 @@ const { hideNav = false } = Astro.props;
     <link rel="icon" href="/SR-Logo.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>Seno Pamungkas Rahman - Portfolio</title>
+    <ClientRouter />
   </head>
   <body>
     {!hideNav && <Navigation client:load />}
-    <slot />
+    <main transition:animate={fade({ duration: "0.4s" })}>
+      <slot />
+    </main>
   </body>
 </html>

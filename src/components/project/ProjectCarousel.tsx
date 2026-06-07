@@ -11,9 +11,18 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const thumbnailRef = useRef<HTMLDivElement>(null);
 
+  const isInitialRender = useRef(true);
+
   // Auto-scroll thumbnails to keep the active one in view
   useEffect(() => {
     if (!thumbnailRef.current) return;
+
+    // 2. Intercept and skip the scroll effect on the first render
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+
     const activeThumb = thumbnailRef.current.children[
       currentIndex
     ] as HTMLElement;

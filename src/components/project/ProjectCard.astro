@@ -70,7 +70,8 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
                 class="flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between"
               >
                 <a
-                  href={`projects/${project.id}`}
+                  href={`project/${project.id}`}
+                  data-astro-prefetch
                   class="flex relative gap-2 group/title font-bold text-2xl text-primary/90 hover:text-primary/100 hover:bg-transparent hover:border-none drop-shadow-none shadow-none cursor-pointer"
                 >
                   <h1 class="font-pixel">{title}</h1>
