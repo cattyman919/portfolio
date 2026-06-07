@@ -9,6 +9,8 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   integrations: [react(), mdx(), icon()],
 
+  prefetch: true,
+
   fonts: [
     {
       provider: fontProviders.local(),
@@ -37,4 +39,3 @@ export default defineConfig({
     },
   },
 });
-

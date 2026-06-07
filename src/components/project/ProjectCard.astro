@@ -25,6 +25,7 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
         <a
           href={`/project/${project.id}`}
           class="relative w-full h-48 group/image cursor-pointer"
+          data-astro-prefetch
         >
           {
             image ? (
