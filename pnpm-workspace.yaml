@@ -1,3 +1,5 @@
+packages:
+  - "*"
 allowBuilds:
   "@tsparticles/engine": true
   esbuild: true
