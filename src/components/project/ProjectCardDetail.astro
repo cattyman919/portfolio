@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 import { Image, getImage } from "astro:assets";
 import type { ProjectType } from "@/src/content.config";
 import ProjectCarousel from "@/components/project/ProjectCarousel";
+import defaultCover from "@/content/projects/template_project_cover.webp";
 
 interface Props {
   title: string;
@@ -16,6 +17,9 @@ interface Props {
 
 const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
   Astro.props;
+
+// 2. Resolve the image to use (either the specific project image, or the fallback)
+const displayImage = image || defaultCover;
 
 const videoExtensions = ["mp4", "mov", "webm", "ogg"];
 
@@ -74,7 +78,7 @@ const processedMedia = await Promise.all(
   <!-- Background Image -->
   <div class="absolute inset-0 -z-1 rounded-lg">
     <Image
-      src={image}
+      src={displayImage}
       alt={`Cover image for ${title}`}
       width={800}
       quality={30}

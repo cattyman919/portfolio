@@ -4,6 +4,9 @@ import TiltWrapper from "@/components/TiltWrapper";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
+// 1. Import your default cover image
+import defaultCover from "@/content/projects/template_project_cover.webp";
+
 interface Props {
   project: CollectionEntry<"projects">;
 }
@@ -12,6 +15,9 @@ const MAX_TECH_LENGTH: number = 6;
 const { project } = Astro.props;
 const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
   project.data;
+
+// 2. Resolve the image to use (either the specific project image, or the fallback)
+const displayImage = image || defaultCover;
 ---
 
 <div class="w-full h-full md:w-[450px] flex justify-center group">
@@ -28,31 +34,29 @@ const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
           data-astro-prefetch
         >
           {
-            image ? (
-              <div class="w-full h-48 shrink-0 mb-4 bg-black overflow-hidden rounded-t-lg">
-                {image.format === "gif" ? (
-                  <img
-                    src={image.src}
-                    alt="Project Image"
-                    class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500"
-                  />
-                ) : (
-                  <Image
-                    format="avif"
-                    src={image}
-                    alt="Project Image"
-                    class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500"
-                  />
-                )}
-              </div>
-            ) : (
-              <div class="w-full h-48 rounded-t-lg shrink-0 mb-4 bg-white/5 border border-white/10 flex items-center justify-center">
-                <span class="text-gray-500 font-bold tracking-widest text-sm">
-                  NO IMAGE
-                </span>
-              </div>
-            )
+            /* 3. Render the resolved displayImage (no more need for the NO IMAGE fallback block) */
           }
+          <div
+            class="w-full h-48 shrink-0 mb-4 bg-black overflow-hidden rounded-t-lg"
+          >
+            {
+              displayImage.format === "gif" ? (
+                <img
+                  src={displayImage.src}
+                  alt={`${title} cover`}
+                  class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500"
+                />
+              ) : (
+                <Image
+                  format="avif"
+                  src={displayImage}
+                  alt={`${title} cover`}
+                  class="w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500"
+                />
+              )
+            }
+          </div>
+
           <div
             class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300"
           >
