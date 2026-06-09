@@ -1,0 +1,36 @@
+title: "AutoCV"
+type: "cli"
+tags: ["go", "cli", "automation", "docker", "typst"]
+# image: "./autocv.png"
+description: "A dynamic CLI tool that generates multiple tailored PDF resumes from a modular YAML data source using Go and Typst."
+# full_description
+# AutoCV is a Go-based CLI tool designed to streamline the process of creating and maintaining job-application-specific resumes. Instead of manually editing multiple documents, it allows users to define shared personal data once in a central configuration file and customize experiences, projects, and layouts per role using modular YAML files. The tool leverages Typst for fast, modern typesetting and utilizes Go's concurrency to build multiple PDF variants simultaneously.
+#
+#
+
+highlights:
+  - "Modular Data Management: Streamlined CV creation by developing a tool that generates multiple customized PDF versions from a modular YAML data source, eliminating repetitive manual editing."
+  - "Concurrent Build System: Engineered a concurrent build process using Go's goroutines and waitgroups, significantly cutting down generation time for multiple CVs."
+  - "Typst Integration: Leveraged Go's text/template engine to dynamically generate Typst markup (.typ files), including custom regex-based escaping to safely render special characters."
+  - "Containerized Environment: Containerized the entire build environment using a multi-stage Dockerfile, ensuring consistent and reproducible PDF builds without requiring a local Typst installation."
+  - "Automated CI/CD Pipeline: Implemented a GitHub Actions workflow to automatically compile PDFs, upload them to Azure Blob Storage, and publish them to GitHub Releases upon new version tags."
+
+tools:
+  - name: "Go"
+    logo: "devicon:go"
+
+  - name: "Docker"
+    logo: "devicon:docker"
+
+  - name: "GitHub Actions"
+    logo: "devicon:githubactions"
+
+  # - name: "Typst"
+  #   logo: "devicon:typst"
+
+sourceCodeUrl: "https://github.com/cattyman919/autocv"
+
+mediaUrls: []
+#   - "https://bucket.senop.dev/projects/autocv/autocv.png"
+#   - "https://bucket.senop.dev/projects/autocv/terminal_output.png"
+#   - "https://bucket.senop.dev/projects/autocv/pdf_preview.png"
