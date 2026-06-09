@@ -1,0 +1,72 @@
+---
+title: Stack vs Heap Memory
+description: Stack vs Heap Memory
+pubDate: "2026-05-09"
+tags:
+  - memory
+  - programming
+---
+
+import RevealWrapper from "@/components/blog/RevealWrapper.astro";
+import { Image } from "astro:assets";
+
+import ramSvg from "./assets/ram.svg";
+import fortniteSvg from "./assets/fortnite.svg";
+
+Every computer science undergraduate have always heard this weird little term called the `stack` or `heap` memory but like for most people they don't really understand it. Specific concepts like this becomes so niche nowadays, that its almost forgotten by the average computer science graduate. And yet, the idea is so simple that even patrick from spongebob could even understand it (i don't mean to brag my intelligence or what not, its just people just don't seem to bother to learn basic foundational knowledge these days).
+
+So lemme explainzz dis simple concept for u ;)
+![learn bro](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHM5MXRzaHY5c2FlcWpyd2kwM3piMDYyaTV3bHBxeWhjcHdnYmsyMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WoWm8YzFQJg5i/giphy.gif)
+
+# You need to understand `Memory`
+
+Ok, so when you create a variable `x=5`, what do you think happens here? did even know where the variable is stored?
+
+well guess what, its stored in your **RAM (Random Access Memory)**.
+
+<img src={ramSvg.src} width="400" height="400" alt="RAM structure" />
+
+This is the component that stores all of your programs variables, such as your google chrome default theme or your even vector position in fortnite.
+
+<img src={fortniteSvg.src} width="500" height="500" alt="RAM structure" />
+
+Every single variables you define or initialize in your program is all stored in the RAM. Even if you are reading from a file, its usually buffered in memory. Hence why RAM is an essential component for any computer.
+
+However there is a huge downside using memory, **Memory are `volatile`**. It means if your program or computer crash, all of your data in memory are gone. Disappear from your life. Basically unrecoverable. This is why we store persistent data in the disk (SSD, HDD, NVMe are your typical disk in your computer).
+
+<RevealWrapper>
+  <section>
+    <h2>Slide 1</h2>
+    <p>This is the title slide.</p>
+  </section>
+
+<section>
+  <h2>Slide 2</h2>
+  <ul>
+    <li>Point A</li>
+    <li>Point B</li>
+  </ul>
+</section>
+  <section>
+    <section>
+      <h2>Vertical Slides!</h2>
+      <p>Reveal.js supports nested slides. Press Down 👇</p>
+    </section>
+    <section>
+      <h2>Underground</h2>
+      <p>You found the secret vertical slide.</p>
+    </section>
+  </section>
+    <section>
+      <h2>Underground</h2>
+      <p>You found the secret vertical slide.</p>
+    </section>
+</RevealWrapper>
+
+# Types of Memory
+
+Now memory is divided into two sections, the `stack` and `heap` memory. These types of memory differs in terms on a how a variable is allocated and how it handles the lifecycle of each variable. A `lifecycle` is basically how long a variable is going to live in the program. We will go in detail on each of these memory section below
+
+## Stack is literally a stack
+
+**A stack is region in memory where local variables, function parameters, and return address are stored**. A stack works as a LIFO (last-in, first-out) data structure to handle allocation and de-allocation of its variables or function call.
