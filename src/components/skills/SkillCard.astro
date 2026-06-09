@@ -1,0 +1,104 @@
+---
+import SkillCardItem from "./SkillCardItem.astro";
+import { Icon } from "astro-icon/components";
+import type { SkillsLine } from "@/types";
+
+interface Props {
+  skillLine: SkillsLine;
+  reverse?: boolean;
+}
+
+const { skillLine, reverse = false } = Astro.props;
+const { title, logo, skills } = skillLine;
+
+// Multiply the array to guarantee it fills ultra-wide screens.
+// If the base array has 5 items, this makes 15 items per track.
+const fillTrack = (skillArray: any[]) => [
+  ...skillArray,
+  ...skillArray,
+  ...skillArray,
+];
+---
+
+<div
+  class="flex flex-col group border border-primary/50 hover:border-primary transition-all duration-500 rounded-xl gap-10 py-6 w-full relative overflow-hidden"
+>
+  <div
+    class="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"
+  >
+  </div>
+  <div
+    class="absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none"
+  >
+  </div>
+
+  <div class="flex gap-4 items-center px-8 md:px-10 relative z-20">
+    {
+      logo ? (
+        <div class="flex items-center justify-center p-1 rounded-xl border border-white/10 text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
+          <Icon name={logo} class="w-11 h-11 " />
+        </div>
+      ) : (
+        <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
+          {title.charAt(0)}
+        </div>
+      )
+    }
+    <h3 class="font-bold text-xl md:text-4xl text-gray-300">{title}</h3>
+  </div>
+
+  <div class="flex flex-col gap-6 relative z-20">
+    {
+      skills.map((skill, index) => {
+        let isRowReversed = reverse;
+        if (index % 2 === 0) {
+          isRowReversed = !isRowReversed;
+        }
+
+        const animationClass = isRowReversed
+          ? "animate-marquee-reverse"
+          : "animate-marquee";
+
+        // Create the massive array for the track
+        const trackItems = fillTrack(skill);
+
+        return (
+          // Parent flex container holding the two identical tracks.
+          // gap-6 connects the end of Track 1 to the start of Track 2 seamlessly.
+          <div class="flex overflow-hidden w-full group/row">
+            {/* Track 1 */}
+            <div
+              class={`flex w-max shrink-0 gap-6 pr-6 ${animationClass} group-hover/row:[animation-play-state:paused]`}
+            >
+              {trackItems.map((skillLine) => (
+                <SkillCardItem
+                  name={skillLine.name}
+                  expertise={skillLine.expertise}
+                  logo={skillLine.logo}
+                />
+              ))}
+            </div>
+
+            {/* Track 2 (Identical mirror for the loop) */}
+            <div
+              aria-hidden="true"
+              class={`flex w-max shrink-0 gap-6 pr-6 ${animationClass} group-hover/row:[animation-play-state:paused]`}
+            >
+              {trackItems.map((skillLine) => (
+                <SkillCardItem
+                  name={skillLine.name}
+                  expertise={skillLine.expertise}
+                  logo={skillLine.logo}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>

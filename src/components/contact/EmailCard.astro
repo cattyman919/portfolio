@@ -1,0 +1,100 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  class="flex flex-col gap-6 flex-1 border border-gray-500/30 rounded-lg px-10 py-8 bg-white/[0.02] backdrop-blur-md"
+>
+  <h1 class="font-bold text-3xl text-primary mb-3">Send a Message</h1>
+  <input
+    type="hidden"
+    name="access_key"
+    value="b18f0437-d489-48ac-9dbf-dcc9cdcbe8e6"
+  />
+
+  <div class="flex flex-col gap-2 group">
+    <div
+      class="flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary"
+    >
+      <Icon name="iconamoon:profile" class="w-6 h-6" />
+      <label for="username">Your Name</label>
+    </div>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="John Doe"
+      required
+      class="text-white"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2 group">
+    <div
+      class="flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary"
+    >
+      <Icon name="mdi:email-outline" class="w-6 h-6" />
+      <label for="email">Your Email</label>
+    </div>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="john@example.com"
+      required
+      class="text-white"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2 group">
+    <div
+      class="flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary"
+    >
+      <Icon name="lucide:tag" class="w-6 h-6" />
+      <label for="subject">Subject</label>
+    </div>
+    <input
+      type="text"
+      id="subject"
+      name="subject"
+      placeholder="Project Inquiry"
+      required
+      class="text-white"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2 group">
+    <div
+      class="flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary"
+    >
+      <Icon name="lucide:message-square" class="w-6 h-6" />
+      <label for="message">Message</label>
+    </div>
+    <textarea
+      id="message"
+      name="message"
+      placeholder="Tell me about your project..."
+      class="h-40 text-white resize-none"
+      required></textarea>
+  </div>
+
+  <input
+    type="checkbox"
+    name="botcheck"
+    class="hidden"
+    style="display: none;"
+  />
+
+  <button
+    type="submit"
+    class="flex gap-2 justify-center items-center group/button hover:scale-105 bg-primary/80 text-bg mt-2"
+  >
+    <p>Send Message</p>
+    <Icon
+      name="akar-icons:paper-airplane"
+      class="w-6 h-6 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 transition-all duration-500"
+    />
+  </button>
+</form>

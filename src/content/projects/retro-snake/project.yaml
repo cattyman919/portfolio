@@ -1,0 +1,27 @@
+title: "Retro Snake"
+type: "gamedev"
+tags: ["gamedev", "c++", "raylib"]
+image: "./snake.gif"
+description: "A classic snake game built with C++ and the raylib library. This project features a retro aesthetic with a simple and intuitive menu, sound effects, and classic gameplay mechanics. "
+# full_description
+# RestoMatic is a user-friendly web platform designed to simplify and streamline the process of ordering food and drinks from various restaurants. The platform offers users a convenient way to navigate through a wide range of restaurants, each with its own unique menu. Additionally, users can add funds to their balance to make payments and share their experiences by leaving ratings and reviews for specific restaurants.
+#
+#
+
+highlights:
+  - "Classic Gameplay: Enjoy the timeless fun of Snake."
+  - "Main Menu: A fully functional main menu with Play and Exit options."
+  - "Keyboard & Mouse Support: Navigate the menu using arrow keys/Enter or the mouse."
+  - "Scoring System: Keep track of your score as you eat food."
+  - "Pause & Game Over: Pause the game at any time and see a clear 'Game Over' screen upon losing."
+  - "Sound Effects: Audio feedback for eating food and colliding with walls."
+  - "Retro Visuals: Simple and clean graphics that hark back to the classic arcade era."
+
+tools:
+  - name: "C++"
+    logo: "devicon:cplusplus"
+
+sourceCodeUrl: "https://github.com/cattyman919/snake"
+
+mediaUrls:
+  - "https://bucket.senop.dev/projects/retro-snake/snake.gif"

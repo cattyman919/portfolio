@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Fonts */
+  --font-pixel: var(--font-pixel);
+
+  /* Colors */
+  --color-primary: oklch(0.8751 0.2375 150.21);
+  --color-bg: oklch(0.1288 0.029 151.71);
+  --color-lagoon: oklch(0.72 0.11 221.19);
+  --color-coral: oklch(0.74 0.17 40.24);
+  --color-driftwood: oklch(0.79 0.06 74.59);
+  --color-tide: oklch(0.49 0.08 205.88);
+  --color-dusk: oklch(0.82 0.15 72.09);
+
+  /* New brilliant cyan color for the stars, based on the image's vibrant cyan */
+  --color-glow-cyan: oklch(0.81 0.2 216);
+
+  /* Add an extremely light, off-white cream color for the card background, matching the image */
+  --color-card-cream: oklch(0.97 0.015 150);
+
+  --animate-caret: blink 1s steps(1) infinite;
+  /* Fades from your base green to a slightly brighter, punchier green */
+  --background-image-name-gradient: linear-gradient(
+    to right,
+    var(--color-primary),
+    oklch(0.95 0.22 145)
+  );
+
+  --color-glow-green: oklch(0.9 0.28 150);
+
+  /* Define the animation utilities */
+  --animate-marquee: marquee 80s linear infinite;
+  --animate-marquee-reverse: marquee 80s linear infinite reverse;
+
+  /* Define the keyframes */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      /* transform: translateX(calc(-100% - 1.5rem)); */
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@keyframes grow-line {
+  from {
+    transform: scaleY(0);
+    opacity: 0.2;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@utility scroll-animate-height {
+  animation: grow-line linear both;
+  /* Bind the timeline to the viewport */
+  animation-timeline: view();
+  /* Start when the top of the container enters, finish when it's 50% through the viewport */
+  animation-range: entry 0% cover 50%;
+}
+
+@utility text-gradient {
+  background-image: var(--background-image-name-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  0.1% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.1% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    /* font-family: var(--font-body); */
+  }
+
+  a {
+    text-decoration: none; /* Remove default underline */
+    position: relative;
+    transition: all 0.15s ease-in-out;
+
+    /* Optional: change the text color on hover too */
+    &:hover {
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        transparent
+      );
+      color: white;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 10px
+        color-mix(in oklch, var(--color-primary) 20%, transparent);
+    }
+  }
+
+  button {
+    border-width: 1px;
+    border-radius: var(--radius-xl);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    font-weight: 700;
+
+    &:hover {
+      /* Mixes 15% of your neon green with transparency */
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        transparent
+      );
+      /* color: var(--color-primary); */
+      color: white;
+      border-color: var(--color-primary);
+
+      /* Optional: adds a subtle glow to the box */
+      box-shadow: 0 0 10px
+        color-mix(in oklch, var(--color-primary) 20%, transparent);
+    }
+  }
+
+  input,
+  textarea {
+    border-width: 1px;
+    border-color: color-mix(in oklch, var(--color-primary) 30%, transparent);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px
+      color-mix(in oklch, var(--color-primary) 30%, transparent);
+  }
+
+  /* Adjust placeholder text color to blend nicely */
+  input::placeholder,
+  textarea::placeholder {
+    color: oklch(0.5 0 0); /* Muted gray for placeholder */
+  }
+}

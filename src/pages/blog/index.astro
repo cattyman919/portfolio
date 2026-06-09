@@ -1,0 +1,86 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const blogs = (await getCollection("blogs")).sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+);
+
+// Group blogs by year
+const blogsByYear = blogs.reduce(
+  (acc, blog) => {
+    const year = new Date(blog.data.pubDate).getFullYear().toString();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(blog);
+    return acc;
+  },
+  {} as Record<string, typeof blogs>,
+);
+
+// Sort years in descending order (newest first)
+const years = Object.keys(blogsByYear).sort(
+  (a, b) => parseInt(b) - parseInt(a),
+);
+---
+
+<BaseLayout>
+  <div class="px-6 md:px-20 mt-15 max-w-7xl mx-auto mb-20">
+    <div class="flex flex-col justify-center text-gray-200 gap-4 mb-6">
+      <h1 class="font-bold text-4xl font-pixel text-primary/90">Blog</h1>
+      <p class="w-full md:w-[60%] text-justify text-gray-300 leading-8">
+        Welcome to my blog domain where I share personal stories about things
+        I've learned, projects I'm hacking on and just general findings.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-10">
+      {
+        years.map((year) => (
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center gap-4 mt-4">
+              <h2 class="text-3xl font-bold font-pixel text-gray-200">
+                {year}
+              </h2>
+              <div class="flex-grow h-px bg-white/10 rounded-full" />
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+              {blogsByYear[year].map((blog) => (
+                <a
+                  href={`/blog/${blog.id}`}
+                  class="group flex flex-col gap-3 p-6 rounded-2xl bg-white/2 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:bg-white/[0.04] bg-transparent hover:shadow-none"
+                >
+                  <h3 class="text-2xl font-pixel font-bold text-primary/80 group-hover:text-primary transition-colors">
+                    {blog.data.title}
+                  </h3>
+                  <p class="text-sm text-gray-400">
+                    {new Date(blog.data.pubDate).toLocaleDateString("en-US", {
+                      // month: "long",
+                      // day: "numeric",
+                      dateStyle: "long",
+                    })}
+                  </p>
+                  <p class="text-gray-300 line-clamp-3">
+                    {blog.data.description}
+                  </p>
+                  {blog.data.tags && (
+                    <div class="flex gap-2 mt-2">
+                      {blog.data.tags.map((tag: string) => (
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary/80 border border-primary/20">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </a>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

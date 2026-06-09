@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+import Navigation from "@/components/Navigation.tsx";
+import { Font } from "astro:assets";
+
+import { ClientRouter } from "astro:transitions";
+import { fade } from "astro:transitions";
+
+// Define the props accepted by this layout
+interface Props {
+  hideNav?: boolean;
+}
+
+// Extract hideNav, defaulting to false if not provided
+const { hideNav = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Font cssVariable="--font-pixel" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/SR-Logo.svg" />
+    <link rel="icon" href="/SR-Logo.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Seno Pamungkas Rahman - Portfolio</title>
+    <ClientRouter />
+  </head>
+  <body>
+    {!hideNav && <Navigation client:load />}
+    <main transition:animate={fade({ duration: "0.4s" })}>
+      <slot />
+    </main>
+  </body>
+</html>

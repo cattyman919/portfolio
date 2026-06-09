@@ -1,0 +1,124 @@
+---
+import TypewriterText from "@/components/home/TypewriterText";
+import ParticlesBackground from "@/components/home/ParticlesBackground";
+
+import { Icon } from "astro-icon/components";
+
+const resumeEndpoint: string =
+  "https://bucket.senop.dev/Seno%20Pamungkas%20Rahman%20-%20CV%20(main).pdf";
+
+const blogEndpoint: string = "/blog";
+---
+
+<section
+  id="home"
+  class="min-h-screen relative flex flex-col justify-center items-center text-center"
+>
+  <ParticlesBackground
+    id="home-particles"
+    options={{
+      fullScreen: {
+        enable: false,
+      },
+      background: {
+        color: { value: "transparent" },
+      },
+      fpsLimit: 120,
+      interactivity: {
+        detectsOn: "window",
+        events: {
+          onHover: {
+            enable: true,
+            parallax: {
+              enable: true,
+              force: 60,
+              smooth: 10,
+            },
+          },
+        },
+      },
+      particles: {
+        color: { value: "#0ffe7a" },
+        links: {
+          color: "#ffffff",
+          distance: 150,
+          enable: true,
+          opacity: 0.1,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          outModes: { default: "bounce" },
+        },
+        number: {
+          density: { enable: true, width: 800, height: 800 },
+          value: 40, // Adjust for more/fewer particles
+        },
+        opacity: { value: 0.4 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 3 } },
+      },
+      detectRetina: true,
+    }}
+    client:load
+  />
+
+  <div class="w-[90%] lg:w-[60%] max-w-5xl flex flex-col gap-9">
+    {/* Main Title Section */}
+    <div class="relative flex flex-col gap-10 text-center pb-4">
+      <div
+        class="absolute -inset-4 bg-glow-green/15 blur-[80px] rounded-full z-0 pointer-events-none"
+      >
+      </div>
+      <div class="relative z-10 font-bold">
+        <h1 class="text-gray-200 text-5xl md:text-7xl mb-12">
+          Hi, I'm <span class="text-gradient">Seno Pamungkas Rahman</span>
+        </h1>
+        <h2 class="text-3xl md:text-5xl text-gray-300/90 mt-4">
+          <TypewriterText client:load />
+        </h2>
+      </div>
+    </div>
+
+    <div
+      class="w-80 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto"
+    >
+    </div>
+
+    {/* Description Section */}
+    <!-- <p class="text-gray-50 text-xl md:text-2xl tracking-wider leading-relaxed"> -->
+    <!--   An avid software engineer with a zest for front-end, back-end, AI, and -->
+    <!--   cloud technologies. Passionate about exploring new tech frontiers, I blend -->
+    <!--   creativity with technical skill in every project, pushing the boundaries -->
+    <!--   of software innovation -->
+    <!-- </p> -->
+    <p class="text-gray-50 text-xl md:text-2xl tracking-wider leading-relaxed">
+      A Platform and Full-Stack Software Engineer specializing in cloud-native
+      infrastructure, systems programming, and scalable web applications. From
+      architecting high-concurrency Go tools and managing Kubernetes
+      environments to building dynamic frontend experiences, I bridge the gap
+      between robust backend operations and seamless user interactions.
+    </p>
+
+    {/* Buttons Section */}
+    <div class="flex gap-10 items-center justify-center mt-5">
+      <a
+        href={resumeEndpoint}
+        target="_blank"
+        class="flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]"
+      >
+        <Icon name="lucide:file-badge" class="w-8 h-8" />
+        <p>Resume</p>
+      </a>
+      <a
+        href={blogEndpoint}
+        class="flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]"
+      >
+        <Icon name="lucide:newspaper" class="w-8 h-8" />
+        <p>Blog</p>
+      </a>
+    </div>
+  </div>
+</section>

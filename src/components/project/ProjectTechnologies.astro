@@ -1,0 +1,41 @@
+---
+import { Icon } from "astro-icon/components";
+import type { ProjectType } from "../../content.config";
+
+interface Props {
+  tools: ProjectType["tools"];
+}
+
+const { tools } = Astro.props;
+---
+
+<div
+  class="w-full md:w-[350px] h-fit flex flex-col flex-wrap top-20 md:sticky border border-gray-200/25 px-8 py-4 rounded-lg"
+>
+  <div class="flex justify-center items-center gap-4 mb-8">
+    <Icon name="lucide:cpu" class="w-10 h-10" />
+    <h1 class="text-2xl font-bold">Technologies</h1>
+  </div>
+  <div class="flex flex-wrap gap-4">
+    {
+      tools &&
+        tools.map((tool) => {
+          const { name, logo } = tool;
+          return (
+            <>
+              {logo ? (
+                <div class="flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100">
+                  <Icon name={logo} class="w-8 h-8 " />
+                  <p class="font-bold">{name}</p>
+                </div>
+              ) : (
+                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]">
+                  {name.charAt(0)}
+                </div>
+              )}
+            </>
+          );
+        })
+    }
+  </div>
+</div>

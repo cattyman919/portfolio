@@ -1,0 +1,158 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image, getImage } from "astro:assets";
+import type { ProjectType } from "@/src/content.config";
+import ProjectCarousel from "@/components/project/ProjectCarousel";
+import defaultCover from "@/content/projects/template_project_cover.webp";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: ProjectType.image;
+  mediaUrls?: string[];
+  tags?: string[];
+  demoUrl?: string;
+  sourceCodeUrl?: string;
+}
+
+const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
+  Astro.props;
+
+// 2. Resolve the image to use (either the specific project image, or the fallback)
+const displayImage = image || defaultCover;
+
+const videoExtensions = ["mp4", "mov", "webm", "ogg"];
+
+const processedMedia = await Promise.all(
+  mediaUrls!.map(async (url) => {
+    const isVideo = videoExtensions.some((ext) =>
+      url.toLowerCase().endsWith(`.${ext}`),
+    );
+
+    if (isVideo) {
+      return { type: "video" as const, src: url };
+    }
+
+    const isGif = url.toLowerCase().endsWith(".gif");
+
+    if (isGif) {
+      // Bypass Astro's image optimization to preserve the animation
+      return {
+        type: "image" as const,
+        src: url,
+        thumbSrc: url, // Use the original GIF for the thumbnail as well
+      };
+    }
+
+    // Generate high-res version for the viewer (1200px width)
+    const optimizedFull = await getImage({
+      src: url,
+      width: 1200,
+      fit: "inside",
+      format: "avif",
+      inferSize: true,
+    });
+
+    // Generate tiny thumbnail (150px width, lower quality)
+    const optimizedThumb = await getImage({
+      src: url,
+      width: 150,
+      height: 100,
+      quality: 40,
+      format: "avif",
+      inferSize: true,
+    });
+
+    return {
+      type: "image" as const,
+      src: optimizedFull.src,
+      thumbSrc: optimizedThumb.src,
+    };
+  }),
+);
+---
+
+<div
+  class="relative border border-gray-200/15 border-primary/30 rounded-lg p-8 h-full"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 -z-1 rounded-lg">
+    <Image
+      src={displayImage}
+      alt={`Cover image for ${title}`}
+      width={800}
+      quality={30}
+      class="absolute top-0 right-0 left-0 bottom-0 w-full h-full object-cover opacity-20 blur-xs"
+      loading="eager"
+      decoding="async"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"
+    >
+    </div>
+  </div>
+  <!-- Project Card -->
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-col lg:flex-row justify-between gap-8">
+      <div class="flex-1 min-w-0 w-full">
+        <ProjectCarousel media={processedMedia} client:load />
+      </div>
+      <div class="w-full lg:w-[35%] flex flex-col gap-5">
+        <h1 class="text-4xl font-bold text-primary font-pixel">{title}</h1>
+        <p
+          class="text-gray-300 text-base md:text-xl text-justify leading-loose"
+        >
+          {description}
+        </p>
+        <div class="flex gap-4 w-full">
+          {/* Live Demo Button */}
+          <a
+            href={demoUrl || undefined}
+            target={demoUrl ? "_blank" : undefined}
+            rel={demoUrl ? "noopener noreferrer" : undefined}
+            class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+              demoUrl
+                ? "cursor-pointer border-primary/50"
+                : "opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500 bg-gray-600/20"
+            }`}
+          >
+            {/* Added shrink-0 to prevent icon from squishing */}
+            <Icon
+              name="mdi:world-wide-web"
+              class="w-6 h-6 sm:w-8 sm:h-8 shrink-0"
+            />
+            {/* Added whitespace-nowrap to prevent text wrapping */}
+            <p class="font-bold whitespace-nowrap">Live Demo</p>
+          </a>
+
+          {/* Source Code Button */}
+          <a
+            href={sourceCodeUrl || undefined}
+            target={sourceCodeUrl ? "_blank" : undefined}
+            rel={sourceCodeUrl ? "noopener noreferrer" : undefined}
+            class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+              sourceCodeUrl
+                ? "cursor-pointer border-primary/50"
+                : "opacity-40 pointer-events-none border-gray-600 text-gray-500 bg-gray-600/20"
+            }`}
+          >
+            <Icon name="mdi:code-tags" class="w-6 h-6 sm:w-8 sm:h-8 shrink-0" />
+            <p class="font-bold whitespace-nowrap">Source</p>
+          </a>
+        </div>
+        <div class="flex items-center gap-4 mt-5">
+          <h4 class="text-gray-400 font-bold">Tags:</h4>
+          <div class="flex gap-3">
+            {
+              tags?.map((tag) => (
+                <p class="border border-primary px-2 py-1 rounded-lg bg-primary/10 text-primary/80 font-bold">
+                  {tag}
+                </p>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

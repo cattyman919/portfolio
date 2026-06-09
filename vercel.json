@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm build",
+  "framework": "astro",
+  "git": {
+    "deploymentEnabled": {
+      "v1": false,
+      "v2-dev": false
+    }
+  }
+}

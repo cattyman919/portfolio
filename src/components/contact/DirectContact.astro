@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+
+const emailAddress = "senop.rahman@gmail.com";
+const locationPlace = "Indonesia";
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    icon: "mdi:github",
+    url: "https://github.com/cattyman919",
+  },
+  {
+    name: "LinkedIn",
+    icon: "devicon:linkedin",
+    url: "https://www.linkedin.com/in/seno-pamungkas-rahman-714341192",
+  },
+  {
+    name: "Instagram",
+    icon: "skill-icons:instagram",
+    url: "https://www.instagram.com/senohebat",
+  },
+];
+---
+
+<div class="flex flex-col gap-10 flex-1">
+  <div class="flex flex-col gap-5">
+    <div class="flex gap-3 items-center text-primary font-bold text-2xl">
+      <Icon name="lucide:mail" class="w-8 h-8" />
+      <h2>Direct Contact</h2>
+    </div>
+
+    <div
+      class="group border border-primary/20 bg-white/[0.02] backdrop-blur-md rounded-lg flex items-center p-2 gap-4 transition-all duration-300 hover:border-primary/50"
+    >
+      <div
+        class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 transition-all duration-300"
+      >
+        <Icon name="lucide:at-sign" class="w-7 h-7" />
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xs uppercase text-primary tracking-widest font-bold"
+          >EMAIL</span
+        >
+        <a
+          href={`mailto:${emailAddress}`}
+          class="text-white hover:text-primary transition-colors text-lg hover:bg-transparent hover:shadow-none"
+        >
+          {emailAddress}
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="group border border-primary/20 bg-white/[0.02] backdrop-blur-md rounded-lg flex items-center p-2 gap-4 transition-all duration-300 hover:border-primary/50"
+    >
+      <div
+        class="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 transition-all duration-300"
+      >
+        <Icon name="lucide:map-pin" class="w-7 h-7" />
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xs uppercase text-primary tracking-widest font-bold"
+          >LOCATION</span
+        >
+        <span class="text-white text-lg">
+          {locationPlace}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-5">
+    <div class="flex gap-3 items-center text-primary font-bold text-2xl">
+      <Icon name="lucide:share-2" class="w-8 h-8" />
+      <h2>Social Presence</h2>
+    </div>
+    <div class="flex gap-8 filter-none">
+      {
+        socialLinks.map((social) => (
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={`Visit Seno's ${social.name}`}
+            class="flex items-center justify-center w-15 h-15 rounded-xl bg-white/[0.02] border border-primary/10 text-gray-400 group-hover:border-primary/50 group-hover:text-primary transition-all duration-300 hover:bg-white/5 hover:scale-110"
+          >
+            <Icon name={social.icon} class="w-10 h-10" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>

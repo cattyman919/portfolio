@@ -1,0 +1,3085 @@
+<repomix><file_summary>This file is a merged representation of a subset of the codebase, containing specifically included files and files not matching ignore patterns, combined into a single document by Repomix.
+The content has been processed where comments have been removed, content has been formatted for parsing in xml style.<purpose>This file contains a packed representation of a subset of the repository&apos;s contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.</purpose><file_format>The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file</file_format><usage_guidelines>- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.</usage_guidelines><notes>- Some files may have been excluded based on .gitignore rules and Repomix&apos;s configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Only files matching these patterns are included: **/*
+- Files matching these patterns are excluded: tmp/, **/.vscode/**, *.log, Glove_Code/lib/speech_recognition_inferencing/, Glove_Code/lib/MPU6050/, src/assets, public, src/content
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Code comments have been removed from supported file types
+- Content has been formatted for parsing in xml style
+- Files are sorted by Git change count (files with more changes are at the bottom)</notes></file_summary><directory_structure>src/
+  components/
+    contact/
+      DirectContact.astro
+      EmailCard.astro
+    experience/
+      ExperienceCard.astro
+    home/
+      ParticlesBackground.tsx
+      TypewriterText.tsx
+    project/
+      ProjectCard.astro
+      ProjectCardDetail.astro
+      ProjectCarousel.tsx
+      ProjectHiglights.astro
+      ProjectTechnologies.astro
+    skills/
+      SkillCard.astro
+      SkillCardItem.astro
+    About.astro
+    Contact.astro
+    Experience.astro
+    Home.astro
+    Navigation.tsx
+    Projects.astro
+    Skills.astro
+    TiltWrapper.tsx
+  hooks/
+    UseTypewriter.tsx
+  layouts/
+    BaseLayout.astro
+    ProjectPostLayout.astro
+  pages/
+    blog/
+      [id].astro
+      index.astro
+    project/
+      [id].astro
+    index.astro
+  styles/
+    global.css
+  types/
+    index.ts
+  content.config.ts
+.gitignore
+.prettierrc.mjs
+AGENTS.md
+astro.config.mjs
+package.json
+README.md
+tsconfig.json
+vercel.json</directory_structure><files>This section contains the contents of the repository&apos;s files.<file path="src/hooks/UseTypewriter.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+
+export const useTypewriter = (
+  text: string[],
+  speed: number = 100,
+  delay: number = 1000,
+): string =&gt; {
+  const [displayText, setDisplayText] = useState(&quot;&quot;);
+  const [isDeleting, setIsDeleting] = useState&lt;boolean&gt;(false);
+  const i = useRef(0);
+  const j = useRef(0);
+  useEffect(() =&gt; {
+    const currentWord = text[i.current];
+
+    const typingInterval = setInterval(() =&gt; {
+      if (isDeleting) {
+        setDisplayText(currentWord.substring(0, j.current - 1));
+        j.current--;
+        if (j.current == 0) {
+          setIsDeleting(false);
+          i.current++;
+          if (i.current === text.length) {
+            i.current = 0;
+          }
+        }
+      } else {
+        setDisplayText(currentWord.substring(0, j.current + 1));
+        j.current++;
+        if (j.current === currentWord.length) {
+          setTimeout(() =&gt; {
+            setIsDeleting(true);
+          }, delay);
+        }
+      }
+    }, speed);
+
+    return () =&gt; {
+      clearInterval(typingInterval);
+    };
+  }, [isDeleting]);
+
+  return displayText;
+};</file><file path="src/layouts/ProjectPostLayout.astro">---
+import BaseLayout from &quot;../layouts/BaseLayout.astro&quot;;
+import type { MarkdownLayoutProps } from &quot;astro&quot;;
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  author: string;
+  tags?: string[];
+}
+
+const { frontmatter } = Astro.props;
+---
+
+&lt;BaseLayout /&gt;</file><file path=".prettierrc.mjs">/** @type {import(&quot;prettier&quot;).Config} */
+export default {
+  plugins: [&quot;prettier-plugin-astro&quot;],
+  overrides: [
+    {
+      files: &quot;*.astro&quot;,
+      options: {
+        parser: &quot;astro&quot;,
+      },
+    },
+  ],
+};</file><file path="AGENTS.md"># AGENTS.md
+
+## Stack
+
+Astro 6 + React 19 + Tailwind CSS 4, deployed to Vercel. Package manager is **pnpm**. Requires Node &gt;= 22.12.0.
+
+## Commands
+
+- `pnpm dev` — dev server on `localhost:4321`
+- `pnpm build` — production build to `dist/`
+- `pnpm preview` — preview the build
+- Type checking: `pnpm astro check` (no dedicated script in package.json)
+- Formatting: `pnpm exec prettier --check .` / `pnpm exec prettier --write .` (uses `prettier-plugin-astro`)
+
+There is no lint script configured.
+
+## Architecture
+
+Single-page portfolio. All content is on one route (`src/pages/index.astro`) composed of section components.
+
+- **Pages**: `src/pages/index.astro` — imports and assembles all sections
+- **Components**: `src/components/` — Astro components for each section (Home, About, Experience, Skills, Projects, Contact) plus subdirectories with supporting pieces. `Navigation.tsx` and `TiltWrapper.tsx` are React components used with `client:*` directives.
+- **Data**: `src/data/` — typed TS files (`experiences.ts`, `projects.ts`, `skills.ts`) hold all portfolio content. Types are in `src/types/index.ts`.
+- **Styles**: `src/styles/global.css` — Tailwind v4 CSS-based config with custom theme colors (oklch), keyframes, and `@utility` definitions. No `tailwind.config.js`.
+- **Icons**: Uses `astro-icon` with iconify icon sets (many `@iconify-json/*` packages). Icons are referenced by their iconify name.
+
+## Path aliases
+
+Defined in `tsconfig.json`:
+
+- `@/*` → `src/*`
+- `@/components/*` → `src/components/*`
+- `@/layouts/*` → `src/layouts/*`
+- `@/styles/*` → `src/styles/*`
+
+## Conventions
+
+- React components in Astro files must use `client:*` directives (e.g., `client:load`).
+- Tailwind is v4 — configure theme tokens and utilities in `global.css` via `@theme` and `@utility`, not in a JS config file.
+- To add portfolio content, edit the data files in `src/data/` following the interfaces in `src/types/index.ts`.
+- `*.xml` files are gitignored (repomix outputs exist in the tree but should not be edited).
+
+## Deploy
+
+Vercel. Deployment is disabled for branches named `astro` and `new-portfolio` (see `vercel.json`).</file><file path="src/components/contact/EmailCard.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+---
+
+&lt;form
+  action=&quot;https://api.web3forms.com/submit&quot;
+  method=&quot;POST&quot;
+  class=&quot;flex flex-col gap-6 flex-1 border border-gray-500/30 rounded-lg px-10 py-8 bg-white/[0.02] backdrop-blur-md&quot;
+&gt;
+  &lt;h1 class=&quot;font-bold text-3xl text-primary mb-3&quot;&gt;Send a Message&lt;/h1&gt;
+  &lt;input
+    type=&quot;hidden&quot;
+    name=&quot;access_key&quot;
+    value=&quot;b18f0437-d489-48ac-9dbf-dcc9cdcbe8e6&quot;
+  /&gt;
+
+  &lt;div class=&quot;flex flex-col gap-2 group&quot;&gt;
+    &lt;div
+      class=&quot;flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary&quot;
+    &gt;
+      &lt;Icon name=&quot;iconamoon:profile&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;label for=&quot;username&quot;&gt;Your Name&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;input
+      type=&quot;text&quot;
+      id=&quot;username&quot;
+      name=&quot;username&quot;
+      placeholder=&quot;John Doe&quot;
+      required
+      class=&quot;text-white&quot;
+    /&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex flex-col gap-2 group&quot;&gt;
+    &lt;div
+      class=&quot;flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary&quot;
+    &gt;
+      &lt;Icon name=&quot;mdi:email-outline&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;label for=&quot;email&quot;&gt;Your Email&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;input
+      type=&quot;email&quot;
+      id=&quot;email&quot;
+      name=&quot;email&quot;
+      placeholder=&quot;john@example.com&quot;
+      required
+      class=&quot;text-white&quot;
+    /&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex flex-col gap-2 group&quot;&gt;
+    &lt;div
+      class=&quot;flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary&quot;
+    &gt;
+      &lt;Icon name=&quot;lucide:tag&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;label for=&quot;subject&quot;&gt;Subject&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;input
+      type=&quot;text&quot;
+      id=&quot;subject&quot;
+      name=&quot;subject&quot;
+      placeholder=&quot;Project Inquiry&quot;
+      required
+      class=&quot;text-white&quot;
+    /&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex flex-col gap-2 group&quot;&gt;
+    &lt;div
+      class=&quot;flex gap-2 items-center text-gray-400 font-bold transition-colors duration-300 group-focus-within:text-primary&quot;
+    &gt;
+      &lt;Icon name=&quot;lucide:message-square&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;label for=&quot;message&quot;&gt;Message&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;textarea
+      id=&quot;message&quot;
+      name=&quot;message&quot;
+      placeholder=&quot;Tell me about your project...&quot;
+      class=&quot;h-40 text-white resize-none&quot;
+      required&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;input
+    type=&quot;checkbox&quot;
+    name=&quot;botcheck&quot;
+    class=&quot;hidden&quot;
+    style=&quot;display: none;&quot;
+  /&gt;
+
+  &lt;button
+    type=&quot;submit&quot;
+    class=&quot;flex gap-2 justify-center items-center group/button hover:scale-105 bg-primary/80 text-bg mt-2&quot;
+  &gt;
+    &lt;p&gt;Send Message&lt;/p&gt;
+    &lt;Icon
+      name=&quot;akar-icons:paper-airplane&quot;
+      class=&quot;w-6 h-6 group-hover/button:translate-x-0.5 group-hover/button:-translate-y-0.5 transition-all duration-500&quot;
+    /&gt;
+  &lt;/button&gt;
+&lt;/form&gt;</file><file path="src/components/skills/SkillCardItem.astro">---
+import type { Skill } from &quot;@/types&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+
+type Props = Skill;
+
+const { name, expertise, logo } = Astro.props;
+
+const ratingOutOfFive = Math.floor(expertise / 20);
+---
+
+&lt;div
+  class=&quot;flex items-center gap-4 px-4 md:px-6 py-2 md:py-4 bg-white/3 border border-white/5 rounded-2xl md:min-w-[200px] transition-colors hover:bg-white/8 backdrop-blur-sm cursor-default&quot;
+&gt;
+  {
+    logo ? (
+      &lt;Icon
+        name={logo}
+        class={`flex items-center justify-center w-8 h-8 md:w-12 md:h-12 ${
+          name === &quot;Rust&quot; &amp;&amp; &quot;fill-[#C45508]&quot;
+        }`}
+      /&gt;
+    ) : (
+      &lt;div class=&quot;flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+        {name.charAt(0)}
+      &lt;/div&gt;
+    )
+  }
+
+  &lt;div class=&quot;flex flex-col gap-1.5&quot;&gt;
+    &lt;span class=&quot;text-sm md:text-base text-white font-bold tracking-wider&quot;
+      &gt;{name}&lt;/span
+    &gt;
+
+    &lt;div class=&quot;flex gap-1 relative z-10&quot;&gt;
+      {
+        [0, 1, 2, 3, 4].map((index) =&gt; {
+          const isFilled = index &lt; ratingOutOfFive;
+
+          return (
+            &lt;Icon
+              name=&quot;lucide:star&quot;
+              class={`w-4 h-4 transition-colors duration-300 ${
+                isFilled
+                  ? // FIX: Swapped fill-primary for fill-current so it inherits the green from text-primary
+                    &quot;text-primary fill-current drop-shadow-[0_0_4px_var(--color-primary)]&quot;
+                  : &quot;text-white/20 fill-transparent&quot;
+              }`}
+            /&gt;
+          );
+        })
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/components/TiltWrapper.tsx">import { useState, useRef, type ReactNode } from &quot;react&quot;;
+
+interface TiltWrapperProps {
+  children: ReactNode;
+  maxTilt: number;
+  className?: string;
+}
+
+export default function TiltWrapper({
+  children,
+  maxTilt,
+  className = &quot;&quot;,
+}: TiltWrapperProps) {
+  const cardRef = useRef&lt;HTMLDivElement&gt;(null);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const MAX_TILT = maxTilt;
+
+  const handleMouseMove = (e: React.MouseEvent&lt;HTMLDivElement&gt;) =&gt; {
+    if (!cardRef.current) return;
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const mouseXFromCenter = e.clientX - rect.left - centerX;
+    const mouseYFromCenter = e.clientY - rect.top - centerY;
+
+    const rotateX = -(mouseYFromCenter / centerY) * MAX_TILT;
+    const rotateY = (mouseXFromCenter / centerX) * MAX_TILT;
+
+    setRotation({ x: rotateX, y: rotateY });
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const handleMouseLeave = () =&gt; {
+    setIsHovered(false);
+    setRotation({ x: 0, y: 0 });
+  };
+
+  const handleMouseEnter = () =&gt; {
+    setIsHovered(true);
+  };
+
+  return (
+    &lt;div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      // The outer container handles the 3D perspective
+      className=&quot;relative group [perspective:1000px] w-full h-full&quot;
+    &gt;
+      &lt;div
+        style={{
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        }}
+        className={`relative w-full h-full will-change-transform transform-3d
+          ${isHovered ? &quot;transition-none&quot; : &quot;transition-transform duration-500 ease-out&quot;}
+          ${className}`}
+      &gt;
+        {}
+        &lt;div className=&quot;absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none&quot;&gt;
+          &lt;div className=&quot;absolute inset-0 transition-opacity duration-300 mix-blend-overlay&quot; /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;relative z-10 w-full h-full transform-3d&quot;&gt;
+          {children}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</file><file path="src/pages/project/[id].astro">---
+import { getCollection } from &quot;astro:content&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import ProjectCardDetail from &quot;@/components/project/ProjectCardDetail.astro&quot;;
+import ProjectTechnologies from &quot;@/components/project/ProjectTechnologies.astro&quot;;
+import ProjectHiglights from &quot;@/components/project/ProjectHiglights.astro&quot;;
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const projects = await getCollection(&quot;projects&quot;);
+  return projects.map((project) =&gt; ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+// 2. For your template, you can get the entry directly from the prop
+const { project } = Astro.props;
+const {
+  title,
+  description,
+  highlights,
+  tools,
+  tags,
+  demoUrl,
+  sourceCodeUrl,
+  image,
+  mediaUrls,
+} = project.data;
+---
+
+&lt;BaseLayout&gt;
+  &lt;div class=&quot;max-w-8xl mx-auto w-full flex flex-col gap-8 px-12 sm:px-14 py-8&quot;&gt;
+    &lt;a
+      href=&quot;/#projects&quot;
+      class=&quot;hover:text-primary transition-all w-fit bg-transparent hover:bg-transparent hover:shadow-none hover:drop-shadow-none hover:scale-110 duration-300&quot;
+    &gt;
+      &lt;p class=&quot;font-bold&quot;&gt;← Back to Projects&lt;/p&gt;
+    &lt;/a&gt;
+    &lt;ProjectCardDetail
+      description={description}
+      title={title}
+      demoUrl={demoUrl}
+      mediaUrls={mediaUrls}
+      sourceCodeUrl={sourceCodeUrl}
+      image={image}
+      tags={tags}
+    /&gt;
+
+    &lt;div class=&quot;flex flex-col-reverse md:flex-row gap-10 relative&quot;&gt;
+      &lt;ProjectHiglights highlights={highlights} /&gt;
+      &lt;ProjectTechnologies tools={tools} /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;</file><file path="src/components/contact/DirectContact.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+
+const emailAddress = &quot;senop.rahman@gmail.com&quot;;
+const locationPlace = &quot;Indonesia&quot;;
+
+const socialLinks = [
+  {
+    name: &quot;GitHub&quot;,
+    icon: &quot;mdi:github&quot;,
+    url: &quot;https://github.com/cattyman919&quot;,
+  },
+  {
+    name: &quot;LinkedIn&quot;,
+    icon: &quot;devicon:linkedin&quot;,
+    url: &quot;https://www.linkedin.com/in/seno-pamungkas-rahman-714341192&quot;,
+  },
+  {
+    name: &quot;Instagram&quot;,
+    icon: &quot;skill-icons:instagram&quot;,
+    url: &quot;https://www.instagram.com/senohebat&quot;,
+  },
+];
+---
+
+&lt;div class=&quot;flex flex-col gap-10 flex-1&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-5&quot;&gt;
+    &lt;div class=&quot;flex gap-3 items-center text-primary font-bold text-2xl&quot;&gt;
+      &lt;Icon name=&quot;lucide:mail&quot; class=&quot;w-8 h-8&quot; /&gt;
+      &lt;h2&gt;Direct Contact&lt;/h2&gt;
+    &lt;/div&gt;
+
+    &lt;div
+      class=&quot;group border border-primary/20 bg-white/[0.02] backdrop-blur-md rounded-lg flex items-center p-2 gap-4 transition-all duration-300 hover:border-primary/50&quot;
+    &gt;
+      &lt;div
+        class=&quot;flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 transition-all duration-300&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:at-sign&quot; class=&quot;w-7 h-7&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;flex flex-col&quot;&gt;
+        &lt;span class=&quot;text-xs uppercase text-primary tracking-widest font-bold&quot;
+          &gt;EMAIL&lt;/span
+        &gt;
+        &lt;a
+          href={`mailto:${emailAddress}`}
+          class=&quot;text-white hover:text-primary transition-colors text-lg hover:bg-transparent hover:shadow-none&quot;
+        &gt;
+          {emailAddress}
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div
+      class=&quot;group border border-primary/20 bg-white/[0.02] backdrop-blur-md rounded-lg flex items-center p-2 gap-4 transition-all duration-300 hover:border-primary/50&quot;
+    &gt;
+      &lt;div
+        class=&quot;flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary/20 transition-all duration-300&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:map-pin&quot; class=&quot;w-7 h-7&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;flex flex-col&quot;&gt;
+        &lt;span class=&quot;text-xs uppercase text-primary tracking-widest font-bold&quot;
+          &gt;LOCATION&lt;/span
+        &gt;
+        &lt;span class=&quot;text-white text-lg&quot;&gt;
+          {locationPlace}
+        &lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex flex-col gap-5&quot;&gt;
+    &lt;div class=&quot;flex gap-3 items-center text-primary font-bold text-2xl&quot;&gt;
+      &lt;Icon name=&quot;lucide:share-2&quot; class=&quot;w-8 h-8&quot; /&gt;
+      &lt;h2&gt;Social Presence&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;flex gap-8 filter-none&quot;&gt;
+      {
+        socialLinks.map((social) =&gt; (
+          &lt;a
+            href={social.url}
+            target=&quot;_blank&quot;
+            rel=&quot;noopener noreferrer&quot;
+            title={`Visit Seno&apos;s ${social.name}`}
+            class=&quot;flex items-center justify-center w-15 h-15 rounded-xl bg-white/[0.02] border border-primary/10 text-gray-400 group-hover:border-primary/50 group-hover:text-primary transition-all duration-300 hover:bg-white/5 hover:scale-110&quot;
+          &gt;
+            &lt;Icon name={social.icon} class=&quot;w-10 h-10&quot; /&gt;
+          &lt;/a&gt;
+        ))
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/components/home/ParticlesBackground.tsx">import { useEffect, useState } from &quot;react&quot;;
+import Particles, { initParticlesEngine } from &quot;@tsparticles/react&quot;;
+import type { IParticlesProps } from &quot;@tsparticles/react&quot;;
+import { loadSlim } from &quot;@tsparticles/slim&quot;;
+
+interface ParticlesBackgroundProps {
+  id: string;
+  options?: IParticlesProps[&quot;options&quot;];
+}
+
+export default function ParticlesBackground({
+  id,
+  options,
+}: ParticlesBackgroundProps) {
+  const [init, setInit] = useState(false);
+
+  useEffect(() =&gt; {
+    initParticlesEngine(async (engine) =&gt; {
+
+      await loadSlim(engine);
+    }).then(() =&gt; {
+      setInit(true);
+    });
+  }, []);
+
+  if (!init) return &lt;&gt;&lt;/&gt;;
+
+  return (
+    &lt;Particles
+      id={id}
+      className=&quot;absolute inset-0 -z-20 w-full h-full&quot;
+      options={options}
+    /&gt;
+  );
+}</file><file path="src/components/project/ProjectHiglights.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { ProjectType } from &quot;../../content.config&quot;;
+
+interface Props {
+  highlights: ProjectType[&quot;highlights&quot;];
+}
+
+const { highlights } = Astro.props;
+---
+
+&lt;div class=&quot;flex-1 px-0 md:px-8 py-4 flex flex-col gap-8&quot;&gt;
+  &lt;div class=&quot;flex gap-2 items-center&quot;&gt;
+    &lt;Icon name=&quot;lucide:star&quot; class=&quot;w-6 h-6&quot; /&gt;
+    &lt;h1 class=&quot;font-bold text-2xl md:text-4xl&quot;&gt;Project Highlights&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-8&quot;&gt;
+    {
+      highlights.map((hightlight) =&gt; (
+        &lt;div class=&quot;flex gap-6 items-center text-justify border border-gray-200/20 hover:border-primary/30 px-4 py-2 rounded-md hover:bg-primary/5 transform-all duration-300&quot;&gt;
+          &lt;div class=&quot;w-4 h-4 shadow-primary backdrop-brightness-75 shadow-xl drop-shadow-[0_0_3px_var(--color-primary)]   aspect-square rounded-full border bg-primary&quot; /&gt;
+          &lt;p class=&quot;text-base md:text-xl leading-loose text-gray-100&quot;&gt;
+            {hightlight}
+          &lt;/p&gt;
+        &lt;/div&gt;
+      ))
+    }
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/components/project/ProjectTechnologies.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { ProjectType } from &quot;../../content.config&quot;;
+
+interface Props {
+  tools: ProjectType[&quot;tools&quot;];
+}
+
+const { tools } = Astro.props;
+---
+
+&lt;div
+  class=&quot;w-full md:w-[350px] h-fit flex flex-col flex-wrap top-20 md:sticky border border-gray-200/25 px-8 py-4 rounded-lg&quot;
+&gt;
+  &lt;div class=&quot;flex justify-center items-center gap-4 mb-8&quot;&gt;
+    &lt;Icon name=&quot;lucide:cpu&quot; class=&quot;w-10 h-10&quot; /&gt;
+    &lt;h1 class=&quot;text-2xl font-bold&quot;&gt;Technologies&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-wrap gap-4&quot;&gt;
+    {
+      tools &amp;&amp;
+        tools.map((tool) =&gt; {
+          const { name, logo } = tool;
+          return (
+            &lt;&gt;
+              {logo ? (
+                &lt;div class=&quot;flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100&quot;&gt;
+                  &lt;Icon name={logo} class=&quot;w-8 h-8 &quot; /&gt;
+                  &lt;p class=&quot;font-bold&quot;&gt;{name}&lt;/p&gt;
+                &lt;/div&gt;
+              ) : (
+                &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+                  {name.charAt(0)}
+                &lt;/div&gt;
+              )}
+            &lt;/&gt;
+          );
+        })
+    }
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/content.config.ts">import { defineCollection } from &quot;astro:content&quot;;
+import { z } from &quot;astro/zod&quot;;
+import { glob } from &quot;astro/loaders&quot;;
+import type { CollectionEntry } from &quot;astro:content&quot;;
+
+const projects = defineCollection({
+  loader: glob({
+    pattern: &quot;**/*.yaml&quot;,
+    base: &quot;./src/content/projects&quot;,
+    generateId: ({ entry }) =&gt;
+      entry.replace(&quot;/project.yaml&quot;, &quot;&quot;).replace(&quot;.yaml&quot;, &quot;&quot;),
+  }),
+  schema: ({ image }) =&gt;
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      type: z.string(),
+      image: image().optional(),
+      tags: z.array(z.string()).optional(),
+      tools: z.array(
+        z.object({
+          name: z.string(),
+          logo: z.string(),
+        }),
+      ),
+      highlights: z.array(z.string()),
+      mediaUrls: z.array(z.string()).optional(),
+      sourceCodeUrl: z.string().optional(),
+      demoUrl: z.string().optional(),
+    }),
+});
+
+const blogs = defineCollection({
+  loader: glob({
+    pattern: &quot;**</file><file path="vercel.json">{
+  &quot;$schema&quot;: &quot;https://openapi.vercel.sh/vercel.json&quot;,
+  &quot;git&quot;: {
+    &quot;deploymentEnabled&quot;: {
+      &quot;astro&quot;: false,
+      &quot;new-portfolio&quot;: false
+    }
+  }
+}</file><file path="src/components/home/TypewriterText.tsx">import { useTypewriter } from &quot;@/hooks/UseTypewriter&quot;;
+
+export default function TypewriterText() {
+  const text = useTypewriter(
+    [
+      &quot;Platform Engineer&quot;,
+      &quot;Full-Stack Developer&quot;,
+      &quot;Devops Engineer&quot;,
+      &quot;Systems Programmer&quot;,
+      &quot;Computer Engineer&quot;,
+    ],
+    50,
+    1000,
+  );
+  return (
+    &lt;p className=&quot;font-pixel&quot;&gt;
+      &lt;span&gt;{text || &quot;\u00A0&quot;}&lt;/span&gt;
+      &lt;span className=&quot;relative before:absolute before:inset-1 before:w-[0.125em] before:bg-primary animate-caret&quot;&gt;&lt;/span&gt;
+    &lt;/p&gt;
+  );
+}</file><file path="README.md"># Astro Starter Kit: Basics
+
+```sh
+pnpm create astro@latest -- --template basics
+```
+
+&gt; 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you&apos;ll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src
+│   ├── assets
+│   │   └── astro.svg
+│   ├── components
+│   │   └── Welcome.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   └── pages
+│       └── index.astro
+└── package.json
+```
+
+To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).</file><file path="src/pages/blog/[id].astro">---
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import { render } from &quot;astro:content&quot;;
+import { getCollection } from &quot;astro:content&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+
+export async function getStaticPaths() {
+  const blogs = await getCollection(&quot;blogs&quot;);
+  return blogs.map((blog) =&gt; ({
+    params: { id: blog.id },
+    props: { blog: blog },
+  }));
+}
+
+const { blog } = Astro.props;
+const { Content, headings } = await render(blog);
+---
+
+&lt;BaseLayout hideNav&gt;
+  &lt;nav
+    id=&quot;blog-nav&quot;
+    class=&quot;fixed top-0 left-0 right-0 z-50 h-[60px] flex items-center backdrop-blur-xl border-b border-white/5 transition-transform duration-300&quot;
+  &gt;
+    &lt;div
+      class=&quot;max-w-7xl mx-auto px-6 w-full flex items-center justify-between relative z-10 bg-inherit&quot;
+    &gt;
+      &lt;a
+        href=&quot;/blog&quot;
+        class=&quot;flex items-center gap-2 text-primary/80 hover:text-primary font-bold transition-colors bg-transparent hover:bg-transparent hover:shadow-none&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:arrow-left&quot; class=&quot;w-5 h-5&quot; /&gt;
+        Back to Blog
+      &lt;/a&gt;
+
+      &lt;span
+        class=&quot;hidden md:block text-sm font-bold text-gray-500 truncate max-w-md&quot;
+      &gt;
+        {blog.data.title}
+      &lt;/span&gt;
+
+      &lt;button
+        id=&quot;mobile-toc-toggle&quot;
+        class=&quot;lg:hidden p-2 text-gray-400 hover:text-primary transition-colors cursor-pointer border-none&quot;
+        aria-label=&quot;Table of Contents&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:list&quot; class=&quot;w-6 h-6&quot; /&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div
+      id=&quot;mobile-toc-menu&quot;
+      class=&quot;absolute top-[60px] left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/5 shadow-2xl transition-all duration-300 transform -translate-y-full opacity-0 hidden lg:hidden z-0&quot;
+    &gt;
+      &lt;div class=&quot;p-6 flex flex-col gap-4 max-h-[70vh] overflow-y-auto&quot;&gt;
+        &lt;h3 class=&quot;text-lg font-bold text-primary/80 font-pixel tracking-wide&quot;&gt;
+          Table of Contents
+        &lt;/h3&gt;
+        &lt;ul class=&quot;flex flex-col gap-3 text-sm&quot;&gt;
+          {
+            headings.map((heading) =&gt; (
+              &lt;li
+                style={`margin-left: ${Math.max(0, heading.depth - 2) * 1}rem`}
+              &gt;
+                &lt;a
+                  href={`#${heading.slug}`}
+                  class=&quot;toc-link mobile-toc-link text-gray-400 hover:text-primary/80 transition-all duration-300 bg-transparent hover:bg-transparent hover:shadow-none font-medium block py-1 line-clamp-2&quot;
+                &gt;
+                  {heading.text}
+                &lt;/a&gt;
+              &lt;/li&gt;
+            ))
+          }
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;div
+    class=&quot;max-w-7xl mx-auto px-6 pt-24 pb-12 flex flex-col lg:flex-row gap-12 relative&quot;
+  &gt;
+    &lt;article class=&quot;w-full lg:w-3/4 max-w-4xl blog-content text-gray-300&quot;&gt;
+      &lt;header class=&quot;mb-10 flex flex-col gap-4&quot;&gt;
+        &lt;h1 class=&quot;text-4xl md:text-5xl font-bold text-primary/80 font-pixel&quot;&gt;
+          {blog.data.title}
+        &lt;/h1&gt;
+
+        &lt;div class=&quot;flex gap-4 items-center text-sm text-gray-400&quot;&gt;
+          &lt;p&gt;
+            {
+              new Date(blog.data.pubDate).toLocaleDateString(&quot;en-US&quot;, {
+                dateStyle: &quot;long&quot;,
+              })
+            }
+          &lt;/p&gt;
+          &lt;div class=&quot;flex gap-2&quot;&gt;
+            {
+              blog.data.tags?.map((tag: string) =&gt; (
+                &lt;span class=&quot;text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary/80 border border-primary/20&quot;&gt;
+                  #{tag}
+                &lt;/span&gt;
+              ))
+            }
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+
+      &lt;div class=&quot;content-wrapper&quot;&gt;
+        &lt;Content /&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;aside class=&quot;hidden lg:block w-1/4 relative&quot;&gt;
+      &lt;div
+        class=&quot;sticky top-20 p-6 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-lg&quot;
+      &gt;
+        &lt;h3
+          class=&quot;text-xl font-bold text-primary/80 mb-4 font-pixel tracking-wide&quot;
+        &gt;
+          Table of Contents
+        &lt;/h3&gt;
+        &lt;ul class=&quot;flex flex-col gap-3 text-sm&quot;&gt;
+          {
+            headings.map((heading) =&gt; (
+              &lt;li
+                style={`margin-left: ${Math.max(0, heading.depth - 2) * 1}rem`}
+              &gt;
+                &lt;a
+                  href={`#${heading.slug}`}
+                  class=&quot;toc-link text-gray-400 hover:text-primary/80 transition-colors bg-transparent hover:bg-transparent hover:shadow-none font-medium line-clamp-2&quot;
+                &gt;
+                  {heading.text}
+                &lt;/a&gt;
+              &lt;/li&gt;
+            ))
+          }
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/aside&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;
+
+&lt;script&gt;
+  // Logic to hide the navbar on scroll down, and show it on scroll up
+  const setupSmartNav = () =&gt; {
+    const nav = document.getElementById(&quot;blog-nav&quot;);
+    if (!nav) return;
+
+    let lastScroll = window.scrollY;
+
+    window.addEventListener(
+      &quot;scroll&quot;,
+      () =&gt; {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll &lt;= 0) {
+          // Always show at the very top
+          nav.classList.remove(&quot;-translate-y-full&quot;);
+          return;
+        }
+
+        if (currentScroll &gt; lastScroll &amp;&amp; currentScroll &gt; 60) {
+          // Scrolling down past the header height -&gt; Hide
+          nav.classList.add(&quot;-translate-y-full&quot;);
+        } else if (currentScroll &lt; lastScroll) {
+          // Scrolling up -&gt; Show
+          nav.classList.remove(&quot;-translate-y-full&quot;);
+        }
+
+        lastScroll = currentScroll;
+      },
+      { passive: true },
+    ); // passive: true improves scroll performance
+  };
+
+  const setupMobileToC = () =&gt; {
+    const toggleBtn = document.getElementById(&quot;mobile-toc-toggle&quot;);
+    const menu = document.getElementById(&quot;mobile-toc-menu&quot;);
+    const links = document.querySelectorAll(&quot;.mobile-toc-link&quot;);
+    let isOpen = false;
+
+    if (!toggleBtn || !menu) return;
+
+    const toggleMenu = () =&gt; {
+      isOpen = !isOpen;
+      if (isOpen) {
+        menu.classList.remove(&quot;hidden&quot;);
+        // requestAnimationFrame allows the &apos;display: block&apos; from removing &apos;hidden&apos; to apply before animating
+        requestAnimationFrame(() =&gt; {
+          menu.classList.remove(&quot;-translate-y-full&quot;, &quot;opacity-0&quot;);
+        });
+      } else {
+        menu.classList.add(&quot;-translate-y-full&quot;, &quot;opacity-0&quot;);
+        // Wait for the CSS transition to finish before hiding from the DOM
+        setTimeout(() =&gt; {
+          menu.classList.add(&quot;hidden&quot;);
+        }, 300);
+      }
+    };
+
+    toggleBtn.addEventListener(&quot;click&quot;, toggleMenu);
+
+    // Close the mobile menu automatically when a link is clicked
+    links.forEach((link) =&gt; {
+      link.addEventListener(&quot;click&quot;, () =&gt; {
+        if (isOpen) toggleMenu();
+      });
+    });
+  };
+
+  // 2. Table of Contents Highlight Logic
+  const setupToCHighlight = () =&gt; {
+    // Grab all the links we just added the &apos;toc-link&apos; class to
+    const tocLinks = document.querySelectorAll(&quot;.toc-link&quot;);
+    // Grab all the headings inside the markdown content
+    const headings = document.querySelectorAll(
+      &quot;.content-wrapper h1, .content-wrapper h2, .content-wrapper h3, .content-wrapper h4&quot;,
+    );
+
+    if (!tocLinks.length || !headings.length) return;
+
+    // Set up the observer to watch when headings hit the top 20% of the screen
+    const observer = new IntersectionObserver(
+      (entries) =&gt; {
+        entries.forEach((entry) =&gt; {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute(&quot;id&quot;);
+
+            // Reset all links to their default inactive state
+            tocLinks.forEach((link) =&gt; {
+              link.classList.remove(&quot;text-primary&quot;, &quot;translate-x-2&quot;);
+              link.classList.add(&quot;text-gray-400&quot;);
+            });
+
+            // Highlight the currently intersecting link and push it slightly to the right
+            const activeLink = document.querySelector(
+              `.toc-link[href=&quot;#${id}&quot;]`,
+            );
+            if (activeLink) {
+              activeLink.classList.remove(&quot;text-gray-400&quot;);
+              activeLink.classList.add(&quot;text-primary&quot;, &quot;translate-x-2&quot;);
+            }
+          }
+        });
+      },
+      {
+        // Triggers when the heading is between the top 100px and the upper middle of the viewport
+        rootMargin: &quot;-100px 0px -70% 0px&quot;,
+      },
+    );
+
+    // Tell the observer to watch every heading
+    headings.forEach((heading) =&gt; observer.observe(heading));
+  };
+
+  // Run on initial load and handle Astro View Transitions if you ever enable them
+  const initScripts = () =&gt; {
+    setupSmartNav();
+    setupToCHighlight();
+    setupMobileToC();
+  };
+
+  initScripts();
+
+  document.addEventListener(&quot;astro:page-load&quot;, initScripts);
+&lt;/script&gt;
+
+&lt;style is:global&gt;
+  /* Markdown Content Scoped Styling */
+
+  .content-wrapper {
+    /* Increase base font size slightly for better readability on modern screens */
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #d1d5db; /* Tailwind gray-300 */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings: Tighter letter-spacing looks more modern */
+  .content-wrapper h1,
+  .content-wrapper h2,
+  .content-wrapper h3,
+  .content-wrapper h4 {
+    font-family: var(--font-pixel);
+    color: color-mix(in oklch, var(--color-primary) 95%, white);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 2.5em;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .content-wrapper h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.025em;
+  }
+
+  .content-wrapper h2 {
+    font-size: 2rem;
+    /* Add a subtle underline to H2s to clearly separate major sections */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+  }
+
+  .content-wrapper h3 {
+    font-size: 1.5rem;
+  }
+  .content-wrapper h4 {
+    font-size: 1.25rem;
+  }
+
+  /* Paragraphs: Left-aligned is better for web reading than justified */
+  .content-wrapper p {
+    margin-bottom: 1.75em;
+    text-align: justify;
+    letter-spacing: 0.01em;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+
+  /* Links: Styled underline that highlights on hover */
+  .content-wrapper a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(
+      in oklch,
+      var(--color-primary) 40%,
+      transparent
+    );
+    text-underline-offset: 4px;
+    background: transparent !important;
+    box-shadow: none !important;
+    transition: text-decoration-color 0.2s ease;
+  }
+  .content-wrapper a:hover {
+    text-decoration-color: var(--color-primary);
+  }
+
+  /* Lists: Added primary color to the bullets/numbers */
+  .content-wrapper ul,
+  .content-wrapper ol {
+    margin-bottom: 1.75em;
+    padding-left: 1.5em;
+  }
+  .content-wrapper ul {
+    list-style-type: disc;
+  }
+  .content-wrapper ol {
+    list-style-type: decimal;
+  }
+  .content-wrapper li {
+    margin-bottom: 0.5em;
+  }
+  .content-wrapper li::marker {
+    color: color-mix(in oklch, var(--color-primary) 80%, transparent);
+  }
+
+  /* Images: Nice rounded corners and subtle border */
+  .content-wrapper img {
+    border-radius: 0.75rem;
+    margin: 2.5em auto;
+    max-width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Blockquotes: Larger, italicized, and distinguished */
+  .content-wrapper blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding: 1.25rem 1.5rem;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #e5e7eb; /* Tailwind gray-200 */
+    background: color-mix(in oklch, var(--color-primary) 5%, transparent);
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin: 2.5em 0;
+  }
+
+  /* Code Blocks: Custom monospace stack and dark inner shadow */
+  .content-wrapper pre {
+    padding: 1.5em;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 2em 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0d1117 !important; /* Deep dark background */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Inline Code */
+  .content-wrapper code {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: color-mix(in oklch, var(--color-primary) 90%, white);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .content-wrapper pre code {
+    color: #e5e7eb;
+    background: transparent;
+    padding: 0;
+    font-size: 0.9em;
+  }
+&lt;/style&gt;</file><file path="src/pages/index.astro">---
+import BaseLayout from &quot;../layouts/BaseLayout.astro&quot;;
+import Home from &quot;@/components/Home.astro&quot;;
+import About from &quot;@/components/About.astro&quot;;
+import Experience from &quot;@/components/Experience.astro&quot;;
+import Skills from &quot;@/components/Skills.astro&quot;;
+import Projects from &quot;@/components/Projects.astro&quot;;
+import Contact from &quot;@/components/Contact.astro&quot;;
+---
+
+&lt;BaseLayout&gt;
+  &lt;div class=&quot;space-y-32&quot;&gt;
+    &lt;Home /&gt;
+    &lt;About /&gt;
+    &lt;Experience /&gt;
+    &lt;Skills /&gt;
+    &lt;Projects /&gt;
+    &lt;Contact /&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;</file><file path="src/components/project/ProjectCardDetail.astro">---
+import { Icon } from &quot;astro-icon/components&quot;;
+import { Image, getImage } from &quot;astro:assets&quot;;
+import type { ProjectType } from &quot;@/src/content.config&quot;;
+import ProjectCarousel from &quot;@/components/project/ProjectCarousel&quot;;
+
+interface Props {
+  title: string;
+  description: string;
+  image?: ProjectType.image;
+  mediaUrls?: string[];
+  tags?: string[];
+  demoUrl?: string;
+  sourceCodeUrl?: string;
+}
+
+const { title, description, image, demoUrl, mediaUrls, sourceCodeUrl, tags } =
+  Astro.props;
+
+const videoExtensions = [&quot;mp4&quot;, &quot;mov&quot;, &quot;webm&quot;, &quot;ogg&quot;];
+
+const processedMedia = await Promise.all(
+  mediaUrls!.map(async (url) =&gt; {
+    const isVideo = videoExtensions.some((ext) =&gt;
+      url.toLowerCase().endsWith(`.${ext}`),
+    );
+
+    if (isVideo) {
+      return { type: &quot;video&quot; as const, src: url };
+    }
+
+    // Generate high-res version for the viewer (1200px width)
+    const optimizedFull = await getImage({
+      src: url,
+      format: &quot;webp&quot;,
+      inferSize: true,
+    });
+
+    // Generate tiny thumbnail (150px width, lower quality)
+    const optimizedThumb = await getImage({
+      src: url,
+      width: 150,
+      height: 100,
+      quality: 60,
+      format: &quot;webp&quot;,
+      inferSize: true,
+    });
+
+    return {
+      type: &quot;image&quot; as const,
+      src: optimizedFull.src,
+      thumbSrc: optimizedThumb.src,
+    };
+  }),
+);
+---
+
+&lt;div
+  class=&quot;relative border border-gray-200/15 border-primary/30 rounded-lg p-8 h-full&quot;
+&gt;
+  &lt;!-- Background Image --&gt;
+  &lt;div class=&quot;absolute inset-0 -z-1 rounded-lg&quot;&gt;
+    &lt;Image
+      src={image}
+      alt={`Cover image for ${title}`}
+      class=&quot;absolute top-0 right-0 left-0 bottom-0 w-full h-full object-cover opacity-20 blur-xs&quot;
+      loading=&quot;lazy&quot;
+      decoding=&quot;async&quot;
+    /&gt;
+    &lt;div
+      class=&quot;absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent&quot;
+    &gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Project Card --&gt;
+  &lt;div class=&quot;flex flex-col gap-8&quot;&gt;
+    &lt;div class=&quot;flex flex-col lg:flex-row justify-between gap-8&quot;&gt;
+      &lt;div class=&quot;flex-1 min-w-0 w-full&quot;&gt;
+        &lt;ProjectCarousel media={processedMedia} client:load /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;w-full lg:w-[35%] flex flex-col gap-5&quot;&gt;
+        &lt;h1 class=&quot;text-4xl font-bold text-primary font-pixel&quot;&gt;{title}&lt;/h1&gt;
+        &lt;p
+          class=&quot;text-gray-300 text-base md:text-xl text-justify leading-loose&quot;
+        &gt;
+          {description}
+        &lt;/p&gt;
+        &lt;div class=&quot;flex gap-4 w-full&quot;&gt;
+          {/* Live Demo Button */}
+          &lt;a
+            href={demoUrl || undefined}
+            target={demoUrl ? &quot;_blank&quot; : undefined}
+            rel={demoUrl ? &quot;noopener noreferrer&quot; : undefined}
+            class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+              demoUrl
+                ? &quot;cursor-pointer border-primary/50&quot;
+                : &quot;opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500 bg-gray-600/20&quot;
+            }`}
+          &gt;
+            {/* Added shrink-0 to prevent icon from squishing */}
+            &lt;Icon
+              name=&quot;mdi:world-wide-web&quot;
+              class=&quot;w-6 h-6 sm:w-8 sm:h-8 shrink-0&quot;
+            /&gt;
+            {/* Added whitespace-nowrap to prevent text wrapping */}
+            &lt;p class=&quot;font-bold whitespace-nowrap&quot;&gt;Live Demo&lt;/p&gt;
+          &lt;/a&gt;
+
+          {/* Source Code Button */}
+          &lt;a
+            href={sourceCodeUrl || undefined}
+            target={sourceCodeUrl ? &quot;_blank&quot; : undefined}
+            rel={sourceCodeUrl ? &quot;noopener noreferrer&quot; : undefined}
+            class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+              sourceCodeUrl
+                ? &quot;cursor-pointer border-primary/50&quot;
+                : &quot;opacity-40 pointer-events-none border-gray-600 text-gray-500 bg-gray-600/20&quot;
+            }`}
+          &gt;
+            &lt;Icon name=&quot;mdi:code-tags&quot; class=&quot;w-6 h-6 sm:w-8 sm:h-8 shrink-0&quot; /&gt;
+            &lt;p class=&quot;font-bold whitespace-nowrap&quot;&gt;Source&lt;/p&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;flex items-center gap-4 mt-5&quot;&gt;
+          &lt;h4 class=&quot;text-gray-400 font-bold&quot;&gt;Tags:&lt;/h4&gt;
+          &lt;div class=&quot;flex gap-3&quot;&gt;
+            {
+              tags?.map((tag) =&gt; (
+                &lt;p class=&quot;border border-primary px-2 py-1 rounded-lg bg-primary/10 text-primary/80 font-bold&quot;&gt;
+                  {tag}
+                &lt;/p&gt;
+              ))
+            }
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/components/skills/SkillCard.astro">---
+import SkillCardItem from &quot;./SkillCardItem.astro&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { SkillsLine } from &quot;@/types&quot;;
+
+interface Props {
+  skillLine: SkillsLine;
+  reverse?: boolean;
+}
+
+const { skillLine, reverse = false } = Astro.props;
+const { title, logo, skills } = skillLine;
+
+// Multiply the array to guarantee it fills ultra-wide screens.
+// If the base array has 5 items, this makes 15 items per track.
+const fillTrack = (skillArray: any[]) =&gt; [
+  ...skillArray,
+  ...skillArray,
+  ...skillArray,
+];
+---
+
+&lt;div
+  class=&quot;flex flex-col group border border-primary/50 hover:border-primary transition-all duration-500 rounded-xl gap-10 py-6 w-full relative overflow-hidden&quot;
+&gt;
+  &lt;div
+    class=&quot;absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0&quot;
+  &gt;
+  &lt;/div&gt;
+  &lt;div
+    class=&quot;absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none&quot;
+  &gt;
+  &lt;/div&gt;
+  &lt;div
+    class=&quot;absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none&quot;
+  &gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex gap-4 items-center px-8 md:px-10 relative z-20&quot;&gt;
+    {
+      logo ? (
+        &lt;div class=&quot;flex items-center justify-center p-1 rounded-xl border border-white/10 text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+          &lt;Icon name={logo} class=&quot;w-11 h-11 &quot; /&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+          {title.charAt(0)}
+        &lt;/div&gt;
+      )
+    }
+    &lt;h3 class=&quot;font-bold text-xl md:text-4xl text-gray-300&quot;&gt;{title}&lt;/h3&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;flex flex-col gap-6 relative z-20&quot;&gt;
+    {
+      skills.map((skill, index) =&gt; {
+        let isRowReversed = reverse;
+        if (index % 2 === 0) {
+          isRowReversed = !isRowReversed;
+        }
+
+        const animationClass = isRowReversed
+          ? &quot;animate-marquee-reverse&quot;
+          : &quot;animate-marquee&quot;;
+
+        // Create the massive array for the track
+        const trackItems = fillTrack(skill);
+
+        return (
+          // Parent flex container holding the two identical tracks.
+          // gap-6 connects the end of Track 1 to the start of Track 2 seamlessly.
+          &lt;div class=&quot;flex overflow-hidden w-full group/row&quot;&gt;
+            {/* Track 1 */}
+            &lt;div
+              class={`flex w-max shrink-0 gap-6 pr-6 ${animationClass} group-hover/row:[animation-play-state:paused]`}
+            &gt;
+              {trackItems.map((skillLine) =&gt; (
+                &lt;SkillCardItem
+                  name={skillLine.name}
+                  expertise={skillLine.expertise}
+                  logo={skillLine.logo}
+                /&gt;
+              ))}
+            &lt;/div&gt;
+
+            {/* Track 2 (Identical mirror for the loop) */}
+            &lt;div
+              aria-hidden=&quot;true&quot;
+              class={`flex w-max shrink-0 gap-6 pr-6 ${animationClass} group-hover/row:[animation-play-state:paused]`}
+            &gt;
+              {trackItems.map((skillLine) =&gt; (
+                &lt;SkillCardItem
+                  name={skillLine.name}
+                  expertise={skillLine.expertise}
+                  logo={skillLine.logo}
+                /&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        );
+      })
+    }
+  &lt;/div&gt;
+&lt;/div&gt;</file><file path="src/pages/blog/index.astro">---
+import BaseLayout from &quot;@/layouts/BaseLayout.astro&quot;;
+import { getCollection } from &quot;astro:content&quot;;
+
+const blogs = (await getCollection(&quot;blogs&quot;)).sort(
+  (a, b) =&gt;
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+);
+
+// Group blogs by year
+const blogsByYear = blogs.reduce(
+  (acc, blog) =&gt; {
+    const year = new Date(blog.data.pubDate).getFullYear().toString();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(blog);
+    return acc;
+  },
+  {} as Record&lt;string, typeof blogs&gt;,
+);
+
+// Sort years in descending order (newest first)
+const years = Object.keys(blogsByYear).sort(
+  (a, b) =&gt; parseInt(b) - parseInt(a),
+);
+---
+
+&lt;BaseLayout&gt;
+  &lt;div class=&quot;px-6 md:px-20 mt-15 max-w-7xl mx-auto mb-20&quot;&gt;
+    &lt;div class=&quot;flex flex-col justify-center text-gray-200 gap-4 mb-6&quot;&gt;
+      &lt;h1 class=&quot;font-bold text-4xl font-pixel text-primary/90&quot;&gt;Blog&lt;/h1&gt;
+      &lt;p class=&quot;w-full md:w-[60%] text-justify text-gray-300 leading-8&quot;&gt;
+        Welcome to my blog domain where I share personal stories about things
+        I&apos;ve learned, projects I&apos;m hacking on and just general findings.
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;flex flex-col gap-10&quot;&gt;
+      {
+        years.map((year) =&gt; (
+          &lt;div class=&quot;flex flex-col gap-6&quot;&gt;
+            &lt;div class=&quot;flex items-center gap-4 mt-4&quot;&gt;
+              &lt;h2 class=&quot;text-3xl font-bold font-pixel text-gray-200&quot;&gt;
+                {year}
+              &lt;/h2&gt;
+              &lt;div class=&quot;flex-grow h-px bg-white/10 rounded-full&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;grid grid-cols-1 gap-6&quot;&gt;
+              {blogsByYear[year].map((blog) =&gt; (
+                &lt;a
+                  href={`/blog/${blog.id}`}
+                  class=&quot;group flex flex-col gap-3 p-6 rounded-2xl bg-white/2 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:bg-white/[0.04] bg-transparent hover:shadow-none&quot;
+                &gt;
+                  &lt;h3 class=&quot;text-2xl font-pixel font-bold text-primary/80 group-hover:text-primary transition-colors&quot;&gt;
+                    {blog.data.title}
+                  &lt;/h3&gt;
+                  &lt;p class=&quot;text-sm text-gray-400&quot;&gt;
+                    {new Date(blog.data.pubDate).toLocaleDateString(&quot;en-US&quot;, {
+                      // month: &quot;long&quot;,
+                      // day: &quot;numeric&quot;,
+                      dateStyle: &quot;long&quot;,
+                    })}
+                  &lt;/p&gt;
+                  &lt;p class=&quot;text-gray-300 line-clamp-3&quot;&gt;
+                    {blog.data.description}
+                  &lt;/p&gt;
+                  {blog.data.tags &amp;&amp; (
+                    &lt;div class=&quot;flex gap-2 mt-2&quot;&gt;
+                      {blog.data.tags.map((tag: string) =&gt; (
+                        &lt;span class=&quot;text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary/80 border border-primary/20&quot;&gt;
+                          #{tag}
+                        &lt;/span&gt;
+                      ))}
+                    &lt;/div&gt;
+                  )}
+                &lt;/a&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/BaseLayout&gt;</file><file path=".gitignore">*.xml
+*.log
+
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/</file><file path="src/components/experience/ExperienceCard.astro">---
+import { Image } from &quot;astro:assets&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import type { Experience } from &quot;@/types&quot;;
+
+type Props = Experience;
+
+const { company, date, location, logo, position, tools, jobType, points } =
+  Astro.props;
+
+const parseBold = (text: string) =&gt; {
+  return text.replace(
+    /\*\*(.*?)\*\*/g,
+    &apos;&lt;strong class=&quot;font-bold&quot;&gt;$1&lt;/strong&gt;&apos;,
+  );
+};
+---
+
+&lt;div
+  class=&quot;reveal-card opacity-0 translate-y-16 transition-all duration-1000 ease-out relative flex flex-col pl-8 md:pl-15 will-change-transform&quot;
+&gt;
+  &lt;div
+    class=&quot;group relative flex flex-col gap-8 px-4 md:px-10 py-5 rounded-lg bg-white/[0.02] backdrop-blur-3xl border border-primary/50 shadow-[10px_10px_15px_0px_var(--color-primary)] transition-all duration-500&quot;
+  &gt;
+    &lt;div
+      class=&quot;absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500&quot;
+    &gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;relative z-10 flex flex-col gap-8&quot;&gt;
+      &lt;div class=&quot;flex flex-col items-center gap-6&quot;&gt;
+        {
+          logo &amp;&amp; (
+            &lt;Image
+              src={logo}
+              alt={`${company} Logo`}
+              class=&quot;h-12  object-contain&quot;
+            /&gt;
+          )
+        }
+        &lt;h3 class=&quot;text-2xl font-bold&quot;&gt;
+          {company} - &lt;span class=&quot;text-white italic&quot;&gt;{position}&lt;/span&gt;
+        &lt;/h3&gt;
+      &lt;/div&gt;
+
+      &lt;div
+        class=&quot;flex flex-col md:flex-row gap-8 justify-center text-sm w-fit md:w-full&quot;
+      &gt;
+        &lt;div
+          class=&quot;flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md&quot;
+        &gt;
+          &lt;Icon name=&quot;lucide:calendar&quot; size={24} /&gt;
+          &lt;p class=&quot;text-white font-bold&quot;&gt;{date}&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class=&quot;flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md&quot;
+        &gt;
+          &lt;Icon name=&quot;mdi:location&quot; size={24} /&gt;
+          &lt;p class=&quot;text-white font-bold&quot;&gt;{location}&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class=&quot;flex gap-2 items-center rounded-lg border p-2 bg-white/3 backdrop-blur-md&quot;
+        &gt;
+          &lt;Icon name=&quot;mdi:clock&quot; size={24} /&gt;
+          &lt;p class=&quot;text-white font-bold&quot;&gt;{jobType}&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;flex items-center flex-wrap gap-4 mt-5&quot;&gt;
+        &lt;!-- &lt;h1 class=&quot;font-bold text-2xl&quot;&gt;Tools:&lt;/h1&gt; --&gt;
+        &lt;div title=&quot;tools&quot; class=&quot;flex gap-2&quot;&gt;
+          &lt;Icon name=&quot;mdi:tools&quot; class=&quot;w-10 h-10&quot; /&gt;
+          &lt;span class=&quot;text-2xl font-bold&quot;&gt;:&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;flex items-center flex-wrap gap-2&quot;&gt;
+          {
+            tools &amp;&amp;
+              tools.map((tool) =&gt; {
+                const { name, logo } = tool;
+                return (
+                  &lt;&gt;
+                    {logo ? (
+                      &lt;div
+                        title={name}
+                        class=&quot;flex  gap-2 items-center justify-center p-2 rounded-lg border border-gray-200/15 hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:-translate-y-2 text-gray-100&quot;
+                      &gt;
+                        &lt;Icon name={logo} class=&quot;w-8 h-8 md:w-10 md:h-10 &quot; /&gt;
+                      &lt;/div&gt;
+                    ) : (
+                      &lt;div class=&quot;flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+                        {name.charAt(0)}
+                      &lt;/div&gt;
+                    )}
+                  &lt;/&gt;
+                );
+              })
+          }
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;ul class=&quot;list-none text-gray-100 flex flex-col gap-5 mt-0&quot;&gt;
+        {
+          points.map((p) =&gt; (
+            &lt;li class=&quot;flex items-start gap-3 group/item text-base md:text-lg&quot;&gt;
+              &lt;Icon
+                name=&quot;weui:arrow-filled&quot;
+                class=&quot;w-8 h-8 text-primary shrink-0 mt-0.5 group-hover/item:translate-x-2 transition-all&quot;
+              /&gt;
+              &lt;span
+                class=&quot;text-gray-300 group-hover/item:text-gray-50 transition-colors leading-relaxed text-justify&quot;
+                set:html={parseBold(p)}
+              /&gt;
+            &lt;/li&gt;
+          ))
+        }
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div
+    class=&quot;timeline-dot absolute left-0 top-10 transform -translate-x-1/2 w-4 h-4 rounded-full bg-slate-700 shadow-none transition-all duration-500 ease-out&quot;
+  &gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  const setupCardsObserver = () =&gt; {
+    const observer = new IntersectionObserver(
+      (entries, observerInstance) =&gt; {
+        entries.forEach((entry) =&gt; {
+          // Find the specific dot inside the card that is currently intersecting
+          const dot = entry.target.querySelector(&quot;.timeline-dot&quot;);
+
+          if (entry.isIntersecting) {
+            // 1. Show the card
+            entry.target.classList.remove(&quot;opacity-0&quot;, &quot;translate-y-16&quot;);
+            entry.target.classList.add(&quot;opacity-100&quot;, &quot;translate-y-0&quot;);
+
+            // 2. Turn ON the dot&apos;s glow
+            if (dot) {
+              dot.classList.remove(&quot;bg-slate-700&quot;, &quot;shadow-none&quot;);
+              dot.classList.add(
+                &quot;bg-primary&quot;,
+                &quot;shadow-[0_0_25px_var(--color-primary)]&quot;,
+              );
+            }
+
+            // 3. Unobserve the card so the animation only happens once
+            observerInstance.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: &quot;0px 0px -10% 0px&quot;,
+      },
+    );
+
+    const cards = document.querySelectorAll(&quot;.reveal-card&quot;);
+    cards.forEach((card) =&gt; observer.observe(card));
+  };
+
+  setupCardsObserver();
+  document.addEventListener(&quot;astro:page-load&quot;, setupCardsObserver);
+&lt;/script&gt;</file><file path="src/components/Contact.astro">---
+import EmailCard from &quot;./contact/EmailCard.astro&quot;;
+import DirectContact from &quot;./contact/DirectContact.astro&quot;;
+import ParticlesBackground from &quot;@/components/home/ParticlesBackground&quot;;
+---
+
+&lt;section
+  id=&quot;contact&quot;
+  class=&quot;min-h-screen relative mx-auto flex flex-col justify-center items-center pb-20&quot;
+&gt;
+  &lt;ParticlesBackground
+    id=&quot;contact-particles&quot;
+    options={{
+      fullScreen: {
+        enable: false,
+      },
+      background: {
+        color: { value: &quot;transparent&quot; },
+      },
+      fpsLimit: 120,
+      particles: {
+        color: {
+          value: &quot;#0ffe7a&quot;,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: &quot;none&quot;,
+          outModes: { default: &quot;bounce&quot; },
+        },
+        number: {
+          density: { enable: true, width: 800, height: 800 },
+          value: 60,
+        },
+        opacity: { value: 0.4 },
+        shape: { type: &quot;circle&quot; },
+        size: { value: { min: 1, max: 3 } },
+      },
+    }}
+    client:idle
+  /&gt;
+
+  &lt;!-- Title Header --&gt;
+  &lt;div class=&quot;flex flex-col justify-center items-center gap-5&quot;&gt;
+    &lt;h1 class=&quot;font-bold text-6xl text-center font-pixel&quot;&gt;Lets Connect&lt;/h1&gt;
+    &lt;p class=&quot;text-center text-gray-200&quot;&gt;
+      Let&apos;s build something great together
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div
+    class=&quot;flex flex-col lg:flex-row w-[90%] lg:w-[80%] gap-10 lg:gap-15 mt-16 md:mt-25&quot;
+  &gt;
+    &lt;EmailCard /&gt;
+    &lt;DirectContact /&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="src/components/project/ProjectCarousel.tsx">import { useState, useRef, useEffect } from &quot;react&quot;;
+import { Icon } from &quot;@iconify/react&quot;;
+
+export type CarouselMedia = {
+  type: &quot;image&quot; | &quot;video&quot;;
+  src: string;
+  thumbSrc?: string;
+};
+
+export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
+  const [currentIndex, setCurrentIndex] = useState&lt;number&gt;(0);
+  const thumbnailRef = useRef&lt;HTMLDivElement&gt;(null);
+
+
+  useEffect(() =&gt; {
+    if (!thumbnailRef.current) return;
+    const activeThumb = thumbnailRef.current.children[
+      currentIndex
+    ] as HTMLElement;
+    if (activeThumb) {
+      activeThumb.scrollIntoView({
+        behavior: &quot;smooth&quot;,
+        block: &quot;nearest&quot;,
+        inline: &quot;center&quot;,
+      });
+    }
+  }, [currentIndex]);
+
+  if (!media || media.length === 0) {
+    return (
+      &lt;div className=&quot;flex p-4 items-center justify-center&quot;&gt;
+        &lt;h1&gt;Empty Carousel&lt;/h1&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  const goToSlide = (slideIndex: number) =&gt; setCurrentIndex(slideIndex);
+
+  const goToPrevious = () =&gt; {
+    setCurrentIndex(currentIndex === 0 ? media.length - 1 : currentIndex - 1);
+  };
+
+  const goToNext = () =&gt; {
+    setCurrentIndex(currentIndex === media.length - 1 ? 0 : currentIndex + 1);
+  };
+
+
+  const handleSliderChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    const progress = Number(e.target.value);
+    const newIndex = Math.round((progress / 100) * (media.length - 1));
+    setCurrentIndex(newIndex);
+  };
+
+  const currentItem = media[currentIndex];
+
+  const currentProgress =
+    media.length &gt; 1 ? (currentIndex / (media.length - 1)) * 100 : 0;
+
+  return (
+    &lt;div className=&quot;flex flex-col gap-4&quot;&gt;
+      {}
+      &lt;div className=&quot;relative w-full aspect-video mx-auto lg:max-h-[400px] rounded-lg border-gray-300&quot;&gt;
+        {currentItem.type === &quot;video&quot; ? (
+          &lt;video
+            key={`${currentIndex}-${currentItem.src}`}
+            src={currentItem.src}
+            className=&quot;w-full h-full object-contain bg-black/5 rounded-lg&quot;
+            preload=&quot;metadata&quot;
+            controls
+            playsInline
+          &gt;
+            Your browser does not support the video tag.
+          &lt;/video&gt;
+        ) : (
+          &lt;img
+            key={`${currentIndex}-${currentItem.src}`}
+            sizes=&quot;(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 40vw&quot;
+            fetchPriority=&quot;high&quot;
+            loading=&quot;eager&quot;
+            decoding=&quot;sync&quot;
+            src={currentItem.src}
+            alt={`Main viewer displaying slide ${currentIndex + 1}`}
+            className=&quot;w-full h-full object-contain transition-opacity duration-300 ease-in-out&quot;
+          /&gt;
+        )}
+      &lt;/div&gt;
+
+      {}
+      {media.length &gt; 1 &amp;&amp; (
+        &lt;div
+          className=&quot;flex gap-2 mt-2 px-2 overflow-x-auto flex-nowrap scroll-smooth [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]&quot;
+          ref={thumbnailRef}
+        &gt;
+          {media.map((item, index) =&gt; {
+            return (
+              &lt;button
+                key={index}
+                onClick={() =&gt; goToSlide(index)}
+
+                className={`shrink-0 w-18 h-12 md:w-22 md:h-16 relative overflow-hidden rounded border-2 transition-all duration-200 group ${
+                  index === currentIndex
+                    ? &quot;border-primary-accent&quot;
+                    : &quot;border-transparent hover:border-primary-accent/50&quot;
+                } focus:outline-none `}
+                aria-label={`Go to ${item.type} ${index + 1}`}
+              &gt;
+                &lt;div className=&quot;absolute inset-0 bg-gray-200 flex items-center justify-center&quot;&gt;
+                  {item.type === &quot;video&quot; ? (
+                    &lt;&gt;
+                      &lt;video
+                        src={`${item.src}#t=0.1`}
+                        className=&quot;object-cover w-full h-full&quot;
+                        preload=&quot;metadata&quot;
+                        muted
+                        playsInline
+                      /&gt;
+                      &lt;div className=&quot;absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors&quot;&gt;
+                        &lt;Icon
+                          icon=&quot;lucide:play&quot;
+                          className=&quot;text-white w-6 h-6 drop-shadow-md&quot;
+                        /&gt;
+                      &lt;/div&gt;
+                    &lt;/&gt;
+                  ) : (
+                    &lt;img
+                      src={item.thumbSrc || item.src}
+                      alt={`Thumbnail ${index + 1}`}
+                      className=&quot;object-cover w-full h-full&quot;
+                      loading=&quot;lazy&quot;
+                      decoding=&quot;async&quot;
+                      sizes=&quot;64px&quot;
+                    /&gt;
+                  )}
+                &lt;/div&gt;
+                {index !== currentIndex &amp;&amp; item.type !== &quot;video&quot; &amp;&amp; (
+                  &lt;div className=&quot;absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-200&quot;&gt;&lt;/div&gt;
+                )}
+              &lt;/button&gt;
+            );
+          })}
+        &lt;/div&gt;
+      )}
+
+      {}
+      {media.length &gt; 1 &amp;&amp; (
+        &lt;div className=&quot;flex items-center justify-between mt-2&quot;&gt;
+          &lt;button
+            onClick={goToPrevious}
+            className=&quot;py-0 px-2 flex justify-center items-center rounded-md h-fit&quot;
+          &gt;
+            &lt;Icon icon=&quot;lucide:chevron-left&quot; width={28} height={28} /&gt;
+          &lt;/button&gt;
+
+          &lt;input
+            type=&quot;range&quot;
+            min=&quot;0&quot;
+            max=&quot;100&quot;
+            value={currentProgress}
+            onChange={handleSliderChange}
+            className=&quot;w-full h-full bg-gray-500/10 rounded-none appearance-none cursor-pointer transition-all border-none focus:outline-none [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-[100px] [&amp;::-webkit-slider-thumb]:h-2 [&amp;::-webkit-slider-thumb]:bg-primary [&amp;::-webkit-slider-thumb]:rounded-sm [&amp;::-moz-range-thumb]:appearance-none [&amp;::-moz-range-thumb]:w-[100px] [&amp;::-moz-range-thumb]:h-2 [&amp;::-moz-range-thumb]:bg-primary [&amp;::-moz-range-thumb]:border-none [&amp;::-moz-range-thumb]:rounded-sm&quot;
+          /&gt;
+
+          &lt;button
+            onClick={goToNext}
+            className=&quot;py-0 px-2 flex justify-center items-center rounded-md h-fit&quot;
+          &gt;
+            &lt;Icon icon=&quot;lucide:chevron-right&quot; width={28} height={28} /&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+function CustomVideoPlayer({ src }: { src: string }) {
+  const videoRef = useRef&lt;HTMLVideoElement&gt;(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const togglePlay = () =&gt; {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleTimeUpdate = () =&gt; {
+    if (videoRef.current) {
+      const currentProgress =
+        (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setProgress(currentProgress);
+    }
+  };
+
+  const handleProgressChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    const newProgress = Number(e.target.value);
+    setProgress(newProgress);
+    if (videoRef.current) {
+      videoRef.current.currentTime =
+        (newProgress / 100) * videoRef.current.duration;
+    }
+  };
+
+  return (
+    &lt;div className=&quot;relative w-full h-full group bg-black/5 rounded-lg overflow-hidden flex items-center justify-center bg-black&quot;&gt;
+      &lt;video
+        ref={videoRef}
+        src={src}
+        className=&quot;w-full h-full object-contain&quot;
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={() =&gt; setIsPlaying(false)}
+        onClick={togglePlay}
+        playsInline
+      /&gt;
+
+      {}
+      {!isPlaying &amp;&amp; (
+        &lt;button
+          onClick={togglePlay}
+          className=&quot;absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors z-10&quot;
+        &gt;
+          &lt;div className=&quot;bg-primary/90 text-black p-4 rounded-full shadow-lg transform transition-transform hover:scale-110&quot;&gt;
+            &lt;Icon icon=&quot;lucide:play&quot; width={32} height={32} /&gt;
+          &lt;/div&gt;
+        &lt;/button&gt;
+      )}
+
+      {}
+      &lt;div className=&quot;absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-4 z-20&quot;&gt;
+        &lt;button
+          onClick={togglePlay}
+          className=&quot;text-white hover:text-primary transition-colors focus:outline-none&quot;
+        &gt;
+          &lt;Icon
+            icon={isPlaying ? &quot;lucide:pause&quot; : &quot;lucide:play&quot;}
+            width={24}
+            height={24}
+          /&gt;
+        &lt;/button&gt;
+
+        &lt;input
+          type=&quot;range&quot;
+          min=&quot;0&quot;
+          max=&quot;100&quot;
+          value={progress || 0}
+          onChange={handleProgressChange}
+          className=&quot;w-full h-1.5 bg-gray-500/50 rounded-full appearance-none cursor-pointer transition-all focus:outline-none [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-4 [&amp;::-webkit-slider-thumb]:h-4 [&amp;::-webkit-slider-thumb]:bg-primary [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-moz-range-thumb]:appearance-none [&amp;::-moz-range-thumb]:w-4 [&amp;::-moz-range-thumb]:h-4 [&amp;::-moz-range-thumb]:bg-primary [&amp;::-moz-range-thumb]:border-none [&amp;::-moz-range-thumb]:rounded-full&quot;
+        /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</file><file path="src/components/Experience.astro">---
+import { experienceData } from &quot;@/content/experiences&quot;;
+import ExperienceCard from &quot;./experience/ExperienceCard.astro&quot;;
+---
+
+&lt;section id=&quot;experience&quot; class=&quot;min-h-screen py-20 relative&quot;&gt;
+  &lt;h2 class=&quot;text-6xl font-bold text-center mb-20 font-pixel&quot;&gt;My Journey&lt;/h2&gt;
+
+  &lt;div id=&quot;experience-container&quot; class=&quot;relative space-y-20 w-[80%] mx-auto&quot;&gt;
+    &lt;div
+      class=&quot;absolute top-0 w-[2px] rounded-full bg-white/[0.04] backdrop-blur-3xl h-full&quot;
+    &gt;
+    &lt;/div&gt;
+
+    &lt;div
+      id=&quot;experience-progress-line&quot;
+      class=&quot;absolute top-0 w-[2px] h-full rounded-full origin-top bg-primary shadow-[0_0_15px_var(--color-primary)] will-change-transform&quot;
+      style=&quot;transform: scaleY(0);&quot;
+    &gt;
+    &lt;/div&gt;
+
+    {experienceData.map((exp) =&gt; &lt;ExperienceCard {...exp} /&gt;)}
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+  const setupTimelineScroll = () =&gt; {
+    const container = document.getElementById(&quot;experience-container&quot;);
+    const line = document.getElementById(&quot;experience-progress-line&quot;);
+
+    if (!container || !line) return;
+
+    const updateLine = () =&gt; {
+      // Get the exact position of the container relative to the screen
+      const rect = container.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // START point: When the top of the container hits 80% down the screen
+      const startTrigger = viewportHeight * 0.8;
+
+      // Calculate how far we&apos;ve scrolled past that trigger point
+      const scrolledPast = startTrigger - rect.top;
+
+      // Calculate the progress percentage (0.0 to 1.0)
+      let progress = scrolledPast / rect.height;
+
+      // Clamp the value so it doesn&apos;t shrink backward or grow past 100%
+      progress = Math.max(0, Math.min(1, progress));
+
+      // Apply the scale!
+      line.style.transform = `scaleY(${progress})`;
+    };
+
+    // Run it once immediately so it sets the correct height on page load
+    updateLine();
+
+    // Run it every time the user scrolls.
+    // requestAnimationFrame ensures it runs perfectly synced with the monitor&apos;s refresh rate (60fps/120fps)
+    window.addEventListener(&quot;scroll&quot;, () =&gt; {
+      requestAnimationFrame(updateLine);
+    });
+  };
+
+  // Initialize the script
+  setupTimelineScroll();
+
+  // If you are using Astro&apos;s ViewTransitions, this ensures the script re-runs when navigating between pages
+  document.addEventListener(&quot;astro:page-load&quot;, setupTimelineScroll);
+&lt;/script&gt;</file><file path="src/components/Skills.astro">---
+import SkillCard from &quot;./skills/SkillCard.astro&quot;;
+import { skillsData } from &quot;@/content/skills&quot;;
+---
+
+&lt;section id=&quot;skills&quot; class=&quot;min-h-screen px-6 md:px-20&quot;&gt;
+  &lt;h1 class=&quot;font-bold text-6xl text-center mb-20 font-pixel&quot;&gt;My SkillSet&lt;/h1&gt;
+  &lt;div class=&quot;space-y-20&quot;&gt;
+    {
+      skillsData.map((skillLine, index) =&gt; {
+        var reverse = false;
+        if (index % 2 === 1) {
+          reverse = true;
+        }
+        return &lt;SkillCard skillLine={skillLine} reverse={reverse} /&gt;;
+      })
+    }
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="src/layouts/BaseLayout.astro">---
+import &quot;../styles/global.css&quot;;
+import Navigation from &quot;@/components/Navigation.tsx&quot;;
+import { Font } from &quot;astro:assets&quot;;
+
+// Define the props accepted by this layout
+interface Props {
+  hideNav?: boolean;
+}
+
+// Extract hideNav, defaulting to false if not provided
+const { hideNav = false } = Astro.props;
+---
+
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;Font cssVariable=&quot;--font-pixel&quot; /&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/SR-Logo.svg&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;/SR-Logo.ico&quot; /&gt;
+    &lt;meta name=&quot;generator&quot; content={Astro.generator} /&gt;
+    &lt;title&gt;Seno Pamungkas Rahman - Portfolio&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    {!hideNav &amp;&amp; &lt;Navigation client:load /&gt;}
+    &lt;slot /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</file><file path="src/types/index.ts">import type { ImageMetadata } from &quot;astro&quot;;
+
+export interface Experience {
+  company: string;
+  position: string;
+  date: string;
+  location: string;
+  logo?: ImageMetadata;
+  jobType: string;
+  tools?: Tool[];
+  points: string[];
+}
+
+export interface Tool {
+  name: string;
+
+  logo?: string;
+}
+
+export interface SkillsLine {
+  title: string;
+  logo?: string;
+  skills: Skill[][];
+}
+
+export interface Skill {
+  name: string;
+  expertise: number;
+
+  logo?: string;
+}</file><file path="astro.config.mjs">// @ts-check
+import { defineConfig, fontProviders } from &quot;astro/config&quot;;
+import react from &quot;@astrojs/react&quot;;
+import tailwindcss from &quot;@tailwindcss/vite&quot;;
+import icon from &quot;astro-icon&quot;;
+import mdx from &quot;@astrojs/mdx&quot;;
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [react(), mdx(), icon()],
+
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: &quot;HomeVideo&quot;,
+      cssVariable: &quot;--font-pixel&quot;,
+      options: {
+        variants: [
+          {
+            src: [&quot;./src/assets/fonts/HomeVideo.ttf&quot;],
+            weight: &quot;normal&quot;,
+            style: &quot;normal&quot;,
+          },
+        ],
+      },
+    },
+  ],
+
+  image: {
+    domains: [&quot;bucket.senop.dev&quot;],
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
+    resolve: {
+      dedupe: [&quot;react&quot;, &quot;react-dom&quot;],
+    },
+  },
+});</file><file path="src/components/Navigation.tsx">import { useState, useEffect, useRef } from &quot;react&quot;;
+import { Icon } from &quot;@iconify/react&quot;;
+import SRLogo from &quot;@/assets/SR-Logo.png&quot;;
+
+interface NavigationItem {
+  id: string;
+  label: string;
+  href: string;
+}
+
+const navItems: NavigationItem[] = [
+  { id: &quot;home&quot;, label: &quot;Home&quot;, href: &quot;/#home&quot; },
+  { id: &quot;about&quot;, label: &quot;About&quot;, href: &quot;/#about&quot; },
+  { id: &quot;experience&quot;, label: &quot;Experience&quot;, href: &quot;/#experience&quot; },
+  { id: &quot;skills&quot;, label: &quot;Skills&quot;, href: &quot;/#skills&quot; },
+  { id: &quot;projects&quot;, label: &quot;Projects&quot;, href: &quot;/#projects&quot; },
+  { id: &quot;blog&quot;, label: &quot;Blog&quot;, href: &quot;/blog&quot; },
+  { id: &quot;contact&quot;, label: &quot;Contact&quot;, href: &quot;/#contact&quot; },
+];
+
+export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+
+  const [activeSection, setActiveSection] = useState&lt;string&gt;(&quot;&quot;);
+
+  const navRefs = useRef&lt;Record&lt;string, HTMLAnchorElement | null&gt;&gt;({});
+  const [isScrolled, setIsScrolled] = useState&lt;boolean&gt;(false);
+
+  const [underlineStyle, setUnderlineStyle] = useState({
+    width: 0,
+    transform: &quot;translateX(0px)&quot;,
+    opacity: 0, // Hide until we know the active section
+  });
+
+  const updateUnderlinePosition = () =&gt; {
+    const activeItemRef = navRefs.current[activeSection];
+    if (activeItemRef) {
+      setUnderlineStyle({
+        width: activeItemRef.offsetWidth,
+        transform: `translateX(${activeItemRef.offsetLeft}px)`,
+        opacity: 1, // Reveal underline
+      });
+    }
+  };
+
+  useEffect(() =&gt; {
+    updateUnderlinePosition();
+    window.addEventListener(&quot;resize&quot;, updateUnderlinePosition);
+    return () =&gt; window.removeEventListener(&quot;resize&quot;, updateUnderlinePosition);
+  }, [activeSection]);
+
+  useEffect(() =&gt; {
+    const handleScroll = () =&gt; {
+      setIsScrolled(window.scrollY &gt; 10);
+    };
+
+    window.addEventListener(&quot;scroll&quot;, handleScroll);
+    handleScroll();
+
+    return () =&gt; {
+      window.removeEventListener(&quot;scroll&quot;, handleScroll);
+    };
+  }, []);
+
+  useEffect(() =&gt; {
+
+    const isBlogPage = window.location.pathname.startsWith(&quot;/blog&quot;);
+
+    if (isBlogPage) {
+      setActiveSection(&quot;blog&quot;);
+      return;
+    } else {
+
+      setActiveSection(&quot;home&quot;);
+    }
+
+
+    const options = {
+      root: null,
+      rootMargin: &quot;-50% 0px -50% 0px&quot;,
+    };
+
+    const observer = new IntersectionObserver((entries) =&gt; {
+      entries.forEach((entry) =&gt; {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    const sections = document.querySelectorAll(&quot;section[id]&quot;);
+    sections.forEach((section) =&gt; observer.observe(section));
+
+    return () =&gt; {
+      sections.forEach((section) =&gt; observer.unobserve(section));
+    };
+  }, []);
+
+  return (
+    &lt;header
+      id=&quot;navigation-bar&quot;
+      className={`w-full h-[50px] z-30 flex justify-between items-center bg-transparent px-6 md:px-20 sticky top-0 backdrop-blur-md transition-colors duration-300 border-b ${
+        isScrolled ? &quot;border-slate-200/20 shadow-sm &quot; : &quot;border-transparent&quot;
+      }`}
+    &gt;
+      &lt;div&gt;
+        &lt;a href=&quot;/&quot; className=&quot;font-bold text-gray-200 hover:text-primary&quot;&gt;
+          &lt;img
+            src={SRLogo.src}
+            alt={`Seno Logo`}
+            className=&quot;h-18  object-contain&quot;
+          /&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;nav className=&quot;relative hidden md:flex gap-10 font-bold text-gray-200&quot;&gt;
+        {navItems.map((item) =&gt; (
+          &lt;a
+            key={item.id}
+            href={item.href}
+            ref={(el) =&gt; {
+              navRefs.current[item.id] = el;
+            }}
+            className={`relative hover:bg-transparent py-1 hover:border-none hover:shadow-none transition-colors duration-300 z-10 ${
+              activeSection === item.id ? &quot;text-primary&quot; : &quot;hover:text-primary&quot;
+            }`}
+          &gt;
+            {item.label}
+          &lt;/a&gt;
+        ))}
+
+        &lt;div
+          id=&quot;nav-underline&quot;
+          className=&quot;absolute -bottom-px left-0 h-0.5 bg-primary transition-all duration-300 ease-out&quot;
+          style={underlineStyle}
+        /&gt;
+      &lt;/nav&gt;
+      &lt;button
+        className=&quot;md:hidden p-2 text-gray-200 border-none&quot;
+        onClick={() =&gt; setIsMobileMenuOpen(!isMobileMenuOpen)}
+      &gt;
+        &lt;Icon icon={isMobileMenuOpen ? &quot;lucide:x&quot; : &quot;lucide:menu&quot;} width={24} /&gt;
+      &lt;/button&gt;
+
+      {isMobileMenuOpen &amp;&amp; (
+        &lt;div className=&quot;absolute top-[50px] left-0 w-full bg-bg/95 backdrop-blur-xl border-b border-white/10 flex flex-col md:hidden p-4 gap-4&quot;&gt;
+          {navItems.map((item) =&gt; (
+            &lt;a
+              key={item.id}
+              href={item.href}
+              onClick={() =&gt; setIsMobileMenuOpen(false)}
+              className={`font-bold ${activeSection === item.id ? &quot;text-primary&quot; : &quot;text-gray-200&quot;}`}
+            &gt;
+              {item.label}
+            &lt;/a&gt;
+          ))}
+        &lt;/div&gt;
+      )}
+    &lt;/header&gt;
+  );
+}</file><file path="src/components/About.astro">---
+import { Image } from &quot;astro:assets&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import SenoProfile from &quot;@/assets/images/Jas Hitam Seno 2.png&quot;;
+import UILogo from &quot;@/assets/Makara_of_Universitas_Indonesia.png&quot;;
+import TiltWrapper from &quot;@/components/TiltWrapper&quot;;
+---
+
+&lt;section id=&quot;about&quot; class=&quot;min-h-screen&quot;&gt;
+  &lt;h1 class=&quot;text-6xl font-bold text-center mb-20 font-pixel&quot;&gt;Who Am I?&lt;/h1&gt;
+
+  &lt;div
+    class=&quot;flex flex-col-reverse md:flex-row items-center w-[90%] lg:w-[80%] mx-auto gap-12 lg:gap-20&quot;
+  &gt;
+    {/* LEFT SIDE */}
+    &lt;div class=&quot;w-full md:w-[60%] flex flex-col gap-6&quot;&gt;
+      &lt;div class=&quot;flex gap-4 items-center&quot;&gt;
+        &lt;div
+          class=&quot;flex items-center justify-center
+    w-12 h-12 rounded-full
+    bg-white/5 backdrop-blur-md border border-white/10
+    shadow-[0_0_30px_rgba(16,185,129,0.4)]&quot;
+        &gt;
+          &lt;Icon
+            name=&quot;lucide:user&quot;
+            class=&quot;w-8 h-8 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.8)]&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;h2 class=&quot;text-gray-300 text-2xl md:text-4xl font-bold&quot;&gt;
+          About &lt;span class=&quot;text-gradient&quot;&gt;The Developer&lt;/span&gt;
+        &lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;text-gray-300 border border-white/5 bg-white/[0.02] backdrop-blur-3xl overflow-hidden shadow-2xl px-10 py-4 leading-relaxed tracking-widest text-justify rounded-md&quot;
+      &gt;
+        &lt;!-- &lt;p class=&quot;text-md/loose md:text-xl/loose italic&quot;&gt; --&gt;
+        &lt;!--   My name is Seno Pamungkas Rahman. Im an avid software engineer with a --&gt;
+        &lt;!--   zest for front-end, back-end, AI, and cloud technologies. Passionate --&gt;
+        &lt;!--   about exploring new tech frontiers, I blend creativity with technical --&gt;
+        &lt;!--   skill in every project, pushing the boundaries of software innovation --&gt;
+        &lt;!-- &lt;/p&gt; --&gt;
+        &lt;p class=&quot;text-md/loose md:text-xl md:leading-12 italic&quot;&gt;
+          My name is Seno Pamungkas Rahman, a Computer Engineering graduate from
+          Universitas Indonesia. I specialize in building highly concurrent
+          systems, automating cloud infrastructure across AWS and GCP, and
+          developing robust full-stack applications. Whether I am crafting
+          terminal-driven CLI tools in Go and Rust, auditing Kubernetes
+          clusters, or designing platforms with Next.js and NestJS, I am driven
+          by a passion for creating efficient, secure, and scalable solutions.
+        &lt;/p&gt;
+        &lt;div
+          class=&quot;absolute w-1 h-20 bg-gradient-to-b from-primary to-transparent left-0 top-0 rounded-full&quot;
+        &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;flex items-center gap-4 text-gray-300 border border-white/5 bg-white/[0.02] backdrop-blur-3xl overflow-hidden shadow-2xl px-5 py-4 leading-relaxed tracking-widest text-justify rounded-md&quot;
+      &gt;
+        &lt;Image
+          src={UILogo}
+          alt=&quot;Logo Universitas Indonesia&quot;
+          class=&quot;w-16 h-16 md:w-18 md:h-18 object-contain&quot;
+          }
+        /&gt;
+        &lt;div&gt;
+          &lt;p class=&quot;text-md/loose md:text-xl/loose italic&quot;&gt;
+            &lt;span class=&quot;text-primary/80 font-bold&quot;&gt;Universitas Indonesia&lt;/span&gt; -
+            Computer Engineer
+          &lt;/p&gt;
+          &lt;p class=&quot;text-md/loose md:text-xl/loose italic&quot;&gt;
+            &lt;span class=&quot;font-bold text-primary/80&quot;&gt;GPA:&lt;/span&gt; 3.78
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;absolute w-1 h-20 bg-linear-to-b from-primary to-transparent right-0 top-0 rounded-full&quot;
+        &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    {/* RIGHT SIDE */}
+    &lt;div class=&quot;w-full h-[500px] md:w-[40%] flex justify-center&quot;&gt;
+      &lt;TiltWrapper
+        client:visible
+        maxTilt={15}
+        className=&quot; rounded-2xl shadow-2xl border-2 border-primary/20 group bg-white/[0.02] &quot;
+      &gt;
+        &lt;Image
+          src={SenoProfile}
+          alt=&quot;Profile&quot;
+          class=&quot;w-full h-full drop-shadow-xl group-hover:translate-z-[50px] group-hover:drop-shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700 object-cover object-top&quot;
+          }
+        /&gt;
+        &lt;h2
+          class=&quot;absolute bottom-0 left-1/2 -translate-x-1/2 text-center w-[90%] text-xl font-bold bg-white/20 border border-white/5 text-gray-300 rounded-lg py-2 backdrop-blur-3xl opacity-0 group-hover:opacity-100 group-hover:bottom-[40px] transition-all duration-500 translate-z-[75px]&quot;
+        &gt;
+          Built With Passion
+        &lt;/h2&gt;
+      &lt;/TiltWrapper&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="src/components/Projects.astro">---
+import { getCollection } from &quot;astro:content&quot;;
+import ProjectCard from &quot;./project/ProjectCard.astro&quot;;
+
+const projects = await getCollection(&quot;projects&quot;);
+const activeProjectTypes = [...new Set(projects.map((proj) =&gt; proj.data.type))];
+---
+
+&lt;section id=&quot;projects&quot; class=&quot;min-h-screen flex flex-col gap-15&quot;&gt;
+  &lt;h1 class=&quot;text-center text-6xl font-bold font-pixel&quot;&gt;Projects&lt;/h1&gt;
+
+  {/* Filter Buttons */}
+  &lt;div class=&quot;flex justify-center gap-4 filter-buttons px-4 flex-wrap mb-10&quot;&gt;
+    &lt;button
+      data-filter=&quot;all&quot;
+      class=&quot;filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize bg-primary text-bg border-primary drop-shadow-[0_0px_4px_var(--color-primary)]&quot;
+    &gt;
+      All
+    &lt;/button&gt;
+
+    {
+      /* 2. Map over the dynamically generated activeProjectTypes instead of the Enum */
+    }
+    {
+      activeProjectTypes.map((type) =&gt; (
+        &lt;button
+          data-filter={type}
+          class=&quot;filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize border-gray-600 text-gray-400 hover:bg-primary/20 hover:text-primary hover:border-primary/50&quot;
+        &gt;
+          {type}
+        &lt;/button&gt;
+      ))
+    }
+  &lt;/div&gt;
+
+  {/* Project Grid */}
+  &lt;div
+    class=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center items-stretch gap-10 px-15 md:px-4&quot;
+  &gt;
+    {
+      projects.map((proj) =&gt; (
+        &lt;div
+          class=&quot;project-item w-full flex justify-center&quot;
+          data-type={proj.data.type}
+        &gt;
+          &lt;ProjectCard project={proj} /&gt;
+        &lt;/div&gt;
+      ))
+    }
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+  const setupFilters = () =&gt; {
+    const buttons = document.querySelectorAll(&quot;.filter-btn&quot;);
+    const projects = document.querySelectorAll(&quot;.project-item&quot;);
+
+    const activeClasses = [
+      &quot;bg-primary&quot;,
+      &quot;text-bg&quot;,
+      &quot;border-primary&quot;,
+      &quot;drop-shadow-[0_0px_4px_var(--color-primary)]&quot;,
+    ];
+    const inactiveClasses = [
+      &quot;border-gray-600&quot;,
+      &quot;text-gray-400&quot;,
+      &quot;hover:bg-primary/20&quot;,
+      &quot;hover:text-primary&quot;,
+      &quot;hover:border-primary/50&quot;,
+    ];
+
+    buttons.forEach((button) =&gt; {
+      button.addEventListener(&quot;click&quot;, (e) =&gt; {
+        const target = e.currentTarget as HTMLElement;
+        const filter = target.getAttribute(&quot;data-filter&quot;);
+
+        // Handle button styling
+        buttons.forEach((btn) =&gt; {
+          btn.classList.remove(...activeClasses);
+          btn.classList.add(...inactiveClasses);
+        });
+
+        target.classList.remove(...inactiveClasses);
+        target.classList.add(...activeClasses);
+
+        // Handle project filtering
+        projects.forEach((project) =&gt; {
+          const el = project as HTMLElement;
+          const projectType = el.getAttribute(&quot;data-type&quot;);
+
+          if (filter === &quot;all&quot; || projectType === filter) {
+            el.style.display = &quot;flex&quot;;
+          } else {
+            el.style.display = &quot;none&quot;;
+          }
+        });
+      });
+    });
+  };
+
+  setupFilters();
+  document.addEventListener(&quot;astro:page-load&quot;, setupFilters);
+&lt;/script&gt;</file><file path="tsconfig.json">{
+  &quot;extends&quot;: &quot;astro/tsconfigs/strict&quot;,
+  &quot;include&quot;: [
+    &quot;.astro/types.d.ts&quot;,
+    &quot;**/*&quot;
+  ],
+  &quot;exclude&quot;: [
+    &quot;dist&quot;
+  ],
+  &quot;compilerOptions&quot;: {
+    &quot;jsx&quot;: &quot;react-jsx&quot;,
+    &quot;jsxImportSource&quot;: &quot;react&quot;,
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;:{
+      &quot;@/*&quot;:[&quot;src/*&quot;],
+      &quot;@/components/*&quot;: [&quot;src/components/*&quot;],
+      &quot;@/layouts/*&quot;: [&quot;src/layouts/*&quot;],
+      &quot;@/styles/*&quot;: [&quot;src/styles/*&quot;]
+    }
+  }
+}</file><file path="src/components/Home.astro">---
+import TypewriterText from &quot;@/components/home/TypewriterText&quot;;
+import ParticlesBackground from &quot;@/components/home/ParticlesBackground&quot;;
+
+import { Icon } from &quot;astro-icon/components&quot;;
+
+const resumeEndpoint: string =
+  &quot;https://bucket.senop.dev/Seno%20Pamungkas%20Rahman%20-%20CV%20(main).pdf&quot;;
+
+const blogEndpoint: string = &quot;/blog&quot;;
+---
+
+&lt;section
+  id=&quot;home&quot;
+  class=&quot;min-h-screen relative flex flex-col justify-center items-center text-center&quot;
+&gt;
+  &lt;ParticlesBackground
+    id=&quot;home-particles&quot;
+    options={{
+      fullScreen: {
+        enable: false,
+      },
+      background: {
+        color: { value: &quot;transparent&quot; },
+      },
+      fpsLimit: 120,
+      interactivity: {
+        detectsOn: &quot;window&quot;,
+        events: {
+          onHover: {
+            enable: true,
+            parallax: {
+              enable: true,
+              force: 60,
+              smooth: 10,
+            },
+          },
+        },
+      },
+      particles: {
+        color: { value: &quot;#0ffe7a&quot; },
+        links: {
+          color: &quot;#ffffff&quot;,
+          distance: 150,
+          enable: true,
+          opacity: 0.1,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: &quot;none&quot;,
+          outModes: { default: &quot;bounce&quot; },
+        },
+        number: {
+          density: { enable: true, width: 800, height: 800 },
+          value: 40, // Adjust for more/fewer particles
+        },
+        opacity: { value: 0.4 },
+        shape: { type: &quot;circle&quot; },
+        size: { value: { min: 1, max: 3 } },
+      },
+      detectRetina: true,
+    }}
+    client:idle
+  /&gt;
+
+  &lt;div class=&quot;w-[90%] lg:w-[60%] max-w-5xl flex flex-col gap-9&quot;&gt;
+    {/* Main Title Section */}
+    &lt;div class=&quot;relative flex flex-col gap-10 text-center pb-4&quot;&gt;
+      &lt;div
+        class=&quot;absolute -inset-4 bg-glow-green/15 blur-[80px] rounded-full z-0 pointer-events-none&quot;
+      &gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;relative z-10 font-bold&quot;&gt;
+        &lt;h1 class=&quot;text-gray-200 text-5xl md:text-7xl mb-12&quot;&gt;
+          Hi, I&apos;m &lt;span class=&quot;text-gradient&quot;&gt;Seno Pamungkas Rahman&lt;/span&gt;
+        &lt;/h1&gt;
+        &lt;h2 class=&quot;text-3xl md:text-5xl text-gray-300/90 mt-4&quot;&gt;
+          &lt;TypewriterText client:load /&gt;
+        &lt;/h2&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div
+      class=&quot;w-80 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto&quot;
+    &gt;
+    &lt;/div&gt;
+
+    {/* Description Section */}
+    &lt;!-- &lt;p class=&quot;text-gray-50 text-xl md:text-2xl tracking-wider leading-relaxed&quot;&gt; --&gt;
+    &lt;!--   An avid software engineer with a zest for front-end, back-end, AI, and --&gt;
+    &lt;!--   cloud technologies. Passionate about exploring new tech frontiers, I blend --&gt;
+    &lt;!--   creativity with technical skill in every project, pushing the boundaries --&gt;
+    &lt;!--   of software innovation --&gt;
+    &lt;!-- &lt;/p&gt; --&gt;
+    &lt;p class=&quot;text-gray-50 text-xl md:text-2xl tracking-wider leading-relaxed&quot;&gt;
+      A Platform and Full-Stack Software Engineer specializing in cloud-native
+      infrastructure, systems programming, and scalable web applications. From
+      architecting high-concurrency Go tools and managing Kubernetes
+      environments to building dynamic frontend experiences, I bridge the gap
+      between robust backend operations and seamless user interactions.
+    &lt;/p&gt;
+
+    {/* Buttons Section */}
+    &lt;div class=&quot;flex gap-10 items-center justify-center mt-5&quot;&gt;
+      &lt;a
+        href={resumeEndpoint}
+        target=&quot;_blank&quot;
+        class=&quot;flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:file-badge&quot; class=&quot;w-8 h-8&quot; /&gt;
+        &lt;p&gt;Resume&lt;/p&gt;
+      &lt;/a&gt;
+      &lt;a
+        href={blogEndpoint}
+        class=&quot;flex gap-3 items-center justify-center border p-4 rounded-lg hover:shadow-none font-bold hover:bg-[color-mix(in_oklch,var(--color-primary)_15%,transparent)]&quot;
+      &gt;
+        &lt;Icon name=&quot;lucide:newspaper&quot; class=&quot;w-8 h-8&quot; /&gt;
+        &lt;p&gt;Blog&lt;/p&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</file><file path="src/components/project/ProjectCard.astro">---
+import type { CollectionEntry } from &quot;astro:content&quot;;
+import TiltWrapper from &quot;@/components/TiltWrapper&quot;;
+import { Icon } from &quot;astro-icon/components&quot;;
+import { Image } from &quot;astro:assets&quot;;
+
+interface Props {
+  project: CollectionEntry&lt;&quot;projects&quot;&gt;;
+}
+
+const MAX_TECH_LENGTH: number = 6;
+const { project } = Astro.props;
+const { title, image, description, type, tools, demoUrl, sourceCodeUrl } =
+  project.data;
+---
+
+&lt;div class=&quot;w-full h-full md:w-[450px] flex justify-center group&quot;&gt;
+  &lt;TiltWrapper client:visible maxTilt={4} className=&quot;w-full h-full&quot;&gt;
+    &lt;div
+      class=&quot;w-full h-full p-2 rounded-2xl shadow-xl shadow-primary/30 bg-primary/50 group-hover:shadow-primary/50 group-hover:shadow-2xl group-hover:bg-primary/100 group-hover:-translate-y-5 transition-all duration-500 flex flex-col overflow-hidden&quot;
+    &gt;
+      &lt;div
+        class=&quot;bg-bg/98 w-full h-full flex flex-col overflow-hidden rounded-xl&quot;
+      &gt;
+        &lt;a
+          href={`/project/${project.id}`}
+          class=&quot;relative w-full h-48 group/image cursor-pointer&quot;
+        &gt;
+          {
+            image ? (
+              &lt;div class=&quot;w-full h-48 shrink-0 mb-4 bg-black overflow-hidden rounded-t-lg&quot;&gt;
+                &lt;Image
+                  src={image}
+                  alt=&quot;Project Image&quot;
+                  class=&quot;w-full h-full object-cover rounded-t-lg shrink-0 opacity-80 group-hover:opacity-100 group-hover:scale-110 group-hover/image:blur-xs cursor-pointer transition-all duration-500&quot;
+                /&gt;
+              &lt;/div&gt;
+            ) : (
+              &lt;div class=&quot;w-full h-48 rounded-t-lg shrink-0 mb-4 bg-white/5 border border-white/10 flex items-center justify-center&quot;&gt;
+                &lt;span class=&quot;text-gray-500 font-bold tracking-widest text-sm&quot;&gt;
+                  NO IMAGE
+                &lt;/span&gt;
+              &lt;/div&gt;
+            )
+          }
+          &lt;div
+            class=&quot;absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300&quot;
+          &gt;
+            &lt;p class=&quot;font-bold text-white text-center text-lg px-4&quot;&gt;
+              Click for more info
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+        {/* Text Group */}
+        &lt;div class=&quot;w-full h-full flex flex-col px-6 py-4&quot;&gt;
+          &lt;div class=&quot;flex flex-col flex-1&quot;&gt;
+            &lt;div class=&quot;flex flex-col gap-5&quot;&gt;
+              &lt;div
+                class=&quot;flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between&quot;
+              &gt;
+                &lt;a
+                  href={`projects/${project.id}`}
+                  class=&quot;flex relative gap-2 group/title font-bold text-2xl text-primary/90 hover:text-primary/100 hover:bg-transparent hover:border-none drop-shadow-none shadow-none cursor-pointer&quot;
+                &gt;
+                  &lt;h1 class=&quot;font-pixel&quot;&gt;{title}&lt;/h1&gt;
+                  &lt;Icon
+                    name=&quot;mdi:external-link&quot;
+                    class=&quot;absolute w-5 h-5 right-0 top-0 -translate-y-1 translate-x-[140%] opacity-0 group-hover/title:translate-x-[120%] group-hover/title:translate-y-1 group-hover/title:opacity-100 transition-all duration-300&quot;
+                  /&gt;
+                &lt;/a&gt;
+                &lt;p
+                  class=&quot;border border-primary px-4 py-1 rounded-lg bg-primary/10 font-bold w-fit&quot;
+                &gt;
+                  {type}
+                &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;p class=&quot;text-justify text-lg/loose text-gray-200 line-clamp-5&quot;&gt;
+                {description}
+              &lt;/p&gt;
+              &lt;div&gt;
+                &lt;p class=&quot;font-bold mb-3 text-gray-300/70&quot;&gt;Technologies&lt;/p&gt;
+                &lt;div class=&quot;flex flex-wrap gap-2&quot;&gt;
+                  {
+                    tools.slice(0, MAX_TECH_LENGTH).map((tool) =&gt; (
+                      &lt;div title={tool.name} class=&quot;flex gap-4&quot;&gt;
+                        {tool.logo ? (
+                          &lt;div class=&quot;flex items-center justify-center p-1 rounded-lg border border-white/20  hover:border-primary/70 transition-all duration-300 hover:bg-primary/10 hover:-translate-y-1 text-gray-100&quot;&gt;
+                            &lt;Icon
+                              name={tool.logo}
+                              class=&quot;w-8 h-8 md:w-10 md:h-10 &quot;
+                            /&gt;
+                          &lt;/div&gt;
+                        ) : (
+                          &lt;div class=&quot;flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 text-3xl font-bold text-primary drop-shadow-[0_0_8px_var(--color-primary)]&quot;&gt;
+                            {title.charAt(0)}
+                          &lt;/div&gt;
+                        )}
+                      &lt;/div&gt;
+                    ))
+                  }
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            {/* Buttons Group */}
+            &lt;div class=&quot;flex flex-col md:flex-row gap-3 mt-auto pt-8&quot;&gt;
+              {/* Live Demo Button */}
+              &lt;a
+                href={demoUrl || undefined}
+                target={demoUrl ? &quot;_blank&quot; : undefined}
+                rel={demoUrl ? &quot;noopener noreferrer&quot; : undefined}
+                class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+                  demoUrl
+                    ? &quot;cursor-pointer border-primary/50&quot;
+                    : &quot;opacity-40 cursor-not-allowed pointer-events-none border-gray-600 text-gray-500&quot;
+                }`}
+              &gt;
+                {/* Added shrink-0 to prevent icon from squishing */}
+                &lt;Icon
+                  name=&quot;mdi:world-wide-web&quot;
+                  class=&quot;w-6 h-6 sm:w-8 sm:h-8 shrink-0&quot;
+                /&gt;
+                {/* Added whitespace-nowrap to prevent text wrapping */}
+                &lt;p class=&quot;font-bold whitespace-nowrap&quot;&gt;Live Demo&lt;/p&gt;
+              &lt;/a&gt;
+
+              {/* Source Code Button */}
+              &lt;a
+                href={sourceCodeUrl || undefined}
+                target={sourceCodeUrl ? &quot;_blank&quot; : undefined}
+                rel={sourceCodeUrl ? &quot;noopener noreferrer&quot; : undefined}
+                class={`flex-1 border py-2 px-2 rounded-lg flex gap-2 justify-center items-center transition-all ${
+                  sourceCodeUrl
+                    ? &quot;cursor-pointer border-primary/50&quot;
+                    : &quot;opacity-40 pointer-events-none border-gray-600 text-gray-500&quot;
+                }`}
+              &gt;
+                &lt;Icon
+                  name=&quot;mdi:code-tags&quot;
+                  class=&quot;w-6 h-6 sm:w-8 sm:h-8 shrink-0&quot;
+                /&gt;
+                &lt;p class=&quot;font-bold whitespace-nowrap&quot;&gt;Source&lt;/p&gt;
+              &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/TiltWrapper&gt;
+&lt;/div&gt;</file><file path="src/styles/global.css">@import &quot;tailwindcss&quot;;
+
+@theme inline {
+
+  --font-pixel: var(--font-pixel);
+
+
+  --color-primary: oklch(0.8751 0.2375 150.21);
+  --color-bg: oklch(0.1288 0.029 151.71);
+  --color-lagoon: oklch(0.72 0.11 221.19);
+  --color-coral: oklch(0.74 0.17 40.24);
+  --color-driftwood: oklch(0.79 0.06 74.59);
+  --color-tide: oklch(0.49 0.08 205.88);
+  --color-dusk: oklch(0.82 0.15 72.09);
+
+
+  --color-glow-cyan: oklch(0.81 0.2 216);
+
+
+  --color-card-cream: oklch(0.97 0.015 150);
+
+  --animate-caret: blink 1s steps(1) infinite;
+
+  --background-image-name-gradient: linear-gradient(
+    to right,
+    var(--color-primary),
+    oklch(0.95 0.22 145)
+  );
+
+  --color-glow-green: oklch(0.9 0.28 150);
+
+
+  --animate-marquee: marquee 80s linear infinite;
+  --animate-marquee-reverse: marquee 80s linear infinite reverse;
+
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@keyframes grow-line {
+  from {
+    transform: scaleY(0);
+    opacity: 0.2;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@utility scroll-animate-height {
+  animation: grow-line linear both;
+
+  animation-timeline: view();
+
+  animation-range: entry 0% cover 50%;
+}
+
+@utility text-gradient {
+  background-image: var(--background-image-name-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  0.1% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.1% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+
+  }
+
+  a {
+    text-decoration: none;
+    position: relative;
+    transition: all 0.15s ease-in-out;
+
+
+    &amp;:hover {
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        transparent
+      );
+      color: white;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 10px
+        color-mix(in oklch, var(--color-primary) 20%, transparent);
+    }
+  }
+
+  button {
+    border-width: 1px;
+    border-radius: var(--radius-xl);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    font-weight: 700;
+
+    &amp;:hover {
+
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        transparent
+      );
+
+      color: white;
+      border-color: var(--color-primary);
+
+
+      box-shadow: 0 0 10px
+        color-mix(in oklch, var(--color-primary) 20%, transparent);
+    }
+  }
+
+  input,
+  textarea {
+    border-width: 1px;
+    border-color: color-mix(in oklch, var(--color-primary) 30%, transparent);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px
+      color-mix(in oklch, var(--color-primary) 30%, transparent);
+  }
+
+
+  input::placeholder,
+  textarea::placeholder {
+    color: oklch(0.5 0 0);
+  }
+}</file><file path="package.json">{
+  &quot;name&quot;: &quot;portfolio&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=22.12.0&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;astro dev&quot;,
+    &quot;build&quot;: &quot;astro build&quot;,
+    &quot;preview&quot;: &quot;astro preview&quot;,
+    &quot;astro&quot;: &quot;astro&quot;
+  },
+  &quot;pnpm&quot;: {
+    &quot;overrides&quot;: {
+      &quot;react&quot;: &quot;^19.2.4&quot;,
+      &quot;react-dom&quot;: &quot;^19.2.4&quot;
+    },
+    &quot;onlyBuiltDependencies&quot;: [
+      &quot;@tsparticles/engine&quot;,
+      &quot;esbuild&quot;,
+      &quot;sharp&quot;
+    ]
+  },
+  &quot;dependencies&quot;: {
+    &quot;@astrojs/mdx&quot;: &quot;^5.0.4&quot;,
+    &quot;@astrojs/react&quot;: &quot;^5.0.3&quot;,
+    &quot;@tailwindcss/vite&quot;: &quot;^4.2.1&quot;,
+    &quot;@tsparticles/react&quot;: &quot;^3.0.0&quot;,
+    &quot;@tsparticles/slim&quot;: &quot;^3.9.1&quot;,
+    &quot;astro&quot;: &quot;^6.1.5&quot;,
+    &quot;astro-icon&quot;: &quot;^1.1.5&quot;,
+    &quot;mdx&quot;: &quot;^0.3.1&quot;,
+    &quot;react&quot;: &quot;^19.2.4&quot;,
+    &quot;react-dom&quot;: &quot;^19.2.4&quot;,
+    &quot;sharp&quot;: &quot;^0.34.5&quot;,
+    &quot;tailwindcss&quot;: &quot;^4.2.1&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@iconify-json/akar-icons&quot;: &quot;^1.2.7&quot;,
+    &quot;@iconify-json/devicon&quot;: &quot;^1.2.61&quot;,
+    &quot;@iconify-json/iconamoon&quot;: &quot;^1.2.2&quot;,
+    &quot;@iconify-json/lineicons&quot;: &quot;^1.2.6&quot;,
+    &quot;@iconify-json/lucide&quot;: &quot;^1.2.98&quot;,
+    &quot;@iconify-json/mdi&quot;: &quot;^1.2.3&quot;,
+    &quot;@iconify-json/ri&quot;: &quot;^1.2.10&quot;,
+    &quot;@iconify-json/simple-icons&quot;: &quot;^1.2.74&quot;,
+    &quot;@iconify-json/skill-icons&quot;: &quot;^1.2.4&quot;,
+    &quot;@iconify-json/weui&quot;: &quot;^1.2.4&quot;,
+    &quot;@iconify/react&quot;: &quot;^6.0.2&quot;,
+    &quot;@types/react&quot;: &quot;^19.2.14&quot;,
+    &quot;@types/react-dom&quot;: &quot;^19.2.3&quot;,
+    &quot;prettier&quot;: &quot;^3.8.1&quot;,
+    &quot;prettier-plugin-astro&quot;: &quot;^0.14.1&quot;,
+    &quot;typescript&quot;: &quot;^5.9.3&quot;
+  }
+}</file></files></repomix>

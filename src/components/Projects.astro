@@ -1,0 +1,176 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "./project/ProjectCard.astro";
+
+const projects = await getCollection("projects");
+const activeProjectTypes = [...new Set(projects.map((proj) => proj.data.type))];
+---
+
+<section id="projects" class="min-h-screen flex flex-col gap-15">
+  <h1 class="text-center text-6xl font-bold font-pixel">Projects</h1>
+
+  {/* Filter Buttons */}
+  <div class="flex justify-center gap-4 filter-buttons px-4 flex-wrap mb-10">
+    <button
+      data-filter="all"
+      class="filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize bg-primary text-bg border-primary drop-shadow-[0_0px_4px_var(--color-primary)]"
+    >
+      All
+    </button>
+    {
+      activeProjectTypes.map((type) => (
+        <button
+          data-filter={type}
+          class="filter-btn border py-2 px-6 rounded-lg font-bold transition-all capitalize border-gray-600 text-gray-400 hover:bg-primary/20 hover:text-primary hover:border-primary/50"
+        >
+          {type}
+        </button>
+      ))
+    }
+  </div>
+
+  {/* Project Grid */}
+  <div
+    class="project-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center items-stretch gap-10 px-15 md:px-4"
+  >
+    {
+      projects.map((proj) => (
+        <div
+          class="project-item w-full flex justify-center"
+          data-type={proj.data.type}
+        >
+          <ProjectCard project={proj} />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .project-item {
+    transition:
+      opacity 250ms ease,
+      transform 250ms ease;
+  }
+  .project-item.is-hiding {
+    opacity: 0;
+    transform: scale(0.85);
+    pointer-events: none;
+  }
+  .project-item.is-hidden {
+    display: none;
+  }
+  .project-item.is-entering {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+</style>
+
+<script>
+  const setupFilters = () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+
+    const activeClasses = [
+      "bg-primary",
+      "text-bg",
+      "border-primary",
+      "drop-shadow-[0_0px_4px_var(--color-primary)]",
+    ];
+    const inactiveClasses = [
+      "border-gray-600",
+      "text-gray-400",
+      "hover:bg-primary/20",
+      "hover:text-primary",
+      "hover:border-primary/50",
+    ];
+
+    let isAnimating = false;
+
+    const applyFilter = (filter: string) => {
+      if (isAnimating) return;
+
+      const projects = document.querySelectorAll<HTMLElement>(".project-item");
+
+      const toHide: HTMLElement[] = [];
+      const toShow: HTMLElement[] = [];
+
+      projects.forEach((el) => {
+        const type = el.getAttribute("data-type");
+        const matches = filter === "all" || type === filter;
+        const isCurrentlyHidden = el.classList.contains("is-hidden");
+
+        if (!matches && !isCurrentlyHidden) toHide.push(el);
+        if (matches && isCurrentlyHidden) toShow.push(el);
+      });
+
+      if (toHide.length === 0 && toShow.length === 0) return;
+
+      isAnimating = true;
+
+      // Phase 1: animate out items that should hide
+      const hidePhase = () =>
+        new Promise<void>((resolve) => {
+          if (toHide.length === 0) return resolve();
+
+          let completed = 0;
+          toHide.forEach((el, i) => {
+            el.style.transitionDelay = `${i * 40}ms`;
+            el.classList.add("is-hiding");
+
+            const onEnd = () => {
+              el.removeEventListener("transitionend", onEnd);
+              el.classList.add("is-hidden");
+              el.classList.remove("is-hiding");
+              el.style.transitionDelay = "";
+              completed++;
+              if (completed === toHide.length) resolve();
+            };
+            el.addEventListener("transitionend", onEnd);
+          });
+        });
+
+      // Phase 2: un-hide and animate in items that should show
+      const showPhase = () => {
+        toShow.forEach((el, i) => {
+          el.classList.remove("is-hidden");
+          el.classList.add("is-entering");
+
+          // Force reflow so the starting state is painted before we remove the class
+          void el.offsetHeight;
+
+          el.style.transitionDelay = `${i * 50}ms`;
+          el.classList.remove("is-entering");
+
+          const onEnd = () => {
+            el.removeEventListener("transitionend", onEnd);
+            el.style.transitionDelay = "";
+          };
+          el.addEventListener("transitionend", onEnd);
+        });
+      };
+
+      hidePhase().then(() => {
+        showPhase();
+        isAnimating = false;
+      });
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const filter = target.getAttribute("data-filter")!;
+
+        buttons.forEach((btn) => {
+          btn.classList.remove(...activeClasses);
+          btn.classList.add(...inactiveClasses);
+        });
+        target.classList.remove(...inactiveClasses);
+        target.classList.add(...activeClasses);
+
+        applyFilter(filter);
+      });
+    });
+  };
+
+  document.addEventListener("astro:page-load", setupFilters);
+</script>

@@ -1,0 +1,56 @@
+---
+import EmailCard from "./contact/EmailCard.astro";
+import DirectContact from "./contact/DirectContact.astro";
+import ParticlesBackground from "@/components/home/ParticlesBackground";
+---
+
+<section
+  id="contact"
+  class="min-h-screen relative mx-auto flex flex-col justify-center items-center pb-20"
+>
+  <ParticlesBackground
+    id="contact-particles"
+    options={{
+      fullScreen: {
+        enable: false,
+      },
+      background: {
+        color: { value: "transparent" },
+      },
+      fpsLimit: 120,
+      particles: {
+        color: {
+          value: "#0ffe7a",
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          outModes: { default: "bounce" },
+        },
+        number: {
+          density: { enable: true, width: 800, height: 800 },
+          value: 60,
+        },
+        opacity: { value: 0.4 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 3 } },
+      },
+    }}
+    client:idle
+  />
+
+  <!-- Title Header -->
+  <div class="flex flex-col justify-center items-center gap-5">
+    <h1 class="font-bold text-6xl text-center font-pixel">Lets Connect</h1>
+    <p class="text-center text-gray-200">
+      Let's build something great together
+    </p>
+  </div>
+  <div
+    class="flex flex-col lg:flex-row w-[90%] lg:w-[80%] gap-10 lg:gap-15 mt-16 md:mt-25"
+  >
+    <EmailCard />
+    <DirectContact />
+  </div>
+</section>

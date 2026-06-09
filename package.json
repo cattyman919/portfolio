@@ -1,35 +1,69 @@
 {
   "name": "portfolio",
-  "version": "0.1.0",
-  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "compile": "graphql-codegen",
-    "watch": "graphql-codegen -w"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test:size": "bundlewatch",
+    "astro": "astro"
+  },
+  "bundlewatch": {
+    "files": [
+      {
+        "path": "dist/_astro/*.js",
+        "maxSize": "100kB"
+      },
+      {
+        "path": "dist/_astro/*.css",
+        "maxSize": "20kB"
+      }
+    ],
+    "ci": {
+      "trackBranches": [
+        "new-portfolio"
+      ]
+    }
   },
   "dependencies": {
-    "@apollo/client": "^3.13.5",
-    "next": "^15.5.15",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.3.0",
-    "tailwindcss-animated": "^1.1.2"
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/react": "^5.0.3",
+    "@tailwindcss/vite": "^4.2.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.9.1",
+    "animejs": "^4.4.1",
+    "astro": "^6.1.5",
+    "astro-icon": "^1.1.5",
+    "mdx": "^0.3.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "reveal.js": "^6.0.1",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^6.3.1",
-    "@graphql-codegen/client-preset": "^5.3.0",
-    "@graphql-typed-document-node/core": "^3.2.0",
-    "@types/node": "^20",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.3",
-    "graphql": "^16.10.0",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.8.2"
+    "@iconify-json/akar-icons": "^1.2.7",
+    "@iconify-json/devicon": "^1.2.61",
+    "@iconify-json/iconamoon": "^1.2.2",
+    "@iconify-json/lineicons": "^1.2.6",
+    "@iconify-json/lucide": "^1.2.98",
+    "@iconify-json/material-icon-theme": "^1.2.60",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/ri": "^1.2.10",
+    "@iconify-json/simple-icons": "^1.2.74",
+    "@iconify-json/skill-icons": "^1.2.4",
+    "@iconify-json/weui": "^1.2.4",
+    "@iconify/react": "^6.0.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/reveal.js": "^5.2.2",
+    "bundlewatch": "^0.4.2",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,0 +1,48 @@
+title: "Jaga"
+type: "fullstack"
+tags: ["fullstack"]
+image: "./jaga.png"
+description: "A vehicle maintenance app with GPS tracking to monitor kilometers and notify users of service needs based on distance and time."
+
+highlights:
+  - "Fullstack Development: Led the fullstack development of the Jaga project using Flutter and NestJS, creating both the frontend and backend infrastructure."
+  - "Data Collection: Created a system to collect data from the backend to get car model and car maintenance information, providing users with the necessary details for their vehicles."
+  - "Maintenance Reminder: Developed the main function of the app to keep the car/motorcycle data for maintenance reminder, helping users to stay on top of their vehicle maintenance schedules."
+  - "Multiple Vehicles: Implemented a feature that allows users to create multiple car/motorcycle entries for maintenance, catering to users with more than one vehicle."
+  - "Collaboration: Worked in collaboration with a team member who created the IoT hardware EPS32 for GPS tracking, demonstrating teamwork and cross-functional collaboration."
+
+tools:
+  - name: "Typescript"
+    logo: "devicon:typescript"
+
+  - name: "NestJS"
+    logo: "devicon:nestjs"
+
+  - name: "Dart"
+    logo: "devicon:dart"
+
+  - name: "Flutter"
+    logo: "devicon:flutter"
+
+  - name: "C++"
+    logo: "devicon:cplusplus"
+
+sourceCodeUrl: "https://github.com/cattyman919/Jaga"
+
+mediaUrls:
+  - "https://bucket.senop.dev/projects/jaga/jaga.png"
+  - "https://bucket.senop.dev/projects/jaga/bluetooth2.png"
+  - "https://bucket.senop.dev/projects/jaga/bluetooth1.png"
+  - "https://bucket.senop.dev/projects/jaga/home.png"
+  - "https://bucket.senop.dev/projects/jaga/how_it_works.png"
+  - "https://bucket.senop.dev/projects/jaga/activity_diagram.png"
+  - "https://bucket.senop.dev/projects/jaga/login1.png"
+  - "https://bucket.senop.dev/projects/jaga/login2.png"
+  - "https://bucket.senop.dev/projects/jaga/login3.png"
+  - "https://bucket.senop.dev/projects/jaga/sign_up1.png"
+  - "https://bucket.senop.dev/projects/jaga/sign_up2.png"
+  - "https://bucket.senop.dev/projects/jaga/sign_up3.png"
+  - "https://bucket.senop.dev/projects/jaga/sign_up4.png"
+  - "https://bucket.senop.dev/projects/jaga/use_case_diagram.png"
+  - "https://bucket.senop.dev/projects/jaga/wifi_connection.png"
+  - "https://bucket.senop.dev/projects/jaga/data_to_database.png"
