@@ -1,0 +1,224 @@
+---
+title: "Trust No Codebase: Fixing a Hidden Pagination Bug in the Tencent Terraform Provider"
+description: "A routine task to import database users turned into a frustrating roadblock when Terraform quietly stopped at user #20. Here is how I tracked down a missing pagination loop in Tencent's Go codebase and patched it myself."
+coverImage: https://i.imgflip.com/1hx5mc.jpg?a480600
+pubDate: "2026-06-16"
+tags:
+  - terraform
+  - golang
+  - tencent
+---
+
+A couple of weeks ago, I've been given a task to do a `terraform import` on every user in a variety of databases such as PosgresSQL, MySQL, Mongodb, etc at work. Why do this? because we've only recently migrate to Tencent cloud provider and we haven't provision database users using terraform. We had to manually provision users through the Tencent Cloud Console. This is because at the time, Tencent didn't provide terraform resource to provision database user using terraform.
+
+But now as of 16 June 2026, they have provided the terraform resource to provision database user in [PosgresSQL](https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/postgresql_account), [MySQL](https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/dcdb_account), [Mongodb](https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/mongodb_instance_account), [CynosDB](https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/cynosdb_account), etc. Now the challenge is to somehow import all the existing database users in all database instances to our [terraform state](https://developer.hashicorp.com/terraform/language/state). We can do this by using the command of `terraform import` or using the [`import block`](https://developer.hashicorp.com/terraform/language/block/import), however we need to do that manually per user. Which can be really time-consuming if you have over 100+ instances and over 20 users per single database instance.
+
+## Challenges
+
+The current goal now is to import all existing database users to our terrafrom state. But we have a few obstacles that are really annoying:
+
+- Every application has it's own Terraform State (`tfstate`)
+- Every applications are scattered throughout different repositories.
+
+This means we have to go to every single repository and do a manual terraform import there.
+
+## Solution
+
+Well, in my programmer mindset, it's a rather simple solution but kinda complex to implement (and risky because it terraform we're talking here). Let's just implement a golang program that will solve this instead.
+
+1. Use the Gitlab API to go through every repositories.
+2. In each repositories, we will find if there are any database instances defined such as PosgresSQL instances, Mongodb, instances, etc. (_It turns out this is annoying part to deal with [^1]_)
+3. If there is a defined database instance, we will query the users in those database instances for database users using the Tencent Cloud API
+4. If there are users there, then we defined an `import block` in our local machine for every user
+5. Finally the do a `terraform plan --target` and `terraform apply --target` to our import resources. (Note: we do terraform target here to not disturb any existing resources).
+
+## Unexpected Problem
+
+In short, I've made the program that solves the challenge we had. Buuuuut somethings feels off...
+
+When i ran the program it successfully imported **some** of the users in the database. Keyword here is **some**. Meaning we've partially imported the database users to the terraform state. However not all users were imported.
+
+This made review the code again on every single functions. Just to look for this annoying bug that fails to import some of the users. However the code looks correct. Nothing seems to be wrong in my program.
+
+So my initial assumptions that cause this error was
+
+- Some users have capital names (e.g. JOHN_DOE). However some capital named users were successfully imported.
+- Users that are defined in the console database instead of Tencent Cloud Console. This is proven wrong as there were users successfully imported that are created from the console database.
+
+## Bingo Moment
+
+To test my assumptions, I did a manual `terraform import` on every user in a single database instance that have more than 30+ users in it on a non-prod environment.
+
+And this is when the aaaha moment happens...
+
+when i try to import the 21nd user it **fails**. It returns this error:
+
+```bash
+terraform import tencentcloud_postgresql_account.my_db_user_21nd  user_21nd
+
+tencentcloud_postgresql_account.my_db_user_21nd: Importing from ID "user_21nd"...
+tencentcloud_postgresql_account.my_db_user_21nd: Import prepared!
+  Prepared postgresql_role for import
+tencentcloud_postgresql_account.my_db_user_21n: Refreshing state... [id=user_21nd]
+╷
+│ Error: Cannot import non-existent remote object
+│
+│ While attempting to import an existing object to "tencentcloud_postgresql_account.my_db_user_21nd",
+│ the provider detected that no object exists with the given id. Only pre-existing
+│ objects can be imported; check that the id is correct and that it is associated
+│ with the provider's configured region or endpoint, or use "terraform apply" to
+│ create a new remote object for this resource.
+```
+
+Notice the `Error: Cannot import non-existent remote object`. It means the user doesn't exist in the database. Buut the user **DOES EXIST IN THE DATABASE** instance based on the Tencent Cloud Console. So it seems weeird on why it failed.
+
+It seems that users from 21nd and so on will fail to be imported to terraform state. However it works on users starting from index 1 to 20. And funny enough the default pagination of Tencent Cloud Console only shows 20 users in it's first page and it will show the next 20 users in the next page.
+
+Sooo there you go, it seems to be a pagination issue when we use the [terraform resource database user](https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/postgresql_account) provided by tencent. Proven by my testing of manual `terraform import`.
+
+![image](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2RwdTd5YW51bWQxaHJibW81OTJsZ3JtbG10eHJmeWN4cXVob3JkOSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QCKlfpNs03Yn0AME9E/giphy.gif)
+
+## Fixing Enterprise Codebase
+
+The typical advice when this happens is to just submit a ticket to Tencent regarding this issue. But knowing myself as a programmer, **I think i can fix it myself**
+
+![image](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXIyYWVueHpibDZ4cTd1aWh0MDJvMHdrZWFkMXkxM3FoZHRyMG9xdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11x3daQf8ZAKarHK0B/giphy.gif)
+
+All i have to do was to look for the PostgresSQL implement that reads the users in the database in the [Tencent Terraform Provider Codebase](https://github.com/tencentcloudstack/terraform-provider-tencentcloud). It was easier than i thought because the codebase structure were surprisingly well organized.
+
+The implement of [tencentcloud_postgresql_account](https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/postgresql_account) is in [this file](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/blob/master/tencentcloud/services/postgresql/resource_tc_postgresql_account.go). Now all i have to focus on is on the when we read the posgresSQL accounts, specifically in this section
+
+```go
+func resourceTencentCloudPostgresqlAccountRead(d *schema.ResourceData, meta interface{}) error {
+    // Other Code Section
+	account, err := service.DescribePostgresqlAccountById(ctx, dBInstanceId, userName)
+	if err != nil {
+		return err
+	}
+
+	if account == nil {
+		d.SetId("")
+		log.Printf("[WARN]%s resource `PostgresAccount` [%s] not found, please check if it has been deleted.\n", logId, d.Id())
+		return nil
+	}
+    // Other Code Section
+}
+```
+
+It calls the `service.DescribePostgresqlAccountById(ctx, dBInstanceId, userName)` where it tries to get an account in a database instance. Now we just need to look inside the implementation of `service.DescribePostgresqlAccountById` and make sure it's correct.
+
+Implementation of `service.DescribePostgresqlAccountById`:
+
+```go
+// Some code are omitted for simplicity
+func (me *PostgresqlService) DescribePostgresqlAccountById(ctx context.Context, dBInstanceId string, userName string) (account *postgresql.AccountInfo, errRet error) {
+	request := postgresql.NewDescribeAccountsRequest()
+	request.DBInstanceId = &dBInstanceId
+
+    // Somethings missing in this request.
+    // I wonder if there is a Limit or Offset field in the request
+    // Hmmmmm....
+
+	response, err := me.client.UsePostgresqlClient().DescribeAccounts(request)
+	if err != nil {
+		errRet = err
+		return
+	}
+
+	if response == nil || len(response.Response.Details) < 1 {
+		return
+	}
+
+	for _, item := range response.Response.Details {
+		if *item.UserName == userName {
+			account = item
+		}
+	}
+	return
+}
+```
+
+The implementation is simple, we query the accounts in the database and loop through every account to check if it has the requested username.
+
+But you know what's missing here? Yeeeeep, it's the pagination handling. Apparently they forgot to handle pagination here.
+
+Because if you look into the request field, it has these fields:
+
+```go
+type DescribeAccountsRequest struct {
+	*tchttp.BaseRequest
+
+	// 实例ID，形如postgres-6fego161。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+	DBInstanceId *string `json:"DBInstanceId,omitnil,omitempty" name:"DBInstanceId"`
+
+	// 分页返回，每页最大返回数目，默认20，取值范围为1-100
+	Limit *int64 `json:"Limit,omitnil,omitempty" name:"Limit"`
+
+	// 数据偏移量，从0开始。
+	Offset *int64 `json:"Offset,omitnil,omitempty" name:"Offset"`
+
+	// 返回数据按照创建时间或者用户名排序。取值支持createTime、name、updateTime。createTime-按照创建时间排序；name-按照用户名排序; updateTime-按照更新时间排序。
+	// 默认值：createTime
+	OrderBy *string `json:"OrderBy,omitnil,omitempty" name:"OrderBy"`
+
+	// 返回结果是升序还是降序。取值只能为desc或者asc。desc-降序；asc-升序
+	// 默认值：desc
+	OrderByType *string `json:"OrderByType,omitnil,omitempty" name:"OrderByType"`
+}
+
+```
+
+The request field has the `Limit` and `Offset` field. This means we have to handle paginations in our implementation. The fix is quite simple:
+
+```go
+
+func (me *PostgresqlService) DescribePostgresqlAccountById(ctx context.Context, dBInstanceId string, userName string) (account *postgresql.AccountInfo, errRet error) {
+	request := postgresql.NewDescribeAccountsRequest()
+	request.DBInstanceId = &dBInstanceId
+
+    // Set the Limit we want (maximum is 100 in Tencent Cloud API)
+    request.Limit = 100
+
+    // Set offset to 0 initially
+    request.Offset = 0
+
+    // Query the data until we've reached the end of the page
+    for{
+	    response, err := me.client.UsePostgresqlClient().DescribeAccounts(request)
+	    if err != nil {
+	    	errRet = err
+	    	return
+	    }
+
+	    if response == nil || len(response.Response.Details) < 1 {
+	    	return
+	    }
+
+	    for _, item := range response.Response.Details {
+	    	if *item.UserName == userName {
+	    		account = item
+	            return
+	    	}
+	    }
+
+        // We've reached the end of the pagination
+        if int64(len(response.Response.Details)) < limit {
+				break
+		}
+
+        request.Offset = request.Offset + 100
+    }
+}
+```
+
+I've created the [MR](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/4211) for this pagination fix.
+
+## Conclusion
+
+Even enterprise codebase aren't perfect. Don't assume just because they are an open-source or enterprise codebase that they are perfect. Just look at the issues submitted by users. Im sure there many issues you can find and fix.
+
+So keep on the solving challenging problems folks.
+
+![image](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NmFta3NncTJ6amI4Ymdlcm1laGl2N2t3bWhqNTBkcDd2Nndoamg2eiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/6k6iDdi5NN8ZO/giphy.gif)
+
+[^1]: Every repositories has it's own `tfvars` for use to look what variables are defined there. But every repositories has it's own naming convention 😑 that defines the PosgresSQL or MongoDB instances. So I'd have to adjust to every single naming convention that might show up in every repositories.
