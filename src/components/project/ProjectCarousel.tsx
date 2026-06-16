@@ -10,14 +10,29 @@ export type CarouselMedia = {
 export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const thumbnailRef = useRef<HTMLDivElement>(null);
-
   const isInitialRender = useRef(true);
+
+  const prefetchedCache = useRef<Set<string>>(new Set());
+
+  const prefetchMedia = (targetIndex: number) => {
+    const item = media[targetIndex];
+    if (!item || prefetchedCache.current.has(item.src)) return;
+
+    if (item.type === "image") {
+      const img = new window.Image();
+      img.src = item.src;
+    } else if (item.type === "video") {
+      // Use a background fetch to cache the video stream
+      fetch(item.src, { mode: "no-cors" }).catch(() => {});
+    }
+
+    prefetchedCache.current.add(item.src);
+  };
 
   // Auto-scroll thumbnails to keep the active one in view
   useEffect(() => {
     if (!thumbnailRef.current) return;
 
-    // 2. Intercept and skip the scroll effect on the first render
     if (isInitialRender.current) {
       isInitialRender.current = false;
       return;
@@ -45,15 +60,14 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
 
   const goToSlide = (slideIndex: number) => setCurrentIndex(slideIndex);
 
-  const goToPrevious = () => {
-    setCurrentIndex(currentIndex === 0 ? media.length - 1 : currentIndex - 1);
-  };
+  const getPrevIndex = () =>
+    currentIndex === 0 ? media.length - 1 : currentIndex - 1;
+  const getNextIndex = () =>
+    currentIndex === media.length - 1 ? 0 : currentIndex + 1;
 
-  const goToNext = () => {
-    setCurrentIndex(currentIndex === media.length - 1 ? 0 : currentIndex + 1);
-  };
+  const goToPrevious = () => setCurrentIndex(getPrevIndex());
+  const goToNext = () => setCurrentIndex(getNextIndex());
 
-  // The slider now changes the active slide
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const progress = Number(e.target.value);
     const newIndex = Math.round((progress / 100) * (media.length - 1));
@@ -61,14 +75,17 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
   };
 
   const currentItem = media[currentIndex];
-  // Calculate the slider's percentage based on the active index
   const currentProgress =
     media.length > 1 ? (currentIndex / (media.length - 1)) * 100 : 0;
 
   return (
     <div className="flex flex-col gap-4">
       {/* Main Image Viewer */}
-      <div className="relative w-full aspect-video mx-auto lg:max-h-[400px] rounded-lg border-gray-300">
+      <div
+        className="relative w-full aspect-video mx-auto lg:max-h-[400px] rounded-lg border-gray-300"
+        // Prefetch the NEXT item if the user hovers over the current main media
+        onMouseEnter={() => prefetchMedia(getNextIndex())}
+      >
         {currentItem.type === "video" ? (
           <video
             key={`${currentIndex}-${currentItem.src}`}
@@ -105,7 +122,8 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                // Added shrink-0 so they don't squish when overflowing
+                // Prefetch the media for this specific thumbnail on hover
+                onMouseEnter={() => prefetchMedia(index)}
                 className={`shrink-0 w-18 h-12 md:w-22 md:h-16 relative overflow-hidden rounded border-2 transition-all duration-200 group ${
                   index === currentIndex
                     ? "border-primary-accent"
@@ -155,6 +173,8 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
         <div className="flex items-center justify-between mt-2">
           <button
             onClick={goToPrevious}
+            // Prefetch the previous item when hovering the back arrow
+            onMouseEnter={() => prefetchMedia(getPrevIndex())}
             className="py-0 px-2 flex justify-center items-center rounded-md h-fit"
           >
             <Icon icon="lucide:chevron-left" width={28} height={28} />
@@ -171,95 +191,14 @@ export default function ProjectCarousel({ media }: { media: CarouselMedia[] }) {
 
           <button
             onClick={goToNext}
+            // Prefetch the next item when hovering the forward arrow
+            onMouseEnter={() => prefetchMedia(getNextIndex())}
             className="py-0 px-2 flex justify-center items-center rounded-md h-fit"
           >
             <Icon icon="lucide:chevron-right" width={28} height={28} />
           </button>
         </div>
       )}
-    </div>
-  );
-}
-
-function CustomVideoPlayer({ src }: { src: string }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      const currentProgress =
-        (videoRef.current.currentTime / videoRef.current.duration) * 100;
-      setProgress(currentProgress);
-    }
-  };
-
-  const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newProgress = Number(e.target.value);
-    setProgress(newProgress);
-    if (videoRef.current) {
-      videoRef.current.currentTime =
-        (newProgress / 100) * videoRef.current.duration;
-    }
-  };
-
-  return (
-    <div className="relative w-full h-full group bg-black/5 rounded-lg overflow-hidden flex items-center justify-center bg-black">
-      <video
-        ref={videoRef}
-        src={src}
-        className="w-full h-full object-contain"
-        onTimeUpdate={handleTimeUpdate}
-        onEnded={() => setIsPlaying(false)}
-        onClick={togglePlay}
-        playsInline
-      />
-
-      {/* Large Play Button Overlay (Visible when paused) */}
-      {!isPlaying && (
-        <button
-          onClick={togglePlay}
-          className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors z-10"
-        >
-          <div className="bg-primary/90 text-black p-4 rounded-full shadow-lg transform transition-transform hover:scale-110">
-            <Icon icon="lucide:play" width={32} height={32} />
-          </div>
-        </button>
-      )}
-
-      {/* Custom Controls Bar (Visible on hover) */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-4 z-20">
-        <button
-          onClick={togglePlay}
-          className="text-white hover:text-primary transition-colors focus:outline-none"
-        >
-          <Icon
-            icon={isPlaying ? "lucide:pause" : "lucide:play"}
-            width={24}
-            height={24}
-          />
-        </button>
-
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={progress || 0}
-          onChange={handleProgressChange}
-          className="w-full h-1.5 bg-gray-500/50 rounded-full appearance-none cursor-pointer transition-all focus:outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:rounded-full"
-        />
-      </div>
     </div>
   );
 }
