@@ -6,7 +6,20 @@
   "git": {
     "deploymentEnabled": {
       "v1": false,
-      "v2-dev": false
+      "v2-dev": true
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*curl.*"
+        }
+      ],
+      "destination": "/index.txt"
+    }
+  ]
 }
