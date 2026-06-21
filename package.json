@@ -39,12 +39,15 @@
     "animejs": "^4.4.1",
     "astro": "^6.1.5",
     "astro-icon": "^1.1.5",
+    "boxen": "^8.0.1",
+    "cli-table3": "^0.6.5",
     "mdx": "^0.3.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "reveal.js": "^6.0.1",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.1",
+    "yoctocolors": "^2.1.2"
   },
   "devDependencies": {
     "@iconify-json/akar-icons": "^1.2.7",
