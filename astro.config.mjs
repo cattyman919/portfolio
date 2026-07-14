@@ -7,6 +7,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://senop.dev",
   integrations: [react(), mdx(), icon()],
 
   prefetch: true,
