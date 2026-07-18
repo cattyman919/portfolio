@@ -1,0 +1,45 @@
+title: "gitscope"
+type: "tui"
+tags:
+  [
+    "rust",
+    "tui",
+    "ratatui",
+    "git",
+    "github",
+    "gitlab",
+    "async",
+    "tokio",
+    "sqlite",
+  ]
+image: "./gitscope.gif"
+sourceCodeUrl: "https://github.com/cattyman919/gitscope"
+description: "A keyboard-driven terminal UI for browsing remote Git repositories across hosting providers, built with Rust and Ratatui."
+
+highlights:
+  - "Multi-provider support: GitHub and GitLab are supported today, with a provider trait abstraction that makes it straightforward to add Codeberg or other Git hosts in the future."
+  - "Repository browser: View your own repositories with live filtering, detail panels, and one-key opening in the default browser."
+  - "File browser: Navigate repository trees and preview files with syntax highlighting, without leaving the terminal."
+  - "Async event-driven architecture: Built with tokio and ratatui, background provider jobs stream results incrementally while the UI stays responsive."
+  - "Offline persistence: Repository lists are cached in a local SQLite store so the app starts instantly and works across sessions."
+  - "Keyboard-first UI: Vim-style navigation with contextual help, global shortcuts, and focusable panels."
+  - "Workspace architecture: Split into focused crates — gitscope-tui for the interface, gitscope-provider for API clients, gitscope-store for persistence, and gitscope-macro for shared macros."
+  - "CI/CD ready: GitHub Actions workflow runs formatting, clippy, documentation, and cross-platform tests."
+
+tools:
+  - name: "Rust"
+    logo: "devicon:rust"
+  - name: "Git"
+    logo: "devicon:git"
+  - name: "SQLite"
+    logo: "devicon:sqlite"
+  - name: "GitHub"
+    logo: "devicon:github"
+  - name: "GitLab"
+    logo: "devicon:gitlab"
+
+mediaUrls:
+  - "https://bucket.senop.dev/projects/gitscope/gitscope.gif"
+  - "https://bucket.senop.dev/projects/gitscope/gitscope.png"
+  - "https://bucket.senop.dev/projects/gitscope/gitscope-filter.png"
+  - "https://bucket.senop.dev/projects/gitscope/gitscope-browse-file.png"
