@@ -28,13 +28,13 @@ highlights:
 
 tools:
   - name: "Rust"
-    logo: "devicon:rust"
+    logo: "skill-icons:rust"
   - name: "Git"
     logo: "devicon:git"
   - name: "SQLite"
     logo: "devicon:sqlite"
   - name: "GitHub"
-    logo: "devicon:github"
+    logo: "simple-icons:github"
   - name: "GitLab"
     logo: "devicon:gitlab"
 
