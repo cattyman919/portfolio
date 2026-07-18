@@ -2,6 +2,7 @@ title: "Home Server"
 type: "homelab"
 tags: ["homelab", "linux"]
 image: "./home-server.jpg"
+sourceCodeUrl: "https://github.com/cattyman919/manifests"
 description: "Dell OptiPlex 7050 running Debian as the Operating System used for my personal custom server. It currently provides services such as Portainer, Jellyfin, CasaOS, Samba Server, SIP Server, and also used as a backup for my files. Connected remotely using Tailscale."
 
 highlights:
@@ -22,6 +23,8 @@ tools:
     logo: "devicon:docker"
   - name: "Kubernetes"
     logo: "devicon:kubernetes"
+  - name: "ArgoCD"
+    logo: "devicon:argocd"
   - name: "Helm"
     logo: "material-icon-theme:helm"
   - name: "Tailscale"
@@ -30,6 +33,7 @@ tools:
 mediaUrls:
   - "https://bucket.senop.dev/projects/home-server/home_server.jpg"
   - "https://bucket.senop.dev/projects/home-server/casaos.jpg"
+  - "https://bucket.senop.dev/projects/home-server/argocd.png"
   - "https://bucket.senop.dev/projects/home-server/jellyfin.jpg"
   - "https://bucket.senop.dev/projects/home-server/server.jpeg"
   - "https://bucket.senop.dev/projects/home-server/portainer.jpg"
