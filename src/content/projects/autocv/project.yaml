@@ -1,4 +1,5 @@
 title: "AutoCV"
+image: "./autocv.png"
 type: "cli"
 tags: ["go", "cli", "automation", "docker", "typst"]
 # image: "./autocv.png"
@@ -30,7 +31,6 @@ tools:
 
 sourceCodeUrl: "https://github.com/cattyman919/autocv"
 
-mediaUrls: []
-#   - "https://bucket.senop.dev/projects/autocv/autocv.png"
-#   - "https://bucket.senop.dev/projects/autocv/terminal_output.png"
-#   - "https://bucket.senop.dev/projects/autocv/pdf_preview.png"
+mediaUrls:
+  - "https://bucket.senop.dev/projects/autocv/autocv-1.png"
+  - "https://bucket.senop.dev/projects/autocv/autocv-cli.png"
