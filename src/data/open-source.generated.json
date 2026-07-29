@@ -26,7 +26,7 @@
         "percentage": 0
       }
     ],
-    "fetchedAt": "2026-07-29T07:59:34.634Z"
+    "fetchedAt": "2026-07-29T08:07:48.348Z"
   },
   "tencent-terraform#4211": {
     "contributionUrl": "https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/4211",
@@ -65,7 +65,7 @@
         "percentage": 0
       }
     ],
-    "fetchedAt": "2026-07-29T07:59:35.140Z"
+    "fetchedAt": "2026-07-29T08:07:48.812Z"
   },
   "yazi#3121": {
     "contributionUrl": "https://github.com/sxyazi/yazi/pull/3121",
@@ -109,6 +109,6 @@
         "percentage": 0
       }
     ],
-    "fetchedAt": "2026-07-29T07:59:35.513Z"
+    "fetchedAt": "2026-07-29T08:07:49.194Z"
   }
 }

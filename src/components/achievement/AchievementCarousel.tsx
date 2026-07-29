@@ -79,18 +79,6 @@ export default function AchievementCarousel({
     isPaused,
   ]);
 
-  useEffect(() => {
-    const activeThumb = thumbnailRef.current?.children[currentIndex] as
-      | HTMLElement
-      | undefined;
-
-    activeThumb?.scrollIntoView({
-      behavior: canAutoAdvance ? "smooth" : "auto",
-      block: "nearest",
-      inline: "center",
-    });
-  }, [canAutoAdvance, currentIndex]);
-
   if (!currentImage) return null;
 
   const goToPrevious = () => {
@@ -106,6 +94,16 @@ export default function AchievementCarousel({
   const goToImage = (index: number) => {
     setIsPaused(true);
     setCurrentIndex(index);
+
+    const activeThumb = thumbnailRef.current?.children[index] as
+      | HTMLElement
+      | undefined;
+
+    activeThumb?.scrollIntoView({
+      behavior: canAutoAdvance ? "smooth" : "auto",
+      block: "nearest",
+      inline: "center",
+    });
   };
 
   return (
