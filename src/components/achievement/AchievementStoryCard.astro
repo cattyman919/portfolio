@@ -1,0 +1,217 @@
+---
+import { Icon } from "astro-icon/components";
+import AchievementCarousel from "./AchievementCarousel";
+import type { AchievementEntry } from "@/types/achievement";
+
+interface Props {
+  achievement: AchievementEntry;
+}
+
+const { achievement } = Astro.props;
+const {
+  title,
+  date,
+  summary,
+  highlights,
+  images,
+  organization,
+  event,
+  location,
+  type,
+  rank,
+  role,
+  impact,
+  tools,
+  links,
+  storyUrl,
+  carouselIntervalMs,
+} = achievement.data;
+
+const formattedDate = new Intl.DateTimeFormat("en", {
+  month: "short",
+  year: "numeric",
+}).format(date);
+
+const carouselImages = images.map((image) => ({
+  src: typeof image.src === "string" ? image.src : image.src.src,
+  alt: image.alt,
+  caption: image.caption,
+}));
+
+const metadata = [
+  rank && { icon: "lucide:trophy", label: rank },
+  type && { icon: "lucide:badge-check", label: type },
+  { icon: "lucide:calendar", label: formattedDate },
+  location && { icon: "mdi:location", label: location },
+].filter(Boolean) as { icon: string; label: string }[];
+---
+
+<article
+  class="group/card relative overflow-hidden rounded-3xl border border-primary/35 bg-white/[0.025] p-4 shadow-[0_0_22px_color-mix(in_oklch,var(--color-primary)_12%,transparent)] backdrop-blur-3xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/70 hover:bg-white/[0.04] hover:shadow-[0_0_32px_color-mix(in_oklch,var(--color-primary)_18%,transparent)] md:p-6"
+>
+  <div
+    class="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-lagoon/10 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
+  >
+  </div>
+
+  <div class="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:items-center">
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-wrap gap-2">
+          {
+            metadata.map((item) => (
+              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-xs font-bold capitalize text-gray-200">
+                <Icon name={item.icon} class="h-4 w-4 text-primary" />
+                {item.label}
+              </span>
+            ))
+          }
+        </div>
+
+        <div class="space-y-3">
+          <p class="font-pixel text-sm font-bold uppercase tracking-[0.22em] text-primary/80">
+            {organization ?? event ?? "Achievement Story"}
+          </p>
+          <h3 class="text-3xl font-bold text-primary md:text-4xl">
+            {title}
+          </h3>
+          {event && event !== organization && <p class="text-lg font-bold text-gray-200">{event}</p>}
+          <p class="max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+            {summary}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid gap-3 md:grid-cols-2">
+        {
+          role && (
+            <div class="rounded-2xl border border-white/10 bg-black/10 p-4">
+              <div class="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gray-400">
+                <Icon name="lucide:user-round-check" class="h-4 w-4 text-primary" />
+                Role
+              </div>
+              <p class="font-bold text-gray-100">{role}</p>
+            </div>
+          )
+        }
+
+        {
+          impact && impact.length > 0 && (
+            <div class="rounded-2xl border border-primary/25 bg-primary/5 p-4">
+              <div class="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary/80">
+                <Icon name="lucide:sparkles" class="h-4 w-4" />
+                Impact
+              </div>
+              <p class="font-bold text-gray-100">{impact[0]}</p>
+            </div>
+          )
+        }
+      </div>
+
+      <details class="group/details rounded-2xl border border-white/10 bg-white/[0.025] p-4 open:border-primary/45 open:bg-primary/[0.035]">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-bold uppercase tracking-[0.18em] text-gray-300 transition-colors hover:text-white">
+          Story Details
+          <Icon
+            name="lucide:chevron-down"
+            class="h-5 w-5 text-primary transition-transform duration-300 group-open/details:rotate-180"
+          />
+        </summary>
+
+        <div class="mt-5 flex flex-col gap-5">
+          <div>
+            <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-primary/80">
+              Highlights
+            </p>
+            <ul class="flex flex-col gap-3 text-gray-300">
+              {
+                highlights.map((highlight) => (
+                  <li class="flex items-start gap-3 leading-relaxed">
+                    <Icon
+                      name="weui:arrow-filled"
+                      class="mt-0.5 h-5 w-5 shrink-0 text-primary"
+                    />
+                    <span>{highlight}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          {
+            impact && impact.length > 1 && (
+              <div>
+                <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-primary/80">
+                  Outcomes
+                </p>
+                <ul class="flex flex-col gap-3 text-gray-300">
+                  {impact.slice(1).map((item) => (
+                    <li class="flex items-start gap-3 leading-relaxed">
+                      <Icon
+                        name="lucide:check-circle-2"
+                        class="mt-0.5 h-5 w-5 shrink-0 text-lagoon"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+
+          {
+            tools && tools.length > 0 && (
+              <div>
+                <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-primary/80">
+                  Tools
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {tools.map((tool) => (
+                    <span class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-bold text-gray-200">
+                      {tool.logo && <Icon name={tool.logo} class="h-5 w-5" />}
+                      {tool.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </details>
+
+      <div class="flex flex-wrap gap-3">
+        {
+          storyUrl && (
+            <a
+              href={storyUrl}
+              data-astro-prefetch
+              class="inline-flex items-center gap-2 rounded-xl border border-primary/50 px-4 py-2 font-bold text-gray-100 hover:bg-primary/15 hover:text-white"
+            >
+              <Icon name="mdi:book-open-page-variant" class="h-5 w-5" />
+              Read Full Story
+            </a>
+          )
+        }
+        {
+          links?.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border border-white/15 px-4 py-2 font-bold text-gray-200 hover:border-primary/50 hover:bg-primary/10 hover:text-white"
+            >
+              {link.icon && <Icon name={link.icon} class="h-5 w-5" />}
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <AchievementCarousel
+      client:visible
+      images={carouselImages}
+      title={title}
+      autoAdvanceMs={carouselIntervalMs}
+    />
+  </div>
+</article>

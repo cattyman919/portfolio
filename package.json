@@ -51,6 +51,7 @@
     "yoctocolors": "^2.1.2"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@iconify-json/akar-icons": "^1.2.7",
     "@iconify-json/devicon": "^1.2.61",
     "@iconify-json/iconamoon": "^1.2.2",

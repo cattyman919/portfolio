@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import AchievementStoryCard from "./achievement/AchievementStoryCard.astro";
+import type { AchievementEntry } from "@/types/achievement";
+
+const achievementEntries = (await getCollection(
+  "achievements" as never,
+)) as unknown as AchievementEntry[];
+
+const achievements = achievementEntries
+  .filter((achievement) => !achievement.data.draft)
+  .sort((a, b) => {
+    const aOrder = a.data.order ?? Number.POSITIVE_INFINITY;
+    const bOrder = b.data.order ?? Number.POSITIVE_INFINITY;
+
+    if (aOrder !== bOrder) return aOrder - bOrder;
+
+    return b.data.date.getTime() - a.data.date.getTime();
+  })
+  .slice(0, 3);
+---
+
+{
+  achievements.length > 0 && (
+    <section id="achievements" class="min-h-screen px-6 py-12 md:px-20">
+      <div class="mx-auto flex max-w-6xl flex-col gap-10">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <p class="font-pixel text-sm font-bold uppercase tracking-[0.24em] text-primary/75">
+            Proof Stories
+          </p>
+          <h2 class="font-pixel text-5xl font-bold md:text-6xl">
+            Achievements
+          </h2>
+          <p class="max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+            Stories where I shipped, competed, and proved the work under
+            pressure. Each one captures the role, outcome, and evidence behind
+            the milestone.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-8">
+          {achievements.map((achievement) => (
+            <AchievementStoryCard achievement={achievement} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

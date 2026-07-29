@@ -1,0 +1,105 @@
+# This file documents the Achievements content schema.
+# Keep draft: true so this validates but never renders on the homepage.
+
+draft: true
+
+# REQUIRED
+# Display title for the achievement.
+title: "Finalist - Bank Hackathon"
+
+# REQUIRED
+# Date is used for display and fallback sorting.
+date: 2024-08-20
+
+# REQUIRED
+# Short homepage summary. Keep this concise: 1-2 sentences.
+summary: "Reached the finalist stage by building and pitching a banking-focused product under hackathon constraints."
+
+# REQUIRED
+# Key proof points shown in the expandable story details.
+highlights:
+  - "Designed the product flow from problem framing to demo-ready prototype."
+  - "Built the core application experience under a limited timeline."
+  - "Presented the solution to judges with a clear business and technical story."
+
+# REQUIRED
+# At least one image is required for the rotating proof carousel.
+# Prefer local images stored beside achievement.yaml, e.g. ./cover.webp.
+# Remote URLs are supported for temporary placeholders only.
+images:
+  - src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1200&q=80"
+    alt: "Finalist Bank Hackathon cover image"
+    caption: "Finalist recognition"
+  - src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+    alt: "Team photo during the Bank Hackathon"
+    caption: "Team collaboration"
+  - src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+    alt: "Product demo during the Bank Hackathon"
+    caption: "Demo-ready prototype"
+
+# OPTIONAL
+# Organizer, institution, or company behind the achievement.
+organization: "Bank Indonesia"
+
+# OPTIONAL
+# Event name if different from the title.
+event: "Digital Banking Innovation Hackathon"
+
+# OPTIONAL
+# City, country, or remote.
+location: "Jakarta, Indonesia"
+
+# OPTIONAL
+# Supported values: hackathon, award, competition, certification, talk, milestone.
+type: "hackathon"
+
+# OPTIONAL
+# Result label shown as a credibility badge.
+rank: "Finalist"
+
+# OPTIONAL
+# Your role in the achievement.
+role: "Full-stack developer"
+
+# OPTIONAL
+# Outcome-oriented proof. Use this for credibility, not generic duties.
+impact:
+  - "Validated ability to ship under pressure."
+  - "Strengthened fintech product thinking and pitching skills."
+
+# OPTIONAL
+# Technologies used. logo should be an Iconify icon name.
+tools:
+  - name: "React"
+    logo: "devicon:react"
+  - name: "TypeScript"
+    logo: "devicon:typescript"
+  - name: "Tailwind CSS"
+    logo: "devicon:tailwindcss"
+
+# OPTIONAL
+# External proof links.
+links:
+  - label: "Certificate"
+    url: "https://example.com/certificate"
+    icon: "lucide:award"
+  - label: "Event Page"
+    url: "https://example.com/event"
+    icon: "mdi:web"
+
+# OPTIONAL
+# Link to a deeper blog post or case study.
+storyUrl: "/blog/finalist-bank-hackathon"
+
+# OPTIONAL
+# Carousel auto-rotation interval in milliseconds.
+# Minimum is 1500. Omit to use the default 4000ms.
+carouselIntervalMs: 3500
+
+# OPTIONAL
+# Reserved for future filtering or alternate views.
+featured: true
+
+# OPTIONAL
+# Lower numbers appear first. Fallback is newest date.
+order: 1
