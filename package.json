@@ -8,8 +8,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "pnpm sync:open-source && astro build",
     "preview": "astro preview",
+    "sync:open-source": "node scripts/sync-open-source.mjs",
     "test:size": "bundlewatch",
     "astro": "astro"
   },

@@ -1,0 +1,297 @@
+---
+import { Icon } from "astro-icon/components";
+import type { OpenSourceRepositoryViewModel } from "@/types/open-source";
+
+interface Props {
+  repository: OpenSourceRepositoryViewModel;
+}
+
+const { repository } = Astro.props;
+const topLanguages = repository.languages.slice(0, 3);
+const remainingPercentage = Math.max(
+  0,
+  Math.round(
+    (100 -
+      topLanguages.reduce(
+        (total, language) => total + language.percentage,
+        0,
+      )) *
+      10,
+  ) / 10,
+);
+const visibleLanguages =
+  remainingPercentage > 0
+    ? [
+        ...topLanguages,
+        { name: "Other", bytes: 0, percentage: remainingPercentage },
+      ]
+    : topLanguages;
+
+const languageMeta: Record<string, { icon: string; className: string }> = {
+  Rust: {
+    icon: "skill-icons:rust",
+    className: "border-orange-400/50 bg-orange-500/10 text-orange-300",
+  },
+  Lua: {
+    icon: "skill-icons:lua-dark",
+    className: "border-blue-400/50 bg-blue-500/10 text-blue-300",
+  },
+  JavaScript: {
+    icon: "skill-icons:javascript",
+    className: "border-yellow-300/50 bg-yellow-400/10 text-yellow-200",
+  },
+  TypeScript: {
+    icon: "skill-icons:typescript",
+    className: "border-sky-400/50 bg-sky-500/10 text-sky-300",
+  },
+  Go: {
+    icon: "skill-icons:golang",
+    className: "border-cyan-300/50 bg-cyan-400/10 text-cyan-200",
+  },
+  Python: {
+    icon: "skill-icons:python-dark",
+    className: "border-yellow-300/50 bg-yellow-400/10 text-yellow-200",
+  },
+  Shell: {
+    icon: "devicon:bash",
+    className: "border-emerald-400/50 bg-emerald-500/10 text-emerald-300",
+  },
+  Nix: {
+    icon: "skill-icons:nix-dark",
+    className: "border-sky-300/50 bg-sky-400/10 text-sky-200",
+  },
+  HTML: {
+    icon: "skill-icons:html",
+    className: "border-orange-400/50 bg-orange-500/10 text-orange-300",
+  },
+  CSS: {
+    icon: "skill-icons:css",
+    className: "border-blue-400/50 bg-blue-500/10 text-blue-300",
+  },
+  Vue: {
+    icon: "skill-icons:vuejs-dark",
+    className: "border-emerald-400/50 bg-emerald-500/10 text-emerald-300",
+  },
+  Svelte: {
+    icon: "skill-icons:svelte",
+    className: "border-orange-400/50 bg-orange-500/10 text-orange-300",
+  },
+  Dart: {
+    icon: "skill-icons:dart-dark",
+    className: "border-sky-400/50 bg-sky-500/10 text-sky-300",
+  },
+  Other: {
+    icon: "mdi:code-braces",
+    className: "border-white/15 bg-white/[0.04] text-gray-300",
+  },
+};
+
+const languageBarClasses = [
+  "bg-orange-400",
+  "bg-blue-400",
+  "bg-yellow-300",
+  "bg-emerald-400",
+];
+
+const getLanguageMeta = (languageName: string) =>
+  languageMeta[languageName] ?? {
+    icon: "mdi:language",
+    className: "border-primary/35 bg-primary/10 text-primary",
+  };
+
+const statusLabels = {
+  merged: "Merged",
+  open: "Open",
+  closed: "Closed",
+};
+
+const statusIcons = {
+  merged: "mdi:source-merge",
+  open: "mdi:source-pull",
+  closed: "lucide:circle-x",
+};
+
+const statusClasses = {
+  merged:
+    "border-primary/60 bg-primary/10 text-primary shadow-[0_0_12px_color-mix(in_oklch,var(--color-primary)_25%,transparent)]",
+  open: "border-lagoon/70 bg-lagoon/10 text-lagoon",
+  closed: "border-coral/70 bg-coral/10 text-coral",
+};
+
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(date));
+
+const formatStars = (stars: number) =>
+  new Intl.NumberFormat("en", {
+    notation: stars >= 1000 ? "compact" : "standard",
+    maximumFractionDigits: 1,
+  }).format(stars);
+---
+
+<article
+  class="group/card relative w-full overflow-hidden rounded-2xl border border-primary/35 bg-white/[0.025] p-4 shadow-[0_0_18px_color-mix(in_oklch,var(--color-primary)_10%,transparent)] backdrop-blur-3xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/70 hover:bg-white/[0.04] hover:shadow-[0_0_24px_color-mix(in_oklch,var(--color-primary)_18%,transparent)] md:p-5"
+  data-open-source-card
+  data-sort-time={new Date(repository.sortDate).getTime()}
+  data-stars={repository.stars}
+>
+  <div
+    class="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/10 via-transparent to-lagoon/10 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
+  >
+  </div>
+
+  <div class="relative z-10 flex flex-col gap-4">
+    <div
+      class="grid gap-4 border-b border-white/10 pb-4 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-center"
+    >
+      <div class="min-w-0 space-y-2.5">
+        <div class="flex flex-wrap items-center gap-2">
+          <a
+            href={repository.repositoryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-w-0 max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs font-bold text-gray-200 hover:border-primary/60 hover:bg-primary/10 hover:text-white"
+          >
+            <Icon name="simple-icons:github" class="h-4 w-4 shrink-0" />
+            <span class="truncate">{repository.repositoryName}</span>
+          </a>
+
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs font-bold text-gray-200"
+            title={`${repository.stars} repository stars`}
+          >
+            <Icon name="lucide:star" class="h-4 w-4 text-dusk" />
+            {formatStars(repository.stars)} stars
+          </span>
+
+          <span class="text-xs font-bold text-gray-500">
+            {repository.contributions.length} contribution{
+              repository.contributions.length === 1 ? "" : "s"
+            }
+          </span>
+        </div>
+
+        <a
+          href={repository.repositoryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-fit max-w-full items-center gap-2 rounded-lg text-xl font-bold text-primary hover:bg-transparent hover:text-white hover:shadow-none md:text-2xl"
+        >
+          <span class="truncate">{repository.repositoryName}</span>
+          <Icon name="mdi:external-link" class="h-4 w-4 shrink-0" />
+        </a>
+      </div>
+
+      {
+        visibleLanguages.length > 0 && (
+          <div class="space-y-2.5 rounded-xl border border-white/10 bg-black/10 p-3">
+            <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gray-400">
+              <Icon name="mdi:code-braces" class="h-5 w-5 text-primary" />
+              Languages
+            </div>
+
+            <div class="flex h-1.5 overflow-hidden rounded-full bg-white/10">
+              {visibleLanguages.map((language, index) => (
+                <div
+                  class={`h-full ${languageBarClasses[index] ?? "bg-white/30"}`}
+                  style={`width: ${language.percentage}%`}
+                  title={`${language.name} ${language.percentage}%`}
+                />
+              ))}
+            </div>
+
+            <div class="flex flex-wrap gap-1.5">
+              {visibleLanguages.map((language) => {
+                const meta = getLanguageMeta(language.name);
+                return (
+                  <span
+                    class={`inline-flex items-center gap-1.5 rounded-lg border px-2 py-0.5 text-xs font-bold ${meta.className}`}
+                  >
+                    <Icon name={meta.icon} class="h-4 w-4 shrink-0" />
+                    {language.name} {language.percentage}%
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="flex flex-col gap-3">
+      {
+        repository.contributions.map(({ contribution, metadata }) => {
+          const title = contribution.title ?? metadata.contributionTitle;
+          const description =
+            contribution.description ??
+            `Contributed ${metadata.contributionTitle} to ${metadata.repositoryName}.`;
+
+          return (
+            <div class="rounded-xl border border-white/10 bg-white/[0.02] p-3">
+              <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div class="min-w-0 space-y-1.5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span
+                      class={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.16em] ${statusClasses[metadata.status]}`}
+                    >
+                      <Icon
+                        name={statusIcons[metadata.status]}
+                        class="h-3.5 w-3.5"
+                      />
+                      {statusLabels[metadata.status]}
+                    </span>
+
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-gray-400">
+                      <Icon
+                        name="lucide:calendar"
+                        class="h-4 w-4 text-primary"
+                      />
+                      {metadata.mergedAt ? "Merged" : "Opened"}{" "}
+                      {formatDate(metadata.sortDate)}
+                    </span>
+                  </div>
+
+                  <a
+                    href={metadata.contributionUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex w-fit max-w-full items-center gap-2 rounded-lg text-base font-bold text-gray-100 hover:bg-transparent hover:text-primary hover:shadow-none md:text-lg"
+                  >
+                    <span class="line-clamp-2">{title}</span>
+                    <Icon name="mdi:external-link" class="h-4 w-4 shrink-0" />
+                  </a>
+                  <p class="max-w-4xl text-sm leading-relaxed text-gray-300">
+                    {description}
+                  </p>
+
+                  {contribution.tags && contribution.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1.5">
+                      {contribution.tags.map((tag) => (
+                        <span class="rounded-md border border-primary/25 bg-primary/5 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-primary/90">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <a
+                  href={metadata.contributionUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-primary/50 px-3 py-1.5 text-sm font-bold text-gray-100 hover:bg-primary/15 hover:text-white"
+                >
+                  <Icon name="mdi:source-pull" class="h-4 w-4" />
+                  View Pull Request
+                </a>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</article>

@@ -1,0 +1,272 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import OpenSourceContributionCard from "./open-source/OpenSourceContributionCard.astro";
+import generatedCache from "@/data/open-source.generated.json";
+import type {
+  OpenSourceAuthoredContribution,
+  OpenSourceGeneratedCache,
+  OpenSourceGeneratedMetadata,
+  OpenSourceRepositoryViewModel,
+} from "@/types/open-source";
+
+interface OpenSourceRepositoryEntry {
+  id: string;
+  data: {
+    contributions?: OpenSourceAuthoredContribution[];
+  };
+}
+
+interface Props {
+  sortBy?: "time" | "stars";
+}
+
+const { sortBy = "stars" } = Astro.props;
+const cache = generatedCache as OpenSourceGeneratedCache;
+let sourceRepositories: OpenSourceRepositoryEntry[] = [];
+try {
+  sourceRepositories = (await getCollection(
+    "openSource" as never,
+  )) as OpenSourceRepositoryEntry[];
+} catch (error) {
+  if (
+    !(error instanceof Error) ||
+    !error.message.includes("does not exist or is empty")
+  ) {
+    throw error;
+  }
+}
+
+const getMetadata = (
+  contribution: OpenSourceAuthoredContribution,
+): OpenSourceGeneratedMetadata | undefined =>
+  Object.values(cache).find(
+    (metadata) => metadata.contributionUrl === contribution.contributionUrl,
+  );
+
+const repositoriesFromContent = sourceRepositories
+  .map((repository): OpenSourceRepositoryViewModel | null => {
+    const contributions = (repository.data.contributions ?? [])
+      .map((contribution) => {
+        const metadata = getMetadata(contribution);
+        return metadata ? { contribution, metadata } : null;
+      })
+      .filter((contribution) => contribution !== null)
+      .sort(
+        (a, b) =>
+          new Date(b.metadata.sortDate).getTime() -
+          new Date(a.metadata.sortDate).getTime(),
+      );
+
+    if (contributions.length === 0) return null;
+
+    const primaryMetadata = contributions[0].metadata;
+
+    return {
+      id: repository.id,
+      repositoryName: primaryMetadata.repositoryName,
+      repositoryUrl: primaryMetadata.repositoryUrl,
+      stars: primaryMetadata.stars,
+      languages: primaryMetadata.languages,
+      sortDate: contributions.reduce(
+        (latestDate, contribution) =>
+          new Date(contribution.metadata.sortDate).getTime() >
+          new Date(latestDate).getTime()
+            ? contribution.metadata.sortDate
+            : latestDate,
+        primaryMetadata.sortDate,
+      ),
+      contributions,
+    };
+  })
+  .filter((repository) => repository !== null);
+
+const repositoriesFromCache = Object.values(cache).reduce<
+  OpenSourceRepositoryViewModel[]
+>((repositories, metadata) => {
+  const existingRepository = repositories.find(
+    (repository) => repository.repositoryName === metadata.repositoryName,
+  );
+  const contribution = {
+    contribution: { contributionUrl: metadata.contributionUrl },
+    metadata,
+  };
+
+  if (existingRepository) {
+    existingRepository.contributions.push(contribution);
+    if (
+      new Date(metadata.sortDate).getTime() >
+      new Date(existingRepository.sortDate).getTime()
+    ) {
+      existingRepository.sortDate = metadata.sortDate;
+    }
+    return repositories;
+  }
+
+  repositories.push({
+    id: metadata.repositoryName,
+    repositoryName: metadata.repositoryName,
+    repositoryUrl: metadata.repositoryUrl,
+    stars: metadata.stars,
+    languages: metadata.languages,
+    sortDate: metadata.sortDate,
+    contributions: [contribution],
+  });
+
+  return repositories;
+}, []);
+
+const repositories = (
+  repositoriesFromContent.length > 0
+    ? repositoriesFromContent
+    : repositoriesFromCache
+).sort((a, b) => {
+  if (sortBy === "stars") return b.stars - a.stars;
+  return new Date(b.sortDate).getTime() - new Date(a.sortDate).getTime();
+});
+
+const sortLabel =
+  sortBy === "stars"
+    ? "Sorted by repository stars"
+    : "Sorted by recent contribution";
+
+const sortOptions = [
+  { value: "time", label: "Recent", icon: "lucide:calendar" },
+  { value: "stars", label: "Stars", icon: "lucide:star" },
+];
+---
+
+{
+  repositories.length > 0 && (
+    <section id="open-source" class="min-h-screen px-6 py-12 md:px-20">
+      <div class="mx-auto flex max-w-6xl flex-col gap-8">
+        <div class="flex flex-col items-center gap-4 text-center">
+          <h2 class="font-pixel text-5xl font-bold md:text-6xl">Open Source</h2>
+          <p class="max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+            Merge requests and pull requests contributed to public repositories,
+            enriched with live repository stars, status, and language
+            breakdowns.
+          </p>
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-gray-500">
+            <span data-open-source-sort-label>{sortLabel}</span>
+          </p>
+        </div>
+
+        <div class="flex justify-center">
+          <div
+            class="flex flex-wrap justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.025] p-1.5 backdrop-blur-3xl"
+            aria-label="Sort open source contributions"
+          >
+            {sortOptions.map((option) => (
+              <button
+                type="button"
+                data-open-source-sort={option.value}
+                aria-pressed={option.value === sortBy ? "true" : "false"}
+                class:list={[
+                  "inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-bold transition-all",
+                  option.value === sortBy
+                    ? "border-primary bg-primary text-bg shadow-[0_0_12px_var(--color-primary)]"
+                    : "border-white/10 bg-white/[0.03] text-gray-300 hover:border-primary/50 hover:bg-primary/10 hover:text-white",
+                ]}
+              >
+                <span class="sr-only">Sort by </span>
+                <Icon name={option.icon} class="h-4 w-4" />
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div data-open-source-list class="flex flex-col gap-4">
+          {repositories.map((repository) => (
+            <OpenSourceContributionCard repository={repository} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<script>
+  const setupOpenSourceSorting = () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(
+      "[data-open-source-sort]",
+    );
+    const list = document.querySelector<HTMLElement>("[data-open-source-list]");
+    const label = document.querySelector<HTMLElement>(
+      "[data-open-source-sort-label]",
+    );
+
+    if (!buttons.length || !list) return;
+
+    const activeClasses = [
+      "border-primary",
+      "bg-primary",
+      "text-bg",
+      "shadow-[0_0_12px_var(--color-primary)]",
+    ];
+    const inactiveClasses = [
+      "border-white/10",
+      "bg-white/[0.03]",
+      "text-gray-300",
+      "hover:border-primary/50",
+      "hover:bg-primary/10",
+      "hover:text-white",
+    ];
+
+    const setActiveButton = (sortBy: string) => {
+      buttons.forEach((button) => {
+        const isActive = button.dataset.openSourceSort === sortBy;
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("border-primary", isActive);
+        button.classList.toggle("bg-primary", isActive);
+        button.classList.toggle("text-bg", isActive);
+        button.classList.toggle(
+          "shadow-[0_0_12px_var(--color-primary)]",
+          isActive,
+        );
+
+        inactiveClasses.forEach((className) => {
+          button.classList.toggle(className, !isActive);
+        });
+        activeClasses.forEach((className) => {
+          button.classList.toggle(className, isActive);
+        });
+      });
+    };
+
+    const sortCards = (sortBy: string) => {
+      const cards = Array.from(
+        list.querySelectorAll<HTMLElement>("[data-open-source-card]"),
+      );
+
+      cards
+        .sort((a, b) => {
+          if (sortBy === "stars") {
+            return Number(b.dataset.stars) - Number(a.dataset.stars);
+          }
+
+          return Number(b.dataset.sortTime) - Number(a.dataset.sortTime);
+        })
+        .forEach((card) => list.appendChild(card));
+
+      if (label) {
+        label.textContent =
+          sortBy === "stars"
+            ? "Sorted by repository stars"
+            : "Sorted by recent contribution";
+      }
+
+      setActiveButton(sortBy);
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const sortBy = button.dataset.openSourceSort;
+        if (sortBy) sortCards(sortBy);
+      });
+    });
+  };
+
+  document.addEventListener("astro:page-load", setupOpenSourceSorting);
+</script>

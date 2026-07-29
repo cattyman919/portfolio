@@ -1,0 +1,114 @@
+{
+  "nb#403": {
+    "contributionUrl": "https://github.com/xwmx/nb/pull/403",
+    "contributionTitle": "fix: README.md missing '/' on bash instruction",
+    "repositoryName": "xwmx/nb",
+    "repositoryUrl": "https://github.com/xwmx/nb",
+    "stars": 8328,
+    "status": "merged",
+    "createdAt": "2025-10-04T17:57:00Z",
+    "mergedAt": "2025-10-04T23:02:41Z",
+    "sortDate": "2025-10-04T23:02:41Z",
+    "languages": [
+      {
+        "name": "Shell",
+        "bytes": 3727154,
+        "percentage": 99.5
+      },
+      {
+        "name": "Go",
+        "bytes": 19121,
+        "percentage": 0.5
+      },
+      {
+        "name": "Makefile",
+        "bytes": 939,
+        "percentage": 0
+      }
+    ],
+    "fetchedAt": "2026-07-29T03:22:52.558Z"
+  },
+  "tencent-terraform#4211": {
+    "contributionUrl": "https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/4211",
+    "contributionTitle": "fix: pagination on describe accounts in postgresql",
+    "repositoryName": "tencentcloudstack/terraform-provider-tencentcloud",
+    "repositoryUrl": "https://github.com/tencentcloudstack/terraform-provider-tencentcloud",
+    "stars": 226,
+    "status": "open",
+    "createdAt": "2026-06-11T08:19:07Z",
+    "mergedAt": null,
+    "sortDate": "2026-06-11T08:19:07Z",
+    "languages": [
+      {
+        "name": "Go",
+        "bytes": 36687694,
+        "percentage": 98.5
+      },
+      {
+        "name": "HTML",
+        "bytes": 547520,
+        "percentage": 1.5
+      },
+      {
+        "name": "Shell",
+        "bytes": 10307,
+        "percentage": 0
+      },
+      {
+        "name": "Makefile",
+        "bytes": 8743,
+        "percentage": 0
+      },
+      {
+        "name": "Go Template",
+        "bytes": 1532,
+        "percentage": 0
+      }
+    ],
+    "fetchedAt": "2026-07-29T03:22:53.104Z"
+  },
+  "yazi#3121": {
+    "contributionUrl": "https://github.com/sxyazi/yazi/pull/3121",
+    "contributionTitle": "feat: progress of each task",
+    "repositoryName": "sxyazi/yazi",
+    "repositoryUrl": "https://github.com/sxyazi/yazi",
+    "stars": 40852,
+    "status": "merged",
+    "createdAt": "2025-08-29T08:11:15Z",
+    "mergedAt": "2025-09-04T10:55:28Z",
+    "sortDate": "2025-09-04T10:55:28Z",
+    "languages": [
+      {
+        "name": "Rust",
+        "bytes": 1840388,
+        "percentage": 94.6
+      },
+      {
+        "name": "Lua",
+        "bytes": 88680,
+        "percentage": 4.6
+      },
+      {
+        "name": "JavaScript",
+        "bytes": 8520,
+        "percentage": 0.4
+      },
+      {
+        "name": "Nix",
+        "bytes": 6581,
+        "percentage": 0.3
+      },
+      {
+        "name": "Shell",
+        "bytes": 1905,
+        "percentage": 0.1
+      },
+      {
+        "name": "RenderScript",
+        "bytes": 1,
+        "percentage": 0
+      }
+    ],
+    "fetchedAt": "2026-07-29T03:19:26.022Z"
+  }
+}

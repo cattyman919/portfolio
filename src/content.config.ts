@@ -45,7 +45,30 @@ const blogs = defineCollection({
   }),
 });
 
+const openSource = defineCollection({
+  loader: glob({
+    pattern: "*.yaml",
+    base: "./src/content/open-source",
+    generateId: ({ entry }) => entry.replace(".yaml", ""),
+  }),
+  schema: z.preprocess(
+    (value) => value ?? {},
+    z.object({
+      contributions: z
+        .array(
+          z.object({
+            contributionUrl: z.string().url(),
+            description: z.string().optional(),
+            title: z.string().optional(),
+            tags: z.array(z.string()).optional(),
+          }),
+        )
+        .optional(),
+    }),
+  ),
+});
+
 export type ProjectType = CollectionEntry<"projects">["data"];
 export type BlogType = CollectionEntry<"blogs">["data"];
 
-export const collections = { projects, blogs };
+export const collections = { projects, blogs, openSource };

@@ -14,6 +14,7 @@ const navItems: NavigationItem[] = [
   { id: "experience", label: "Experience", href: "/#experience" },
   { id: "skills", label: "Skills", href: "/#skills" },
   { id: "projects", label: "Projects", href: "/#projects" },
+  { id: "open-source", label: "Open Source", href: "/#open-source" },
   { id: "blog", label: "Blog", href: "/blog" },
   { id: "contact", label: "Contact", href: "/#contact" },
 ];
