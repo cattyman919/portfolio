@@ -29,7 +29,7 @@ const { hideNav = false } = Astro.props;
   </head>
   <body>
     {!hideNav && <Navigation client:load />}
-    <main transition:animate={fade({ duration: "0.4s" })}>
+    <main id="main-content" transition:animate={fade({ duration: "0.4s" })}>
       <slot />
     </main>
   </body>

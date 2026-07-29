@@ -26,7 +26,7 @@
         "percentage": 0
       }
     ],
-    "fetchedAt": "2026-07-29T06:48:30.310Z"
+    "fetchedAt": "2026-07-29T07:59:34.634Z"
   },
   "tencent-terraform#4211": {
     "contributionUrl": "https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/4211",
@@ -65,14 +65,14 @@
         "percentage": 0
       }
     ],
-    "fetchedAt": "2026-07-29T06:48:30.842Z"
+    "fetchedAt": "2026-07-29T07:59:35.140Z"
   },
   "yazi#3121": {
     "contributionUrl": "https://github.com/sxyazi/yazi/pull/3121",
     "contributionTitle": "feat: progress of each task",
     "repositoryName": "sxyazi/yazi",
     "repositoryUrl": "https://github.com/sxyazi/yazi",
-    "stars": 40857,
+    "stars": 40861,
     "status": "merged",
     "createdAt": "2025-08-29T08:11:15Z",
     "mergedAt": "2025-09-04T10:55:28Z",
@@ -109,6 +109,6 @@
         "percentage": 0
       }
     ],
-    "fetchedAt": "2026-07-29T06:48:31.227Z"
+    "fetchedAt": "2026-07-29T07:59:35.513Z"
   }
 }
