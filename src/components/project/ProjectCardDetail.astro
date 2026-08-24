@@ -2,7 +2,9 @@
 import { Icon } from "astro-icon/components";
 import { Image, getImage } from "astro:assets";
 import type { ProjectType } from "@/src/content.config";
-import ProjectCarousel from "@/components/project/ProjectCarousel";
+import ProjectCarousel, {
+  type CarouselMedia,
+} from "@/components/project/ProjectCarousel";
 import defaultCover from "@/content/projects/template_project_cover.webp";
 
 interface Props {
@@ -23,8 +25,9 @@ const displayImage = image || defaultCover;
 
 const videoExtensions = ["mp4", "mov", "webm", "ogg"];
 
-const processedMedia = await Promise.all(
-  mediaUrls!.map(async (url) => {
+// 1. Resolve all the promises first, which results in (CarouselMedia | null)[]
+const rawMedia = await Promise.all(
+  mediaUrls!.map(async (url): Promise<CarouselMedia | null> => {
     const isVideo = videoExtensions.some((ext) =>
       url.toLowerCase().endsWith(`.${ext}`),
     );
@@ -44,31 +47,37 @@ const processedMedia = await Promise.all(
       };
     }
 
-    // Generate high-res version for the viewer (1200px width)
-    const optimizedFull = await getImage({
-      src: url,
-      width: 1200,
-      fit: "inside",
-      format: "avif",
-      inferSize: true,
-    });
-
-    // Generate tiny thumbnail (150px width, lower quality)
-    const optimizedThumb = await getImage({
-      src: url,
-      width: 150,
-      height: 100,
-      quality: 40,
-      format: "avif",
-      inferSize: true,
-    });
-
-    return {
-      type: "image" as const,
-      src: optimizedFull.src,
-      thumbSrc: optimizedThumb.src,
-    };
+    try {
+      // Generate high-res version for the viewer (1200px width)
+      const optimizedFull = await getImage({
+        src: url,
+        width: 1200,
+        fit: "inside",
+        format: "avif",
+        inferSize: true,
+      });
+      // Generate tiny thumbnail (150px width, lower quality)
+      const optimizedThumb = await getImage({
+        src: url,
+        width: 150,
+        height: 100,
+        quality: 40,
+        format: "avif",
+        inferSize: true,
+      });
+      return {
+        type: "image" as const,
+        src: optimizedFull.src,
+        thumbSrc: optimizedThumb.src,
+      };
+    } catch (e) {
+      return null;
+    }
   }),
+);
+
+const processedMedia: CarouselMedia[] = rawMedia.filter(
+  (item): item is CarouselMedia => item !== null,
 );
 ---
 
